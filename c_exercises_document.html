@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercices de Programmation C</title>
+    <link rel="icon" type="image/png" href="images.png">
     <style>
         @media print {
             body { margin: 0; }
@@ -32,6 +33,7 @@
             border-bottom: 3px solid #1f4788;
             padding-bottom: 15px;
             margin-bottom: 30px;
+            font-size: 2em;
         }
         
         h2 {
@@ -40,6 +42,7 @@
             margin-bottom: 15px;
             border-left: 5px solid #1f4788;
             padding-left: 15px;
+            font-size: 1.5em;
         }
         
         h3 {
@@ -57,6 +60,7 @@
             overflow-x: auto;
             white-space: pre;
             line-height: 1.4;
+            font-size: 0.9em;
         }
         
         table {
@@ -64,6 +68,8 @@
             border-collapse: collapse;
             margin: 20px 0;
             font-size: 14px;
+            overflow-x: auto;
+            display: block;
         }
         
         th, td {
@@ -91,62 +97,122 @@
             margin-bottom: 10px;
         }
         
-        .nested-list {
-            margin-top: 10px;
-            margin-left: 20px;
+        button {
+            background-color: white;
+            color: #667eea;
+            border: none;
+            padding: 15px 40px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
         }
         
-        .download-buttons {
-            text-align: center;
-            margin: 30px 0;
-            padding: 20px;
-            background-color: #e8f0f8;
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background-color: #f8f9fa;
+        }
+        
+        .correction {
+            color: red;
+        }
+
+        pre {
+            overflow-x: auto;
+            background-color: #f8f8f8;
+            padding: 10px;
             border-radius: 5px;
         }
-        
-        button {
-        background-color: white;
-        color: #667eea; /* The purple-blue color from your favorite style */
-        border: none;
-        padding: 15px 40px;
-        margin-bottom: 20px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 18px;
-        font-weight: bold;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        transition: all 0.3s;
-        display: inline-flex;
-        align-items: center;
-    }
-    
-    button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        background-color: #f8f9fa;
-    }
-        
-        .exercise-number {
-            background-color: #1f4788;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 3px;
-            display: inline-block;
-            margin-bottom: 10px;
+
+        code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
         }
-	.correction {
-            color: red;
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+                padding-bottom: 10px;
+            }
+
+            h2 {
+                font-size: 1.2em;
+                margin-top: 20px;
+            }
+
+            button {
+                padding: 12px 25px;
+                font-size: 16px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .code-block {
+                padding: 10px;
+                font-size: 0.75em;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 8px 5px;
+            }
+
+            pre {
+                font-size: 0.8em;
+            }
+
+            ol, ul {
+                margin-left: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.3em;
+            }
+
+            h2 {
+                font-size: 1.1em;
+            }
+
+            .code-block {
+                font-size: 0.7em;
+            }
+
+            table {
+                font-size: 10px;
+            }
+
+            th, td {
+                padding: 6px 3px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-    <a href="index.html" style="text-decoration: none;">
-        <button class="back-button">← Retour à l'accueil</button>
-    </a>
-    
-       <div class="content-viewer">
-        </div>
+        <a href="index.html" style="text-decoration: none;">
+            <button class="back-button">← Retour à l'accueil</button>
+        </a>
+        
         <h1>Exercices de Programmation C<br>Pointeurs et Structures de Données</h1>
 
         <h2>Exercice 1 : Manipulation des Pointeurs</h2>
@@ -159,17 +225,15 @@ int *P = A + 2;</div>
         <p><strong>Indiquer la valeur retournée ou l'adresse retournée par chacune des expressions suivantes :</strong></p>
         
         <ol>
-            <li>*P <span style="color:red;">= 6</span></li>
-            <li>*(P + 3) <span style="color:red;"> = *(A + 2 + 3) = *(A + 5) = 12</span></li>
-            <li>P - A <span style="color:red;">= A - 2 - A = 2</span> </li>
-            <li>&A[6] - P <span style="color:red;">= (A + 6) - (A + 2) = A + 6 - A - 2 = 4 </span></li>
-            <li>*(A + *(P - 1) / 2) <span style="color:red;">= *(A + *(A + 2 -1) / 2 ) = *(A + *(A + 1) / 2 ) = *(A + 4 / 2) = *(A + 2) = 6</span></li>
-            <li>*(P - 2) + *(P + 2) <span style="color:red;">= *(A + 2 - 2) + *(A + 2 + 2) = *A + *(A + 4) = 2 + 10 = 12</span></li>
-            <li>P + (*(P + 1) % 4) <span style="color:red;">= A + 2 + (*(A + 2 +1) % 4) = A + 2 + (8 % 4) = A + 2 + 0 = P </span></li>
-            <li>&P <span style="color:red;"> l'adress de case P</span></li>
+            <li>*P <span class="correction">= 6</span></li>
+            <li>*(P + 3) <span class="correction">= *(A + 2 + 3) = *(A + 5) = 12</span></li>
+            <li>P - A <span class="correction">= A - 2 - A = 2</span></li>
+            <li>&A[6] - P <span class="correction">= (A + 6) - (A + 2) = A + 6 - A - 2 = 4</span></li>
+            <li>*(A + *(P - 1) / 2) <span class="correction">= *(A + *(A + 2 -1) / 2 ) = *(A + *(A + 1) / 2 ) = *(A + 4 / 2) = *(A + 2) = 6</span></li>
+            <li>*(P - 2) + *(P + 2) <span class="correction">= *(A + 2 - 2) + *(A + 2 + 2) = *A + *(A + 4) = 2 + 10 = 12</span></li>
+            <li>P + (*(P + 1) % 4) <span class="correction">= A + 2 + (*(A + 2 +1) % 4) = A + 2 + (8 % 4) = A + 2 + 0 = P</span></li>
+            <li>&P <span class="correction">l'adresse de case P</span></li>
         </ol>
-
-        <div class="page-break"></div>
 
         <h2>Exercice 2 : Manipulation des Pointeurs (Suite)</h2>
         
@@ -189,7 +253,6 @@ int *Q = &B[4];</div>
             <li>Q + (*(Q - 2) / 10) <span class="correction">= Q + (15 / 10) = Q + 1 = adresse de B[5]</span></li>
             <li>*(Q + 2) <span class="correction">= *(B + 6) = Valeur indéterminée (Hors tableau)</span></li>
         </ol>
-        <div class="page-break"></div>
 
         <h2>Exercice 3 : Traçage de Programme avec Pointeurs</h2>
         
@@ -325,8 +388,6 @@ int *Q = &B[4];</div>
             </tr>
         </table>
 
-        <div class="page-break"></div>
-
         <h2>Exercice 4 : Gestion de Stock avec Liste Chaînée</h2>
         
         <p>Étant donnée la structure suivante :</p>
@@ -334,58 +395,46 @@ int *Q = &B[4];</div>
         
         <ol>
             <li>Définir la structure Produit et la structure de la liste chaînée.</li>
-<pre>
-<code>
-<span style="color: red; font-weight: bold;">typedef struct {
+<pre><code><span style="color: red; font-weight: bold;">typedef struct {
     char nom[30];
     int code;
     char categorie[20];
     int quantite;
     float prix;
-} Produit;</span>
+} Produit;
 
-<span style="color: red; font-weight: bold;">typedef struct Node {
+typedef struct Node {
     Produit p;
     struct Node *suiv;
-} Node;</span>
-</code>
-</pre>
+} Node;</span></code></pre>
+
             <li>Écrire une fonction qui crée un nouveau produit.</li>
-<pre>
-<code>
-<span style="color: red; font-weight: bold;">Produit creerProduit() {
+<pre><code><span style="color: red; font-weight: bold;">Produit creerProduit() {
     Produit p;
-    scanf("%s %d %s %d %f", p.nom, &amp;p.code, p.categorie, &amp;p.quantite, &amp;p.prix);
+    scanf("%s %d %s %d %f", p.nom, &p.code, 
+          p.categorie, &p.quantite, &p.prix);
     return p;
-}</span>
-</code>
-</pre>
+}</span></code></pre>
+
             <li>Écrire une fonction qui ajoute un produit en tête de la liste.</li>
-<pre>
-<code>
-<span style="color: red; font-weight: bold;">Node* ajouterTete(Node *liste, Produit p) {
+<pre><code><span style="color: red; font-weight: bold;">Node* ajouterTete(Node *liste, Produit p) {
     Node *n = malloc(sizeof(Node));
     n->p = p;
     n->suiv = liste;
     return n;
-}</span>
-</code>
-</pre>
+}</span></code></pre>
+
             <li>Écrire une fonction qui affiche tous les produits.</li>
-<pre>
-<code>
-<span style="color: red; font-weight: bold;">void afficher(Node *l) {
+<pre><code><span style="color: red; font-weight: bold;">void afficher(Node *l) {
     while(l) {
-        printf("%s %d %d %.2f\n", l->p.nom, l->p.code, l->p.quantite, l->p.prix);
+        printf("%s %d %d %.2f\n", l->p.nom, 
+               l->p.code, l->p.quantite, l->p.prix);
         l = l->suiv;
     }
-}</span>
-</code>
-</pre>
+}</span></code></pre>
+
             <li>Écrire une fonction qui supprime un produit à partir de son code.</li>
-<pre>
-<code>
-<span style="color: red; font-weight: bold;">Node* supprimer(Node *l, int code) {
+<pre><code><span style="color: red; font-weight: bold;">Node* supprimer(Node *l, int code) {
     if (!l) return NULL;
     if (l->p.code == code) {
         Node *tmp = l->suiv;
@@ -394,34 +443,26 @@ int *Q = &B[4];</div>
     }
     l->suiv = supprimer(l->suiv, code);
     return l;
-}</span>
-</code>
-</pre>
-            <li>Écrire une fonction qui calcule la valeur totale du stock (somme des quantité × prix_unitaire).</li>
-<pre>
-<code>
-<span style="color: red; font-weight: bold;">float valeurStock(Node *l) {
+}</span></code></pre>
+
+            <li>Écrire une fonction qui calcule la valeur totale du stock.</li>
+<pre><code><span style="color: red; font-weight: bold;">float valeurStock(Node *l) {
     float s = 0;
     while(l) {
         s += l->p.quantite * l->p.prix;
         l = l->suiv;
     }
     return s;
-}</span>
-</code>
-</pre>      
-  </ol>
+}</span></code></pre>
+        </ol>
 
-        <div class="page-break"></div>
-<h2>Exercice 5 : Gestion des Vols avec Tableau Dynamique</h2>
+        <h2>Exercice 5 : Gestion des Vols avec Tableau Dynamique</h2>
 
-<p>On souhaite développer un programme de gestion des vols à l'aide d'un tableau dynamique. Chaque vol est défini par un numéro unique, une ville de départ, une ville d'arrivée, une date de départ, un nombre de places disponibles et un prix du billet.</p>
+        <p>On souhaite développer un programme de gestion des vols à l'aide d'un tableau dynamique.</p>
 
-<ol>
-    <li>Définir la structure <strong>Vol</strong> contenant les informations nécessaires.</li>
-<pre>
-<code>
-<span style="color: red; font-weight: bold;">typedef struct {
+        <ol>
+            <li>Définir la structure <strong>Vol</strong>.</li>
+<pre><code><span style="color: red; font-weight: bold;">typedef struct {
     int num;
     char dep[20];
     char arr[20];
@@ -429,14 +470,10 @@ int *Q = &B[4];</div>
     int places_total;
     int places_disp;
     float prix;
-} Vol;</span>
-</code>
-</pre>
+} Vol;</span></code></pre>
 
-    <li>Écrire une fonction permettant de saisir un vol en respectant les contraintes :</li>
-<pre>
-<code>
-<span style="color: red; font-weight: bold;">void saisirVol(Vol *v) {
+            <li>Fonction de saisie d'un vol.</li>
+<pre><code><span style="color: red; font-weight: bold;">void saisirVol(Vol *v) {
     do {
         printf("Numéro du vol : ");
         scanf("%d", &v->num);
@@ -460,147 +497,78 @@ int *Q = &B[4];</div>
         printf("Prix du billet : ");
         scanf("%f", &v->prix);
     } while(v->prix <= 0);
-}</span>
-</code>
-</pre>
+}</span></code></pre>
 
-    <li>Écrire une fonction qui calcule la recette d’un vol.</li>
-<pre>
-<code>
-<span style="color: red; font-weight: bold;">float recette(Vol v) {
+            <li>Fonction calculant la recette d'un vol.</li>
+<pre><code><span style="color: red; font-weight: bold;">float recette(Vol v) {
     return (v.places_total - v.places_disp) * v.prix;
-}</span>
-</code>
-</pre>
+}</span></code></pre>
 
-    <li>Écrire une fonction qui renvoie le vol ayant généré la recette maximale.</li>
-<pre>
-<code>
-<span style="color: red; font-weight: bold;">Vol maxRecette(Vol t[], int n) {
+            <li>Fonction retournant le vol avec recette maximale.</li>
+<pre><code><span style="color: red; font-weight: bold;">Vol maxRecette(Vol t[], int n) {
     int imax = 0;
-    for(int i = 1; i &lt; n; i++)
-        if(recette(t[i]) &gt; recette(t[imax])) imax = i;
+    for(int i = 1; i < n; i++)
+        if(recette(t[i]) > recette(t[imax])) 
+            imax = i;
     return t[imax];
-}</span>
-</code>
-</pre>
+}</span></code></pre>
 
-    <li>Écrire une fonction qui calcule la recette totale de tous les vols.</li>
-<pre>
-<code>
-<span style="color: red; font-weight: bold;">float recetteTotale(Vol t[], int n) {
+            <li>Fonction calculant la recette totale.</li>
+<pre><code><span style="color: red; font-weight: bold;">float recetteTotale(Vol t[], int n) {
     float total = 0;
-    for(int i = 0; i &lt; n; i++)
+    for(int i = 0; i < n; i++)
         total += recette(t[i]);
     return total;
-}</span>
-</code>
-</pre>
+}</span></code></pre>
 
-    <li>Écrire une fonction qui trie les vols par ordre décroissant de recette.</li>
-<pre>
-<code>
-<span style="color: red; font-weight: bold;">void trier(Vol t[], int n) {
-    for(int i = 0; i &lt; n-1; i++)
-        for(int j = i+1; j &lt; n; j++)
-            if(recette(t[j]) &gt; recette(t[i])) {
+            <li>Fonction de tri par ordre décroissant de recette.</li>
+<pre><code><span style="color: red; font-weight: bold;">void trier(Vol t[], int n) {
+    for(int i = 0; i < n-1; i++)
+        for(int j = i+1; j < n; j++)
+            if(recette(t[j]) > recette(t[i])) {
                 Vol tmp = t[i];
                 t[i] = t[j];
                 t[j] = tmp;
             }
-}</span>
-</code>
-</pre>
+}</span></code></pre>
 
-    <li>Écrire une fonction permettant de rechercher un vol par son numéro et d’afficher ses informations.</li>
-<pre>
-<code>
-<span style="color: red; font-weight: bold;">void rechercherVol(Vol t[], int n, int num) {
+            <li>Fonction de recherche par numéro.</li>
+<pre><code><span style="color: red; font-weight: bold;">void rechercherVol(Vol t[], int n, int num) {
     int trouve = 0;
-    for(int i = 0; i &lt; n; i++) {
+    for(int i = 0; i < n; i++) {
         if(t[i].num == num) {
-            printf("Vol %d : %s -&gt; %s, Date: %s, Places dispo: %d, Prix: %.2f, Recette: %.2f\n",
-                t[i].num, t[i].dep, t[i].arr, t[i].date,
-                t[i].places_disp, t[i].prix, recette(t[i]));
+            printf("Vol %d : %s -> %s\n", 
+                   t[i].num, t[i].dep, t[i].arr);
             trouve = 1;
             break;
         }
     }
-    if(!trouve) printf("Vol %d non trouvé.\n", num);
-}</span>
-</code>
-</pre>
+    if(!trouve) 
+        printf("Vol %d non trouvé.\n", num);
+}</span></code></pre>
 
-    <li>Écrire une fonction permettant de réserver des places sur un vol donné.</li>
-<pre>
-<code>
-<span style="color: red; font-weight: bold;">void reserverPlaces(Vol *v, int nbre) {
-    if(nbre &lt;= 0) {
-        printf("Nombre de places invalide.\n");
-        return;
-    }
-    if(nbre &gt; v->places_disp) {
-        printf("Pas assez de places disponibles.\n");
+            <li>Fonction de réservation de places.</li>
+<pre><code><span style="color: red; font-weight: bold;">void reserverPlaces(Vol *v, int nbre) {
+    if(nbre <= 0 || nbre > v->places_disp) {
+        printf("Impossible de réserver.\n");
         return;
     }
     v->places_disp -= nbre;
-    printf("%d places réservées avec succès. Places restantes : %d\n", nbre, v->places_disp);
-}</span>
-</code>
-</pre>
+    printf("%d places réservées.\n", nbre);
+}</span></code></pre>
 
-    <li>Écrire une fonction permettant de sauvegarder les vols dans un fichier texte <strong>vols.txt</strong>.</li>
-<pre>
-<code>
-<span style="color: red; font-weight: bold;">void sauvegarder(Vol t[], int n) {
+            <li>Fonction de sauvegarde dans un fichier.</li>
+<pre><code><span style="color: red; font-weight: bold;">void sauvegarder(Vol t[], int n) {
     FILE *f = fopen("vols.txt", "w");
-    if(f == NULL) { printf("Erreur lors de l'ouverture du fichier.\n"); return; }
-    for(int i = 0; i &lt; n; i++)
-        fprintf(f, "%d %s %s %s %d %.2f %.2f\n",
-            t[i].num, t[i].dep, t[i].arr, t[i].date,
-            t[i].places_disp, t[i].prix, recette(t[i]));
+    if(f == NULL) return;
+    for(int i = 0; i < n; i++)
+        fprintf(f, "%d %s %s %s %d %.2f\n",
+                t[i].num, t[i].dep, t[i].arr, 
+                t[i].date, t[i].places_disp, 
+                t[i].prix);
     fclose(f);
-    printf("Vols sauvegardés dans vols.txt\n");
-}</span>
-</code>
-</pre>
-
-    <li>Écrire le programme principal faisant appel à l'ensemble des sous-programmes précédents.</li>
-<pre>
-<code>
-<span style="color: red; font-weight: bold;">int main() {
-    int n;
-    printf("Nombre de vols (max 30) : ");
-    scanf("%d", &n);
-    if(n &lt;= 0 || n &gt; 30) return 1;
-
-    Vol vols[30];
-
-    for(int i = 0; i &lt; n; i++) {
-        printf("\n--- Vol %d ---\n", i+1);
-        saisirVol(&vols[i]);
-    }
-
-    printf("\nListe des vols :\n");
-    for(int i = 0; i &lt; n; i++)
-        printf("%d : %s -&gt; %s, Date: %s, Places dispo: %d, Prix: %.2f, Recette: %.2f\n",
-            vols[i].num, vols[i].dep, vols[i].arr, vols[i].date,
-            vols[i].places_disp, vols[i].prix, recette(vols[i]));
-
-    Vol vmax = maxRecette(vols, n);
-    printf("\nVol avec recette maximale :\n");
-    printf("%d : %s -&gt; %s, Recette: %.2f\n", vmax.num, vmax.dep, vmax.arr, recette(vmax));
-
-    printf("\nRecette totale : %.2f\n", recetteTotale(vols, n));
-
-    trier(vols, n);
-    printf("\nVols triés par recette décroissante :\n");
-    for(int i = 0; i &lt; n; i++)
-        printf("%d : %s -&gt; %s, Recette: %.2f\n", vols[i].num, vols[i].dep, vols[i].arr,<br> recette(vols[i]));
-
-    sauvegarder(vols, n);
-
-    return
-
+}</span></code></pre>
+        </ol>
+    </div>
 </body>
 </html>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hub de Révisions</title>
+    <link rel="icon" type="image/png" href="images.png">
     <style>
         /* ... existing styles ... */
         * {
@@ -140,6 +141,19 @@
             color: white;
             margin-top: 60px;
             opacity: 0.8;
+        }
+          .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
         }
     </style>
 </head>
