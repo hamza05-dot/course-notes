@@ -1,26 +1,595 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Hamza – Course Notes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub de Révisions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .card-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .card-description {
+            color: #7f8c8d;
+            font-size: 1em;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .card-topics {
+            font-size: 0.9em;
+            color: #95a5a6;
+        }
+
+        .card-arrow {
+            font-size: 1.5em;
+            color: #667eea;
+            transition: transform 0.3s;
+        }
+
+        .card:hover .card-arrow {
+            transform: translateX(5px);
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e8f0f8;
+            color: #667eea;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin-right: 5px;
+            margin-top: 5px;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            opacity: 0.8;
+        }
+
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        .back-button {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            margin-bottom: 30px;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .content-viewer {
+            background: white;
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .content-viewer h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            text-shadow: none;
+        }
+
+        .content-viewer h2 {
+            color: #667eea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 5px solid #764ba2;
+            padding-left: 15px;
+        }
+
+        .content-viewer h3 {
+            color: #34495e;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .content-viewer table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .content-viewer th,
+        .content-viewer td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .content-viewer th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .content-viewer tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .content-viewer ul,
+        .content-viewer ol {
+            margin-left: 30px;
+            line-height: 1.8;
+        }
+
+        .content-viewer li {
+            margin-bottom: 10px;
+        }
+
+        .content-viewer code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #e83e8c;
+        }
+    </style>
 </head>
 <body>
+    <!-- MAIN PAGE -->
+    <div id="main-page" class="page-content active">
+        <div class="container">
+            <header>
+                <h1>📚 Hub de Révisions</h1>
+                <p class="subtitle">Toutes vos ressources d'étude en un seul endroit</p>
+            </header>
 
-  <h1>📘 My Course Notes</h1>
-  <p>Click on a course to open it.</p>
+            <div class="cards-grid">
+                <!-- Card 1: Programmation C -->
+                <div class="card" onclick="navigateTo('c-programming')">
+                    <div class="card-icon">💻</div>
+                    <div class="card-title">Programmation C</div>
+                    <div class="card-description">
+                        Exercices sur les pointeurs, tableaux, structures de données, listes chaînées et gestion de fichiers.
+                    </div>
+                    <div>
+                        <span class="badge">Pointeurs</span>
+                        <span class="badge">Structures</span>
+                        <span class="badge">Listes Chaînées</span>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-topics">5 Exercices</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
 
-  <ul>
-    <li>
-      <a href="c_exercises_document.html">
-        C Programming – Exercises & Summary
-      </a>
-    </li>
-    <li>
-      <a href="virtualization_comprehensive_summary.html">
-        Virtualization – Comprehensive Summary
-      </a>
-    </li>
-  </ul>
+                <!-- Card 2: Virtualisation & Cloud -->
+                <div class="card" onclick="navigateTo('cloud-virtualization')">
+                    <div class="card-icon">☁️</div>
+                    <div class="card-title">Virtualisation & Cloud</div>
+                    <div class="card-description">
+                        Concepts de virtualisation, hyperviseurs, Docker, conteneurisation et services AWS (EC2, VPC).
+                    </div>
+                    <div>
+                        <span class="badge">VirtualBox</span>
+                        <span class="badge">Docker</span>
+                        <span class="badge">AWS</span>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-topics">5 Chapitres</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+            </div>
 
+            <footer>
+                <p>© 2025 - Hub de Révisions Académiques</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- C PROGRAMMING PAGE -->
+    <div id="c-programming" class="page-content">
+        <div class="container">
+            <button class="back-button" onclick="navigateTo('main-page')">← Retour à l'accueil</button>
+            
+            <div class="content-viewer">
+                <h1>Exercices de Programmation C<br>Pointeurs et Structures de Données</h1>
+
+                <h2>Exercice 1 : Manipulation des Pointeurs</h2>
+                
+                <p>Considérons le code C suivant :</p>
+                
+                <pre style="background-color: #f8f8f8; padding: 15px; border-radius: 5px;">int A[] = {2, 4, 6, 8, 10, 12, 14};
+int *P = A + 2;</pre>
+
+                <p><strong>Indiquer la valeur retournée ou l'adresse retournée par chacune des expressions suivantes :</strong></p>
+                
+                <ol>
+                    <li>*P</li>
+                    <li>*(P + 3)</li>
+                    <li>P - A</li>
+                    <li>&A[6] - P</li>
+                    <li>*(A + *(P - 1) / 2)</li>
+                    <li>*(P - 2) + *(P + 2)</li>
+                    <li>P + (*(P + 1) % 4)</li>
+                    <li>&P</li>
+                </ol>
+
+                <h2>Exercice 2 : Manipulation des Pointeurs (Suite)</h2>
+                
+                <p>Considérons le code C suivant :</p>
+                
+                <pre style="background-color: #f8f8f8; padding: 15px; border-radius: 5px;">int B[] = {5, 10, 15, 20, 25, 30};
+int *Q = &B[4];</pre>
+
+                <p><strong>Indiquer la valeur retournée ou l'adresse retournée par chacune des expressions suivantes :</strong></p>
+                
+                <ol>
+                    <li>*Q</li>
+                    <li>*(Q - 3)</li>
+                    <li>Q - B</li>
+                    <li>*(B + (*Q / 5))</li>
+                    <li>&B[5] - Q</li>
+                    <li>*(Q - 1) + *(Q + 1)</li>
+                    <li>Q + (*(Q - 2) / 10)</li>
+                    <li>*(Q + 2)</li>
+                </ol>
+
+                <h2>Exercice 3 : Traçage de Programme avec Pointeurs</h2>
+                
+                <p>Soit le programme suivant :</p>
+                
+                <pre style="background-color: #f8f8f8; padding: 15px; border-radius: 5px;">int main() {
+    int a = 1;
+    int b = 2;
+    int c = 3;
+    int *p1, *p2;
+    
+    p1 = &a;
+    p2 = &c;
+    *p1 = *p2;
+    (*p2)++;
+    p1 = p2;
+    p2 = &b;
+    *p1 *= *p2;
+    ++(*p2);
+    a = *p2 * *p1;
+    p1 = &a;
+    *p2 = *p1 /= *p2;
+    
+    return 0;
+}</pre>
+
+                <p><strong>Remplir le tableau de chaque variable après chaque instruction</strong></p>
+
+                <h2>Exercice 4 : Gestion de Stock avec Liste Chaînée</h2>
+                
+                <p><strong>Produit</strong> défini par son nom, son code, sa catégorie, sa quantité et son prix unitaire. On souhaite gérer un stock de produits à l'aide d'une liste chaînée simplement.</p>
+                
+                <ol>
+                    <li>Définir la structure Produit et la structure de la liste chaînée.</li>
+                    <li>Écrire une fonction qui crée un nouveau produit.</li>
+                    <li>Écrire une fonction qui ajoute un produit en tête de la liste.</li>
+                    <li>Écrire une fonction qui affiche tous les produits.</li>
+                    <li>Écrire une fonction qui supprime un produit à partir de son code.</li>
+                    <li>Écrire une fonction qui calcule la valeur totale du stock (somme des quantité × prix_unitaire).</li>
+                </ol>
+
+                <h2>Exercice 5 : Gestion des Vols avec Tableau Dynamique</h2>
+                
+                <p>On souhaite développer un programme de gestion des vols à l'aide d'un tableau dynamique. Chaque vol est défini par un numéro unique, une ville de départ, une ville d'arrivée, une date de départ, un nombre de places disponibles et un prix du billet.</p>
+                
+                <ol>
+                    <li>Définir un enregistrement <strong>Vol</strong> contenant les informations nécessaires.</li>
+                    <li>Écrire une fonction permettant de saisir N vols (N ≤ 30) avec contraintes de validation.</li>
+                    <li>Écrire une fonction permettant d'afficher la liste des vols avec leur recette.</li>
+                    <li>Écrire une fonction qui renvoie le vol ayant généré la recette la plus élevée.</li>
+                    <li>Écrire une fonction qui calcule la recette totale de tous les vols.</li>
+                    <li>Écrire une fonction qui trie les vols par ordre décroissant de recette.</li>
+                    <li>Écrire une fonction permettant de rechercher un vol par son numéro.</li>
+                    <li>Écrire une fonction permettant de réserver des places sur un vol donné.</li>
+                    <li>Écrire une fonction permettant de sauvegarder dans un fichier texte (vols.txt).</li>
+                    <li>Écrire le programme principal.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- CLOUD & VIRTUALIZATION PAGE -->
+    <div id="cloud-virtualization" class="page-content">
+        <div class="container">
+            <button class="back-button" onclick="navigateTo('main-page')">← Retour à l'accueil</button>
+            
+            <div class="content-viewer">
+                <h1>Virtualisation et Cloud Computing</h1>
+
+                <h2>1. Introduction à la Virtualisation</h2>
+                
+                <p><strong>Définition :</strong> La virtualisation permet de simuler plusieurs environnements informatiques sur une seule machine physique en partageant les ressources (CPU, RAM, Disque).</p>
+
+                <h3>Principes Fondamentaux</h3>
+                <ol>
+                    <li><strong>Le Cloisonnement (Isolation) :</strong> Chaque système d'exploitation a un fonctionnement indépendant et ne peut interférer avec les autres.</li>
+                    <li><strong>La Transparence :</strong> La virtualisation ne doit rien changer au fonctionnement du système d'exploitation hôte.</li>
+                </ol>
+
+                <h3>Domaines d'Application</h3>
+                <ul>
+                    <li><strong>Serveurs :</strong> Exécuter plusieurs serveurs virtuels sur une seule machine physique</li>
+                    <li><strong>Systèmes d'exploitation :</strong> Exécuter plusieurs SE indépendants</li>
+                    <li><strong>Stockage :</strong> SAN, NAS</li>
+                    <li><strong>Réseaux :</strong> VLAN, VPN</li>
+                    <li><strong>Applications :</strong> Docker, App-V</li>
+                </ul>
+
+                <h3>Avantages et Inconvénients</h3>
+                <table>
+                    <tr>
+                        <th>✅ Avantages</th>
+                        <th>❌ Inconvénients</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            • Réduction des coûts<br>
+                            • Meilleure utilisation des ressources<br>
+                            • Flexibilité et portabilité<br>
+                            • Sécurité et isolation<br>
+                            • Démarches Green IT
+                        </td>
+                        <td>
+                            • Si machine physique tombe en panne, tous les services virtuels sont interrompus<br>
+                            • Dégradation possible des performances
+                        </td>
+                    </tr>
+                </table>
+
+                <h2>2. Les Hyperviseurs</h2>
+
+                <p><strong>Définition :</strong> Plateforme de virtualisation qui gère, isole et répartit les ressources physiques entre plusieurs systèmes d'exploitation invités (VM).</p>
+
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Exemples</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Type 1 (Bare-Metal)</strong></td>
+                        <td>S'exécute directement sur le hardware. Noyau allégé optimisé.</td>
+                        <td>Xen, VMware ESX/vSphere, Hyper-V, KVM</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Type 2 (Hébergé)</strong></td>
+                        <td>S'exécute à l'intérieur d'un système d'exploitation hôte.</td>
+                        <td>VirtualBox, VMware Workstation</td>
+                    </tr>
+                </table>
+
+                <h3>Techniques de Virtualisation</h3>
+                <ul>
+                    <li><strong>Virtualisation Complète :</strong> VMs avec OS complet via hyperviseur</li>
+                    <li><strong>Para-virtualisation :</strong> Système invité modifié pour coopérer via hypercalls (meilleures performances)</li>
+                    <li><strong>Virtualisation Assistée par Matériel :</strong> Extensions CPU (Intel VT-x, AMD-V) - doit être activé dans BIOS/UEFI</li>
+                    <li><strong>Émulation :</strong> Simulation complète d'un autre matériel (très flexible mais très lent)</li>
+                </ul>
+
+                <h2>3. Conteneurisation avec Docker</h2>
+
+                <p><strong>Définition :</strong> Empaqueter du code logiciel avec uniquement les bibliothèques et dépendances nécessaires, créant un conteneur portable.</p>
+
+                <h3>Docker : Concepts Clés</h3>
+                <ul>
+                    <li><strong>Image Docker :</strong> Template immuable du conteneur</li>
+                    <li><strong>Conteneur Docker :</strong> Instance exécutable d'une image</li>
+                    <li><strong>Registre :</strong> Stocke et distribue les images (Docker Hub)</li>
+                </ul>
+
+                <h3>Commandes Docker Essentielles</h3>
+                <table>
+                    <tr>
+                        <th>Commande</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td><code>docker build -t &lt;nom&gt; .</code></td>
+                        <td>Construit une image à partir du Dockerfile</td>
+                    </tr>
+                    <tr>
+                        <td><code>docker pull &lt;nom&gt;</code></td>
+                        <td>Télécharge une image depuis Docker Hub</td>
+                    </tr>
+                    <tr>
+                        <td><code>docker run &lt;nom&gt;</code></td>
+                        <td>Crée et démarre un conteneur</td>
+                    </tr>
+                    <tr>
+                        <td><code>docker ps</code></td>
+                        <td>Liste les conteneurs actifs</td>
+                    </tr>
+                    <tr>
+                        <td><code>docker ps -a</code></td>
+                        <td>Liste tous les conteneurs (actifs + arrêtés)</td>
+                    </tr>
+                    <tr>
+                        <td><code>docker stop &lt;ID&gt;</code></td>
+                        <td>Arrête un conteneur</td>
+                    </tr>
+                    <tr>
+                        <td><code>docker rm &lt;ID&gt;</code></td>
+                        <td>Supprime un conteneur</td>
+                    </tr>
+                    <tr>
+                        <td><code>docker rmi &lt;ID&gt;</code></td>
+                        <td>Supprime une image</td>
+                    </tr>
+                </table>
+
+                <h3>Dockerfile - Instructions</h3>
+                <ul>
+                    <li><code>FROM &lt;image&gt;</code> - Définit l'image de base</li>
+                    <li><code>RUN &lt;cmd&gt;</code> - Exécute une commande pendant construction</li>
+                    <li><code>COPY &lt;src&gt; &lt;dest&gt;</code> - Ajoute des fichiers</li>
+                    <li><code>WORKDIR &lt;path&gt;</code> - Définit le répertoire de travail</li>
+                    <li><code>EXPOSE &lt;port&gt;</code> - Informe du port utilisé</li>
+                    <li><code>CMD &lt;cmd&gt;</code> - Commande par défaut au démarrage</li>
+                </ul>
+
+                <h2>4. VirtualBox : Fonctionnalités</h2>
+
+                <h3>Outils Principaux</h3>
+                <ul>
+                    <li><strong>Guest Additions :</strong> Pilotes pour optimiser l'OS invité (partage presse-papiers, dossiers partagés)</li>
+                    <li><strong>Snapshots :</strong> Sauvegarde l'état de la VM à un instant T</li>
+                    <li><strong>Clonage :</strong> Copie complète ou liée d'une VM</li>
+                    <li><strong>Export/Import :</strong> Format OVF/OVA pour portabilité</li>
+                </ul>
+
+                <h3>Modes Réseau</h3>
+                <table>
+                    <tr>
+                        <th>Mode</th>
+                        <th>Description</th>
+                        <th>Usage</th>
+                    </tr>
+                    <tr>
+                        <td><strong>NAT</strong></td>
+                        <td>VM utilise IP de l'hôte</td>
+                        <td>Accès Internet simple</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bridged</strong></td>
+                        <td>VM sur réseau physique</td>
+                        <td>VM comme serveur</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Internal</strong></td>
+                        <td>Réseau isolé entre VMs</td>
+                        <td>Tests réseau isolé</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Host-Only</strong></td>
+                        <td>Réseau fermé VM ↔ Hôte</td>
+                        <td>Communication isolée</td>
+                    </tr>
+                </table>
+
+                <h3>Port Forwarding</h3>
+                <p>Processus essentiel pour NAT. Redirige le trafic d'un port de l'hôte vers la VM.</p>
+                <p><strong>Exemple :</strong> Apache sur port 80 de VM accessible via <code>http://localhost:3000</code> sur hôte.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function navigateTo(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
