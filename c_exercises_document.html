@@ -105,20 +105,26 @@
         }
         
         button {
-            background-color: #1f4788;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            margin: 0 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-        }
-        
-        button:hover {
-            background-color: #163560;
-        }
+        background-color: white;
+        color: #667eea; /* The purple-blue color from your favorite style */
+        border: none;
+        padding: 15px 40px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        background-color: #f8f9fa;
+    }
         
         .exercise-number {
             background-color: #1f4788;
@@ -135,7 +141,12 @@
 </head>
 <body>
     <div class="container">
-
+    <a href="index.html" style="text-decoration: none;">
+        <button class="back-button">← Retour à l'accueil</button>
+    </a>
+    
+       <div class="content-viewer">
+        </div>
         <h1>Exercices de Programmation C<br>Pointeurs et Structures de Données</h1>
 
         <h2>Exercice 1 : Manipulation des Pointeurs</h2>
