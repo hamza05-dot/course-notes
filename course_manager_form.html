@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Cours - Hub de Révisions</title>
+    <link rel="icon" type="image/png" href="images.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .badge-input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .badge-input-container input {
+            flex: 1;
+        }
+
+        .add-badge-btn {
+            background-color: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .add-badge-btn:hover {
+            background-color: #5568d3;
+            transform: translateY(-2px);
+        }
+
+        .badges-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .badge-item {
+            background: #e8f0f8;
+            color: #667eea;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .badge-item button {
+            background: none;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+            font-size: 1.2em;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .emoji-picker {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .emoji-btn {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 2em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .emoji-btn:hover, .emoji-btn.selected {
+            background: #667eea;
+            border-color: #667eea;
+            transform: scale(1.1);
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        button[type="submit"], .back-btn {
+            flex: 1;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button[type="submit"] {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .back-btn {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .back-btn:hover {
+            background: #f8f9fa;
+            transform: translateY(-3px);
+        }
+
+        .preview-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .preview-title {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .card-preview {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .card-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .card-description {
+            color: #7f8c8d;
+            font-size: 1em;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            border-left: 4px solid #28a745;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .emoji-picker {
+                grid-template-columns: repeat(6, 1fr);
+            }
+
+            .btn-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Ajouter un Nouveau Cours</h1>
+        <p class="subtitle">Complétez le formulaire pour ajouter un cours au hub de révisions</p>
+
+        <div id="successMessage" class="success-message">
+            ✅ Cours ajouté avec succès ! Le code HTML a été généré.
+        </div>
+
+        <form id="courseForm">
+            <div class="form-group">
+                <label for="courseName">Nom du Cours *</label>
+                <input type="text" id="courseName" required placeholder="Ex: Programmation Python">
+            </div>
+
+            <div class="form-group">
+                <label for="htmlPath">Chemin du Fichier HTML *</label>
+                <input type="text" id="htmlPath" required placeholder="Ex: python_course.html">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description du Cours *</label>
+                <textarea id="description" required placeholder="Décrivez brièvement le contenu du cours..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="exerciseCount">Nombre d'Exercices/Chapitres *</label>
+                <input type="number" id="exerciseCount" required min="1" placeholder="Ex: 5">
+            </div>
+
+            <div class="form-group">
+                <label>Icône du Cours *</label>
+                <div class="emoji-picker">
+                    <button type="button" class="emoji-btn" data-emoji="💻">💻</button>
+                    <button type="button" class="emoji-btn" data-emoji="☁️">☁️</button>
+                    <button type="button" class="emoji-btn" data-emoji="📊">📊</button>
+                    <button type="button" class="emoji-btn" data-emoji="🔧">🔧</button>
+                    <button type="button" class="emoji-btn" data-emoji="🌐">🌐</button>
+                    <button type="button" class="emoji-btn" data-emoji="📱">📱</button>
+                    <button type="button" class="emoji-btn" data-emoji="🎨">🎨</button>
+                    <button type="button" class="emoji-btn" data-emoji="🔐">🔐</button>
+                    <button type="button" class="emoji-btn" data-emoji="🤖">🤖</button>
+                    <button type="button" class="emoji-btn" data-emoji="📚">📚</button>
+                    <button type="button" class="emoji-btn" data-emoji="🧮">🧮</button>
+                    <button type="button" class="emoji-btn" data-emoji="⚡">⚡</button>
+                    <button type="button" class="emoji-btn" data-emoji="🎯">🎯</button>
+                    <button type="button" class="emoji-btn" data-emoji="🚀">🚀</button>
+                    <button type="button" class="emoji-btn" data-emoji="🔬">🔬</button>
+                    <button type="button" class="emoji-btn" data-emoji="💡">💡</button>
+                </div>
+                <input type="hidden" id="selectedEmoji" required>
+            </div>
+
+            <div class="form-group">
+                <label>Badges (Mots-clés)</label>
+                <div class="badge-input-container">
+                    <input type="text" id="badgeInput" placeholder="Ajouter un badge...">
+                    <button type="button" class="add-badge-btn" onclick="addBadge()">+ Ajouter</button>
+                </div>
+                <div class="badges-list" id="badgesList"></div>
+            </div>
+
+            <div class="btn-container">
+                <a href="index.html" class="back-btn">← Retour</a>
+                <button type="submit">✨ Générer le Code</button>
+            </div>
+        </form>
+
+        <div class="preview-section" id="previewSection" style="display: none;">
+            <h2 class="preview-title">📋 Code HTML Généré</h2>
+            <textarea id="generatedCode" readonly style="width: 100%; min-height: 200px; font-family: monospace; padding: 15px; border-radius: 8px; border: 2px solid #667eea;"></textarea>
+            <p style="margin-top: 15px; color: #7f8c8d;">
+                💡 <strong>Instructions :</strong> Copiez ce code et ajoutez-le dans la section <code>&lt;div class="cards-grid"&gt;</code> de votre fichier index.html
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let badges = [];
+        let selectedEmoji = '';
+
+        // Gestion des emojis
+        document.querySelectorAll('.emoji-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedEmoji = this.dataset.emoji;
+                document.getElementById('selectedEmoji').value = selectedEmoji;
+            });
+        });
+
+        // Ajouter un badge
+        function addBadge() {
+            const input = document.getElementById('badgeInput');
+            const badge = input.value.trim();
+            
+            if (badge && !badges.includes(badge)) {
+                badges.push(badge);
+                updateBadgesList();
+                input.value = '';
+            }
+        }
+
+        // Permettre d'ajouter avec Enter
+        document.getElementById('badgeInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addBadge();
+            }
+        });
+
+        // Mettre à jour l'affichage des badges
+        function updateBadgesList() {
+            const container = document.getElementById('badgesList');
+            container.innerHTML = badges.map(badge => `
+                <div class="badge-item">
+                    ${badge}
+                    <button type="button" onclick="removeBadge('${badge}')">×</button>
+                </div>
+            `).join('');
+        }
+
+        // Supprimer un badge
+        function removeBadge(badge) {
+            badges = badges.filter(b => b !== badge);
+            updateBadgesList();
+        }
+
+        // Soumettre le formulaire
+        document.getElementById('courseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const courseName = document.getElementById('courseName').value;
+            const htmlPath = document.getElementById('htmlPath').value;
+            const description = document.getElementById('description').value;
+            const exerciseCount = document.getElementById('exerciseCount').value;
+            const emoji = document.getElementById('selectedEmoji').value;
+
+            if (!emoji) {
+                alert('Veuillez sélectionner une icône pour le cours');
+                return;
+            }
+
+            const badgesHTML = badges.map(badge => 
+                `<span class="badge">${badge}</span>`
+            ).join('\n                        ');
+
+            const generatedCode = `            <a href="${htmlPath}" class="card-link">
+                <div class="card">
+                    <div class="card-icon">${emoji}</div>
+                    <div class="card-title">${courseName}</div>
+                    <div class="card-description">
+                        ${description}
+                    </div>
+                    <div>
+                        ${badgesHTML}
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-topics">${exerciseCount} ${exerciseCount > 1 ? 'Chapitres' : 'Chapitre'}</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+            </a>`;
+
+            document.getElementById('generatedCode').value = generatedCode;
+            document.getElementById('previewSection').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'block';
+
+            // Scroll vers le code généré
+            document.getElementById('previewSection').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
