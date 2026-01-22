@@ -1,10 +1,17 @@
+    
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guide Complet - Bases de Données Relationnelles</title>
+    <link rel="icon" type="image/png" href="images.png">
     <style>
+        @media print {
+            body { margin: 0; }
+            .no-print { display: none; }
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -26,6 +33,29 @@
             border-radius: 15px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             overflow: hidden;
+        }
+
+        .back-button {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 15px 40px;
+            margin: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background-color: #f8f9fa;
         }
 
         header {
@@ -85,9 +115,10 @@
         p, li {
             margin-bottom: 12px;
             color: #555;
+            font-size: 1em;
         }
 
-        ul {
+        ul, ol {
             margin-left: 20px;
         }
 
@@ -113,6 +144,12 @@
             border-radius: 10px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        .schema-diagram img {
+            max-width: 100%;
+            height: auto;
         }
 
         .entity {
@@ -142,6 +179,7 @@
             border-radius: 4px;
             font-family: 'Courier New', monospace;
             font-size: 0.9em;
+            word-wrap: break-word;
         }
 
         pre {
@@ -164,6 +202,8 @@
             border-collapse: collapse;
             margin: 20px 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: block;
+            overflow-x: auto;
         }
 
         th {
@@ -217,6 +257,7 @@
             margin: 15px 0;
             font-family: 'Courier New', monospace;
             border-radius: 5px;
+            overflow-x: auto;
         }
 
         .tip {
@@ -246,12 +287,1743 @@
             font-weight: bold;
             color: #ff9800;
         }
-        button {
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                border-radius: 10px;
+            }
+
+            .back-button {
+                width: calc(100% - 40px);
+                margin: 20px;
                 padding: 12px 25px;
                 font-size: 16px;
-                width: 100%;
+                justify-content: center;
             }
+
+            header {
+                padding: 25px 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            .content {
+                padding: 25px 20px;
+            }
+
+            h2 {
+                font-size: 1.5em;
+                margin-bottom: 15px;
+            }
+
+            h3 {
+                font-size: 1.3em;
+                margin: 20px 0 12px;
+                padding-left: 12px;
+            }
+
+            h4 {
+                font-size: 1.1em;
+            }
+
+            p, li {
+                font-size: 0.95em;
+            }
+
+            .example-box {
+                padding: 15px;
+                margin: 15px 0;
+            }
+
+            .schema-diagram {
+                padding: 15px;
+            }
+
+            .entity, .association {
+                display: block;
+                margin: 10px 0;
+            }
+
+            code {
+                font-size: 0.85em;
+            }
+
+            pre {
+                padding: 15px;
+                font-size: 0.85em;
+            }
+
+            table {
+                font-size: 0.85em;
+            }
+
+            th, td {
+                padding: 10px 8px;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            .formula {
+                padding: 12px;
+                font-size: 0.9em;
+            }
+
+            .tip, .warning {
+                padding: 12px;
+                font-size: 0.95em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            header p {
+                font-size: 0.9em;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            h2 {
+                font-size: 1.3em;
+            }
+
+            h3 {
+                font-size: 1.15em;
+                padding-left: 10px;
+            }
+
+            h4 {
+                font-size: 1em;
+            }
+
+            p, li {
+                font-size: 0.9em;
+            }
+
+            .example-box {
+                padding: 12px;
+            }
+
+            .schema-diagram {
+                padding: 10px;
+            }
+
+            code {
+                font-size: 0.8em;
+            }
+
+            pre {
+                padding: 12px;
+                font-size: 0.8em;
+            }
+
+            table {
+                font-size: 0.8em;
+            }
+
+            th, td {
+                padding: 8px 5px;
+            }
+
+            .card {
+                padding: 12px;
+            }
+
+            .formula {
+                padding: 10px;
+                font-size: 0.85em;
+            }
+        }
+
+        /* Amélioration de la lisibilité sur petit écran */
+        @media (max-width: 480px) {
+            ul, ol {
+                margin-left: 15px;
+            }
+
+            .entity {
+                font-size: 0.9em;
+                padding: 10px 15px;
+            }
+
+            .association {
+                font-size: 0.9em;
+                padding: 8px 15px;
+            }
+        }
     </style>
+        
+</head>
+<body>
+    <div class="container">
+             <a href="index.html" style="text-decoration: none;">
+            <button class="back-button">← Retour à l'accueil</button>
+        </a>
+        
+        <header>
+            <h1>📚 Guide Complet des Bases de Données Relationnelles</h1>
+            <p>De la Conception à l'Implémentation SQL</p>
+        </header>
+
+        <div class="content">
+            <!-- Section 1 : Modèle Entité-Association -->
+            <section id="mea">
+                <h2>1. Conception : Le Modèle Entité-Association (MEA)</h2>
+                
+                <p>Le schéma conceptuel est le résultat de la modélisation du système d'information, réalisée <strong>indépendamment de l'implémentation machine</strong>.</p>
+
+                <h3>Concepts Fondamentaux</h3>
+
+                <div class="card">
+                    <h4>🔷 Entité</h4>
+                    <p>Représentation d'un objet du monde réel (concret ou abstrait) ayant une existence propre et pouvant être identifié distinctement.</p>
+                    <p><strong>Représentation graphique :</strong> Un <span class="highlight">rectangle</span></p>
+                </div>
+
+                <div class="card">
+                    <h4>🔹 Attribut (Propriété)</h4>
+                    <p>Caractéristique atomique d'une entité ou d'une association. L'<strong>identifiant (clé)</strong> est <u>souligné</u>.</p>
+                </div>
+
+                <div class="card">
+                    <h4>🔶 Association</h4>
+                    <p>Lien ayant un sens déterminé entre plusieurs entités (souvent un verbe).</p>
+                    <p><strong>Représentation graphique :</strong> Un <span class="highlight">losange ou ellipse</span></p>
+                </div>
+
+                <div class="card">
+                    <h4>📊 Cardinalités</h4>
+                    <p>Couple (min, max) caractérisant le lien :</p>
+                    <ul>
+                        <li><strong>Min (0 ou 1) :</strong> Nombre minimum de participations d'une entité</li>
+                        <li><strong>Max (1 ou n) :</strong> Nombre maximum de participations</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>📋 Exemple : Système d'Assurance Auto</h4>
+                    <div class="schema-diagram">
+                        <div class="entity">CLIENT<br><u>idClient</u>, nom, prénom, adresse</div>
+                        <span style="font-size: 1.5em; margin: 0 10px;">1,n</span>
+                        <div class="association">possède</div>
+                        <span style="font-size: 1.5em; margin: 0 10px;">0,n</span>
+                        <div class="entity">CONTRAT<br><u>numContrat</u>, dateDebut, prime</div>
+                    </div>
+                    <div class="schema-diagram">
+                        <div class="entity">VÉHICULE<br><u>immatriculation</u>, marque, modèle</div>
+                        <span style="font-size: 1.5em; margin: 0 10px;">1,n</span>
+                        <div class="association">impliqué</div>
+                        <span style="font-size: 1.5em; margin: 0 10px;">0,n</span>
+                        <div class="entity">SINISTRE<br><u>numSinistre</u>, date, montant</div>
+                    </div>
+                    <p><strong>Interprétation :</strong></p>
+                    <ul>
+                        <li>Un client peut posséder 1 ou plusieurs contrats (1,n)</li>
+                        <li>Un contrat est associé à 0 ou plusieurs véhicules (0,n)</li>
+                        <li>Un véhicule peut être impliqué dans 0 ou plusieurs sinistres</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 2 : Modèle Relationnel -->
+            <section id="relationnel">
+                <h2>2. Passage au Modèle Relationnel & Normalisation</h2>
+
+                <h3>Règles de Transformation</h3>
+
+                <div class="card">
+                    <h4>Règle 1 : Entités → Tables</h4>
+                    <p>Toute entité devient une <strong>relation (table)</strong>. L'identifiant devient la <strong>clé primaire</strong>.</p>
+                    <div class="example-box">
+                        <p><strong>Entité MEA :</strong> CLIENT(<u>idClient</u>, nom, prénom)</p>
+                        <p><strong>Table SQL :</strong></p>
+                        <pre><code>CREATE TABLE Client (
+    idClient INT PRIMARY KEY,
+    nom VARCHAR(50),
+    prenom VARCHAR(50)
+);</code></pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>Règle 2 : Associations (n:n) → Table</h4>
+                    <p>Si les deux côtés ont une cardinalité max "n", l'association devient une nouvelle table. Sa clé primaire est la <strong>concaténation</strong> des clés des entités liées.</p>
+                    <div class="example-box">
+                        <p><strong>Exemple :</strong> ÉTUDIANT (n:n) INSCRIPTION (n:n) COURS</p>
+                        <pre><code>CREATE TABLE Inscription (
+    idEtudiant INT,
+    idCours INT,
+    dateInscription DATE,
+    PRIMARY KEY (idEtudiant, idCours),
+    FOREIGN KEY (idEtudiant) REFERENCES Etudiant(idEtudiant),
+    FOREIGN KEY (idCours) REFERENCES Cours(idCours)
+);</code></pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>Règle 3 : Associations (1:n / 1:1) → Clé Étrangère</h4>
+                    <p>La clé de l'entité côté "1" (ou "0,1") migre comme <strong>clé étrangère</strong> dans la table de l'entité opposée.</p>
+                    <div class="example-box">
+                        <p><strong>Exemple :</strong> DÉPARTEMENT (1) ←→ (n) EMPLOYÉ</p>
+                        <pre><code>CREATE TABLE Employe (
+    idEmploye INT PRIMARY KEY,
+    nom VARCHAR(50),
+    idDepartement INT,
+    FOREIGN KEY (idDepartement) REFERENCES Departement(idDepartement)
+);</code></pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>Règle 4 : Associations n-aires → Table</h4>
+                    <p>Les associations impliquant 3 entités ou plus deviennent systématiquement une relation.</p>
+                    <div class="example-box">
+                        <p><strong>Exemple :</strong> FOURNISSEUR - PRODUIT - PROJET</p>
+                        <pre><code>CREATE TABLE Approvisionnement (
+    idFournisseur INT,
+    idProduit INT,
+    idProjet INT,
+    quantite INT,
+    PRIMARY KEY (idFournisseur, idProduit, idProjet)
+);</code></pre>
+                    </div>
+                </div>
+
+                <h3>Normalisation (Éviter la Redondance)</h3>
+
+                <div class="tip">
+                    La normalisation permet d'éliminer les anomalies d'insertion, de modification et de suppression.
+                </div>
+
+                <div class="card">
+                    <h4>1FN (Première Forme Normale)</h4>
+                    <p>✓ Valeurs atomiques (pas de listes ou de tableaux)</p>
+                    <p>✓ Clé primaire identifiée</p>
+                    <div class="example-box">
+                        <p><strong>❌ Non conforme 1FN :</strong></p>
+                        <table>
+                            <tr><th>idClient</th><th>Téléphones</th></tr>
+                            <tr><td>1</td><td>06123, 07456</td></tr>
+                        </table>
+                        <p><strong>✓ Conforme 1FN :</strong></p>
+                        <table>
+                            <tr><th>idClient</th><th>Téléphone</th></tr>
+                            <tr><td>1</td><td>06123</td></tr>
+                            <tr><td>1</td><td>07456</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>2FN (Deuxième Forme Normale)</h4>
+                    <p>✓ 1FN respectée</p>
+                    <p>✓ Tous les attributs dépendent de la <strong>totalité</strong> de la clé primaire</p>
+                    <div class="example-box">
+                        <p><strong>❌ Non conforme 2FN :</strong></p>
+                        <p>COMMANDE(<u>idCommande, idProduit</u>, nomProduit, quantité)</p>
+                        <p>→ nomProduit dépend seulement de idProduit, pas de la clé complète</p>
+                        <p><strong>✓ Solution :</strong> Séparer en deux tables</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>3FN (Troisième Forme Normale)</h4>
+                    <p>✓ 2FN respectée</p>
+                    <p>✓ Aucun attribut non-clé ne dépend d'un autre attribut non-clé (pas de dépendance transitive)</p>
+                    <div class="example-box">
+                        <p><strong>❌ Non conforme 3FN :</strong></p>
+                        <p>EMPLOYÉ(<u>idEmployé</u>, nom, codePostal, ville)</p>
+                        <p>→ ville dépend de codePostal (dépendance transitive)</p>
+                        <p><strong>✓ Solution :</strong> Créer une table VILLE(codePostal, ville)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3 : Algèbre Relationnelle -->
+            <section id="algebre">
+                <h2>3. Algèbre Relationnelle</h2>
+
+                <p>L'algèbre est un langage <strong>procédural</strong> où le résultat de chaque opération est une nouvelle relation.</p>
+
+                <h3>Opérations Unaires</h3>
+
+                <div class="card">
+                    <h4>🔍 Sélection (σ)</h4>
+                    <div class="formula">R = σ<sub>condition</sub>(Relation)</div>
+                    <p>Filtre les tuples (lignes) vérifiant un prédicat.</p>
+                    <div class="example-box">
+                        <h4>Exemple</h4>
+                        <p><strong>Question :</strong> Trouver tous les clients dont l'âge est supérieur à 30 ans</p>
+                        <div class="formula">σ<sub>âge > 30</sub>(CLIENT)</div>
+                        <table>
+                            <tr><th>idClient</th><th>nom</th><th>âge</th></tr>
+                            <tr><td>1</td><td>Dupont</td><td>35</td></tr>
+                            <tr><td>3</td><td>Martin</td><td>42</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>📋 Projection (π)</h4>
+                    <div class="formula">R = π<sub>colonne1, colonne2</sub>(Relation)</div>
+                    <p>Extrait certaines colonnes et supprime les doublons.</p>
+                    <div class="example-box">
+                        <h4>Exemple</h4>
+                        <p><strong>Question :</strong> Afficher uniquement les noms des clients</p>
+                        <div class="formula">π<sub>nom</sub>(CLIENT)</div>
+                        <table>
+                            <tr><th>nom</th></tr>
+                            <tr><td>Dupont</td></tr>
+                            <tr><td>Bernard</td></tr>
+                            <tr><td>Martin</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <h3>Opérations Ensemblistes</h3>
+
+                <div class="warning">
+                    Les relations doivent impérativement avoir le <strong>même schéma</strong> (même ordre de colonnes, même degré, même type de données respectif).
+                </div>
+
+                <div class="card">
+                    <h4>∪ Union</h4>
+                    <div class="formula">R = R1 ∪ R2</div>
+                    <p>Contient tous les tuples de R1 et R2 sans doublons. Commutative et associative.</p>
+                    <div class="example-box">
+                        <h4>Exemple</h4>
+                        <p><strong>Clients Paris :</strong> {Alice, Bob}</p>
+                        <p><strong>Clients Lyon :</strong> {Bob, Charlie}</p>
+                        <p><strong>Résultat :</strong> {Alice, Bob, Charlie}</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>∩ Intersection</h4>
+                    <div class="formula">R = R1 ∩ R2</div>
+                    <p>Tuples présents à la fois dans R1 et R2.</p>
+                    <div class="example-box">
+                        <h4>Exemple</h4>
+                        <p><strong>Clients Paris :</strong> {Alice, Bob}</p>
+                        <p><strong>Clients ayant commandé :</strong> {Bob, Charlie}</p>
+                        <p><strong>Résultat :</strong> {Bob}</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>− Différence</h4>
+                    <div class="formula">R = R1 − R2</div>
+                    <p>Tuples de R1 qui ne sont pas dans R2. <strong>Non commutative</strong>.</p>
+                    <div class="example-box">
+                        <h4>Exemple</h4>
+                        <p><strong>Tous les clients :</strong> {Alice, Bob, Charlie}</p>
+                        <p><strong>Clients ayant commandé :</strong> {Bob}</p>
+                        <p><strong>Clients sans commande :</strong> {Alice, Charlie}</p>
+                    </div>
+                </div>
+
+                <h3>Produit Cartésien & Jointures</h3>
+
+                <div class="card">
+                    <h4>× Produit Cartésien</h4>
+                    <div class="formula">R = R1 × R2</div>
+                    <p>Concaténation de tous les tuples.</p>
+                    <div class="formula">
+                        degré(R) = degré(R1) + degré(R2)<br>
+                        lignes(R) = lignes(R1) × lignes(R2)
+                    </div>
+                    <div class="example-box">
+                        <h4>Exemple</h4>
+                        <p><strong>Couleurs :</strong> {Rouge, Bleu}</p>
+                        <p><strong>Tailles :</strong> {S, M, L}</p>
+                        <p><strong>Résultat :</strong> 2 × 3 = 6 combinaisons</p>
+                        <p>{(Rouge,S), (Rouge,M), (Rouge,L), (Bleu,S), (Bleu,M), (Bleu,L)}</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>⋈ θ-Jointure</h4>
+                    <div class="formula">R = R1 ⋈<sub>condition</sub> R2</div>
+                    <p>Basée sur une condition de comparaison (&lt;, ≤, &gt;, ≥, =, ≠).</p>
+                    <div class="example-box">
+                        <h4>Exemple</h4>
+                        <p><strong>Question :</strong> Employés gagnant plus que leur manager</p>
+                        <div class="formula">EMPLOYÉ ⋈<sub>EMPLOYÉ.salaire > MANAGER.salaire</sub> MANAGER</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>⋈ Équi-jointure</h4>
+                    <p>Jointure où la condition est l'égalité (R1.ai = R2.bj).</p>
+                    <div class="example-box">
+                        <h4>Exemple</h4>
+                        <p><strong>Question :</strong> Clients avec leurs commandes</p>
+                        <div class="formula">CLIENT ⋈<sub>CLIENT.id = COMMANDE.idClient</sub> COMMANDE</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>∗ Jointure Naturelle</h4>
+                    <div class="formula">R = R1 ∗ R2</div>
+                    <p>Équi-jointure sur les attributs de même nom, supprimant les colonnes répétées.</p>
+                    <div class="formula">degré(R) = degré(R1) + degré(R2) − 1 (par couple identique)</div>
+                    <div class="example-box">
+                        <h4>Exemple</h4>
+                        <p><strong>CLIENT :</strong> (idClient, nom)</p>
+                        <p><strong>COMMANDE :</strong> (idCommande, idClient, montant)</p>
+                        <p><strong>Résultat :</strong> (idClient, nom, idCommande, montant)</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>÷ Division</h4>
+                    <div class="formula">R = R1 ÷ R2</div>
+                    <p>Utilisée pour les requêtes de type <strong>"Tous"</strong>.</p>
+                    <div class="example-box">
+                        <h4>Exemple</h4>
+                        <p><strong>Question :</strong> Quels clients ont acheté <strong>tous</strong> les produits ?</p>
+                        <p><strong>ACHAT(idClient, idProduit)</strong></p>
+                        <p><strong>PRODUIT(idProduit)</strong></p>
+                        <div class="formula">ACHAT ÷ PRODUIT</div>
+                        <p>Retourne les clients ayant acheté chaque produit de la table PRODUIT.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4 : SQL -->
+            <section id="sql">
+                <h2>4. Langage SQL (LID)</h2>
+
+                <p>Le SQL traduit l'algèbre relationnelle en requêtes textuelles.</p>
+
+                <h3>Structure d'une Requête SELECT</h3>
+
+                <pre><code>SELECT [DISTINCT] colonnes    -- Projection
+FROM tables                   -- Origine des données
+WHERE conditions              -- Sélection et Jointures
+GROUP BY colonnes             -- Groupement pour agrégats
+HAVING condition_groupe       -- Filtre sur les agrégats
+ORDER BY colonne ASC/DESC;    -- Tri du résultat</code></pre>
+
+                <div class="example-box">
+                    <h4>Exemple Complet</h4>
+                    <p><strong>Question :</strong> Afficher les départements ayant plus de 5 employés, triés par nombre d'employés décroissant</p>
+                    <pre><code>SELECT d.nomDepartement, COUNT(e.idEmploye) AS nbEmployes
+FROM Departement d
+INNER JOIN Employe e ON d.idDepartement = e.idDepartement
+GROUP BY d.nomDepartement
+HAVING COUNT(e.idEmploye) > 5
+ORDER BY nbEmployes DESC;</code></pre>
+                </div>
+
+                <h3>Fonctions d'Agrégation</h3>
+
+                <table>
+                    <tr>
+                        <th>Fonction</th>
+                        <th>Description</th>
+                        <th>Exemple</th>
+                    </tr>
+                    <tr>
+                        <td><code>COUNT</code></td>
+                        <td>Dénombrement de lignes</td>
+                        <td><code>SELECT COUNT(*) FROM Client;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>MIN / MAX</code></td>
+                        <td>Valeurs minimale / maximale</td>
+                        <td><code>SELECT MAX(salaire) FROM Employe;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>AVG</code></td>
+                        <td>Moyenne des valeurs</td>
+                        <td><code>SELECT AVG(prix) FROM Produit;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>SUM</code></td>
+                        <td>Somme des valeurs</td>
+                        <td><code>SELECT SUM(montant) FROM Commande;</code></td>
+                    </tr>
+                </table>
+
+                <h3>Types de Jointures SQL</h3>
+
+                <div class="card">
+                    <h4>INNER JOIN (Jointure Interne)</h4>
+                    <p>Retourne uniquement les lignes ayant une correspondance dans les deux tables.</p>
+                    <div class="example-box">
+                        <p><strong>Ancienne syntaxe :</strong></p>
+                        <pre><code>SELECT * 
+FROM Client c, Commande cmd 
+WHERE c.idClient = cmd.idClient;</code></pre>
+                        <p><strong>Syntaxe moderne (norme SQL) :</strong></p>
+                        <pre><code>SELECT * 
+FROM Client c 
+INNER JOIN Commande cmd ON c.idClient = cmd.idClient;</code></pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>LEFT OUTER JOIN (Jointure Externe Gauche)</h4>
+                    <p>Inclut toutes les lignes de la table gauche, même si elles n'ont pas de correspondance dans la table droite. Les valeurs manquantes sont complétées par NULL.</p>
+                    <div class="example-box">
+                        <pre><code>SELECT c.nom, cmd.numCommande, cmd.montant
+FROM Client c 
+LEFT OUTER JOIN Commande cmd ON c.idClient = cmd.idClient;</code></pre>
+                        <p><strong>Résultat :</strong> Tous les clients sont affichés, même ceux sans commande (montant = NULL)</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>RIGHT OUTER JOIN (Jointure Externe Droite)</h4>
+                    <p>Inclut toutes les lignes de la table droite, complétées par NULL si nécessaire.</p>
+                </div>
+
+                <h3>Concepts de Sélection Avancés</h3>
+
+                <div class="card">
+                    <h4>LIKE - Recherche de Motifs</h4>
+                    <p>Permet de rechercher des motifs dans les chaînes de caractères.</p>
+                    <ul>
+                        <li><code>%</code> : Remplace zéro ou plusieurs caractères</li>
+                        <li><code>_</code> : Remplace exactement un caractère</li>
+                    </ul>
+                    <div class="example-box">
+                        <pre><code>-- Clients dont le nom commence par 'Dup'
+SELECT * FROM Client WHERE nom LIKE 'Dup%';
+
+-- Clients avec exactement 5 lettres dans le nom
+SELECT * FROM Client WHERE nom LIKE '_____';
+
+-- Clients contenant 'art' dans le nom
+SELECT * FROM Client WHERE nom LIKE '%art%';</code></pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>BETWEEN - Intervalles</h4>
+                    <p>Teste si une valeur est comprise dans un intervalle (inclusif).</p>
+                    <div class="example-box">
+                        <pre><code>-- Employés avec salaire entre 2000 et 4000
+SELECT * FROM Employe 
+WHERE salaire BETWEEN 2000 AND 4000;
+
+-- Commandes de janvier 2024
+SELECT * FROM Commande 
+WHERE dateCommande BETWEEN '2024-01-01' AND '2024-01-31';</code></pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>IN - Appartenance à une Liste</h4>
+                    <p>Vérifie si une valeur appartient à une liste de valeurs.</p>
+                    <div class="example-box">
+                        <pre><code>-- Clients de Paris, Lyon ou Marseille
+SELECT * FROM Client 
+WHERE ville IN ('Paris', 'Lyon', 'Marseille');
+
+-- Équivalent à :
+SELECT * FROM Client 
+WHERE ville = 'Paris' OR ville = 'Lyon' OR ville = 'Marseille';</code></pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>IS NULL - Test de Valeur Nulle</h4>
+                    <p>Teste si un champ est vide (NULL).</p>
+                    <div class="example-box">
+                        <pre><code>-- Employés sans manager assigné
+SELECT * FROM Employe WHERE idManager IS NULL;
+
+-- Clients ayant renseigné leur email
+SELECT * FROM Client WHERE email IS NOT NULL;</code></pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>EXISTS - Test d'Existence</h4>
+                    <p>Renvoie vrai si une sous-requête produit au moins une ligne.</p>
+                    <div class="example-box">
+                        <pre><code>-- Clients ayant au moins une commande
+SELECT c.nom 
+FROM Client c
+WHERE EXISTS (
+    SELECT 1 FROM Commande cmd 
+    WHERE cmd.idClient = c.idClient
+);
+
+-- Produits jamais commandés
+SELECT p.nomProduit 
+FROM Produit p
+WHERE NOT EXISTS (
+    SELECT 1 FROM LigneCommande lc 
+    WHERE lc.idProduit = p.idProduit
+);</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5 : Exercices d'Algèbre Relationnelle -->
+            <section id="exercice-algebre">
+                <h2>5. Exercices d'Algèbre Relationnelle</h2>
+
+                <div class="card">
+                    <h3>📚 Exercice 1 : Gestion des Employés</h3>
+                    <p><strong>Schéma relationnel :</strong></p>
+                    <pre><code>EMP(ENO, ENOM, PROF, DATEEMB, SAL, COMM, #DNO)
+DEPT(DNO, DNOM, #DIR, VILLE)</code></pre>
+                    
+                    <table>
+                        <tr>
+                            <th>Attribut</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr><td>ENO</td><td>Numéro d'employé (clé)</td></tr>
+                        <tr><td>ENOM</td><td>Nom de l'employé</td></tr>
+                        <tr><td>PROF</td><td>Profession</td></tr>
+                        <tr><td>DATEEMB</td><td>Date d'embauche</td></tr>
+                        <tr><td>SAL</td><td>Salaire</td></tr>
+                        <tr><td>COMM</td><td>Commission</td></tr>
+                        <tr><td>DNO</td><td>Numéro de département (clé)</td></tr>
+                        <tr><td>DNOM</td><td>Nom du département</td></tr>
+                        <tr><td>DIR</td><td>Directeur du département</td></tr>
+                        <tr><td>VILLE</td><td>Lieu du département</td></tr>
+                    </table>
+                </div>
+
+                <h3>Solutions en Algèbre Relationnelle</h3>
+
+                <div class="example-box">
+                    <h4>Question 1 : Employés avec salaire < 5000 et commission > 2000</h4>
+                    <div class="formula">σ<sub>SAL &lt; 5000 ∧ COMM &gt; 2000</sub>(EMP)</div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Question 2 : Nom et salaire des Ingénieurs embauchés après 10 Fév 85</h4>
+                    <div class="formula">π<sub>ENOM, SAL</sub>(σ<sub>PROF = 'Ingénieur' ∧ DATEEMB &gt; '10/02/85'</sub>(EMP))</div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Question 3 : Employés du département 3 avec salaire ≥ employé n°30</h4>
+                    <div class="formula">
+                        Temp ← π<sub>SAL</sub>(σ<sub>ENO = 30</sub>(EMP))<br>
+                        σ<sub>DNO = 3 ∧ SAL ≥ Temp.SAL</sub>(EMP)
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Question 4 : Pour chaque département, son nom et le nom de son directeur</h4>
+                    <div class="formula">
+                        R ← DEPT ⋈<sub>DEPT.DIR = EMP.ENO</sub> EMP<br>
+                        π<sub>DNOM, ENOM</sub>(R)
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Question 5 : Pour chaque employé, son nom et la ville de son département</h4>
+                    <div class="formula">π<sub>ENOM, VILLE</sub>(EMP ⋈<sub>EMP.DNO = DEPT.DNO</sub> DEPT)</div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Question 6 : Employés du département dont la ville est Boston</h4>
+                    <div class="formula">
+                        DeptBoston ← π<sub>DNO</sub>(σ<sub>VILLE = 'Boston'</sub>(DEPT))<br>
+                        EMP ⋈ DeptBoston
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>📦 Exercice 2 : Gestion de Redistribution de Produits</h3>
+                    <p><strong>Schéma relationnel :</strong></p>
+                    <pre><code>FOURNISSEUR(N°FOUR, NOM, ADRESSE, VILLE)
+PRODUIT(N°PROD, DESIGNATION, PRIX, POIDS, COULEUR)
+COMMANDE(N°CMDE, #N°FOUR, #N°PROD, QUANTITÉ)</code></pre>
+                </div>
+
+                <h3>Solutions en Algèbre Relationnelle</h3>
+
+                <div class="example-box">
+                    <h4>Question 1 : Désignation des produits pesant > 5 Kilos et de couleur Bleu</h4>
+                    <div class="formula">π<sub>DESIGNATION</sub>(σ<sub>POIDS &gt; 5 ∧ COULEUR = 'Bleu'</sub>(PRODUIT))</div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Question 2 : Produits ayant le même prix et la même couleur</h4>
+                    <div class="formula">
+                        P1 ← ρ(P1)(PRODUIT)<br>
+                        P2 ← ρ(P2)(PRODUIT)<br>
+                        σ<sub>P1.N°PROD ≠ P2.N°PROD ∧ P1.PRIX = P2.PRIX ∧ P1.COULEUR = P2.COULEUR</sub>(P1 × P2)
+                    </div>
+                    <p><small>ρ : opérateur de renommage pour créer des alias</small></p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Question 3 : Fournisseurs ayant eu des commandes</h4>
+                    <div class="formula">π<sub>N°FOUR, NOM, ADRESSE, VILLE</sub>(FOURNISSEUR ⋈ COMMANDE)</div>
+                    <p><strong>Ou plus simplement :</strong></p>
+                    <div class="formula">FOURNISSEUR ⋈ COMMANDE</div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Question 4 : Quantités d'armoires commandées et noms de leurs fournisseurs</h4>
+                    <div class="formula">
+                        Armoires ← σ<sub>DESIGNATION = 'Armoire'</sub>(PRODUIT)<br>
+                        R ← COMMANDE ⋈ Armoires ⋈ FOURNISSEUR<br>
+                        π<sub>NOM, QUANTITÉ</sub>(R)
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Question 5 : Ville du fournisseur et désignation du produit de la commande n°117</h4>
+                    <div class="formula">
+                        C117 ← σ<sub>N°CMDE = 117</sub>(COMMANDE)<br>
+                        R ← C117 ⋈ FOURNISSEUR ⋈ PRODUIT<br>
+                        π<sub>VILLE, DESIGNATION</sub>(R)
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Question 6 : Désignation et prix des produits fournis par les fournisseurs de Tunis</h4>
+                    <div class="formula">
+                        FourTunis ← π<sub>N°FOUR</sub>(σ<sub>VILLE = 'Tunis'</sub>(FOURNISSEUR))<br>
+                        CmdTunis ← COMMANDE ⋈ FourTunis<br>
+                        R ← CmdTunis ⋈ PRODUIT<br>
+                        π<sub>DESIGNATION, PRIX</sub>(R)
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Question 7 : Fournisseur ayant commandé TOUS les produits (Division)</h4>
+                    <div class="formula">
+                        Temp ← π<sub>N°FOUR, N°PROD</sub>(COMMANDE)<br>
+                        AllProd ← π<sub>N°PROD</sub>(PRODUIT)<br>
+                        ResultFour ← Temp ÷ AllProd<br>
+                        FOURNISSEUR ⋈ ResultFour
+                    </div>
+                    <div class="tip">
+                        La division permet de trouver les fournisseurs qui ont commandé l'ensemble complet des produits.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6 : Exercices SQL -->
+            <section id="exercice-sql">
+                <h2>6. Exercices Pratiques SQL</h2>
+
+                <div class="card">
+                    <h3>✈️ Exercice 1 : Pilotes-Avions-Vols</h3>
+                    <p><strong>Schéma relationnel :</strong></p>
+                    <pre><code>Pilote(numP, nomP, prenomP, ville, salaire)
+Avion(numAv, typeAv, capacite, localisation)
+Vol(numVol, #numP, #numAv, villeDep, villeAr)</code></pre>
+                </div>
+
+                <h3>Création des Tables (LDD)</h3>
+
+                <div class="example-box">
+                    <h4>Création avec Contraintes</h4>
+                    <pre><code>CREATE TABLE Pilote (
+    numP NUMBER(8) PRIMARY KEY,
+    nomP VARCHAR2(20) NOT NULL,
+    prenomP VARCHAR2(20),
+    ville VARCHAR2(30),
+    salaire NUMBER NOT NULL
+);
+
+CREATE TABLE Avion (
+    numAv NUMBER(6) PRIMARY KEY,
+    typeAv VARCHAR2(30),
+    capacite NUMBER(6),
+    localisation VARCHAR2(30)
+);
+
+CREATE TABLE Vol (
+    numVol NUMBER(4) PRIMARY KEY,
+    numP NUMBER(8) NOT NULL,
+    numAv NUMBER(6) NOT NULL,
+    villeDep VARCHAR2(25),
+    villeAr VARCHAR2(25),
+    FOREIGN KEY (numP) REFERENCES Pilote(numP),
+    FOREIGN KEY (numAv) REFERENCES Avion(numAv)
+);</code></pre>
+                </div>
+
+                <h3>Requêtes SQL (Solutions)</h3>
+
+                <div class="example-box">
+                    <h4>a. Tous les vols</h4>
+                    <pre><code>SELECT * FROM Vol;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>b. Pilotes avec salaire entre 6200 et 6500</h4>
+                    <pre><code>SELECT nomP, prenomP, salaire 
+FROM Pilote 
+WHERE salaire BETWEEN 6200 AND 6500;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>c. Pilotes les mieux payés</h4>
+                    <pre><code>SELECT nomP, prenomP, salaire 
+FROM Pilote 
+WHERE salaire = (SELECT MAX(salaire) FROM Pilote);</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>d. Avions localisés à Paris</h4>
+                    <pre><code>SELECT * FROM Avion WHERE localisation = 'Paris';</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>e. Avions dans la même ville que le pilote 'Sami'</h4>
+                    <pre><code>SELECT numAv, typeAv, capacite, localisation
+FROM Avion
+WHERE localisation = (
+    SELECT ville FROM Pilote WHERE prenomP = 'Sami'
+);</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>f. Caractéristiques du vol numéro 714</h4>
+                    <pre><code>SELECT v.numVol, v.villeDep, v.villeAr, a.typeAv, p.nomP
+FROM Vol v
+INNER JOIN Avion a ON v.numAv = a.numAv
+INNER JOIN Pilote p ON v.numP = p.numP
+WHERE v.numVol = 714;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>g. Numéro et type des avions affectés à des vols</h4>
+                    <pre><code>SELECT DISTINCT a.numAv, a.typeAv
+FROM Avion a
+INNER JOIN Vol v ON a.numAv = v.numAv;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>h. Nombre total de vols</h4>
+                    <pre><code>SELECT COUNT(*) AS nombreVols FROM Vol;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>i. Avions non affectés à des vols (3 méthodes)</h4>
+                    <p><strong>Méthode 1 : Requête non synchrone (sous-requête)</strong></p>
+                    <pre><code>SELECT * FROM Avion
+WHERE numAv NOT IN (SELECT numAv FROM Vol);</code></pre>
+                    
+                    <p><strong>Méthode 2 : Requête synchrone (EXISTS)</strong></p>
+                    <pre><code>SELECT * FROM Avion a
+WHERE NOT EXISTS (
+    SELECT 1 FROM Vol v WHERE v.numAv = a.numAv
+);</code></pre>
+                    
+                    <p><strong>Méthode 3 : Soustraction (MINUS)</strong></p>
+                    <pre><code>SELECT numAv FROM Avion
+MINUS
+SELECT numAv FROM Vol;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>j. Prénom et nom concaténés</h4>
+                    <pre><code>SELECT INITCAP(prenomP) || ' ' || UPPER(nomP) AS "Nom Complet"
+FROM Pilote;</code></pre>
+                    <p><small>INITCAP : 1ère lettre en majuscule | UPPER : tout en majuscule | || : concaténation</small></p>
+                </div>
+
+                <div class="example-box">
+                    <h4>k. Pilote ayant effectué le plus de vols</h4>
+                    <pre><code>SELECT p.nomP, p.prenomP, COUNT(v.numVol) AS nbVols
+FROM Pilote p
+INNER JOIN Vol v ON p.numP = v.numP
+GROUP BY p.numP, p.nomP, p.prenomP
+HAVING COUNT(v.numVol) = (
+    SELECT MAX(COUNT(numVol))
+    FROM Vol
+    GROUP BY numP
+);</code></pre>
+                </div>
+
+                <div class="card">
+                    <h3>🎓 Exercice 2 : Étudiant-Enseignant-Matière-Évaluation</h3>
+                    <p><strong>Schéma relationnel :</strong></p>
+                    <pre><code>Etudiant(numEtu, nomEtu, prenomEtu, age, genre)
+Enseignant(numEns, nomEns, prenomEns, grade)
+Matiere(numMat, nomMat, coefficient, #numEns)
+Evaluation(#numEtu, #numMat, note)</code></pre>
+                </div>
+
+                <h3>Création des Tables</h3>
+
+                <div class="example-box">
+                    <pre><code>CREATE TABLE Etudiant (
+    numEtu NUMBER(6) PRIMARY KEY,
+    nomEtu VARCHAR2(20) NOT NULL,
+    prenomEtu VARCHAR2(20),
+    age NUMBER(2),
+    genre CHAR(1) CHECK (genre IN ('M', 'F'))
+);
+
+CREATE TABLE Enseignant (
+    numEns NUMBER(6) PRIMARY KEY,
+    nomEns VARCHAR2(30) NOT NULL,
+    prenomEns VARCHAR2(30),
+    grade CHAR(3) CHECK (grade IN ('ASS', 'MCF', 'PRO'))
+);
+
+CREATE TABLE Matiere (
+    numMat NUMBER(4) PRIMARY KEY,
+    nomMat VARCHAR2(25) NOT NULL,
+    coefficient NUMBER(1) NOT NULL,
+    numEns NUMBER(6),
+    FOREIGN KEY (numEns) REFERENCES Enseignant(numEns)
+);
+
+CREATE TABLE Evaluation (
+    numEtu NUMBER(6),
+    numMat NUMBER(4),
+    note NUMBER(4,2) CHECK (note BETWEEN 0 AND 20),
+    PRIMARY KEY (numEtu, numMat),
+    FOREIGN KEY (numEtu) REFERENCES Etudiant(numEtu),
+    FOREIGN KEY (numMat) REFERENCES Matiere(numMat)
+);</code></pre>
+                </div>
+
+                <h3>Requêtes SQL (Solutions)</h3>
+
+                <div class="example-box">
+                    <h4>a. Étudiants triés par nom puis prénom</h4>
+                    <pre><code>SELECT * FROM Etudiant
+ORDER BY nomEtu ASC, prenomEtu ASC;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>b. Couples de matières avec même coefficient</h4>
+                    <pre><code>SELECT m1.nomMat, m2.nomMat, m1.coefficient
+FROM Matiere m1, Matiere m2
+WHERE m1.coefficient = m2.coefficient 
+  AND m1.numMat < m2.numMat;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>c. Tous les enseignants et leurs matières (LEFT JOIN)</h4>
+                    <pre><code>SELECT e.nomEns, e.prenomEns, m.nomMat
+FROM Enseignant e
+LEFT OUTER JOIN Matiere m ON e.numEns = m.numEns;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>d. Matières enseignées par enseignant</h4>
+                    <pre><code>SELECT e.nomEns, e.prenomEns, m.nomMat
+FROM Enseignant e
+INNER JOIN Matiere m ON e.numEns = m.numEns
+ORDER BY e.nomEns;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>e. Nombre d'enseignants par grade</h4>
+                    <pre><code>SELECT grade, COUNT(*) AS nombreEnseignants
+FROM Enseignant
+GROUP BY grade;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>f. Moyenne par étudiant (arrondie à 2 décimales)</h4>
+                    <pre><code>SELECT et.nomEtu, et.prenomEtu, 
+       ROUND(AVG(ev.note), 2) AS "Moyenne"
+FROM Etudiant et
+INNER JOIN Evaluation ev ON et.numEtu = ev.numEtu
+GROUP BY et.numEtu, et.nomEtu, et.prenomEtu;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>g. Proportion d'étudiants avec moyenne > 10</h4>
+                    <pre><code>SELECT 
+    COUNT(*) * 100.0 / (SELECT COUNT(*) FROM Etudiant) AS "Pourcentage (%)"
+FROM (
+    SELECT numEtu, AVG(note) AS moyenne
+    FROM Evaluation
+    GROUP BY numEtu
+    HAVING AVG(note) > 10
+);</code></pre>
+                </div>
+
+                <div class="card">
+                    <h3>💊 Exercice 3 : Médicaments-Pharmacies</h3>
+                    <p><strong>Schéma relationnel :</strong></p>
+                    <pre><code>Medicament(refMed, nom, composition, datFab, datExp, #refMedPrinceps)
+Pharmacie(idPharm, nom, adresse, zone)
+DistributionMed(#refMed, #idPharm, disponibilite, prixVente)</code></pre>
+                </div>
+
+                <h3>Création des Tables</h3>
+
+                <div class="example-box">
+                    <pre><code>CREATE TABLE Medicament (
+    refMed NUMBER(10) PRIMARY KEY,
+    nom VARCHAR2(100) NOT NULL,
+    composition VARCHAR2(100),
+    datFab DATE,
+    datExp DATE,
+    refMedPrinceps NUMBER(10),
+    FOREIGN KEY (refMedPrinceps) REFERENCES Medicament(refMed)
+);
+
+CREATE TABLE Pharmacie (
+    idPharm NUMBER(10) PRIMARY KEY,
+    nom VARCHAR2(100) NOT NULL,
+    adresse VARCHAR2(100),
+    zone VARCHAR2(100)
+);
+
+CREATE TABLE DistributionMed (
+    refMed NUMBER(10),
+    idPharm NUMBER(10),
+    disponibilite CHAR(2) DEFAULT 'DI' CHECK (disponibilite IN ('DI', 'ND')),
+    prixVente NUMBER(6,3),
+    PRIMARY KEY (refMed, idPharm),
+    FOREIGN KEY (refMed) REFERENCES Medicament(refMed),
+    FOREIGN KEY (idPharm) REFERENCES Pharmacie(idPharm)
+);</code></pre>
+                </div>
+
+                <h3>Requêtes SQL (Solutions)</h3>
+
+                <div class="example-box">
+                    <h4>3. Supprimer médicaments avec amoxicilline fabriqués avant jan 2020</h4>
+                    <pre><code>DELETE FROM DistributionMed
+WHERE refMed IN (
+    SELECT refMed FROM Medicament
+    WHERE composition LIKE '%amoxicilline%'
+      AND datFab < TO_DATE('01/01/2020', 'DD/MM/YYYY')
+);</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>a. Médicaments non disponibles de la zone Sud</h4>
+                    <pre><code>SELECT DISTINCT m.*
+FROM Medicament m
+INNER JOIN DistributionMed dm ON m.refMed = dm.refMed
+INNER JOIN Pharmacie p ON dm.idPharm = p.idPharm
+WHERE p.zone = 'Sud' AND dm.disponibilite = 'ND';</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>b. Médicaments dont la date d'expiration est dépassée</h4>
+                    <pre><code>SELECT * FROM Medicament
+WHERE datExp < SYSDATE;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>c. Médicaments non encore mis à la distribution (NOT EXISTS)</h4>
+                    <pre><code>SELECT * FROM Medicament m
+WHERE NOT EXISTS (
+    SELECT 1 FROM DistributionMed dm 
+    WHERE dm.refMed = m.refMed
+);</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>d. Pharmacies deux par deux de la même zone</h4>
+                    <pre><code>SELECT p1.nom AS Pharmacie1, p2.nom AS Pharmacie2, p1.zone
+FROM Pharmacie p1, Pharmacie p2
+WHERE p1.zone = p2.zone AND p1.idPharm < p2.idPharm;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>e. Créer vue RepartitionPharm</h4>
+                    <pre><code>CREATE VIEW RepartitionPharm AS
+SELECT zone, COUNT(*) AS nombrePharmacies
+FROM Pharmacie
+GROUP BY zone;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>f. Pharmacies distribuant TOUS les médicaments (Division)</h4>
+                    <pre><code>SELECT p.nom
+FROM Pharmacie p
+WHERE NOT EXISTS (
+    SELECT m.refMed FROM Medicament m
+    WHERE NOT EXISTS (
+        SELECT 1 FROM DistributionMed dm
+        WHERE dm.refMed = m.refMed 
+          AND dm.idPharm = p.idPharm
+    )
+);</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>g. Médicaments distribués dans plus de 3 zones</h4>
+                    <pre><code>SELECT m.nom, COUNT(DISTINCT p.zone) AS nbZones
+FROM Medicament m
+INNER JOIN DistributionMed dm ON m.refMed = dm.refMed
+INNER JOIN Pharmacie p ON dm.idPharm = p.idPharm
+GROUP BY m.refMed, m.nom
+HAVING COUNT(DISTINCT p.zone) > 3;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>h. Chaque médicament et son princeps éventuel</h4>
+                    <pre><code>SELECT m1.nom AS Medicament, m2.nom AS Princeps
+FROM Medicament m1
+LEFT OUTER JOIN Medicament m2 ON m1.refMedPrinceps = m2.refMed;</code></pre>
+                </div>
+            </section>
+
+            <!-- Section 7 : Exercice Pratique Bibliothèque -->
+            <section id="exercice">
+                <h2>7. Exercice Pratique : Système de Bibliothèque</h2>
+
+                <div class="card">
+                    <h3>📖 Énoncé</h3>
+                    <p>Une bibliothèque de prêt dispose d'un certain nombre d'ouvrages, classés par rayon (Littérature, Histoire, Géographie, etc.). Chaque ouvrage est l'œuvre d'un ou plusieurs auteurs, et doit également être référencé selon un certain nombre de mots-clés.</p>
+                    
+                    <p>Chaque adhérent peut emprunter jusqu'à 5 livres en même temps, et dispose d'un certain délai passé lequel il doit recevoir des relances puis des pénalités.</p>
+
+                    <p>En plus de cela, il existe une bibliothèque centrale et des antennes locales. Chaque antenne possède un fonds qui lui est propre, et peut de surcroît se procurer certains ouvrages auprès de la bibliothèque centrale (mais pas d'une autre bibliothèque locale). Tout adhérent peut automatiquement emprunter des ouvrages dans toutes les antennes locales.</p>
+                </div>
+
+                <h3>Trois Cas de Complexité Croissante</h3>
+
+                <div class="card">
+                    <h4>Cas 1 : Bibliothèque Simple (Un exemplaire par ouvrage, sans historique)</h4>
+                    <p>La bibliothèque ne possède qu'un seul exemplaire de chaque ouvrage. Elle enregistre uniquement les emprunts présents (il n'y a pas d'historique des emprunts passés).</p>
+                    
+                    <div class="schema-diagram">
+                        <h4>Schéma Entité-Association - Cas 1</h4>
+                        <div style="background: white; padding: 20px; border: 2px dashed #ccc; min-height: 400px; display: flex; align-items: center; justify-content: center;">
+                            <img src="image/Case1Biblio.jpeg" style="max-width: 100%; height: auto;" id="schema-cas1">
+                        </div>
+                    </div>
+
+                    <div class="tip">
+                        <strong>Points clés du Cas 1 :</strong>
+                        <ul>
+                            <li>Relation directe entre Ouvrage et Emprunt (0,1)</li>
+                            <li>Un ouvrage peut être emprunté ou disponible</li>
+                            <li>Pas de table d'historique nécessaire</li>
+                            <li>L'attribut date_Emprunt et delai sont dans l'association Emprunt</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>Cas 2 : Avec Historique (Un exemplaire, historique complet)</h4>
+                    <p>La bibliothèque ne possède qu'un seul exemplaire de chaque ouvrage, mais elle tient un historique de tous les emprunts qui ont été effectués.</p>
+                    
+                    <div class="schema-diagram">
+                        <h4>Schéma Entité-Association - Cas 2</h4>
+                        <div style="background: white; padding: 20px; border: 2px dashed #ccc; min-height: 400px; display: flex; align-items: center; justify-content: center;">
+                            <img src="image/Cas2Biblio.jpg" style="max-width: 100%; height: auto;" id="schema-cas2">
+                        </div>
+                    </div>
+
+                    <div class="tip">
+                        <strong>Points clés du Cas 2 :</strong>
+                        <ul>
+                            <li>L'association Emprunt devient une entité avec identifiant (idEmprunt)</li>
+                            <li>Cardinalité Ouvrage-Emprunt passe à (0,n) pour gérer l'historique</li>
+                            <li>Nouvelle association DetailsEmprunt pour lier Ouvrage et Emprunt</li>
+                            <li>Permet de conserver tous les emprunts passés</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>Cas 3 : Complet (Plusieurs exemplaires + Historique)</h4>
+                    <p>La bibliothèque tient un historique ET elle est maintenant susceptible de posséder plusieurs exemplaires de certains ouvrages.</p>
+                    
+                    <div class="schema-diagram">
+                        <h4>Schéma Entité-Association - Cas 3</h4>
+                        <div style="background: white; padding: 20px; border: 2px dashed #ccc; min-height: 400px; display: flex; align-items: center; justify-content: center;">
+                            <img src="image/Cas3Biblio.jpg" style="max-width: 100%; height: auto;" id="schema-cas3">
+                        </div>
+                       <div style="background: white; padding: 20px; border: 2px dashed #ccc; min-height: 400px; display: flex; align-items: center; justify-content: center;">
+                            <img src="image/Cas3BisBiblio.jpg" style="max-width: 100%; height: auto;" id="schema-cas3">
+                        </div>
+                    </div>
+
+                    <div class="tip">
+                        <strong>Points clés du Cas 3 :</strong>
+                        <ul>
+                            <li>Les attributs date_Emprunt et delai migrent vers l'entité Ouvrage</li>
+                            <li>L'association Emprunt relie directement Ouvrage et Adherent</li>
+                            <li>Cardinalité (0,1) entre Ouvrage et Emprunt (un ouvrage emprunté ou non)</li>
+                            <li>Structure plus simple mais permettant la gestion de multiples exemplaires</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="warning">
+                    <strong>Extension : Bibliothèque Centrale et Antennes Locales</strong><br>
+                    Le schéma complet (Image 1) intègre aussi :
+                    <ul>
+                        <li>BiblioAntenneLoc ale (antennes locales)</li>
+                        <li>BibliothequeCentrale (bibliothèque centrale)</li>
+                        <li>Association "Demande_par" (0,n) entre BiblioAntenneLocale et BibliothequeCentrale</li>
+                        <li>Association "Approvionnement" avec date_Approv pour tracer les approvisionnements</li>
+                        <li>Association "AppartientA" (0,n) liant les antennes aux ouvrages disponibles localement</li>
+                    </ul>
+                </div>
+
+                <h3>Modèle Relationnel pour le Cas 3</h3>
+
+                <div class="example-box">
+                    <h4>Tables Principales</h4>
+                    <pre><code>-- Table des ouvrages
+CREATE TABLE Ouvrage (
+    idOuvrage INT PRIMARY KEY,
+    titre VARCHAR(200),
+    idRayon INT,
+    date_Emprunt DATE,
+    delai INT,
+    FOREIGN KEY (idRayon) REFERENCES Rayon(idRayon)
+);
+
+-- Table des auteurs
+CREATE TABLE Auteur (
+    idAuteur INT PRIMARY KEY,
+    nom VARCHAR(100),
+    prenom VARCHAR(100)
+);
+
+-- Table des adhérents
+CREATE TABLE Adherent (
+    idAdherent INT PRIMARY KEY,
+    nom VARCHAR(100),
+    prenom VARCHAR(100),
+    adresse VARCHAR(200),
+    dateInscription DATE
+);
+
+-- Table des rayons
+CREATE TABLE Rayon (
+    idRayon INT PRIMARY KEY,
+    Type VARCHAR(50)
+);
+
+-- Table des mots-clés
+CREATE TABLE MotCle (
+    idMC INT PRIMARY KEY,
+    intitule VARCHAR(100)
+);
+
+-- Association Oeuvre De (n:n)
+CREATE TABLE OeuvreDe (
+    idOuvrage INT,
+    idAuteur INT,
+    PRIMARY KEY (idOuvrage, idAuteur),
+    FOREIGN KEY (idOuvrage) REFERENCES Ouvrage(idOuvrage),
+    FOREIGN KEY (idAuteur) REFERENCES Auteur(idAuteur)
+);
+
+-- Association Referencement (n:n)
+CREATE TABLE Referencement (
+    idOuvrage INT,
+    idMC INT,
+    PRIMARY KEY (idOuvrage, idMC),
+    FOREIGN KEY (idOuvrage) REFERENCES Ouvrage(idOuvrage),
+    FOREIGN KEY (idMC) REFERENCES MotCle(idMC)
+);
+
+-- Association Emprunt (relation actuelle)
+CREATE TABLE Emprunt (
+    idOuvrage INT PRIMARY KEY,
+    idAdherent INT,
+    FOREIGN KEY (idOuvrage) REFERENCES Ouvrage(idOuvrage),
+    FOREIGN KEY (idAdherent) REFERENCES Adherent(idAdherent)
+);</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>Requêtes SQL Utiles</h4>
+                    <pre><code>-- 1. Lister tous les ouvrages disponibles (non empruntés)
+SELECT o.titre, r.Type 
+FROM Ouvrage o
+INNER JOIN Rayon r ON o.idRayon = r.idRayon
+WHERE o.idOuvrage NOT IN (SELECT idOuvrage FROM Emprunt);
+
+-- 2. Nombre d'emprunts en cours par adhérent
+SELECT a.nom, a.prenom, COUNT(e.idOuvrage) AS nbEmprunts
+FROM Adherent a
+LEFT JOIN Emprunt e ON a.idAdherent = e.idAdherent
+GROUP BY a.idAdherent, a.nom, a.prenom;
+
+-- 3. Adhérents ayant atteint la limite de 5 emprunts
+SELECT a.nom, a.prenom, COUNT(e.idOuvrage) AS nbEmprunts
+FROM Adherent a
+INNER JOIN Emprunt e ON a.idAdherent = e.idAdherent
+GROUP BY a.idAdherent, a.nom, a.prenom
+HAVING COUNT(e.idOuvrage) >= 5;
+
+-- 4. Ouvrages en retard (délai dépassé)
+SELECT o.titre, a.nom, o.date_Emprunt, o.delai,
+       DATEDIFF(CURRENT_DATE, o.date_Emprunt) AS joursEcoules
+FROM Ouvrage o
+INNER JOIN Emprunt e ON o.idOuvrage = e.idOuvrage
+INNER JOIN Adherent a ON e.idAdherent = a.idAdherent
+WHERE DATEDIFF(CURRENT_DATE, o.date_Emprunt) > o.delai;
+
+-- 5. Ouvrages par auteur
+SELECT a.nom, a.prenom, COUNT(od.idOuvrage) AS nbOuvrages
+FROM Auteur a
+LEFT JOIN OeuvreDe od ON a.idAuteur = od.idAuteur
+GROUP BY a.idAuteur, a.nom, a.prenom
+ORDER BY nbOuvrages DESC;</code></pre>
+                </div>
+            </section>
+
+            <!-- Section 8 : Exercice ASSURAUTO -->
+            <section id="exercice-assurance">
+                <h2>8. Exercice : Gestion de Sinistres ASSURAUTO</h2>
+
+                <div class="card">
+                    <h3>🚗 Énoncé</h3>
+                    <p>On souhaite construire un MEA destiné à la gestion de sinistres pour la compagnie d'assurance automobile ASSURAUTO à partir de la lettre de demande d'expertise envoyée par un de ses agents d'assurance. On souhaite garder aussi l'historique des échanges entre l'agent et l'expert.</p>
+                    
+                    <div class="example-box">
+                        <h4>📧 Lettre de Demande d'Expertise</h4>
+                        <div style="background: white; padding: 20px; border-left: 4px solid #667eea;">
+                            <p style="text-align: right;"><em>À Paris, le 10 juin 2005</em></p>
+                            <p><strong>De la part de M. Pierre Durand, Agent d'assurance ASSURAUTO</strong><br>
+                            10, rue Saint-Antoine, 75001 Paris<br>
+                            tél : 01 42 42 24 24</p>
+                            
+                            <p><strong>À M. Henri Dupond, Expert en assurance</strong></p>
+                            
+                            <p>Monsieur,</p>
+                            
+                            <p>Je vous saisis par le présent courrier pour vous demander de suivre le dossier du sinistre <strong>SIS20020934</strong> constitué à ce jour suite à l'accident survenu le <strong>02 juin 2005</strong> au croisement de la rue de Rivoli et de la rue du Renard à <strong>Paris 1er arrondissement</strong>, à <strong>11 heures du soir</strong>, par temps de pluie, d'où l'état glissant de la chaussée à ce moment-là.</p>
+                            
+                            <p>M. <strong>André Oliveau</strong> est un des protagonistes de l'accident. Il a souscrit chez nous, depuis le <strong>17 décembre 2002</strong>, un contrat enregistré sous le n° <strong>CTR2002120</strong> et de type <strong>tout risque</strong> sur le véhicule impliqué dans le sinistre et immatriculé <strong>123 ABC 75</strong>. Ce véhicule est une <strong>Renault Espace de 100 chevaux</strong>.</p>
+                            
+                            <p>M. Oliveau habite à Paris, <strong>25 rue de Rivoli, dans le 1er arrondissement</strong>. Il est joignable au <strong>01 42 23 12 20</strong> chez lui, ou au <strong>06 12 12 12 12</strong> sur son portable, ou au <strong>01 23 43 23 34</strong> à son travail.</p>
+                            
+                            <p>Voudriez-vous prendre contact avec lui pour convenir d'un rendez-vous en vue de l'expertise que vous voudrez bien effectuer au garage <strong>« Saroul », 45, rue Rousseau, 75002 Paris</strong>, dans un délai de <strong>15 jours</strong>.</p>
+                            
+                            <p>Dans l'attente de votre rapport d'expertise, nous vous prions de croire, Monsieur l'expert, à nos sentiments distingués.</p>
+                            
+                            <p><em>M. Durand, Agent d'assurance</em></p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Analyse de la Lettre - Entités et Associations</h3>
+
+                <div class="card">
+                    <h4>🔍 Entités Identifiées</h4>
+                    <table>
+                        <tr>
+                            <th>Entité</th>
+                            <th>Attributs</th>
+                            <th>Clé Primaire</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Agent_Assurance</strong></td>
+                            <td>idAgent, nomAgent, prenomAgent, Adresse</td>
+                            <td><u>idAgent</u></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Expert_Assurance</strong></td>
+                            <td>idExpert, nomAgent, prenomAgent, Adresse</td>
+                            <td><u>idExpert</u></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Client_Assure</strong></td>
+                            <td>idClient, nom, prenom, adresse</td>
+                            <td><u>idClient</u></td>
+                        </tr>
+                        <tr>
+                            <td><strong>CoordonneesTelephonique</strong></td>
+                            <td>numTelephone, type</td>
+                            <td><u>numTelephone</u></td>
+                        </tr>
+                        <tr>
+                            <td><strong>ContratAssurance</strong></td>
+                            <td>idContrat, date_Contrat, type</td>
+                            <td><u>idContrat</u></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vehicule</strong></td>
+                            <td>immatriculation, marque, modele, puissance</td>
+                            <td><u>immatriculation</u></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sinistre</strong></td>
+                            <td>idSinistre, date_Sinistre, lieu, heure, description</td>
+                            <td><u>idSinistre</u></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Garage</strong></td>
+                            <td>idGarage, nomGarage, adresseGarage</td>
+                            <td><u>idGarage</u></td>
+                        </tr>
+                        <tr>
+                            <td><strong>RapportExpertise</strong></td>
+                            <td>idExpertise, date_Expertise, description</td>
+                            <td><u>idExpertise</u></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h4>🔗 Associations Identifiées</h4>
+                    <ul>
+                        <li><strong>Relatif_a</strong> : Client_Assure (0,n) ↔ CoordonneesTelephonique (1,1)</li>
+                        <li><strong>ConcerneC</strong> : ContratAssurance (1,1) ↔ Client_Assure (1,n)</li>
+                        <li><strong>ConcerneV</strong> : ContratAssurance (1,1) ↔ Vehicule (1,n)</li>
+                        <li><strong>Couvre</strong> : ContratAssurance (0,n) ↔ Sinistre (1,1)</li>
+                        <li><strong>ConcerneSinistre</strong> : Sinistre (1,1) ↔ Garage (0,1)</li>
+                        <li><strong>Fait_a</strong> : Garage (1,n) ↔ RapportExpertise (1,1)</li>
+                        <li><strong>Redige_par</strong> : RapportExpertise (1,1) ↔ Expert_Assurance (0,n)</li>
+                        <li><strong>DemandeExpertise</strong> : Agent_Assurance (0,n) ↔ Expert_Assurance (0,n) avec attributs Date_Demande, delai</li>
+                    </ul>
+                </div>
+
+                <div class="schema-diagram">
+                    <h4>Schéma Entité-Association - ASSURAUTO</h4>
+                    <div style="background: white; padding: 20px; border: 2px dashed #ccc; min-height: 400px; display: flex; align-items: center; justify-content: center;">
+                        <img src="" alt="Insérez ici l'image du schéma ASSURAUTO" style="max-width: 100%; height: auto;" id="schema-assurauto">
+                        <p style="color: #999; font-style: italic;">📷 Zone réservée pour l'image du schéma ASSURAUTO</p>
+                    </div>
+                </div>
+
+                <h3>Modèle Relationnel ASSURAUTO</h3>
+
+                <div class="example-box">
+                    <h4>Tables Dérivées du MEA</h4>
+                    <pre><code>-- Entités
+Agent_Assurance(<u>idAgent</u>, nomAgent, prenomAgent, Adresse)
+
+Expert_Assurance(<u>idExpert</u>, nomAgent, prenomAgent, Adresse)
+
+Client_Assure(<u>idClient</u>, nom, prenom, adresse)
+
+CoordonneesTelephonique(<u>numTelephone</u>, type, #idClient)
+
+ContratAssurance(<u>idContrat</u>, date_Contrat, type, #idClient, #immatriculation)
+
+Vehicule(<u>immatriculation</u>, marque, modele, puissance)
+
+Sinistre(<u>idSinistre</u>, date_Sinistre, lieu, heure, description, #idContrat, #idGarage)
+
+Garage(<u>idGarage</u>, nomGarage, adresseGarage)
+
+RapportExpertise(<u>idExpertise</u>, date_Expertise, description, #idGarage, #idExpert)
+
+-- Association n:n
+DemandeExpertise(<u>#idAgent, #idExpert</u>, Date_Demande, delai)</code></pre>
+                </div>
+
+                <h3>Création des Tables SQL</h3>
+
+                <div class="example-box">
+                    <pre><code>CREATE TABLE Agent_Assurance (
+    idAgent NUMBER(10) PRIMARY KEY,
+    nomAgent VARCHAR2(50) NOT NULL,
+    prenomAgent VARCHAR2(50),
+    Adresse VARCHAR2(100)
+);
+
+CREATE TABLE Expert_Assurance (
+    idExpert NUMBER(10) PRIMARY KEY,
+    nomAgent VARCHAR2(50) NOT NULL,
+    prenomAgent VARCHAR2(50),
+    Adresse VARCHAR2(100)
+);
+
+CREATE TABLE Client_Assure (
+    idClient NUMBER(10) PRIMARY KEY,
+    nom VARCHAR2(50) NOT NULL,
+    prenom VARCHAR2(50),
+    adresse VARCHAR2(100)
+);
+
+CREATE TABLE CoordonneesTelephonique (
+    numTelephone VARCHAR2(20) PRIMARY KEY,
+    type VARCHAR2(20) CHECK (type IN ('domicile', 'portable', 'travail')),
+    idClient NUMBER(10) NOT NULL,
+    FOREIGN KEY (idClient) REFERENCES Client_Assure(idClient)
+);
+
+CREATE TABLE Vehicule (
+    immatriculation VARCHAR2(20) PRIMARY KEY,
+    marque VARCHAR2(50),
+    modele VARCHAR2(50),
+    puissance NUMBER(5)
+);
+
+CREATE TABLE ContratAssurance (
+    idContrat VARCHAR2(20) PRIMARY KEY,
+    date_Contrat DATE NOT NULL,
+    type VARCHAR2(30) CHECK (type IN ('tout risque', 'tiers', 'tiers complet')),
+    idClient NUMBER(10) NOT NULL,
+    immatriculation VARCHAR2(20) NOT NULL,
+    FOREIGN KEY (idClient) REFERENCES Client_Assure(idClient),
+    FOREIGN KEY (immatriculation) REFERENCES Vehicule(immatriculation)
+);
+
+CREATE TABLE Garage (
+    idGarage NUMBER(10) PRIMARY KEY,
+    nomGarage VARCHAR2(50) NOT NULL,
+    adresseGarage VARCHAR2(100)
+);
+
+CREATE TABLE Sinistre (
+    idSinistre VARCHAR2(20) PRIMARY KEY,
+    date_Sinistre DATE NOT NULL,
+    lieu VARCHAR2(100),
+    heure VARCHAR2(10),
+    description VARCHAR2(500),
+    idContrat VARCHAR2(20) NOT NULL,
+    idGarage NUMBER(10),
+    FOREIGN KEY (idContrat) REFERENCES ContratAssurance(idContrat),
+    FOREIGN KEY (idGarage) REFERENCES Garage(idGarage)
+);
+
+CREATE TABLE RapportExpertise (
+    idExpertise NUMBER(10) PRIMARY KEY,
+    date_Expertise DATE,
+    description VARCHAR2(500),
+    idGarage NUMBER(10) NOT NULL,
+    idExpert NUMBER(10) NOT NULL,
+    FOREIGN KEY (idGarage) REFERENCES Garage(idGarage),
+    FOREIGN KEY (idExpert) REFERENCES Expert_Assurance(idExpert)
+);
+
+CREATE TABLE DemandeExpertise (
+    idAgent NUMBER(10),
+    idExpert NUMBER(10),
+    Date_Demande DATE NOT NULL,
+    delai NUMBER(3),
+    PRIMARY KEY (idAgent, idExpert, Date_Demande),
+    FOREIGN KEY (idAgent) REFERENCES Agent_Assurance(idAgent),
+    FOREIGN KEY (idExpert) REFERENCES Expert_Assurance(idExpert)
+);</code></pre>
+                </div>
+
+                <h3>Requêtes SQL Utiles pour ASSURAUTO</h3>
+
+                <div class="example-box">
+                    <h4>1. Lister tous les sinistres d'un client donné</h4>
+                    <pre><code>SELECT s.idSinistre, s.date_Sinistre, s.lieu, v.marque, v.modele
+FROM Sinistre s
+INNER JOIN ContratAssurance c ON s.idContrat = c.idContrat
+INNER JOIN Client_Assure cl ON c.idClient = cl.idClient
+INNER JOIN Vehicule v ON c.immatriculation = v.immatriculation
+WHERE cl.nom = 'Oliveau' AND cl.prenom = 'André';</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>2. Sinistres sans rapport d'expertise</h4>
+                    <pre><code>SELECT s.*
+FROM Sinistre s
+WHERE s.idGarage IS NULL OR NOT EXISTS (
+    SELECT 1 FROM RapportExpertise r
+    WHERE r.idGarage = s.idGarage
+);</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>3. Expert ayant réalisé le plus d'expertises</h4>
+                    <pre><code>SELECT e.nomAgent, e.prenomAgent, COUNT(r.idExpertise) AS nbExpertises
+FROM Expert_Assurance e
+INNER JOIN RapportExpertise r ON e.idExpert = r.idExpert
+GROUP BY e.idExpert, e.nomAgent, e.prenomAgent
+HAVING COUNT(r.idExpertise) = (
+    SELECT MAX(COUNT(idExpertise))
+    FROM RapportExpertise
+    GROUP BY idExpert
+);</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>4. Clients avec plusieurs véhicules assurés</h4>
+                    <pre><code>SELECT cl.nom, cl.prenom, COUNT(DISTINCT c.immatriculation) AS nbVehicules
+FROM Client_Assure cl
+INNER JOIN ContratAssurance c ON cl.idClient = c.idClient
+GROUP BY cl.idClient, cl.nom, cl.prenom
+HAVING COUNT(DISTINCT c.immatriculation) > 1;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>5. Tous les numéros de téléphone d'un client</h4>
+                    <pre><code>SELECT cl.nom, cl.prenom, ct.numTelephone, ct.type
+FROM Client_Assure cl
+INNER JOIN CoordonneesTelephonique ct ON cl.idClient = ct.idClient
+WHERE cl.nom = 'Oliveau'
+ORDER BY ct.type;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>6. Historique des demandes d'expertise entre agents et experts</h4>
+                    <pre><code>SELECT a.nomAgent AS Agent, e.nomAgent AS Expert, 
+       d.Date_Demande, d.delai
+FROM DemandeExpertise d
+INNER JOIN Agent_Assurance a ON d.idAgent = a.idAgent
+INNER JOIN Expert_Assurance e ON d.idExpert = e.idExpert
+ORDER BY d.Date_Demande DESC;</code></pre>
+                </div>
+
+                <div class="tip">
+                    <strong>Points Clés du Modèle ASSURAUTO :</strong>
+                    <ul>
+                        <li>Gestion des coordonnées téléphoniques multiples (domicile, portable, travail)</li>
+                        <li>Un client peut avoir plusieurs contrats et plusieurs véhicules</li>
+                        <li>Un sinistre est lié à un contrat et peut nécessiter une expertise dans un garage</li>
+                        <li>L'historique des demandes d'expertise est conservé grâce à l'association n:n entre Agent et Expert</li>
+                        <li>Auto-référence possible dans Médicament pour le princeps (même principe applicable si on veut lier véhicules de remplacement)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <section style="text-align: center; padding: 30px; background: #f8f9fa; border-radius: 10px; margin-top: 50px;">
+                <h3 style="color: #667eea;">🎓 Fin du Guide</h3>
+                <p>Ce guide couvre les concepts essentiels des bases de données relationnelles, de la conception à l'implémentation SQL.</p>
+                <p style="color: #999; margin-top: 20px;">Bonne révision ! 📚</p>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Script pour permettre l'ajout d'images plus tard
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fonction pour charger une image
+            window.chargerImage = function(idElement, urlImage) {
+                const img = document.getElementById(idElement);
+                if (img && urlImage) {
+                    img.src = urlImage;
+                    img.style.display = 'block';
+                    img.nextElementSibling.style.display = 'none';
+                }
+            };
+            
+            // Exemple d'utilisation (décommenter et modifier selon vos besoins):
+            // chargerImage('schema-cas1', 'URL_DE_VOTRE_IMAGE_CAS1');
+            // chargerImage('schema-cas2', 'URL_DE_VOTRE_IMAGE_CAS2');
+            // chargerImage('schema-cas3', 'URL_DE_VOTRE_IMAGE_CAS3');
+        });
+    </script>
+</body>
+</html>
+
 </head>
 <body>
     <div class="container">
