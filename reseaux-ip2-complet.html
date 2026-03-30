@@ -1,697 +1,811 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Réseaux IP2 — Fiche Complète Exam</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700;800&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réseaux IP2 — Fiche Complète Exam</title>
+    <style>
+        @media print {
+            body { margin: 0; }
+            .no-print { display: none; }
+            .page-break { page-break-before: always; }
+        }
 
-:root {
-  --bg:     #07090f;
-  --bg2:    #0d1120;
-  --bg3:    #131929;
-  --bg4:    #192033;
-  --bg5:    #1e2840;
-  --border: rgba(148,163,184,0.09);
-  --border2:rgba(148,163,184,0.16);
-  --text:   #dde4f0;
-  --text2:  #8b9ab8;
-  --text3:  #4e5e7a;
-  --blue:   #4f8ef7;
-  --cyan:   #22d3ee;
-  --purple: #a78bfa;
-  --green:  #34d399;
-  --amber:  #fbbf24;
-  --red:    #f87171;
-  --coral:  #fb923c;
-  --pink:   #f472b6;
-  --mono: 'JetBrains Mono', monospace;
-  --sans: 'Syne', sans-serif;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
 
-*{box-sizing:border-box;margin:0;padding:0;}
+        .container {
+            background-color: white;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
 
-html{scroll-behavior:smooth;}
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 20px;
+        }
 
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:var(--sans);
-  font-size:14px;
-  line-height:1.7;
-}
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
 
-/* ── PROGRESS ── */
-#prog{
-  position:fixed;top:0;left:0;height:2px;
-  background:linear-gradient(90deg,var(--blue),var(--cyan));
-  z-index:300;width:0%;transition:width .08s;
-}
+        h2 {
+            color: #667eea;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-left: 6px solid #764ba2;
+            padding-left: 20px;
+            background: linear-gradient(90deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 15px 20px;
+            border-radius: 5px;
+        }
 
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;
-  background:rgba(7,9,15,0.94);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border2);
-  z-index:200;
-  display:flex;align-items:center;
-  padding:0 20px;height:50px;
-  overflow-x:auto;gap:0;
-}
-nav::-webkit-scrollbar{display:none;}
-.nav-brand{
-  font-weight:800;font-size:13px;
-  color:#fff;margin-right:18px;
-  letter-spacing:-.5px;white-space:nowrap;flex-shrink:0;
-}
-.nav-brand em{color:var(--blue);font-style:normal;}
-nav a{
-  color:var(--text3);text-decoration:none;
-  font-size:11.5px;font-weight:600;letter-spacing:.3px;
-  padding:0 12px;height:50px;
-  display:flex;align-items:center;
-  border-bottom:2px solid transparent;
-  white-space:nowrap;
-  transition:color .15s,border-color .15s;
-}
-nav a:hover{color:var(--text2);}
-nav a.active{color:var(--blue);border-bottom-color:var(--blue);}
+        h3 {
+            color: #34495e;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 8px;
+        }
 
-/* ── LAYOUT ── */
-main{max-width:920px;margin:0 auto;padding:68px 22px 80px;}
+        h4 {
+            color: #34495e;
+            margin-top: 12px;
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
 
-/* ── HERO ── */
-.hero{
-  text-align:center;
-  padding:56px 0 44px;
-  position:relative;
-}
-.hero::before{
-  content:'';
-  position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:700px;height:320px;
-  background:radial-gradient(ellipse at center,rgba(79,142,247,0.11) 0%,transparent 65%);
-  pointer-events:none;
-}
-.hero-tag{
-  display:inline-flex;align-items:center;gap:6px;
-  background:rgba(79,142,247,0.12);
-  border:1px solid rgba(79,142,247,0.28);
-  color:var(--blue);
-  font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
-  padding:4px 14px;border-radius:20px;margin-bottom:18px;
-}
-.hero h1{
-  font-size:clamp(26px,5vw,46px);
-  font-weight:800;letter-spacing:-1.5px;line-height:1.1;
-  color:#fff;margin-bottom:14px;
-}
-.hero h1 em{color:var(--blue);font-style:normal;}
-.hero p{font-size:14px;color:var(--text2);max-width:500px;margin:0 auto 22px;}
-.stat-row{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
-.stat{
-  background:var(--bg3);border:1px solid var(--border2);
-  border-radius:8px;padding:10px 18px;text-align:center;
-}
-.stat-num{font-size:22px;font-weight:800;color:var(--blue);letter-spacing:-1px;}
-.stat-lab{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-top:1px;}
+        .key-concept {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
 
-/* ── SECTION ── */
-section{margin-bottom:60px;scroll-margin-top:60px;}
-.sh{
-  display:flex;align-items:center;gap:12px;
-  margin-bottom:22px;padding-bottom:12px;
-  border-bottom:1px solid var(--border);
-}
-.snum{
-  width:30px;height:30px;border-radius:7px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:800;flex-shrink:0;
-}
-.sh h2{font-size:19px;font-weight:700;letter-spacing:-.5px;color:#fff;}
+        .important-note {
+            background-color: #d1ecf1;
+            border-left: 5px solid #17a2b8;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
 
-/* ── CARDS ── */
-.card{
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:18px 20px;
-  margin-bottom:12px;
-}
-.card-title{
-  font-size:11px;font-weight:700;
-  color:var(--text3);text-transform:uppercase;letter-spacing:.8px;
-  margin-bottom:12px;
-}
-.mini-card{
-  background:var(--bg3);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:14px;
-}
-.mini-card h3{
-  font-size:11px;font-weight:700;color:var(--text2);
-  text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;
-}
-.mini-card p,.mini-card li{font-size:13px;color:var(--text);line-height:1.6;}
-.mini-card ul{padding-left:15px;}
-.mini-card li{margin-bottom:3px;}
+        .warning {
+            background-color: #f8d7da;
+            border-left: 5px solid #dc3545;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
 
-/* ── GRID ── */
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+        /* Alert variants mapped to existing classes */
+        .alert {
+            padding: 13px 18px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 5px solid;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        .al-blue  { background-color: #d1ecf1; border-color: #17a2b8; color: #0c5460; }
+        .al-amber { background-color: #fff3cd; border-color: #ffc107; color: #856404; }
+        .al-red   { background-color: #f8d7da; border-color: #dc3545; color: #721c24; }
+        .al-green { background-color: #d4edda; border-color: #28a745; color: #155724; }
 
-/* ── TABLE ── */
-table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0;}
-thead tr{background:var(--bg4);}
-th{
-  padding:8px 12px;text-align:left;
-  font-weight:700;color:var(--text2);
-  font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;
-  border-bottom:1px solid var(--border2);
-}
-td{
-  padding:7px 12px;
-  border-bottom:1px solid var(--border);
-  color:var(--text);vertical-align:top;line-height:1.5;
-}
-tr:last-child td{border-bottom:none;}
-tr:hover td{background:rgba(255,255,255,0.015);}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow-x: auto;
+            display: block;
+        }
 
-/* ── CODE ── */
-pre{
-  background:#040609;
-  border:1px solid var(--border2);
-  border-radius:10px;
-  padding:16px;overflow-x:auto;
-  font-family:var(--mono);font-size:11.5px;line-height:1.85;
-  color:#8bb4f8;margin:10px 0;
-}
-.cm{color:#3a4a66;}
-.ck{color:#67c8f0;}
-.cv{color:#7ee8a2;}
-.cs{color:#fde68a;}
-.cr{color:#f9a8d4;}
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px 15px;
+            text-align: left;
+        }
 
-code{
-  font-family:var(--mono);font-size:11.5px;
-  background:rgba(79,142,247,0.13);
-  border:1px solid rgba(79,142,247,0.22);
-  color:#93bbff;
-  padding:1px 6px;border-radius:4px;
-}
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
 
-/* ── ALERTS ── */
-.alert{
-  border-radius:8px;padding:11px 14px;
-  margin:10px 0;font-size:12.5px;line-height:1.6;
-  border-left:3px solid;
-}
-.al-blue{background:rgba(79,142,247,0.08);border-color:var(--blue);color:#93bbff;}
-.al-amber{background:rgba(251,191,36,0.08);border-color:var(--amber);color:#fde68a;}
-.al-red{background:rgba(248,113,113,0.08);border-color:var(--red);color:#fca5a5;}
-.al-green{background:rgba(52,211,153,0.08);border-color:var(--green);color:#6ee7b7;}
-.al-missing{background:rgba(248,113,113,0.07);border-color:var(--red);color:var(--red);}
-.alert strong{font-weight:700;}
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #e9ecef; transition: background-color 0.3s; }
 
-/* ── COMPARE ── */
-.compare{
-  display:grid;grid-template-columns:1fr 1fr;
-  border:1px solid var(--border2);
-  border-radius:10px;overflow:hidden;margin:10px 0;
-}
-.compare-col{padding:16px;}
-.compare-col:first-child{border-right:1px solid var(--border2);}
-.compare-head{
-  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
-  margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid var(--border);
-}
-.compare-col ul{padding-left:15px;}
-.compare-col li{font-size:13px;margin-bottom:4px;line-height:1.5;}
+        ul, ol {
+            margin-left: 30px;
+            line-height: 2;
+        }
 
-/* ── PORT BADGE ── */
-.pb{
-  display:inline-block;font-family:var(--mono);font-size:11px;
-  padding:2px 7px;border-radius:4px;
-  background:rgba(34,211,238,0.12);
-  border:1px solid rgba(34,211,238,0.22);
-  color:var(--cyan);
-}
+        li { margin-bottom: 8px; }
 
-/* ── DORA / STEPS ── */
-.steps{display:flex;flex-direction:column;gap:7px;}
-.step{
-  display:flex;align-items:flex-start;gap:12px;
-  background:var(--bg3);border:1px solid var(--border);
-  border-radius:8px;padding:11px 13px;
-}
-.step-ltr{
-  width:30px;height:30px;border-radius:7px;
-  display:flex;align-items:center;justify-content:center;
-  font-weight:800;font-size:14px;flex-shrink:0;
-}
-.step-body{flex:1;}
-.step-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:3px;}
-.step-sub{font-size:11.5px;color:var(--text2);font-family:var(--mono);line-height:1.7;}
+        .code, code {
+            background-color: #f4f4f4;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #e83e8c;
+            font-weight: bold;
+            font-size: 0.92em;
+        }
 
-/* ── QCM ── */
-.qitem{
-  background:var(--bg3);border:1px solid var(--border);
-  border-radius:10px;padding:13px 15px;margin-bottom:9px;
-}
-.qq{font-size:13px;font-weight:600;color:#fff;margin-bottom:6px;}
-.qa{
-  display:inline-flex;align-items:center;gap:5px;
-  background:rgba(52,211,153,0.1);
-  border:1px solid rgba(52,211,153,0.22);
-  color:var(--green);
-  font-size:11.5px;font-weight:600;
-  padding:3px 10px;border-radius:6px;margin-bottom:5px;
-}
-.qe{font-size:12px;color:var(--text2);line-height:1.6;}
+        pre {
+            background-color: #f4f6fb;
+            border: 1px solid #dee2e6;
+            border-left: 5px solid #667eea;
+            border-radius: 6px;
+            padding: 18px 20px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.88em;
+            line-height: 1.8;
+            color: #2c3e50;
+            margin: 15px 0;
+        }
 
-/* ── IOS MODES ── */
-.mode-row{
-  display:flex;align-items:flex-start;gap:12px;
-  padding:10px 0;border-bottom:1px solid var(--border);
-}
-.mode-row:last-child{border-bottom:none;}
-.prompt{
-  font-family:var(--mono);font-size:11.5px;
-  color:var(--amber);background:#040609;
-  border:1px solid var(--border2);
-  padding:3px 9px;border-radius:5px;white-space:nowrap;flex-shrink:0;
-}
-.mode-info{flex:1;}
-.mode-name{font-size:13px;font-weight:700;color:#fff;}
-.mode-desc{font-size:12px;color:var(--text2);}
-.mode-cmd{font-family:var(--mono);font-size:11px;color:var(--blue);margin-top:2px;}
+        /* Syntax color helpers kept from original */
+        .cm { color: #7f8c8d; font-style: italic; }
+        .ck { color: #2980b9; }
+        .cv { color: #27ae60; font-weight: bold; }
+        .cs { color: #e67e22; }
+        .cr { color: #e74c3c; }
 
-/* ── VIOLATION TABLE ── */
-.vtable{display:grid;grid-template-columns:1fr 2fr 1fr;gap:1px;background:var(--border2);border-radius:8px;overflow:hidden;margin:8px 0;}
-.vcell{background:var(--bg3);padding:8px 12px;font-size:13px;}
-.vhead{background:var(--bg4);font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);}
+        .command-list {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid #dee2e6;
+        }
 
-/* ── PORT RANGES ── */
-.pr-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border2);border-radius:8px;overflow:hidden;margin:8px 0;}
-.pr-cell{background:var(--bg3);padding:8px 12px;font-size:13px;}
-.pr-head{background:var(--bg4);font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);padding:8px 12px;}
+        .section-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
 
-/* ── VLAN TYPES ── */
-.vlan-g{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0;}
-.vcard{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:11px 13px;}
-.vcard h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px;}
-.vcard p{font-size:12.5px;color:var(--text2);margin:0;}
+        /* Comparison boxes (compare-col → comparison-box style) */
+        .comparison-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
 
-/* ── COLOR HELPERS ── */
-.c-blue{color:var(--blue);}
-.c-cyan{color:var(--cyan);}
-.c-green{color:var(--green);}
-.c-amber{color:var(--amber);}
-.c-red{color:var(--red);}
-.c-coral{color:var(--coral);}
-.c-purple{color:var(--purple);}
-.c-pink{color:var(--pink);}
-.fw7{font-weight:700;}
+        .comparison-item {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
 
-@media(max-width:600px){
-  .g2,.g3,.compare,.pr-grid,.vtable{grid-template-columns:1fr;}
-  .compare-col:first-child{border-right:none;border-bottom:1px solid var(--border2);}
-}
-</style>
+        .comparison-item.blue {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+        }
+
+        .comparison-item.green {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+        }
+
+        .comparison-item.red {
+            background-color: #fdecea;
+            border-left: 5px solid #dc3545;
+        }
+
+        .comparison-item.amber {
+            background-color: #fffde7;
+            border-left: 5px solid #ffc107;
+        }
+
+        /* Cards */
+        .card {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 0.85em;
+            font-weight: 700;
+            color: #764ba2;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 14px;
+        }
+
+        /* Mini cards grid */
+        .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0; }
+        .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin: 15px 0; }
+
+        .mini-card {
+            background-color: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .mini-card h3 {
+            font-size: 0.95em;
+            font-weight: 700;
+            color: #667eea;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ecf0f1;
+            padding-bottom: 6px;
+        }
+
+        .mini-card p, .mini-card li {
+            font-size: 0.93em;
+            color: #34495e;
+            line-height: 1.6;
+        }
+
+        .mini-card ul { padding-left: 18px; }
+        .mini-card li { margin-bottom: 4px; }
+
+        /* Steps (DORA process) */
+        .steps { display: flex; flex-direction: column; gap: 10px; }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background-color: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 14px 16px;
+        }
+
+        .step-ltr {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 15px;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .step-body { flex: 1; }
+        .step-title { font-size: 1em; font-weight: 700; color: #2c3e50; margin-bottom: 4px; }
+        .step-sub { font-size: 0.88em; color: #7f8c8d; font-family: 'Courier New', monospace; line-height: 1.7; }
+
+        /* QCM items */
+        .qitem {
+            background-color: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 16px 18px;
+            margin-bottom: 14px;
+        }
+
+        .qq { font-size: 0.98em; font-weight: 700; color: #2c3e50; margin-bottom: 8px; }
+
+        .qa {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: #d4edda;
+            border: 1px solid #28a745;
+            color: #155724;
+            font-size: 0.9em;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+
+        .qe { font-size: 0.9em; color: #34495e; line-height: 1.6; }
+
+        /* IOS mode rows */
+        .mode-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .mode-row:last-child { border-bottom: none; }
+
+        .prompt {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            color: #e67e22;
+            background-color: #f4f6fb;
+            border: 1px solid #dee2e6;
+            padding: 3px 10px;
+            border-radius: 5px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .mode-info { flex: 1; }
+        .mode-name { font-size: 0.98em; font-weight: 700; color: #2c3e50; }
+        .mode-desc { font-size: 0.88em; color: #7f8c8d; }
+        .mode-cmd  { font-family: 'Courier New', monospace; font-size: 0.83em; color: #667eea; margin-top: 2px; }
+
+        /* Port badge */
+        .pb {
+            display: inline-block;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background-color: #e3f2fd;
+            border: 1px solid #90caf9;
+            color: #1565c0;
+        }
+
+        /* Violation / port-range grid tables */
+        .vtable, .pr-grid {
+            display: grid;
+            gap: 1px;
+            background-color: #dee2e6;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 12px 0;
+        }
+
+        .vtable  { grid-template-columns: 1fr 2fr 1fr; }
+        .pr-grid { grid-template-columns: 1fr 1fr 1fr; }
+
+        .vcell, .pr-cell {
+            background-color: #f8f9fa;
+            padding: 10px 14px;
+            font-size: 0.92em;
+            color: #2c3e50;
+        }
+
+        .vhead, .pr-head {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 0.82em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 10px 14px;
+        }
+
+        /* VLAN types grid */
+        .vlan-g { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+
+        .vcard {
+            background-color: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 14px 16px;
+        }
+
+        .vcard h4 {
+            font-size: 0.88em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            margin-bottom: 6px;
+        }
+
+        .vcard p { font-size: 0.9em; color: #34495e; margin: 0; }
+
+        /* Color helpers */
+        .c-blue   { color: #2196f3; }
+        .c-cyan   { color: #17a2b8; }
+        .c-green  { color: #28a745; }
+        .c-amber  { color: #e67e22; }
+        .c-red    { color: #dc3545; }
+        .c-coral  { color: #e74c3c; }
+        .c-purple { color: #764ba2; }
+        .c-pink   { color: #e91e8c; }
+        .fw7      { font-weight: 700; }
+
+        /* Back button */
+        button {
+            background-color: white;
+            color: #667eea;
+            border: none;
+            padding: 15px 40px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background-color: #f8f9fa;
+        }
+
+        /* Section header */
+        .sh {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .snum {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+
+        .sh h2 {
+            margin: 0;
+            border: none;
+            background: none;
+            padding: 0;
+            border-left: none;
+        }
+
+        section { margin-bottom: 50px; scroll-margin-top: 60px; }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            body { padding: 20px 10px; }
+            .container { padding: 25px 15px; }
+            h1 { font-size: 1.6em; letter-spacing: 1px; }
+            h2 { font-size: 1.3em; padding: 12px 15px; }
+            h3 { font-size: 1.1em; }
+            button { padding: 12px 25px; font-size: 16px; width: 100%; }
+            .comparison-box, .g2, .g3, .vlan-g { grid-template-columns: 1fr; }
+            .vtable, .pr-grid { grid-template-columns: 1fr; }
+            table { font-size: 12px; }
+            th, td { padding: 8px 8px; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.4em; }
+            h2 { font-size: 1.1em; }
+            table { font-size: 10px; }
+            th, td { padding: 6px 5px; }
+        }
+    </style>
 </head>
 <body>
+<div class="container">
 
-<div id="prog"></div>
+    <a href="index.html" style="text-decoration: none;">
+        <button>← Retour à l'accueil</button>
+    </a>
 
-<nav>
-  <div class="nav-brand">Réseaux <em>IP2</em></div>
-  <a href="#qcm">QCM</a>
-  <a href="#transport">Transport</a>
-  <a href="#application">Application</a>
-  <a href="#dhcp">DHCP</a>
-  <a href="#nat">NAT/PAT</a>
-  <a href="#routeur">Routeur</a>
-  <a href="#switch">Switch</a>
-  <a href="#vlan">VLANs</a>
-  <a href="#intervlan">Inter-VLAN</a>
-  <a href="#securite">Sécurité</a>
-</nav>
+    <h1>Réseaux IP 2</h1>
+    <p class="subtitle">Fiche Complète Exam — TCP/UDP · DNS · DHCP · NAT/PAT · Cisco IOS · VLANs · Sécurité</p>
 
-<main>
+    <!-- ══════════════════════════════════════════════════════ QCM -->
+    <h2><span class="section-number">Q</span> QCM — Réponses &amp; Explications</h2>
 
-<!-- ═══ HERO ═══ -->
-<div class="hero">
-  <div class="hero-tag">⚡ ING-3-J · Exam Mars 2025 · Barème 4+3+13</div>
-  <h1>Fiche Complète<br><em>Réseaux IP 2</em></h1>
-  <p>TCP/UDP · DNS · DHCP · NAT/PAT · Cisco IOS · VLANs · Sécurité — tout ce qui peut tomber.</p>
-  <div class="stat-row">
-    <div class="stat"><div class="stat-num">8</div><div class="stat-lab">chapitres</div></div>
-    <div class="stat"><div class="stat-num">8</div><div class="stat-lab">QCM expliqués</div></div>
-    <div class="stat"><div class="stat-num c-red">10</div><div class="stat-lab">points manquants couverts</div></div>
-  </div>
-</div>
+    <div class="card">
+        <div class="qitem">
+            <div class="qq">1. Quel ensemble représente une socket ?</div>
+            <div class="qa">✓ a) 192.168.1.1:80</div>
+            <div class="qe">Socket = <strong>adresse IP + numéro de port</strong>. Identifie un processus précis sur une machine précise. IP seule → machine uniquement. Port seul → service sans machine. MAC → couche liaison, pas transport.</div>
+        </div>
 
-<!-- ═══ QCM ═══ -->
-<section id="qcm">
-  <div class="sh">
-    <div class="snum" style="background:rgba(79,142,247,0.18);color:var(--blue);">Q</div>
-    <h2>QCM — Réponses & Explications</h2>
-  </div>
+        <div class="qitem">
+            <div class="qq">2. Action d'un client lors d'une communication UDP ?</div>
+            <div class="qa">✓ d) Le client sélectionne au hasard un numéro de port source</div>
+            <div class="qe">UDP est <strong>sans connexion</strong> : pas de SYN, pas de 3-way handshake, pas de numéro de séquence. Le client choisit un port source éphémère aléatoire (&gt;1023). Les options a/b/c décrivent TCP.</div>
+        </div>
 
-  <div class="qitem">
-    <div class="qq">1. Quel ensemble représente une socket ?</div>
-    <div class="qa">✓ a) 192.168.1.1:80</div>
-    <div class="qe">Socket = <strong>adresse IP + numéro de port</strong>. Identifie un processus précis sur une machine précise. IP seule → machine uniquement. Port seul → service sans machine. MAC → couche liaison, pas transport.</div>
-  </div>
+        <div class="qitem">
+            <div class="qq">3. Ce qui est vrai concernant DNS ?</div>
+            <div class="qa">✓ b) Il fait la résolution des adresses IP (noms → IP)</div>
+            <div class="qe">DNS résout les noms de domaine en @IP (google.com → 142.250.x.x). Utilise <strong>UDP port 53</strong> pour les requêtes standard. Option a = ARP (MAC↔IP). Option c = faux, DNS n'utilise pas TCP pour les requêtes normales.</div>
+        </div>
 
-  <div class="qitem">
-    <div class="qq">2. Action d'un client lors d'une communication UDP ?</div>
-    <div class="qa">✓ d) Le client sélectionne au hasard un numéro de port source</div>
-    <div class="qe">UDP est <strong>sans connexion</strong> : pas de SYN, pas de 3-way handshake, pas de numéro de séquence. Le client choisit un port source éphémère aléatoire (&gt;1023). Les options a/b/c décrivent TCP.</div>
-  </div>
+        <div class="qitem">
+            <div class="qq">4. Couche OSI responsable de l'établissement/fin de session entre applications ?</div>
+            <div class="qa">✓ c) Couche Session (couche 5)</div>
+            <div class="qe"><strong>Couche 5 = Session</strong> : établit, maintient et termine les sessions. Couche 7 (Application) = interface utilisateur. Couche 4 (Transport) = fiabilité des données, ports.</div>
+        </div>
 
-  <div class="qitem">
-    <div class="qq">3. Ce qui est vrai concernant DNS ?</div>
-    <div class="qa">✓ b) Il fait la résolution des adresses IP (noms → IP)</div>
-    <div class="qe">DNS résout les noms de domaine en @IP (google.com → 142.250.x.x). Utilise <strong>UDP port 53</strong> pour les requêtes standard. Option a = ARP (MAC↔IP). Option c = faux, DNS n'utilise pas TCP pour les requêtes normales.</div>
-  </div>
+        <div class="qitem">
+            <div class="qq">5. Affirmation vraie sur UDP ?</div>
+            <div class="qa">✓ c) Sans connexion, ne retransmet pas les données perdues</div>
+            <div class="qe">UDP = best effort. Usages : DNS, streaming, VoIP, jeux — vitesse &gt; fiabilité. Options a/b/d décrivent TCP (numéros d'ordre, connexion 3 étapes, livraison ordonnée).</div>
+        </div>
 
-  <div class="qitem">
-    <div class="qq">4. Couche OSI responsable de l'établissement/fin de session entre applications ?</div>
-    <div class="qa">✓ c) Couche Session (couche 5)</div>
-    <div class="qe"><strong>Couche 5 = Session</strong> : établit, maintient et termine les sessions. Couche 7 (Application) = interface utilisateur. Couche 4 (Transport) = fiabilité des données, ports.</div>
-  </div>
+        <div class="qitem">
+            <div class="qq">6. Champs présents dans TCP mais absents dans UDP ?</div>
+            <div class="qa">✓ b) Numéro d'ordre + d) Numéro d'accusé de réception</div>
+            <div class="qe">Port source et somme de contrôle existent dans <strong>les deux</strong>. Numéro de séquence et ACK sont <strong>exclusifs à TCP</strong> pour garantir ordre et fiabilité.</div>
+        </div>
 
-  <div class="qitem">
-    <div class="qq">5. Affirmation vraie sur UDP ?</div>
-    <div class="qa">✓ c) Sans connexion, ne retransmet pas les données perdues</div>
-    <div class="qe">UDP = best effort. Usages : DNS, streaming, VoIP, jeux — vitesse > fiabilité. Options a/b/d décrivent TCP (numéros d'ordre, connexion 3 étapes, livraison ordonnée).</div>
-  </div>
+        <div class="qitem">
+            <div class="qq">7. Protocole pour récupérer des e-mails depuis un serveur vers un client ?</div>
+            <div class="qa">✓ b) POP3</div>
+            <div class="qe"><strong>POP3 (port 110)</strong> = télécharger emails du serveur → client. SMTP (port 25) = envoyer. IMAP (143) = consulter sans télécharger. SNMP (161) = supervision réseau.</div>
+        </div>
 
-  <div class="qitem">
-    <div class="qq">6. Champs présents dans TCP mais absents dans UDP ?</div>
-    <div class="qa">✓ b) Numéro d'ordre + d) Numéro d'accusé de réception</div>
-    <div class="qe">Port source et somme de contrôle existent dans <strong>les deux</strong>. Numéro de séquence et ACK sont <strong>exclusifs à TCP</strong> pour garantir ordre et fiabilité.</div>
-  </div>
-
-  <div class="qitem">
-    <div class="qq">7. Protocole pour récupérer des e-mails depuis un serveur vers un client ?</div>
-    <div class="qa">✓ b) POP3</div>
-    <div class="qe"><strong>POP3 (port 110)</strong> = télécharger emails du serveur → client. SMTP (port 25) = envoyer. IMAP (143) = consulter sans télécharger. SNMP (161) = supervision réseau.</div>
-  </div>
-
-  <div class="qitem">
-    <div class="qq">8. Rôle du numéro de port dans TCP/UDP ?</div>
-    <div class="qa">✓ b) Identifier l'application ou le service destinataire</div>
-    <div class="qe">@IP identifie la <strong>machine</strong>. Port identifie le <strong>processus/service</strong> sur cette machine. Port 80=HTTP, 443=HTTPS, 22=SSH, 53=DNS, 25=SMTP.</div>
-  </div>
-</section>
-
-<!-- ═══ TRANSPORT ═══ -->
-<section id="transport">
-  <div class="sh">
-    <div class="snum" style="background:rgba(79,142,247,0.18);color:var(--blue);">I</div>
-    <h2>Couche Transport — TCP & UDP</h2>
-  </div>
-
-  <div class="compare">
-    <div class="compare-col">
-      <div class="compare-head c-blue">TCP — Transmission Control Protocol</div>
-      <ul>
-        <li>Orienté connexion (3-way handshake)</li>
-        <li>Fiable — accusés de réception (ACK)</li>
-        <li>Ordonné — numéros de séquence</li>
-        <li>Contrôle de flux (taille de fenêtre)</li>
-        <li>Retransmission si perte</li>
-        <li>Surcharge réseau plus importante</li>
-        <li>HTTP, FTP, SMTP, SSH, Telnet</li>
-      </ul>
+        <div class="qitem">
+            <div class="qq">8. Rôle du numéro de port dans TCP/UDP ?</div>
+            <div class="qa">✓ b) Identifier l'application ou le service destinataire</div>
+            <div class="qe">@IP identifie la <strong>machine</strong>. Port identifie le <strong>processus/service</strong> sur cette machine. Port 80=HTTP, 443=HTTPS, 22=SSH, 53=DNS, 25=SMTP.</div>
+        </div>
     </div>
-    <div class="compare-col">
-      <div class="compare-head c-green">UDP — User Datagram Protocol</div>
-      <ul>
-        <li>Sans connexion (aucun setup)</li>
-        <li>Pas de garantie de livraison</li>
-        <li>Pas d'ordre garanti</li>
-        <li>Pas de contrôle de flux</li>
-        <li>Pas de retransmission</li>
-        <li>Rapide — faible surcharge</li>
-        <li>DNS, DHCP, VoIP, streaming</li>
-      </ul>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="card-title">En-têtes comparés — champs TCP vs UDP</div>
+    <!-- ══════════════════════════════════════════════════════ TRANSPORT -->
+    <h2><span class="section-number">PARTIE I</span> Couche Transport — TCP &amp; UDP</h2>
+
+    <div class="comparison-box">
+        <div class="comparison-item blue">
+            <h4>🔵 TCP — Transmission Control Protocol</h4>
+            <ul>
+                <li>Orienté connexion (3-way handshake)</li>
+                <li>Fiable — accusés de réception (ACK)</li>
+                <li>Ordonné — numéros de séquence</li>
+                <li>Contrôle de flux (taille de fenêtre)</li>
+                <li>Retransmission si perte</li>
+                <li>Surcharge réseau plus importante</li>
+                <li>HTTP, FTP, SMTP, SSH, Telnet</li>
+            </ul>
+        </div>
+        <div class="comparison-item green">
+            <h4>🟢 UDP — User Datagram Protocol</h4>
+            <ul>
+                <li>Sans connexion (aucun setup)</li>
+                <li>Pas de garantie de livraison</li>
+                <li>Pas d'ordre garanti</li>
+                <li>Pas de contrôle de flux</li>
+                <li>Pas de retransmission</li>
+                <li>Rapide — faible surcharge</li>
+                <li>DNS, DHCP, VoIP, streaming</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>📋 En-têtes comparés — champs TCP vs UDP</h3>
     <table>
-      <thead><tr><th>Champ</th><th>TCP</th><th>UDP</th></tr></thead>
-      <tbody>
-        <tr><td>Port source</td><td class="c-green fw7">✅ Oui</td><td class="c-green fw7">✅ Oui</td></tr>
-        <tr><td>Port destination</td><td class="c-green fw7">✅ Oui</td><td class="c-green fw7">✅ Oui</td></tr>
-        <tr><td>Somme de contrôle</td><td class="c-green fw7">✅ Oui</td><td class="c-green fw7">✅ Oui</td></tr>
-        <tr><td><strong>Numéro de séquence (ISN)</strong></td><td class="c-green fw7">✅ Oui</td><td class="c-red fw7">❌ Non — TCP uniquement ← Q6</td></tr>
-        <tr><td><strong>Numéro d'accusé de réception</strong></td><td class="c-green fw7">✅ Oui</td><td class="c-red fw7">❌ Non — TCP uniquement ← Q6</td></tr>
-        <tr><td>Flags (SYN, ACK, FIN, RST)</td><td class="c-green fw7">✅ Oui</td><td class="c-red fw7">❌ Non</td></tr>
-        <tr><td>Taille de fenêtre</td><td class="c-green fw7">✅ Oui</td><td class="c-red fw7">❌ Non</td></tr>
-        <tr><td>Longueur</td><td class="c-red fw7">❌ Non</td><td class="c-green fw7">✅ Oui</td></tr>
-      </tbody>
+        <thead><tr><th>Champ</th><th>TCP</th><th>UDP</th></tr></thead>
+        <tbody>
+            <tr><td>Port source</td><td class="c-green fw7">✅ Oui</td><td class="c-green fw7">✅ Oui</td></tr>
+            <tr><td>Port destination</td><td class="c-green fw7">✅ Oui</td><td class="c-green fw7">✅ Oui</td></tr>
+            <tr><td>Somme de contrôle</td><td class="c-green fw7">✅ Oui</td><td class="c-green fw7">✅ Oui</td></tr>
+            <tr><td><strong>Numéro de séquence (ISN)</strong></td><td class="c-green fw7">✅ Oui</td><td class="c-red fw7">❌ Non — TCP uniquement ← Q6</td></tr>
+            <tr><td><strong>Numéro d'accusé de réception</strong></td><td class="c-green fw7">✅ Oui</td><td class="c-red fw7">❌ Non — TCP uniquement ← Q6</td></tr>
+            <tr><td>Flags (SYN, ACK, FIN, RST)</td><td class="c-green fw7">✅ Oui</td><td class="c-red fw7">❌ Non</td></tr>
+            <tr><td>Taille de fenêtre</td><td class="c-green fw7">✅ Oui</td><td class="c-red fw7">❌ Non</td></tr>
+            <tr><td>Longueur</td><td class="c-red fw7">❌ Non</td><td class="c-green fw7">✅ Oui</td></tr>
+        </tbody>
     </table>
-  </div>
 
-  <div class="card">
-    <div class="card-title">3-Way Handshake TCP</div>
+    <h3>🤝 3-Way Handshake TCP</h3>
     <div class="steps">
-      <div class="step">
-        <div class="step-ltr" style="background:rgba(79,142,247,0.2);color:var(--blue);">1</div>
-        <div class="step-body">
-          <div class="step-title">SYN — Client → Serveur</div>
-          <div class="step-sub">Client envoie SYN avec ISN = x. Demande ouverture de connexion.</div>
+        <div class="step">
+            <div class="step-ltr">1</div>
+            <div class="step-body">
+                <div class="step-title">SYN — Client → Serveur</div>
+                <div class="step-sub">Client envoie SYN avec ISN = x. Demande ouverture de connexion.</div>
+            </div>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-ltr" style="background:rgba(167,139,250,0.2);color:var(--purple);">2</div>
-        <div class="step-body">
-          <div class="step-title">SYN-ACK — Serveur → Client</div>
-          <div class="step-sub">Serveur répond SYN (ISN = y) + ACK (= x+1). Accepte et propose son numéro de séquence.</div>
+        <div class="step">
+            <div class="step-ltr">2</div>
+            <div class="step-body">
+                <div class="step-title">SYN-ACK — Serveur → Client</div>
+                <div class="step-sub">Serveur répond SYN (ISN = y) + ACK (= x+1). Accepte et propose son numéro de séquence.</div>
+            </div>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-ltr" style="background:rgba(52,211,153,0.2);color:var(--green);">3</div>
-        <div class="step-body">
-          <div class="step-title">ACK — Client → Serveur</div>
-          <div class="step-sub">Client envoie ACK (= y+1). Connexion établie, transfert commence.</div>
+        <div class="step">
+            <div class="step-ltr">3</div>
+            <div class="step-body">
+                <div class="step-title">ACK — Client → Serveur</div>
+                <div class="step-sub">Client envoie ACK (= y+1). Connexion établie, transfert commence.</div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  <div class="card">
-    <div class="card-title">Catégories de ports — à connaître</div>
+    <h3>🔢 Catégories de Ports</h3>
     <div class="pr-grid">
-      <div class="pr-head">Catégorie</div>
-      <div class="pr-head">Plage</div>
-      <div class="pr-head">Usage</div>
-      <div class="pr-cell c-red fw7">Réservés (well-known)</div>
-      <div class="pr-cell"><span class="pb">0 – 1023</span></div>
-      <div class="pr-cell">Services connus : HTTP=80, SSH=22, DNS=53, SMTP=25…</div>
-      <div class="pr-cell c-amber fw7">Inscrits (registered)</div>
-      <div class="pr-cell"><span class="pb">1024 – 49151</span></div>
-      <div class="pr-cell">Applications spécifiques. Aussi utilisés par clients si libre.</div>
-      <div class="pr-cell c-green fw7">Privés / Éphémères</div>
-      <div class="pr-cell"><span class="pb">49152 – 65535</span></div>
-      <div class="pr-cell">Attribués dynamiquement aux clients lors d'une connexion.</div>
+        <div class="pr-head">Catégorie</div>
+        <div class="pr-head">Plage</div>
+        <div class="pr-head">Usage</div>
+        <div class="pr-cell c-red fw7">Réservés (well-known)</div>
+        <div class="pr-cell"><span class="pb">0 – 1023</span></div>
+        <div class="pr-cell">Services connus : HTTP=80, SSH=22, DNS=53, SMTP=25…</div>
+        <div class="pr-cell c-amber fw7">Inscrits (registered)</div>
+        <div class="pr-cell"><span class="pb">1024 – 49151</span></div>
+        <div class="pr-cell">Applications spécifiques. Aussi utilisés par clients si libre.</div>
+        <div class="pr-cell c-green fw7">Privés / Éphémères</div>
+        <div class="pr-cell"><span class="pb">49152 – 65535</span></div>
+        <div class="pr-cell">Attribués dynamiquement aux clients lors d'une connexion.</div>
     </div>
-  </div>
 
-  <div class="card">
-    <div class="card-title">Ports importants à mémoriser</div>
+    <h3>📌 Ports importants à mémoriser</h3>
     <table>
-      <thead><tr><th>Port</th><th>Protocole</th><th>Transport</th><th>Rôle</th></tr></thead>
-      <tbody>
-        <tr><td><span class="pb">20/21</span></td><td>FTP</td><td>TCP</td><td>Transfert de fichiers interactif</td></tr>
-        <tr><td><span class="pb">22</span></td><td>SSH</td><td>TCP</td><td>Accès distant <strong>sécurisé et chiffré</strong></td></tr>
-        <tr><td><span class="pb">23</span></td><td>Telnet</td><td>TCP</td><td>Accès distant non chiffré — à éviter</td></tr>
-        <tr><td><span class="pb">25</span></td><td>SMTP</td><td>TCP</td><td>Envoyer des e-mails</td></tr>
-        <tr><td><span class="pb">53</span></td><td>DNS</td><td><strong>UDP</strong></td><td>Résolution noms → @IP</td></tr>
-        <tr><td><span class="pb">67/68</span></td><td>DHCP</td><td><strong>UDP</strong></td><td>67=serveur, 68=client</td></tr>
-        <tr><td><span class="pb">69</span></td><td>TFTP</td><td><strong>UDP</strong></td><td>Transfert simple sans connexion (boot routeur)</td></tr>
-        <tr><td><span class="pb">80</span></td><td>HTTP</td><td>TCP</td><td>Web non chiffré</td></tr>
-        <tr><td><span class="pb">110</span></td><td>POP3</td><td>TCP</td><td>Récupérer e-mails (télécharge et supprime)</td></tr>
-        <tr><td><span class="pb">143</span></td><td>IMAP</td><td>TCP</td><td>Lire e-mails (restent sur serveur)</td></tr>
-        <tr><td><span class="pb">161</span></td><td>SNMP</td><td><strong>UDP</strong></td><td>Supervision réseau</td></tr>
-        <tr><td><span class="pb">443</span></td><td>HTTPS</td><td>TCP</td><td>Web chiffré (TLS/SSL)</td></tr>
-      </tbody>
+        <thead><tr><th>Port</th><th>Protocole</th><th>Transport</th><th>Rôle</th></tr></thead>
+        <tbody>
+            <tr><td><span class="pb">20/21</span></td><td>FTP</td><td>TCP</td><td>Transfert de fichiers interactif</td></tr>
+            <tr><td><span class="pb">22</span></td><td>SSH</td><td>TCP</td><td>Accès distant <strong>sécurisé et chiffré</strong></td></tr>
+            <tr><td><span class="pb">23</span></td><td>Telnet</td><td>TCP</td><td>Accès distant non chiffré — à éviter</td></tr>
+            <tr><td><span class="pb">25</span></td><td>SMTP</td><td>TCP</td><td>Envoyer des e-mails</td></tr>
+            <tr><td><span class="pb">53</span></td><td>DNS</td><td><strong>UDP</strong></td><td>Résolution noms → @IP</td></tr>
+            <tr><td><span class="pb">67/68</span></td><td>DHCP</td><td><strong>UDP</strong></td><td>67=serveur, 68=client</td></tr>
+            <tr><td><span class="pb">69</span></td><td>TFTP</td><td><strong>UDP</strong></td><td>Transfert simple sans connexion (boot routeur)</td></tr>
+            <tr><td><span class="pb">80</span></td><td>HTTP</td><td>TCP</td><td>Web non chiffré</td></tr>
+            <tr><td><span class="pb">110</span></td><td>POP3</td><td>TCP</td><td>Récupérer e-mails (télécharge et supprime)</td></tr>
+            <tr><td><span class="pb">143</span></td><td>IMAP</td><td>TCP</td><td>Lire e-mails (restent sur serveur)</td></tr>
+            <tr><td><span class="pb">161</span></td><td>SNMP</td><td><strong>UDP</strong></td><td>Supervision réseau</td></tr>
+            <tr><td><span class="pb">443</span></td><td>HTTPS</td><td>TCP</td><td>Web chiffré (TLS/SSL)</td></tr>
+        </tbody>
     </table>
-    <div class="alert al-blue" style="margin-top:10px;"><strong>TFTP ≠ FTP :</strong> FTP = interactif, connexion TCP. TFTP = simple, sans connexion, UDP. Utilisé pour télécharger le fichier de boot d'un routeur via BootP.</div>
-  </div>
+    <div class="important-note"><strong>TFTP ≠ FTP :</strong> FTP = interactif, connexion TCP. TFTP = simple, sans connexion, UDP. Utilisé pour télécharger le fichier de boot d'un routeur via BootP.</div>
 
-  <p style="font-size:13px;margin-bottom:6px;"><strong>Commande utile :</strong> <code>netstat</code> — examine les connexions TCP ouvertes et actives sur un hôte.</p>
-</section>
+    <!-- ══════════════════════════════════════════════════════ APPLICATION -->
+    <h2><span class="section-number">PARTIE II</span> Couche Application</h2>
 
-<!-- ═══ APPLICATION ═══ -->
-<section id="application">
-  <div class="sh">
-    <div class="snum" style="background:rgba(34,211,238,0.18);color:var(--cyan);">II</div>
-    <h2>Couche Application</h2>
-  </div>
-
-  <div class="g2">
-    <div class="mini-card">
-      <h3>DNS</h3>
-      <ul>
-        <li>Traduit noms de domaine → adresses IP</li>
-        <li>Ex : google.com → 142.250.74.46</li>
-        <li>Port 53, <strong>protocole UDP</strong></li>
-        <li>Résultats mis en cache (TTL)</li>
-        <li>N'utilise <strong>pas</strong> ARP (c'est MAC↔IP)</li>
-      </ul>
+    <div class="g2">
+        <div class="mini-card">
+            <h3>DNS</h3>
+            <ul>
+                <li>Traduit noms de domaine → adresses IP</li>
+                <li>Ex : google.com → 142.250.74.46</li>
+                <li>Port 53, <strong>protocole UDP</strong></li>
+                <li>Résultats mis en cache (TTL)</li>
+                <li>N'utilise <strong>pas</strong> ARP (c'est MAC↔IP)</li>
+            </ul>
+        </div>
+        <div class="mini-card">
+            <h3>Messagerie électronique</h3>
+            <ul>
+                <li><strong class="c-amber">SMTP</strong> (25, TCP) : envoyer des mails</li>
+                <li><strong class="c-blue">POP3</strong> (110, TCP) : télécharger + supprimer du serveur</li>
+                <li><strong class="c-green">IMAP</strong> (143, TCP) : lire sans supprimer du serveur</li>
+                <li>Flux : client → <strong>SMTP</strong> → serveur → <strong>POP3/IMAP</strong> → destinataire</li>
+            </ul>
+        </div>
     </div>
-    <div class="mini-card">
-      <h3>Messagerie électronique</h3>
-      <ul>
-        <li><strong class="c-amber">SMTP</strong> (25, TCP) : envoyer des mails</li>
-        <li><strong class="c-blue">POP3</strong> (110, TCP) : télécharger + supprimer du serveur</li>
-        <li><strong class="c-green">IMAP</strong> (143, TCP) : lire sans supprimer du serveur</li>
-        <li>Flux : client → <strong>SMTP</strong> → serveur → <strong>POP3/IMAP</strong> → destinataire</li>
-      </ul>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="card-title">Modèle OSI — 7 couches</div>
+    <h3>🗂️ Modèle OSI — 7 couches</h3>
     <table>
-      <thead><tr><th>N°</th><th>Couche</th><th>Rôle</th><th>Protocoles / Équipements</th></tr></thead>
-      <tbody>
-        <tr><td><strong>7</strong></td><td class="c-blue">Application</td><td>Interface utilisateur</td><td>HTTP, FTP, DNS, SMTP, SSH</td></tr>
-        <tr><td><strong>6</strong></td><td>Présentation</td><td>Encodage, chiffrement, compression</td><td>TLS/SSL, JPEG, ASCII</td></tr>
-        <tr><td><strong>5</strong></td><td class="c-amber">Session ← Q4</td><td><strong>Établissement/maintien/fin de sessions</strong></td><td>NetBIOS, RPC</td></tr>
-        <tr><td><strong>4</strong></td><td>Transport</td><td>Fiabilité, segmentation, ports</td><td>TCP, UDP</td></tr>
-        <tr><td><strong>3</strong></td><td>Réseau</td><td>Adressage IP, routage</td><td>IP, ICMP — <strong>Routeur</strong></td></tr>
-        <tr><td><strong>2</strong></td><td>Liaison</td><td>Adressage MAC, trames</td><td>Ethernet — <strong>Switch</strong></td></tr>
-        <tr><td><strong>1</strong></td><td>Physique</td><td>Bits, signaux</td><td>RJ45, fibre — <strong>Hub</strong></td></tr>
-      </tbody>
+        <thead><tr><th>N°</th><th>Couche</th><th>Rôle</th><th>Protocoles / Équipements</th></tr></thead>
+        <tbody>
+            <tr><td><strong>7</strong></td><td class="c-blue">Application</td><td>Interface utilisateur</td><td>HTTP, FTP, DNS, SMTP, SSH</td></tr>
+            <tr><td><strong>6</strong></td><td>Présentation</td><td>Encodage, chiffrement, compression</td><td>TLS/SSL, JPEG, ASCII</td></tr>
+            <tr><td><strong>5</strong></td><td class="c-amber">Session ← Q4</td><td><strong>Établissement/maintien/fin de sessions</strong></td><td>NetBIOS, RPC</td></tr>
+            <tr><td><strong>4</strong></td><td>Transport</td><td>Fiabilité, segmentation, ports</td><td>TCP, UDP</td></tr>
+            <tr><td><strong>3</strong></td><td>Réseau</td><td>Adressage IP, routage</td><td>IP, ICMP — <strong>Routeur</strong></td></tr>
+            <tr><td><strong>2</strong></td><td>Liaison</td><td>Adressage MAC, trames</td><td>Ethernet — <strong>Switch</strong></td></tr>
+            <tr><td><strong>1</strong></td><td>Physique</td><td>Bits, signaux</td><td>RJ45, fibre — <strong>Hub</strong></td></tr>
+        </tbody>
     </table>
-  </div>
 
-  <div class="card">
-    <div class="card-title">Évolution : RARP → BootP → DHCP</div>
+    <h3>📈 Évolution : RARP → BootP → DHCP</h3>
     <table>
-      <thead><tr><th>Protocole</th><th>Fournit</th><th>Limite principale</th></tr></thead>
-      <tbody>
-        <tr><td class="c-red">RARP</td><td>@IP seulement</td><td>Diffusion couche 2 uniquement, routeurs ne propagent pas. Pas de masque ni passerelle.</td></tr>
-        <tr><td class="c-amber">BootP</td><td>@IP + nom fichier boot + @serveur</td><td>@IP statique par MAC dans fichier de config. Pas de bail temporaire. Utilise TFTP pour le fichier boot.</td></tr>
-        <tr><td class="c-green">DHCP</td><td>@IP + masque + passerelle + DNS + bail</td><td>Aucune limite majeure. Extension de BootP. Allocation dynamique avec durée de bail.</td></tr>
-      </tbody>
+        <thead><tr><th>Protocole</th><th>Fournit</th><th>Limite principale</th></tr></thead>
+        <tbody>
+            <tr><td class="c-red">RARP</td><td>@IP seulement</td><td>Diffusion couche 2 uniquement, routeurs ne propagent pas. Pas de masque ni passerelle.</td></tr>
+            <tr><td class="c-amber">BootP</td><td>@IP + nom fichier boot + @serveur</td><td>@IP statique par MAC dans fichier de config. Pas de bail temporaire. Utilise TFTP pour le fichier boot.</td></tr>
+            <tr><td class="c-green">DHCP</td><td>@IP + masque + passerelle + DNS + bail</td><td>Aucune limite majeure. Extension de BootP. Allocation dynamique avec durée de bail.</td></tr>
+        </tbody>
     </table>
-  </div>
-</section>
 
-<!-- ═══ DHCP ═══ -->
-<section id="dhcp">
-  <div class="sh">
-    <div class="snum" style="background:rgba(52,211,153,0.18);color:var(--green);">III</div>
-    <h2>DHCP — Dynamic Host Configuration Protocol</h2>
-  </div>
+    <!-- ══════════════════════════════════════════════════════ DHCP -->
+    <h2><span class="section-number">PARTIE III</span> DHCP — Dynamic Host Configuration Protocol</h2>
 
-  <div class="card">
-    <div class="card-title">3 types d'allocation DHCP</div>
+    <h3>📦 3 types d'allocation DHCP</h3>
     <div class="g3">
-      <div class="mini-card">
-        <h3 class="c-amber">Manuelle</h3>
-        <p>Identique à BootP. Table MAC ↔ @IP statique. Même adresse à chaque connexion.</p>
-      </div>
-      <div class="mini-card">
-        <h3 class="c-blue">Automatique</h3>
-        <p>@IP permanente allouée lors de la <strong>première</strong> connexion au réseau.</p>
-      </div>
-      <div class="mini-card">
-        <h3 class="c-green">Dynamique ← la plus courante</h3>
-        <p>@IP allouée pour une <strong>durée limitée (bail)</strong>. Idéal pour utilisateurs nomades.</p>
-      </div>
+        <div class="mini-card">
+            <h3 class="c-amber">Manuelle</h3>
+            <p>Identique à BootP. Table MAC ↔ @IP statique. Même adresse à chaque connexion.</p>
+        </div>
+        <div class="mini-card">
+            <h3 class="c-blue">Automatique</h3>
+            <p>@IP permanente allouée lors de la <strong>première</strong> connexion au réseau.</p>
+        </div>
+        <div class="mini-card">
+            <h3 class="c-green">Dynamique ← la plus courante</h3>
+            <p>@IP allouée pour une <strong>durée limitée (bail)</strong>. Idéal pour utilisateurs nomades.</p>
+        </div>
     </div>
-    <div class="alert al-blue" style="margin-top:10px;"><strong>Ports DHCP (UDP) :</strong> Port <code>67</code> = serveur BootP/DHCP | Port <code>68</code> = client BootP/DHCP</div>
-  </div>
+    <div class="important-note"><strong>Ports DHCP (UDP) :</strong> Port <code>67</code> = serveur BootP/DHCP | Port <code>68</code> = client BootP/DHCP</div>
 
-  <div class="card">
-    <div class="card-title">Processus DORA — 4 messages (à connaître par cœur)</div>
+    <h3>🔄 Processus DORA — 4 messages (à connaître par cœur)</h3>
     <div class="steps">
-      <div class="step">
-        <div class="step-ltr" style="background:rgba(79,142,247,0.2);color:var(--blue);font-size:17px;">D</div>
-        <div class="step-body">
-          <div class="step-title">DHCP DISCOVER — Hôte → Broadcast</div>
-          <div class="step-sub">
-            IP src: 0.0.0.0 &nbsp;|&nbsp; IP dst: 255.255.255.255<br>
-            MAC src: MAC_du_PC &nbsp;|&nbsp; MAC dst: FF:FF:FF:FF:FF:FF<br>
-            "Je démarre, qui peut me donner une IP ?"
-          </div>
+        <div class="step">
+            <div class="step-ltr">D</div>
+            <div class="step-body">
+                <div class="step-title">DHCP DISCOVER — Hôte → Broadcast</div>
+                <div class="step-sub">IP src: 0.0.0.0 | IP dst: 255.255.255.255<br>MAC src: MAC_du_PC | MAC dst: FF:FF:FF:FF:FF:FF<br>"Je démarre, qui peut me donner une IP ?"</div>
+            </div>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-ltr" style="background:rgba(251,146,60,0.2);color:var(--coral);font-size:17px;">O</div>
-        <div class="step-body">
-          <div class="step-title">DHCP OFFER — Serveur → Broadcast</div>
-          <div class="step-sub">
-            IP src: @IP_serveur_DHCP &nbsp;|&nbsp; IP dst: 255.255.255.255<br>
-            MAC src: MAC_serveur &nbsp;|&nbsp; MAC dst: MAC_du_PC<br>
-            "Je te propose l'IP X.X.X.X pour Y secondes"
-          </div>
+        <div class="step">
+            <div class="step-ltr">O</div>
+            <div class="step-body">
+                <div class="step-title">DHCP OFFER — Serveur → Broadcast</div>
+                <div class="step-sub">IP src: @IP_serveur_DHCP | IP dst: 255.255.255.255<br>MAC src: MAC_serveur | MAC dst: MAC_du_PC<br>"Je te propose l'IP X.X.X.X pour Y secondes"</div>
+            </div>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-ltr" style="background:rgba(251,191,36,0.2);color:var(--amber);font-size:17px;">R</div>
-        <div class="step-body">
-          <div class="step-title">DHCP REQUEST — Hôte → Broadcast</div>
-          <div class="step-sub">
-            IP src: 0.0.0.0 &nbsp;|&nbsp; IP dst: 255.255.255.255<br>
-            MAC src: MAC_du_PC &nbsp;|&nbsp; MAC dst: FF:FF:FF:FF:FF:FF<br>
-            "J'accepte l'offre du serveur X" (broadcast pour informer tous les serveurs DHCP)
-          </div>
+        <div class="step">
+            <div class="step-ltr">R</div>
+            <div class="step-body">
+                <div class="step-title">DHCP REQUEST — Hôte → Broadcast</div>
+                <div class="step-sub">IP src: 0.0.0.0 | IP dst: 255.255.255.255<br>MAC src: MAC_du_PC | MAC dst: FF:FF:FF:FF:FF:FF<br>"J'accepte l'offre du serveur X" (broadcast pour informer tous les serveurs DHCP)</div>
+            </div>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-ltr" style="background:rgba(52,211,153,0.2);color:var(--green);font-size:17px;">A</div>
-        <div class="step-body">
-          <div class="step-title">DHCP ACK — Serveur → Broadcast</div>
-          <div class="step-sub">
-            IP src: @IP_serveur_DHCP &nbsp;|&nbsp; IP dst: 255.255.255.255<br>
-            MAC src: MAC_serveur &nbsp;|&nbsp; MAC dst: MAC_du_PC<br>
-            "Confirmé ! IP + masque + passerelle + DNS"
-          </div>
+        <div class="step">
+            <div class="step-ltr">A</div>
+            <div class="step-body">
+                <div class="step-title">DHCP ACK — Serveur → Broadcast</div>
+                <div class="step-sub">IP src: @IP_serveur_DHCP | IP dst: 255.255.255.255<br>MAC src: MAC_serveur | MAC dst: MAC_du_PC<br>"Confirmé ! IP + masque + passerelle + DNS"</div>
+            </div>
         </div>
-      </div>
     </div>
-    <div class="alert al-amber" style="margin-top:10px;"><strong>Renouvellement automatique :</strong> Quand le bail atteint <strong>la moitié</strong> de sa durée → client envoie DHCPREQUEST → serveur répond DHCPACK.</div>
-    <div class="alert al-blue"><strong>DS — Labo 31 :</strong> L'agent DHCP est <strong>R3 (G0/1)</strong>. Le PC échange avec R3, pas directement avec R5. L'IP src des OFFER/ACK est l'IP de l'interface de R3. R3 relaie en unicast vers R5.</div>
-  </div>
+    <div class="key-concept"><strong>Renouvellement automatique :</strong> Quand le bail atteint <strong>la moitié</strong> de sa durée → client envoie DHCPREQUEST → serveur répond DHCPACK.</div>
+    <div class="important-note"><strong>Agent Relais :</strong> L'agent DHCP est <strong>R3 (G0/1)</strong>. Le PC échange avec R3, pas directement avec R5. L'IP src des OFFER/ACK est l'IP de l'interface de R3. R3 relaie en unicast vers R5.</div>
 
-  <div class="g2">
-    <div class="mini-card">
-      <h3>Paramètres fournis par DHCP</h3>
-      <ul>
-        <li>Adresse IP + durée du bail</li>
-        <li>Masque de sous-réseau</li>
-        <li>Passerelle par défaut (<code>default-router</code>)</li>
-        <li>Serveur DNS (<code>dns-server</code>)</li>
-        <li>@IP du serveur DHCP</li>
-      </ul>
+    <div class="g2">
+        <div class="mini-card">
+            <h3>Paramètres fournis par DHCP</h3>
+            <ul>
+                <li>Adresse IP + durée du bail</li>
+                <li>Masque de sous-réseau</li>
+                <li>Passerelle par défaut (<code>default-router</code>)</li>
+                <li>Serveur DNS (<code>dns-server</code>)</li>
+                <li>@IP du serveur DHCP</li>
+            </ul>
+        </div>
+        <div class="mini-card">
+            <h3>Exclusions obligatoires</h3>
+            <ul>
+                <li>IPs des interfaces routeurs (passerelles)</li>
+                <li>Serveurs avec @IP statique</li>
+                <li>Commande : <code>ip dhcp excluded-address</code></li>
+                <li>DS : exclure 192.168.10.1 → plage DHCP labo 10 = .10.2 à .10.254</li>
+            </ul>
+        </div>
     </div>
-    <div class="mini-card">
-      <h3>Exclusions obligatoires</h3>
-      <ul>
-        <li>IPs des interfaces routeurs (passerelles)</li>
-        <li>Serveurs avec @IP statique</li>
-        <li>Commande : <code>ip dhcp excluded-address</code></li>
-        <li>DS : exclure 192.168.10.1 (G0/1 R1) → plage DHCP labo 10 = .10.2 à .10.254</li>
-      </ul>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="card-title">Agent Relais DHCP</div>
-    <p style="font-size:13px;margin-bottom:10px;">Indispensable quand le serveur DHCP est sur un réseau <strong>différent</strong> des clients. Le broadcast DISCOVER ne franchit pas les routeurs sans cela.</p>
+    <h3>🔀 Agent Relais DHCP</h3>
+    <div class="important-note">Indispensable quand le serveur DHCP est sur un réseau <strong>différent</strong> des clients. Le broadcast DISCOVER ne franchit pas les routeurs sans cela.</div>
+    <div class="command-list">
 <pre><span class="cm">! Sur l'interface du routeur côté clients (labo)</span>
 R1(<span class="ck">config</span>)# <span class="cv">interface</span> GigabitEthernet0/1
 R1(<span class="ck">config-if</span>)# <span class="cv">ip helper-address</span> <span class="cs">&lt;@IP_interface_R0&gt;</span>
@@ -702,48 +816,41 @@ R0(<span class="ck">config</span>)# <span class="cv">ip dhcp pool</span> <span c
 R0(<span class="ck">dhcp-config</span>)# <span class="cv">network</span> <span class="cs">192.168.10.0 255.255.255.0</span>
 R0(<span class="ck">dhcp-config</span>)# <span class="cv">default-router</span> <span class="cs">192.168.10.1</span>
 R0(<span class="ck">dhcp-config</span>)# <span class="cv">dns-server</span> <span class="cs">192.168.100.254</span></pre>
-  </div>
-</section>
-
-<!-- ═══ NAT/PAT ═══ -->
-<section id="nat">
-  <div class="sh">
-    <div class="snum" style="background:rgba(251,146,60,0.18);color:var(--coral);">IV</div>
-    <h2>NAT / PAT — Traduction d'adresses</h2>
-  </div>
-
-  <div class="g3">
-    <div class="mini-card">
-      <h3 class="c-red">NAT Statique</h3>
-      <p>1 @privée ↔ 1 @publique fixe. Nb @pub = nb machines. Ne résout <strong>pas</strong> la pénurie.</p>
     </div>
-    <div class="mini-card">
-      <h3 class="c-amber">NAT Dynamique</h3>
-      <p>Pool d'@pub alloué à la demande. Nb @pub = nb connexions simultanées. Mieux mais limité.</p>
-    </div>
-    <div class="mini-card">
-      <h3 class="c-green">PAT / Overload</h3>
-      <p>N hôtes → 1 seule @publique. Sessions distinguées par <strong>numéros de port</strong> différents.</p>
-    </div>
-  </div>
 
-  <div class="card" style="margin-top:12px;">
-    <div class="card-title">Calcul DS — NAT sur R0 (ISP2 Tunisie Télécom)</div>
+    <!-- ══════════════════════════════════════════════════════ NAT/PAT -->
+    <h2><span class="section-number">PARTIE IV</span> NAT / PAT — Traduction d'adresses</h2>
+
+    <div class="g3">
+        <div class="mini-card">
+            <h3 class="c-red">NAT Statique</h3>
+            <p>1 @privée ↔ 1 @publique fixe. Nb @pub = nb machines. Ne résout <strong>pas</strong> la pénurie.</p>
+        </div>
+        <div class="mini-card">
+            <h3 class="c-amber">NAT Dynamique</h3>
+            <p>Pool d'@pub alloué à la demande. Nb @pub = nb connexions simultanées. Mieux mais limité.</p>
+        </div>
+        <div class="mini-card">
+            <h3 class="c-green">PAT / Overload</h3>
+            <p>N hôtes → 1 seule @publique. Sessions distinguées par <strong>numéros de port</strong> différents.</p>
+        </div>
+    </div>
+
+    <h3>🧮 Calcul DS — NAT sur R0 (ISP2 Tunisie Télécom)</h3>
     <table>
-      <thead><tr><th>Donnée</th><th>Valeur</th><th>Explication</th></tr></thead>
-      <tbody>
-        <tr><td>Plage ISP2</td><td>200.60.3.1 → 200.60.3.7</td><td>7 adresses fournies</td></tr>
-        <tr><td>IP réservée G0/2 de R0</td><td class="c-red">200.60.3.1</td><td>Utilisée par l'interface, non dispo pour NAT</td></tr>
-        <tr><td>@IP disponibles NAT</td><td class="c-green fw7">200.60.3.2 → 200.60.3.7 = 6</td><td>6 adresses publiques utilisables</td></tr>
-        <tr><td>Total hôtes via R0</td><td class="c-amber fw7">4 labos × 15 = 60 hôtes</td><td>Labos 10, 11, 20, 21</td></tr>
-        <tr><td>Hôtes sans @publique</td><td class="c-red fw7">60 - 6 = 54 hôtes</td><td>Si tous communiquent simultanément</td></tr>
-        <tr><td>Solution</td><td class="c-green fw7">PAT (overload)</td><td>1 @pub + 60 ports distincts → tous communiquent</td></tr>
-      </tbody>
+        <thead><tr><th>Donnée</th><th>Valeur</th><th>Explication</th></tr></thead>
+        <tbody>
+            <tr><td>Plage ISP2</td><td>200.60.3.1 → 200.60.3.7</td><td>7 adresses fournies</td></tr>
+            <tr><td>IP réservée G0/2 de R0</td><td class="c-red">200.60.3.1</td><td>Utilisée par l'interface, non dispo pour NAT</td></tr>
+            <tr><td>@IP disponibles NAT</td><td class="c-green fw7">200.60.3.2 → 200.60.3.7 = 6</td><td>6 adresses publiques utilisables</td></tr>
+            <tr><td>Total hôtes via R0</td><td class="c-amber fw7">4 labos × 15 = 60 hôtes</td><td>Labos 10, 11, 20, 21</td></tr>
+            <tr><td>Hôtes sans @publique</td><td class="c-red fw7">60 - 6 = 54 hôtes</td><td>Si tous communiquent simultanément</td></tr>
+            <tr><td>Solution</td><td class="c-green fw7">PAT (overload)</td><td>1 @pub + 60 ports distincts → tous communiquent</td></tr>
+        </tbody>
     </table>
-  </div>
 
-  <div class="card">
-    <div class="card-title">Configuration NAT / PAT Cisco</div>
+    <h3>⚙️ Configuration NAT / PAT Cisco</h3>
+    <div class="command-list">
 <pre><span class="cm">! Marquer les interfaces (obligatoire)</span>
 R0(<span class="ck">config</span>)# <span class="cv">interface</span> GigabitEthernet0/1
 R0(<span class="ck">config-if</span>)# <span class="cv">ip nat inside</span>       <span class="cm">← côté réseau privé (labos)</span>
@@ -760,70 +867,65 @@ R0(<span class="ck">config</span>)# <span class="cv">ip nat inside source list 1
 
 <span class="cm">! Vérification</span>
 R0# <span class="cv">show ip nat translations</span>    <span class="cm">← table de traduction active</span></pre>
-    <div class="alert al-amber"><strong>Interfaces G0/2 de R0 et G0/3 de R5 :</strong> Configuration <strong>manuelle</strong> (pas DHCP) car ce sont des @IP publiques fournies par les ISP (Tunisie Télécom et Orange).</div>
-  </div>
-</section>
+    </div>
+    <div class="key-concept"><strong>Interfaces G0/2 de R0 et G0/3 de R5 :</strong> Configuration <strong>manuelle</strong> (pas DHCP) car ce sont des @IP publiques fournies par les ISP (Tunisie Télécom et Orange).</div>
 
-<!-- ═══ ROUTEUR ═══ -->
-<section id="routeur">
-  <div class="sh">
-    <div class="snum" style="background:rgba(251,191,36,0.18);color:var(--amber);">V</div>
-    <h2>Configuration Routeur Cisco IOS</h2>
-  </div>
+    <!-- ══════════════════════════════════════════════════════ ROUTEUR -->
+    <h2><span class="section-number">PARTIE V</span> Configuration Routeur Cisco IOS</h2>
 
-  <div class="card">
-    <div class="card-title">Modes IOS</div>
-    <div class="mode-row">
-      <div class="prompt">Router&gt;</div>
-      <div class="mode-info">
-        <div class="mode-name">Mode Utilisateur</div>
-        <div class="mode-desc">Accès limité — show de base uniquement</div>
-      </div>
+    <h3>🖥️ Modes IOS</h3>
+    <div class="card">
+        <div class="mode-row">
+            <div class="prompt">Router&gt;</div>
+            <div class="mode-info">
+                <div class="mode-name">Mode Utilisateur</div>
+                <div class="mode-desc">Accès limité — show de base uniquement</div>
+            </div>
+        </div>
+        <div class="mode-row">
+            <div class="prompt">Router#</div>
+            <div class="mode-info">
+                <div class="mode-name">Mode Privilégié</div>
+                <div class="mode-desc">Accès complet — debug, copy, show running-config. Doit être protégé par mot de passe.</div>
+                <div class="mode-cmd">Accès : enable</div>
+            </div>
+        </div>
+        <div class="mode-row">
+            <div class="prompt">Router(config)#</div>
+            <div class="mode-info">
+                <div class="mode-name">Configuration Globale</div>
+                <div class="mode-desc">Paramètres globaux : hostname, routes statiques, DHCP, NAT</div>
+                <div class="mode-cmd">Accès : configure terminal</div>
+            </div>
+        </div>
+        <div class="mode-row">
+            <div class="prompt">Router(config-if)#</div>
+            <div class="mode-info">
+                <div class="mode-name">Configuration Interface</div>
+                <div class="mode-desc">@IP, activation, encapsulation, helper-address</div>
+                <div class="mode-cmd">Accès : interface fa0/0</div>
+            </div>
+        </div>
+        <div class="mode-row">
+            <div class="prompt">Router(config-line)#</div>
+            <div class="mode-info">
+                <div class="mode-name">Configuration Ligne</div>
+                <div class="mode-desc">SSH, Telnet, console — mots de passe accès distant</div>
+                <div class="mode-cmd">Accès : line vty 0 4 | line console 0</div>
+            </div>
+        </div>
+        <div class="mode-row">
+            <div class="prompt">Router(config-subif)#</div>
+            <div class="mode-info">
+                <div class="mode-name">Configuration Sous-Interface</div>
+                <div class="mode-desc">Encapsulation dot1Q pour routage inter-VLAN</div>
+                <div class="mode-cmd">Accès : interface g0/1.10</div>
+            </div>
+        </div>
     </div>
-    <div class="mode-row">
-      <div class="prompt">Router#</div>
-      <div class="mode-info">
-        <div class="mode-name">Mode Privilégié</div>
-        <div class="mode-desc">Accès complet — debug, copy, show running-config. Doit être protégé par mot de passe.</div>
-        <div class="mode-cmd">Accès : enable</div>
-      </div>
-    </div>
-    <div class="mode-row">
-      <div class="prompt">Router(config)#</div>
-      <div class="mode-info">
-        <div class="mode-name">Configuration Globale</div>
-        <div class="mode-desc">Paramètres globaux : hostname, routes statiques, DHCP, NAT</div>
-        <div class="mode-cmd">Accès : configure terminal</div>
-      </div>
-    </div>
-    <div class="mode-row">
-      <div class="prompt">Router(config-if)#</div>
-      <div class="mode-info">
-        <div class="mode-name">Configuration Interface</div>
-        <div class="mode-desc">@IP, activation, encapsulation, helper-address</div>
-        <div class="mode-cmd">Accès : interface fa0/0</div>
-      </div>
-    </div>
-    <div class="mode-row">
-      <div class="prompt">Router(config-line)#</div>
-      <div class="mode-info">
-        <div class="mode-name">Configuration Ligne</div>
-        <div class="mode-desc">SSH, Telnet, console — mots de passe accès distant</div>
-        <div class="mode-cmd">Accès : line vty 0 4 | line console 0</div>
-      </div>
-    </div>
-    <div class="mode-row">
-      <div class="prompt">Router(config-subif)#</div>
-      <div class="mode-info">
-        <div class="mode-name">Configuration Sous-Interface</div>
-        <div class="mode-desc">Encapsulation dot1Q pour routage inter-VLAN</div>
-        <div class="mode-cmd">Accès : interface g0/1.10</div>
-      </div>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="card-title">Commandes essentielles</div>
+    <h3>🔧 Commandes essentielles</h3>
+    <div class="command-list">
 <pre><span class="cm">! Configurer une interface</span>
 Router(<span class="ck">config</span>)# <span class="cv">interface</span> FastEthernet0/0
 Router(<span class="ck">config-if</span>)# <span class="cv">ip address</span> <span class="cs">192.168.1.1 255.255.255.0</span>
@@ -843,73 +945,63 @@ Router# <span class="cv">show ip route</span>             <span class="cm">← t
 Router# <span class="cv">show running-config</span>       <span class="cm">← configuration active</span>
 Router# <span class="cv">ping</span> <span class="cs">192.168.1.2</span>           <span class="cm">← tester la connectivité</span>
 Router# <span class="cv">traceroute</span> <span class="cs">8.8.8.8</span>       <span class="cm">← tracer le chemin</span></pre>
-  </div>
-
-  <div class="alert al-amber"><strong>Erreur DS — Routeur Dallas :</strong> Interface S0/0/1 configurée avec IP 192.168.111.1 au lieu de 192.168.11.1/30. Le 3e octet est erroné (111 vs 11) → l'interface n'est pas dans le bon sous-réseau → impossible de joindre NYC depuis B.</div>
-  <div class="alert al-blue"><strong>Pourquoi sécuriser le mode privilégié ?</strong> Ce mode donne accès COMPLET à la configuration. Sans mot de passe, n'importe qui peut modifier les routes, supprimer la config, créer des backdoors. Utiliser <code>enable secret</code> (MD5) plutôt que <code>enable password</code>.</div>
-</section>
-
-<!-- ═══ SWITCH ═══ -->
-<section id="switch">
-  <div class="sh">
-    <div class="snum" style="background:rgba(167,139,250,0.18);color:var(--purple);">VI</div>
-    <h2>Commutation — Switch et Sécurité des ports</h2>
-  </div>
-
-  <div class="g2">
-    <div class="mini-card">
-      <h3>Switch — Rappels couche 2</h3>
-      <ul>
-        <li>Équipement de <strong>couche 2</strong> — adresses MAC</li>
-        <li>Segmente : <strong>1 domaine de collision par port</strong></li>
-        <li>Maintient une <strong>table MAC (table CAM)</strong></li>
-        <li>Transmet des trames Ethernet basées sur MAC de destination</li>
-      </ul>
     </div>
-    <div class="mini-card">
-      <h3>CDP — Cisco Discovery Protocol</h3>
-      <ul>
-        <li>Protocole propriétaire couche 2</li>
-        <li>Détecte les périphériques Cisco voisins</li>
-        <li>Révèle modèle + version IOS → <span class="c-red">risque sécurité</span></li>
-        <li>Désactiver si non utilisé : <code>no cdp run</code></li>
-      </ul>
-    </div>
-  </div>
+    <div class="warning"><strong>Erreur DS — Routeur Dallas :</strong> Interface S0/0/1 configurée avec IP 192.168.111.1 au lieu de 192.168.11.1/30. Le 3e octet est erroné (111 vs 11) → l'interface n'est pas dans le bon sous-réseau → impossible de joindre NYC depuis B.</div>
+    <div class="important-note"><strong>Pourquoi sécuriser le mode privilégié ?</strong> Ce mode donne accès COMPLET à la configuration. Sans mot de passe, n'importe qui peut modifier les routes, supprimer la config, créer des backdoors. Utiliser <code>enable secret</code> (MD5) plutôt que <code>enable password</code>.</div>
 
-  <div class="card">
-    <div class="card-title">Sécurité des ports — 3 types d'adresses MAC</div>
+    <!-- ══════════════════════════════════════════════════════ SWITCH -->
+    <h2><span class="section-number">PARTIE VI</span> Commutation — Switch et Sécurité des ports</h2>
+
+    <div class="g2">
+        <div class="mini-card">
+            <h3>Switch — Rappels couche 2</h3>
+            <ul>
+                <li>Équipement de <strong>couche 2</strong> — adresses MAC</li>
+                <li>Segmente : <strong>1 domaine de collision par port</strong></li>
+                <li>Maintient une <strong>table MAC (table CAM)</strong></li>
+                <li>Transmet des trames Ethernet basées sur MAC de destination</li>
+            </ul>
+        </div>
+        <div class="mini-card">
+            <h3>CDP — Cisco Discovery Protocol</h3>
+            <ul>
+                <li>Protocole propriétaire couche 2</li>
+                <li>Détecte les périphériques Cisco voisins</li>
+                <li>Révèle modèle + version IOS → <span class="c-red">risque sécurité</span></li>
+                <li>Désactiver si non utilisé : <code>no cdp run</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>🔐 Sécurité des ports — 3 types d'adresses MAC</h3>
     <table>
-      <thead><tr><th>Type</th><th>Description</th><th>Commande</th></tr></thead>
-      <tbody>
-        <tr><td class="c-amber fw7">Statique</td><td>Configurée manuellement, persistante au redémarrage</td><td><code>switchport port-security mac-address [mac]</code></td></tr>
-        <tr><td>Dynamique</td><td>Apprise automatiquement, <strong>perdue au redémarrage</strong></td><td>Comportement par défaut</td></tr>
-        <tr><td class="c-green fw7">Rémanente (sticky)</td><td>Apprise dynamiquement ET <strong>sauvegardée</strong> dans la config</td><td><code>switchport port-security mac-address sticky</code></td></tr>
-      </tbody>
+        <thead><tr><th>Type</th><th>Description</th><th>Commande</th></tr></thead>
+        <tbody>
+            <tr><td class="c-amber fw7">Statique</td><td>Configurée manuellement, persistante au redémarrage</td><td><code>switchport port-security mac-address [mac]</code></td></tr>
+            <tr><td>Dynamique</td><td>Apprise automatiquement, <strong>perdue au redémarrage</strong></td><td>Comportement par défaut</td></tr>
+            <tr><td class="c-green fw7">Rémanente (sticky)</td><td>Apprise dynamiquement ET <strong>sauvegardée</strong> dans la config</td><td><code>switchport port-security mac-address sticky</code></td></tr>
+        </tbody>
     </table>
-  </div>
 
-  <div class="card">
-    <div class="card-title">Modes de violation — les 3 actions possibles</div>
+    <h3>⚠️ Modes de violation — les 3 actions possibles</h3>
     <div class="vtable">
-      <div class="vhead">Mode</div>
-      <div class="vhead">Comportement</div>
-      <div class="vhead">Notification</div>
-      <div class="vcell c-blue fw7">Protect</div>
-      <div class="vcell">Ignore les trames inconnues, port reste actif</div>
-      <div class="vcell c-red">Aucune</div>
-      <div class="vcell c-amber fw7">Restrict</div>
-      <div class="vcell">Ignore les trames, incrémente le compteur de violations</div>
-      <div class="vcell c-green">Envoyée</div>
-      <div class="vcell c-red fw7">Shutdown</div>
-      <div class="vcell">Désactive le port (err-disabled). Doit être réactivé manuellement</div>
-      <div class="vcell c-green">Envoyée</div>
+        <div class="vhead">Mode</div>
+        <div class="vhead">Comportement</div>
+        <div class="vhead">Notification</div>
+        <div class="vcell c-blue fw7">Protect</div>
+        <div class="vcell">Ignore les trames inconnues, port reste actif</div>
+        <div class="vcell c-red">Aucune</div>
+        <div class="vcell c-amber fw7">Restrict</div>
+        <div class="vcell">Ignore les trames, incrémente le compteur de violations</div>
+        <div class="vcell c-green">Envoyée</div>
+        <div class="vcell c-red fw7">Shutdown</div>
+        <div class="vcell">Désactive le port (err-disabled). Doit être réactivé manuellement</div>
+        <div class="vcell c-green">Envoyée</div>
     </div>
-    <p style="font-size:12.5px;color:var(--text2);margin-top:6px;">Commande : <code>switchport port-security violation {protect | restrict | shutdown}</code></p>
-  </div>
+    <p style="font-size:0.9em;color:#7f8c8d;margin-top:6px;">Commande : <code>switchport port-security violation {protect | restrict | shutdown}</code></p>
 
-  <div class="card">
-    <div class="card-title">Configuration complète sécurité port</div>
+    <h3>⚙️ Configuration complète sécurité port</h3>
+    <div class="command-list">
 <pre>Switch(<span class="ck">config</span>)# <span class="cv">interface</span> FastEthernet0/20
 Switch(<span class="ck">config-if</span>)# <span class="cv">switchport mode access</span>            <span class="cm">← mode accès (pas trunk)</span>
 Switch(<span class="ck">config-if</span>)# <span class="cv">switchport port-security</span>            <span class="cm">← activer la sécurité</span>
@@ -920,75 +1012,65 @@ Switch(<span class="ck">config-if</span>)# <span class="cv">switchport port-secu
 <span class="cm">! Vérification</span>
 Switch# <span class="cv">show port-security interface</span> fa0/20
 Switch# <span class="cv">show port-security address</span></pre>
-  </div>
-</section>
+    </div>
 
-<!-- ═══ VLAN ═══ -->
-<section id="vlan">
-  <div class="sh">
-    <div class="snum" style="background:rgba(244,114,182,0.18);color:var(--pink);">VII</div>
-    <h2>VLANs et Trunks</h2>
-  </div>
+    <!-- ══════════════════════════════════════════════════════ VLAN -->
+    <h2><span class="section-number">PARTIE VII</span> VLANs et Trunks</h2>
 
-  <div class="card">
-    <div class="card-title">4 Types de VLANs</div>
+    <h3>📁 4 Types de VLANs</h3>
     <div class="vlan-g">
-      <div class="vcard">
-        <h4 class="c-blue">VLAN de données</h4>
-        <p>Trafic utilisateur normal. Réseau IP dédié par VLAN.</p>
-      </div>
-      <div class="vcard">
-        <h4 class="c-amber">VLAN par défaut (VLAN 1)</h4>
-        <p>Tous les ports y appartiennent par défaut. Cisco recommande de ne pas l'utiliser pour la sécurité.</p>
-      </div>
-      <div class="vcard">
-        <h4 class="c-green">VLAN natif</h4>
-        <p>Trafic <strong>non étiqueté</strong> sur un trunk. Par défaut = VLAN 1. Configurable.</p>
-      </div>
-      <div class="vcard">
-        <h4 class="c-purple">VLAN de gestion</h4>
-        <p>Dédié à la gestion du switch (SSH, Telnet, SNMP). Interface SVI avec @IP admin.</p>
-      </div>
+        <div class="vcard">
+            <h4 class="c-blue">VLAN de données</h4>
+            <p>Trafic utilisateur normal. Réseau IP dédié par VLAN.</p>
+        </div>
+        <div class="vcard">
+            <h4 class="c-amber">VLAN par défaut (VLAN 1)</h4>
+            <p>Tous les ports y appartiennent par défaut. Cisco recommande de ne pas l'utiliser pour la sécurité.</p>
+        </div>
+        <div class="vcard">
+            <h4 class="c-green">VLAN natif</h4>
+            <p>Trafic <strong>non étiqueté</strong> sur un trunk. Par défaut = VLAN 1. Configurable.</p>
+        </div>
+        <div class="vcard">
+            <h4 class="c-purple">VLAN de gestion</h4>
+            <p>Dédié à la gestion du switch (SSH, Telnet, SNMP). Interface SVI avec @IP admin.</p>
+        </div>
     </div>
-  </div>
 
-  <div class="compare">
-    <div class="compare-col">
-      <div class="compare-head c-blue">Port d'accès (Access)</div>
-      <ul>
-        <li>Appartient à <strong>un seul VLAN</strong></li>
-        <li>Connecté aux hôtes finaux (PC, imprimantes)</li>
-        <li>Trame non étiquetée côté hôte</li>
-        <li>Le switch ajoute/retire le tag 802.1Q</li>
-      </ul>
+    <div class="comparison-box">
+        <div class="comparison-item blue">
+            <h4>🔌 Port d'accès (Access)</h4>
+            <ul>
+                <li>Appartient à <strong>un seul VLAN</strong></li>
+                <li>Connecté aux hôtes finaux (PC, imprimantes)</li>
+                <li>Trame non étiquetée côté hôte</li>
+                <li>Le switch ajoute/retire le tag 802.1Q</li>
+            </ul>
+        </div>
+        <div class="comparison-item red">
+            <h4>🔗 Port Trunk (Agrégation)</h4>
+            <ul>
+                <li>Transporte <strong>plusieurs VLANs</strong></li>
+                <li>Entre switches ou switch ↔ routeur</li>
+                <li>Protocole <strong>IEEE 802.1Q</strong> : tag 4 octets</li>
+                <li>VLAN natif non étiqueté par convention</li>
+            </ul>
+        </div>
     </div>
-    <div class="compare-col">
-      <div class="compare-head c-pink">Port Trunk (Agrégation)</div>
-      <ul>
-        <li>Transporte <strong>plusieurs VLANs</strong></li>
-        <li>Entre switches ou switch ↔ routeur</li>
-        <li>Protocole <strong>IEEE 802.1Q</strong> : tag 4 octets</li>
-        <li>VLAN natif non étiqueté par convention</li>
-      </ul>
-    </div>
-  </div>
 
-  <div class="card" style="margin-top:12px;">
-    <div class="card-title">Avantages des VLANs</div>
-    <div class="g2">
-      <ul style="font-size:13px;padding-left:15px;">
-        <li>Sécurité — isolation des groupes</li>
-        <li>Réduction des domaines de diffusion</li>
-      </ul>
-      <ul style="font-size:13px;padding-left:15px;">
-        <li>Meilleures performances</li>
-        <li>Simplification de la gestion</li>
-      </ul>
-    </div>
-  </div>
+    <h3>✅ Avantages des VLANs</h3>
+    <table>
+        <thead><tr><th>Avantage</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td>Sécurité</td><td>Isolation des groupes</td></tr>
+            <tr><td>Performance</td><td>Réduction des domaines de diffusion</td></tr>
+            <tr><td>Efficacité</td><td>Meilleures performances réseau</td></tr>
+            <tr><td>Gestion</td><td>Simplification de la gestion</td></tr>
+        </tbody>
+    </table>
 
-  <div class="card">
-    <div class="card-title">Configuration VLANs et Trunk</div>
+    <h3>⚙️ Configuration VLANs et Trunk</h3>
+    <div class="command-list">
 <pre><span class="cm">! Créer un VLAN et le nommer</span>
 Switch(<span class="ck">config</span>)# <span class="cv">vlan</span> <span class="cs">10</span>
 Switch(<span class="ck">config-vlan</span>)# <span class="cv">name</span> <span class="cs">Labo_10</span>
@@ -1009,31 +1091,26 @@ Switch# <span class="cv">show interfaces trunk</span>    <span class="cm">← po
 
 <span class="cm">! Supprimer un VLAN</span>
 Switch(<span class="ck">config</span>)# <span class="cv">no vlan</span> <span class="cs">10</span></pre>
-  </div>
-</section>
+    </div>
 
-<!-- ═══ INTER-VLAN ═══ -->
-<section id="intervlan">
-  <div class="sh">
-    <div class="snum" style="background:rgba(34,211,238,0.18);color:var(--cyan);">VIII</div>
-    <h2>Routage Inter-VLAN (Router-on-a-stick)</h2>
-  </div>
+    <!-- ══════════════════════════════════════════════════════ INTER-VLAN -->
+    <h2><span class="section-number">PARTIE VIII</span> Routage Inter-VLAN (Router-on-a-stick)</h2>
 
-  <div class="card">
-    <div class="card-title">3 méthodes de routage inter-VLAN</div>
+    <h3>📊 3 méthodes de routage inter-VLAN</h3>
     <table>
-      <thead><tr><th>Méthode</th><th>Description</th><th>Avantage / Inconvénient</th></tr></thead>
-      <tbody>
-        <tr><td>Routeur classique</td><td>1 interface physique par VLAN</td><td>Simple mais coûteux en interfaces</td></tr>
-        <tr><td class="c-cyan fw7">Router-on-a-stick ← fréquent exam</td><td>Sous-interfaces dot1Q sur 1 lien trunk</td><td>Économique, 1 seul câble physique</td></tr>
-        <tr><td>Switch Layer 3 (SVI)</td><td>Switch Virtual Interfaces sur switch L3</td><td>Haute performance, pas de routeur externe</td></tr>
-      </tbody>
+        <thead><tr><th>Méthode</th><th>Description</th><th>Avantage / Inconvénient</th></tr></thead>
+        <tbody>
+            <tr><td>Routeur classique</td><td>1 interface physique par VLAN</td><td>Simple mais coûteux en interfaces</td></tr>
+            <tr><td class="c-cyan fw7">Router-on-a-stick ← fréquent exam</td><td>Sous-interfaces dot1Q sur 1 lien trunk</td><td>Économique, 1 seul câble physique</td></tr>
+            <tr><td>Switch Layer 3 (SVI)</td><td>Switch Virtual Interfaces sur switch L3</td><td>Haute performance, pas de routeur externe</td></tr>
+        </tbody>
     </table>
-  </div>
 
-  <div class="card">
-    <div class="card-title">Concept : 1 interface physique → N sous-interfaces logiques</div>
-    <p style="font-size:13px;margin-bottom:10px;">Une liaison agrégée 802.1Q transporte plusieurs VLANs via une seule interface physique. Chaque sous-interface = passerelle par défaut d'un VLAN.</p>
+    <div class="key-concept">
+        <strong>💡 Concept :</strong> Une liaison agrégée 802.1Q transporte plusieurs VLANs via une seule interface physique. <strong>Chaque sous-interface = passerelle par défaut d'un VLAN.</strong>
+    </div>
+
+    <div class="command-list">
 <pre><span class="cm">! Étape 1 : activer l'interface physique SANS @IP</span>
 R1(<span class="ck">config</span>)# <span class="cv">interface</span> g0/1
 R1(<span class="ck">config-if</span>)# <span class="cv">no shutdown</span>
@@ -1049,42 +1126,37 @@ R1(<span class="ck">config-subif</span>)# exit
 R1(<span class="ck">config</span>)# <span class="cv">interface</span> g0/1<span class="cr">.20</span>
 R1(<span class="ck">config-subif</span>)# <span class="cv">encapsulation dot1Q</span> <span class="cs">20</span>
 R1(<span class="ck">config-subif</span>)# <span class="cv">ip address</span> <span class="cs">192.168.20.1 255.255.255.0</span></pre>
-    <div class="alert al-blue"><strong>Points clés :</strong> La notation <code>g0/1.10</code> = sous-interface 10 de g0/1. L'interface physique principale doit être active (<code>no shutdown</code>) mais sans @IP. Chaque sous-interface = passerelle par défaut pour son VLAN.</div>
-  </div>
-</section>
-
-<!-- ═══ SECURITE ═══ -->
-<section id="securite">
-  <div class="sh">
-    <div class="snum" style="background:rgba(248,113,113,0.18);color:var(--red);">IX</div>
-    <h2>Sécurité Réseau</h2>
-  </div>
-
-  <div class="compare">
-    <div class="compare-col">
-      <div class="compare-head c-green">SSH (port 22) — À UTILISER</div>
-      <ul>
-        <li>Chiffre toutes les données (session complète)</li>
-        <li>Mot de passe non visible sur le réseau</li>
-        <li>Authentification par clé publique possible</li>
-        <li>Standard pour administration réseau</li>
-        <li>Nécessite IOS avec fonctions de chiffrement</li>
-      </ul>
     </div>
-    <div class="compare-col">
-      <div class="compare-head c-red">Telnet (port 23) — À ÉVITER</div>
-      <ul>
-        <li>Données et mots de passe <strong>en clair</strong></li>
-        <li>Facilement interceptable (sniffing)</li>
-        <li>Aucune authentification forte</li>
-        <li>Obsolète et dangereux</li>
-        <li>Encore présent sur de vieux équipements</li>
-      </ul>
-    </div>
-  </div>
+    <div class="important-note"><strong>Points clés :</strong> La notation <code>g0/1.10</code> = sous-interface 10 de g0/1. L'interface physique principale doit être active (<code>no shutdown</code>) mais sans @IP. Chaque sous-interface = passerelle par défaut pour son VLAN.</div>
 
-  <div class="card" style="margin-top:12px;">
-    <div class="card-title">Configuration SSH complète sur routeur Cisco</div>
+    <!-- ══════════════════════════════════════════════════════ SECURITE -->
+    <h2><span class="section-number">PARTIE IX</span> Sécurité Réseau</h2>
+
+    <div class="comparison-box">
+        <div class="comparison-item green">
+            <h4>🟢 SSH (port 22) — À UTILISER</h4>
+            <ul>
+                <li>Chiffre toutes les données (session complète)</li>
+                <li>Mot de passe non visible sur le réseau</li>
+                <li>Authentification par clé publique possible</li>
+                <li>Standard pour administration réseau</li>
+                <li>Nécessite IOS avec fonctions de chiffrement</li>
+            </ul>
+        </div>
+        <div class="comparison-item red">
+            <h4>🔴 Telnet (port 23) — À ÉVITER</h4>
+            <ul>
+                <li>Données et mots de passe <strong>en clair</strong></li>
+                <li>Facilement interceptable (sniffing)</li>
+                <li>Aucune authentification forte</li>
+                <li>Obsolète et dangereux</li>
+                <li>Encore présent sur de vieux équipements</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>🔑 Configuration SSH complète sur routeur Cisco</h3>
+    <div class="command-list">
 <pre><span class="cm">! Prérequis : hostname et domaine OBLIGATOIRES pour la clé RSA</span>
 Router(<span class="ck">config</span>)# <span class="cv">hostname</span> <span class="cs">MonRouteur</span>
 MonRouteur(<span class="ck">config</span>)# <span class="cv">ip domain-name</span> <span class="cs">monfai.tn</span>
@@ -1100,48 +1172,23 @@ MonRouteur(<span class="ck">config</span>)# <span class="cv">username</span> <sp
 MonRouteur(<span class="ck">config</span>)# <span class="cv">line vty</span> <span class="cs">0 4</span>
 MonRouteur(<span class="ck">config-line</span>)# <span class="cv">transport input ssh</span>   <span class="cm">← bloque Telnet</span>
 MonRouteur(<span class="ck">config-line</span>)# <span class="cv">login local</span>           <span class="cm">← utilise base locale</span></pre>
-  </div>
+    </div>
 
-  <div class="card">
-    <div class="card-title">Bonnes pratiques sécurité — tableau complet</div>
+    <h3>🛡️ Bonnes pratiques sécurité — tableau complet</h3>
     <table>
-      <thead><tr><th>Action</th><th>Commande</th><th>Pourquoi</th></tr></thead>
-      <tbody>
-        <tr><td class="c-amber fw7">Mode privilégié</td><td><code>enable secret [mdp]</code></td><td>Chiffré MD5. Si les deux configurés, <strong>secret prend la priorité</strong> sur password.</td></tr>
-        <tr><td>Console physique</td><td><code>line console 0</code> → <code>password</code> + <code>login</code></td><td>Protège l'accès physique au port console.</td></tr>
-        <tr><td>Chiffrer TOUS les mdp</td><td><code>service password-encryption</code></td><td>Masque les mots de passe en clair dans <code>show running-config</code>.</td></tr>
-        <tr><td>Bannière légale</td><td><code>banner motd #message#</code></td><td>Avertissement légal affiché avant toute connexion.</td></tr>
-        <tr><td>Interfaces inutilisées</td><td><code>shutdown</code> sur interface</td><td>Réduit la surface d'attaque.</td></tr>
-        <tr><td>Accès distant sécurisé</td><td><code>transport input ssh</code></td><td>Bloque Telnet, impose SSH chiffré.</td></tr>
-        <tr><td>Ports switch</td><td><code>switchport port-security</code></td><td>Limite les MAC autorisées, prévient les attaques.</td></tr>
-      </tbody>
+        <thead><tr><th>Action</th><th>Commande</th><th>Pourquoi</th></tr></thead>
+        <tbody>
+            <tr><td class="c-amber fw7">Mode privilégié</td><td><code>enable secret [mdp]</code></td><td>Chiffré MD5. Si les deux configurés, <strong>secret prend la priorité</strong> sur password.</td></tr>
+            <tr><td>Console physique</td><td><code>line console 0</code> → <code>password</code> + <code>login</code></td><td>Protège l'accès physique au port console.</td></tr>
+            <tr><td>Chiffrer TOUS les mdp</td><td><code>service password-encryption</code></td><td>Masque les mots de passe en clair dans <code>show running-config</code>.</td></tr>
+            <tr><td>Bannière légale</td><td><code>banner motd #message#</code></td><td>Avertissement légal affiché avant toute connexion.</td></tr>
+            <tr><td>Interfaces inutilisées</td><td><code>shutdown</code> sur interface</td><td>Réduit la surface d'attaque.</td></tr>
+            <tr><td>Accès distant sécurisé</td><td><code>transport input ssh</code></td><td>Bloque Telnet, impose SSH chiffré.</td></tr>
+            <tr><td>Ports switch</td><td><code>switchport port-security</code></td><td>Limite les MAC autorisées, prévient les attaques.</td></tr>
+        </tbody>
     </table>
-    <div class="alert al-red"><strong>enable password vs enable secret :</strong> Si les deux sont configurés, <code>enable secret</code> prend la priorité et s'applique. <code>enable secret</code> stocke un hash MD5 (illisible dans la config). <code>enable password</code> stocke en clair. → Toujours utiliser <code>enable secret</code>.</div>
-  </div>
-</section>
+    <div class="warning"><strong>enable password vs enable secret :</strong> Si les deux sont configurés, <code>enable secret</code> prend la priorité et s'applique. <code>enable secret</code> stocke un hash MD5 (illisible dans la config). <code>enable password</code> stocke en clair. → Toujours utiliser <code>enable secret</code>.</div>
 
-</main>
-
-<script>
-// Progress bar
-window.addEventListener('scroll',()=>{
-  const el=document.documentElement;
-  document.getElementById('prog').style.width=(el.scrollTop/(el.scrollHeight-el.clientHeight)*100)+'%';
-});
-
-// Active nav
-const secs=document.querySelectorAll('section');
-const links=document.querySelectorAll('nav a');
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      links.forEach(l=>l.classList.remove('active'));
-      const a=document.querySelector('nav a[href="#'+e.target.id+'"]');
-      if(a)a.classList.add('active');
-    }
-  });
-},{rootMargin:'-15% 0px -75% 0px'});
-secs.forEach(s=>obs.observe(s));
-</script>
+</div>
 </body>
 </html>
