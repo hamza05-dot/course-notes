@@ -487,25 +487,113 @@
 
         section { margin-bottom: 50px; scroll-margin-top: 60px; }
 
-        /* Mobile responsive */
+        /* ── TABLET ── */
         @media (max-width: 768px) {
-            body { padding: 20px 10px; }
-            .container { padding: 25px 15px; }
-            h1 { font-size: 1.6em; letter-spacing: 1px; }
-            h2 { font-size: 1.3em; padding: 12px 15px; }
-            h3 { font-size: 1.1em; }
-            button { padding: 12px 25px; font-size: 16px; width: 100%; }
-            .comparison-box, .g2, .g3, .vlan-g { grid-template-columns: 1fr; }
-            .vtable, .pr-grid { grid-template-columns: 1fr; }
-            table { font-size: 12px; }
-            th, td { padding: 8px 8px; }
+            body { padding: 12px 8px; }
+            .container { padding: 20px 14px; border-radius: 8px; }
+
+            h1 { font-size: 1.5em; letter-spacing: 0.5px; }
+            .subtitle { font-size: 0.95em; margin-bottom: 20px; }
+            h2 { font-size: 1.15em; padding: 10px 14px; margin-top: 25px; }
+            h3 { font-size: 1em; }
+
+            button { padding: 12px 20px; font-size: 15px; width: 100%; box-sizing: border-box; }
+
+            .comparison-box,
+            .g2, .g3,
+            .vlan-g { grid-template-columns: 1fr; gap: 10px; }
+
+            .vtable  { grid-template-columns: 1fr; }
+            .pr-grid { grid-template-columns: 1fr; }
+            .vtable .vhead, .pr-grid .pr-head { display: none; } /* hide column headers, show inline */
+            .vcell, .pr-cell { padding: 8px 12px; font-size: 0.88em; }
+
+            table { font-size: 0.8em; display: block; overflow-x: auto; white-space: nowrap; }
+            th, td { padding: 8px 10px; }
+
+            .stat-row { gap: 10px; }
+            .stat { padding: 10px 16px; }
+            .stat-num { font-size: 1.6em; }
+
+            .snum { padding: 6px 14px; font-size: 0.8em; }
+            .sh h2 { font-size: 1.1em; }
+
+            pre { font-size: 0.78em; padding: 12px; }
+
+            .step { padding: 10px 12px; gap: 10px; }
+            .step-ltr { width: 28px; height: 28px; font-size: 13px; }
+            .step-title { font-size: 0.92em; }
+            .step-sub { font-size: 0.8em; }
+
+            .mode-row { flex-direction: column; gap: 4px; padding: 10px 0; }
+            .prompt { font-size: 0.8em; align-self: flex-start; }
+
+            .alert { font-size: 0.88em; padding: 10px 12px; }
+            .card { padding: 14px; }
+            .mini-card { padding: 12px; }
+            .command-list { padding: 12px; }
+
+            .qitem { padding: 12px 14px; }
+            .qq { font-size: 0.92em; }
+            .qe { font-size: 0.85em; }
         }
 
+        /* ── PHONE ── */
         @media (max-width: 480px) {
-            h1 { font-size: 1.4em; }
-            h2 { font-size: 1.1em; }
-            table { font-size: 10px; }
-            th, td { padding: 6px 5px; }
+            body { padding: 6px 4px; background: #667eea; }
+            .container { padding: 16px 10px; border-radius: 6px; }
+
+            h1 { font-size: 1.25em; letter-spacing: 0; padding-bottom: 12px; }
+            .subtitle { font-size: 0.85em; }
+            h2 { font-size: 1em; padding: 9px 12px; }
+            h3 { font-size: 0.95em; }
+
+            table { font-size: 0.72em; }
+            th, td { padding: 6px 7px; white-space: normal; }
+
+            pre { font-size: 0.7em; padding: 10px; line-height: 1.7; }
+
+            .stat-row { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 8px; }
+            .stat { padding: 8px 12px; flex: 1 1 80px; }
+            .stat-num { font-size: 1.4em; }
+            .stat-lab { font-size: 0.65em; }
+
+            .snum { padding: 5px 10px; font-size: 0.75em; }
+            .section-number { padding: 5px 12px; font-size: 0.75em; }
+
+            /* Stack vtable rows nicely on tiny screens */
+            .vtable  { display: flex; flex-direction: column; gap: 8px; background: none; }
+            .pr-grid { display: flex; flex-direction: column; gap: 8px; background: none; }
+            .vcell, .pr-cell {
+                border-radius: 6px;
+                border: 1px solid #dee2e6;
+                font-size: 0.85em;
+            }
+            .vhead, .pr-head { display: none; }
+
+            .qitem { padding: 10px 12px; margin-bottom: 10px; }
+            .qa { font-size: 0.82em; padding: 3px 10px; }
+
+            .mini-card h3 { font-size: 0.85em; }
+            .mini-card p,
+            .mini-card li { font-size: 0.85em; }
+
+            .step-sub { font-size: 0.75em; word-break: break-word; }
+            .comparison-item { padding: 14px; }
+            .comparison-item h4 { font-size: 0.92em; margin-bottom: 8px; }
+            .comparison-item li { font-size: 0.85em; margin-bottom: 4px; }
+
+            .vcard p { font-size: 0.83em; }
+            .vcard h4 { font-size: 0.82em; }
+
+            code { font-size: 0.82em; padding: 1px 5px; word-break: break-all; }
+
+            button { font-size: 14px; padding: 11px 16px; }
+
+            .key-concept,
+            .important-note,
+            .warning,
+            .alert { font-size: 0.83em; padding: 10px 12px; }
         }
     </style>
 </head>
@@ -518,6 +606,7 @@
 
     <h1>Réseaux IP 2</h1>
     <p class="subtitle">Fiche Complète Exam — TCP/UDP · DNS · DHCP · NAT/PAT · Cisco IOS · VLANs · Sécurité</p>
+
 
     <!-- ══════════════════════════════════════════════════════ QCM -->
     <h2><span class="section-number">Q</span> QCM — Réponses &amp; Explications</h2>
