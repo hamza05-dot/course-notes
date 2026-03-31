@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Probabilités & Stats — Fiche Exam TIC-1 2024-2025</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg:     #07090f;
+  --bg2:    #0d1120;
+  --bg3:    #131929;
+  --bg4:    #192033;
+  --bg5:    #1e2840;
+  --border: rgba(148,163,184,0.09);
+  --border2:rgba(148,163,184,0.16);
+  --text:   #dde4f0;
+  --text2:  #8b9ab8;
+  --text3:  #4e5e7a;
+  --blue:   #4f8ef7;
+  --cyan:   #22d3ee;
+  --purple: #a78bfa;
+  --green:  #34d399;
+  --amber:  #fbbf24;
+  --red:    #f87171;
+  --coral:  #fb923c;
+  --pink:   #f472b6;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Syne', sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.7;}
+
+#prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--cyan),var(--green));z-index:300;width:0%;transition:width .08s;}
+
+nav{position:fixed;top:0;left:0;right:0;background:rgba(7,9,15,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border2);z-index:200;display:flex;align-items:center;padding:0 20px;height:50px;overflow-x:auto;gap:0;}
+nav::-webkit-scrollbar{display:none;}
+.nav-brand{font-weight:800;font-size:13px;color:#fff;margin-right:18px;letter-spacing:-.5px;white-space:nowrap;flex-shrink:0;}
+.nav-brand em{color:var(--purple);font-style:normal;}
+nav a{color:var(--text3);text-decoration:none;font-size:11.5px;font-weight:600;letter-spacing:.3px;padding:0 11px;height:50px;display:flex;align-items:center;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s;}
+nav a:hover{color:var(--text2);}
+nav a.active{color:var(--purple);border-bottom-color:var(--purple);}
+
+main{max-width:940px;margin:0 auto;padding:68px 22px 80px;}
+
+/* HERO */
+.hero{text-align:center;padding:56px 0 44px;position:relative;}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:320px;background:radial-gradient(ellipse at center,rgba(167,139,250,0.12) 0%,transparent 65%);pointer-events:none;}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.28);color:var(--purple);font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:4px 14px;border-radius:20px;margin-bottom:18px;}
+.hero h1{font-size:clamp(26px,5vw,46px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;color:#fff;margin-bottom:14px;}
+.hero h1 em{color:var(--purple);font-style:normal;}
+.hero p{font-size:14px;color:var(--text2);max-width:520px;margin:0 auto 22px;}
+.stat-row{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.stat{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:10px 18px;text-align:center;}
+.stat-num{font-size:22px;font-weight:800;color:var(--purple);letter-spacing:-1px;}
+.stat-lab{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-top:1px;}
+
+/* SECTIONS */
+section{margin-bottom:60px;scroll-margin-top:60px;}
+.sh{display:flex;align-items:center;gap:12px;margin-bottom:22px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.snum{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;}
+.sh h2{font-size:19px;font-weight:700;letter-spacing:-.5px;color:#fff;}
+
+/* CARDS */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:12px;}
+.card-title{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;}
+.mini-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:14px;}
+.mini-card h3{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.mini-card p,.mini-card li{font-size:13px;color:var(--text);line-height:1.65;}
+.mini-card ul{padding-left:15px;}
+.mini-card li{margin-bottom:4px;}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+
+/* TABLES */
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0;}
+thead tr{background:var(--bg4);}
+th{padding:8px 12px;text-align:left;font-weight:700;color:var(--text2);font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border2);}
+td{padding:7px 12px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top;line-height:1.5;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(255,255,255,0.015);}
+
+/* CODE */
+pre{background:#040609;border:1px solid var(--border2);border-radius:10px;padding:16px;overflow-x:auto;font-family:var(--mono);font-size:12px;line-height:2;color:#8bb4f8;margin:10px 0;}
+.cm{color:#3a4a66;}
+.ck{color:#67c8f0;}
+.cv{color:#7ee8a2;}
+.cs{color:#fde68a;}
+.cr{color:#f9a8d4;}
+code{font-family:var(--mono);font-size:11.5px;background:rgba(167,139,250,0.13);border:1px solid rgba(167,139,250,0.22);color:#c4b5fd;padding:1px 6px;border-radius:4px;}
+
+/* ALERTS */
+.alert{border-radius:8px;padding:11px 14px;margin:10px 0;font-size:12.5px;line-height:1.6;border-left:3px solid;}
+.al-blue{background:rgba(79,142,247,0.08);border-color:var(--blue);color:#93bbff;}
+.al-amber{background:rgba(251,191,36,0.08);border-color:var(--amber);color:#fde68a;}
+.al-red{background:rgba(248,113,113,0.08);border-color:var(--red);color:#fca5a5;}
+.al-green{background:rgba(52,211,153,0.08);border-color:var(--green);color:#6ee7b7;}
+.al-purple{background:rgba(167,139,250,0.08);border-color:var(--purple);color:#c4b5fd;}
+.al-coral{background:rgba(251,146,60,0.08);border-color:var(--coral);color:#fdba74;}
+.alert strong{font-weight:700;}
+
+/* COMPARE */
+.compare{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border2);border-radius:10px;overflow:hidden;margin:10px 0;}
+.compare-col{padding:16px;}
+.compare-col:first-child{border-right:1px solid var(--border2);}
+.compare-head{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid var(--border);}
+.compare-col ul{padding-left:15px;}
+.compare-col li{font-size:13px;margin-bottom:4px;line-height:1.5;}
+
+/* STEPS */
+.steps{display:flex;flex-direction:column;gap:7px;}
+.step{display:flex;align-items:flex-start;gap:12px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:11px 13px;}
+.step-ltr{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;}
+.step-body{flex:1;}
+.step-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:3px;}
+.step-sub{font-size:12px;color:var(--text2);line-height:1.75;}
+
+/* QCM */
+.qitem{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:13px 15px;margin-bottom:9px;}
+.qq{font-size:13px;font-weight:700;color:#fff;margin-bottom:7px;}
+.qa{display:inline-flex;align-items:center;gap:5px;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.22);color:var(--green);font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:6px;margin-bottom:6px;}
+.qa-red{display:inline-flex;align-items:center;gap:5px;background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.22);color:var(--red);font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:6px;margin-bottom:6px;}
+.qe{font-size:12.5px;color:var(--text2);line-height:1.65;}
+
+/* PROMPT / MODE ROW */
+.mode-row{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);}
+.mode-row:last-child{border-bottom:none;}
+.prompt{font-family:var(--mono);font-size:11.5px;color:var(--amber);background:#040609;border:1px solid var(--border2);padding:3px 9px;border-radius:5px;white-space:nowrap;flex-shrink:0;}
+.mode-info{flex:1;}
+.mode-name{font-size:13px;font-weight:700;color:#fff;}
+.mode-desc{font-size:12px;color:var(--text2);}
+.mode-cmd{font-family:var(--mono);font-size:11px;color:var(--blue);margin-top:2px;}
+
+/* PR-GRID */
+.pr-grid{display:grid;grid-template-columns:1fr 2fr 1fr;gap:1px;background:var(--border2);border-radius:8px;overflow:hidden;margin:8px 0;}
+.pr-cell{background:var(--bg3);padding:8px 12px;font-size:13px;}
+.pr-head{background:var(--bg4);font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);padding:8px 12px;}
+
+/* VLAN-G style grid */
+.vlan-g{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0;}
+.vcard{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:11px 13px;}
+.vcard h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;}
+.vcard p{font-size:12.5px;color:var(--text2);margin:0;}
+
+/* PORT BADGE */
+.pb{display:inline-block;font-family:var(--mono);font-size:11px;padding:2px 7px;border-radius:4px;background:rgba(34,211,238,0.12);border:1px solid rgba(34,211,238,0.22);color:var(--cyan);}
+
+/* FORMULA */
+.fbox{background:#040609;border:1px solid rgba(167,139,250,0.28);border-radius:10px;padding:13px 18px;margin:8px 0;font-family:var(--mono);font-size:13px;color:#e2d9f3;line-height:2.3;}
+.fbox .flabel{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--purple);font-weight:700;margin-bottom:4px;display:block;font-family:var(--sans);}
+
+/* VIOLATION TABLE */
+.vtable{display:grid;grid-template-columns:2fr 3fr 2fr;gap:1px;background:var(--border2);border-radius:8px;overflow:hidden;margin:8px 0;}
+.vcell{background:var(--bg3);padding:8px 12px;font-size:13px;}
+.vhead{background:var(--bg4);font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);}
+
+/* HELPERS */
+.c-blue{color:var(--blue);}
+.c-cyan{color:var(--cyan);}
+.c-green{color:var(--green);}
+.c-amber{color:var(--amber);}
+.c-red{color:var(--red);}
+.c-coral{color:var(--coral);}
+.c-purple{color:var(--purple);}
+.c-pink{color:var(--pink);}
+.fw7{font-weight:700;}
+.mt8{margin-top:8px;}
+.mb8{margin-bottom:8px;}
+
+@media(max-width:600px){
+  .g2,.g3,.compare,.pr-grid,.vtable,.vlan-g{grid-template-columns:1fr;}
+  .compare-col:first-child{border-right:none;border-bottom:1px solid var(--border2);}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<nav>
+  <div class="nav-brand">Proba <em>&amp; Stats</em></div>
+  <a href="#bases">Bases</a>
+  <a href="#combinatoire">Combinatoire</a>
+  <a href="#conditionnelle">Conditionnelle</a>
+  <a href="#vad">V.A.D.</a>
+  <a href="#couples">Couples</a>
+  <a href="#lois">Lois Usuelles</a>
+  <a href="#pieges">Pièges</a>
+  <a href="#ds">DS Corrigé</a>
+  <a href="#memento">Mémento</a>
+</nav>
+
+<main>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-tag">🎲 TIC-1 · Exam 2024-2025 · Probabilités &amp; Statistiques</div>
+  <h1>Fiche Exam Complète<br><em>Probabilités &amp; Stats</em></h1>
+  <p>Toutes les formules, exemples des TD &amp; DS, + les trucs pour ne pas perdre de points bêtement.</p>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">9</div><div class="stat-lab">chapitres</div></div>
+    <div class="stat"><div class="stat-num c-amber">12</div><div class="stat-lab">exemples corrigés</div></div>
+    <div class="stat"><div class="stat-num c-red">⚡</div><div class="stat-lab">trucs &amp; pièges</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     1. BASES
+════════════════════════════════════════════ -->
+<section id="bases">
+  <div class="sh">
+    <div class="snum" style="background:rgba(167,139,250,0.18);color:var(--purple);">I</div>
+    <h2>Bases — Probabilité &amp; Vocabulaire</h2>
+  </div>
+
+  <div class="compare">
+    <div class="compare-col">
+      <div class="compare-head c-purple">Vocabulaire fondamental</div>
+      <ul>
+        <li><strong>Ω</strong> = ensemble de tous les résultats possibles</li>
+        <li><strong>Événement A</strong> = sous-ensemble de Ω</li>
+        <li><strong>Ā</strong> = événement contraire de A</li>
+        <li><strong>A ∩ B</strong> = les deux se réalisent ensemble</li>
+        <li><strong>A ∪ B</strong> = au moins l'un se réalise</li>
+        <li><strong>A ∩ B = ∅</strong> → A et B incompatibles</li>
+        <li><strong>Ω</strong> = évt certain | <strong>∅</strong> = évt impossible</li>
+      </ul>
+    </div>
+    <div class="compare-col">
+      <div class="compare-head c-cyan">Axiomes de Kolmogorov</div>
+      <ul>
+        <li>0 ≤ P(A) ≤ 1 pour tout A</li>
+        <li>P(Ω) = 1</li>
+        <li>P(∅) = 0</li>
+        <li>P(Ā) = 1 − P(A)</li>
+        <li>Si A ∩ B = ∅ : P(A ∪ B) = P(A) + P(B)</li>
+        <li><strong>Cas général :</strong> P(A ∪ B) = P(A) + P(B) − P(A ∩ B)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert al-amber">
+    <strong>🎯 Truc :</strong> P(Ā) = 1 − P(A) est souvent le chemin le plus rapide pour les probabilités du type "au moins un" ou "au moins une fois".
+    <br>Ex : P(au moins 1 succès) = 1 − P(0 succès).
+  </div>
+
+  <div class="card">
+    <div class="card-title">Exemple — Lancer un dé équilibré</div>
+    <div class="mode-row">
+      <div class="prompt">Ω</div>
+      <div class="mode-info">
+        <div class="mode-name">Ω = {1, 2, 3, 4, 5, 6}</div>
+        <div class="mode-desc">P(obtenir un pair) = P({2,4,6}) = 3/6 = 1/2</div>
+      </div>
+    </div>
+    <div class="mode-row">
+      <div class="prompt">A ∪ B</div>
+      <div class="mode-info">
+        <div class="mode-name">A = {pair} = {2,4,6}, B = {> 4} = {5,6}</div>
+        <div class="mode-desc">P(A ∪ B) = P(A) + P(B) − P(A ∩ B) = 3/6 + 2/6 − 1/6 = 4/6 = 2/3</div>
+        <div class="mode-cmd">A ∩ B = {6} → P(A ∩ B) = 1/6</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     2. COMBINATOIRE
+════════════════════════════════════════════ -->
+<section id="combinatoire">
+  <div class="sh">
+    <div class="snum" style="background:rgba(34,211,238,0.18);color:var(--cyan);">II</div>
+    <h2>Analyse Combinatoire</h2>
+  </div>
+
+  <div class="alert al-purple" style="margin-bottom:14px;">
+    <strong>🧠 Question à se poser avant de choisir :</strong> (1) L'<strong>ordre</strong> compte-t-il ? (2) Y a-t-il <strong>répétition</strong> possible ?
+  </div>
+
+  <div class="card">
+    <div class="card-title">Les 3 outils — comparatif complet</div>
+    <div class="pr-grid" style="grid-template-columns:1.2fr 1fr 1.5fr 1.5fr;">
+      <div class="pr-head">Outil</div>
+      <div class="pr-head">Ordre ?</div>
+      <div class="pr-head">Formule</div>
+      <div class="pr-head">Quand l'utiliser ?</div>
+
+      <div class="pr-cell"><strong class="c-amber">Arrangement A<sub>n</sub><sup>r</sup></strong></div>
+      <div class="pr-cell c-green fw7">✅ Oui</div>
+      <div class="pr-cell"><code>n! / (n−r)!</code></div>
+      <div class="pr-cell">Podium, rang, mot ordonné</div>
+
+      <div class="pr-cell"><strong class="c-coral">Permutation P<sub>n</sub></strong></div>
+      <div class="pr-cell c-green fw7">✅ Oui</div>
+      <div class="pr-cell"><code>n!</code></div>
+      <div class="pr-cell">Classer TOUS les éléments</div>
+
+      <div class="pr-cell"><strong class="c-blue">Combinaison C<sub>n</sub><sup>r</sup></strong></div>
+      <div class="pr-cell c-red fw7">❌ Non</div>
+      <div class="pr-cell"><code>n! / [r!(n−r)!]</code></div>
+      <div class="pr-cell">Comité, groupe, tirage</div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="mini-card">
+      <h3>⚡ Propriétés de C<sub>n</sub><sup>r</sup></h3>
+      <ul>
+        <li>C<sub>n</sub><sup>0</sup> = C<sub>n</sub><sup>n</sup> = 1</li>
+        <li>C<sub>n</sub><sup>1</sup> = n</li>
+        <li>C<sub>n</sub><sup>r</sup> = C<sub>n</sub><sup>n−r</sup> &nbsp;<span class="c-amber">(symétrie)</span></li>
+        <li>C<sub>10</sub><sup>3</sup> = 10!/(3!×7!) = <strong class="c-green">120</strong></li>
+        <li>C<sub>5</sub><sup>2</sup> = 5!/(2!×3!) = <strong class="c-green">10</strong></li>
+      </ul>
+    </div>
+    <div class="mini-card">
+      <h3>🔢 Factorielles à connaître</h3>
+      <ul>
+        <li>0! = <strong>1</strong> &nbsp;(par définition !)</li>
+        <li>1! = 1 | 2! = 2 | 3! = 6</li>
+        <li>4! = 24 | 5! = 120</li>
+        <li>6! = 720 | 7! = 5 040</li>
+        <li>10! = 3 628 800</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📝 Exemples — choisir le bon outil</div>
+    <div class="qitem">
+      <div class="qq">Choisir un comité de 3 étudiants parmi 10 (pas de rôle attribué)</div>
+      <div class="qa">✓ Combinaison C<sub>10</sub><sup>3</sup> = 120</div>
+      <div class="qe">L'ordre n'importe pas → {Ali, Sara, Ines} = {Ines, Ali, Sara}</div>
+    </div>
+    <div class="qitem">
+      <div class="qq">Élire un président, secrétaire et trésorier parmi 10 personnes</div>
+      <div class="qa">✓ Arrangement A<sub>10</sub><sup>3</sup> = 10!/7! = 720</div>
+      <div class="qe">L'ordre compte → le rôle dépend de la position choisie</div>
+    </div>
+    <div class="qitem">
+      <div class="qq">Dans combien d'ordres peut-on classer 5 concurrents ?</div>
+      <div class="qa">✓ Permutation P<sub>5</sub> = 5! = 120</div>
+      <div class="qe">On ordonne TOUS les éléments</div>
+    </div>
+  </div>
+
+  <div class="alert al-green">
+    <strong>🎯 Truc Binômiale :</strong> P(X=k) = <strong>C<sub>n</sub><sup>k</sup></strong> × p<sup>k</sup> × q<sup>n−k</sup> — le C<sub>n</sub><sup>k</sup> compte le nombre de façons d'avoir exactement k succès parmi n. C'est pourquoi la combinaison apparaît dans la loi binomiale.
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     3. PROBABILITÉ CONDITIONNELLE & BAYES
+════════════════════════════════════════════ -->
+<section id="conditionnelle">
+  <div class="sh">
+    <div class="snum" style="background:rgba(251,191,36,0.18);color:var(--amber);">III</div>
+    <h2>Probabilité Conditionnelle &amp; Bayes</h2>
+  </div>
+
+  <div class="compare">
+    <div class="compare-col">
+      <div class="compare-head c-amber">Formule de base</div>
+      <p style="font-size:13px;margin-bottom:10px;">P(A|B) = probabilité que A se réalise <strong>sachant que B est réalisé</strong>.</p>
+      <div class="fbox" style="font-size:14px;">
+        P(A | B) = P(A ∩ B) / P(B)
+      </div>
+      <p style="font-size:12px;color:var(--text2);margin-top:6px;">⚠️ Valable uniquement si P(B) &gt; 0</p>
+    </div>
+    <div class="compare-col">
+      <div class="compare-head c-green">Indépendance d'événements</div>
+      <p style="font-size:13px;margin-bottom:10px;">A et B sont <strong>indépendants</strong> si la réalisation de l'un ne change pas la proba de l'autre.</p>
+      <div class="fbox" style="font-size:14px;">
+        A ⊥ B &nbsp;⟺&nbsp; P(A ∩ B) = P(A) × P(B)
+      </div>
+      <p style="font-size:12px;color:var(--text2);margin-top:6px;">→ P(A|B) = P(A) si indépendants</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🌳 Arbre pondéré + Probabilités Totales</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:12px;">Si {E₁, E₂, ..., E<sub>n</sub>} est une <strong style="color:#fff">partition de Ω</strong> (incompatibles, union = Ω) alors :</p>
+    <div class="fbox">
+      <span class="flabel">Formule des Probabilités Totales</span>
+      P(A) = P(E₁)·P(A|E₁) + P(E₂)·P(A|E₂) + ... + P(E<sub>n</sub>)·P(A|E<sub>n</sub>)
+    </div>
+    <div class="alert al-blue mt8">
+      <strong>Méthode arbre :</strong> Multiplier les probas le long de chaque branche → additionner tous les chemins qui arrivent à A.
+    </div>
+
+    <div class="card-title" style="margin-top:14px;">📝 Exemple TD — Dés truqués (100 dés, 25 truqués)</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-ltr" style="background:rgba(251,191,36,0.15);color:var(--amber);">T</div>
+        <div class="step-body">
+          <div class="step-title">Branche Truqué</div>
+          <div class="step-sub">P(T) = 25/100 = <strong class="c-amber">1/4</strong> &nbsp;|&nbsp; P(6|T) = 1/2 &nbsp;→&nbsp; chemin = 1/4 × 1/2 = 1/8</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-ltr" style="background:rgba(79,142,247,0.15);color:var(--blue);">T̄</div>
+        <div class="step-body">
+          <div class="step-title">Branche Normal</div>
+          <div class="step-sub">P(T̄) = 3/4 &nbsp;|&nbsp; P(6|T̄) = 1/6 &nbsp;→&nbsp; chemin = 3/4 × 1/6 = 3/24 = 1/8</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-ltr" style="background:rgba(52,211,153,0.15);color:var(--green);">Σ</div>
+        <div class="step-body">
+          <div class="step-title">Résultat</div>
+          <div class="step-sub">P(C) = 1/8 + 1/8 = <strong class="c-green">1/4 = 0,25</strong> ✓</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔁 Formule de Bayes — « Remonter à la cause »</div>
+    <div class="fbox">
+      <span class="flabel">Bayes — Trouver la cause probable</span>
+      P(E<sub>r</sub> | A) = [P(E<sub>r</sub>) × P(A | E<sub>r</sub>)] / P(A)
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-top:8px;">Le <strong style="color:#fff">dénominateur = P(A)</strong> calculé par les probabilités totales. On l'a déjà calculé à l'étape précédente !</p>
+
+    <div class="card-title" style="margin-top:14px;">📝 Exemple TD — Machines M1, M2, M3</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-ltr" style="background:rgba(79,142,247,0.15);color:var(--blue);">1</div>
+        <div class="step-body">
+          <div class="step-title">Données</div>
+          <div class="step-sub">P(M1)=0,5 P(D|M1)=0,2 | P(M2)=0,4 P(D|M2)=0,15 | P(M3)=0,1 P(D|M3)=0</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-ltr" style="background:rgba(251,191,36,0.15);color:var(--amber);">2</div>
+        <div class="step-body">
+          <div class="step-title">P(D) — Probabilités Totales</div>
+          <div class="step-sub">0,5×0,2 + 0,4×0,15 + 0,1×0 = 0,10 + 0,06 + 0 = <strong class="c-amber">0,16</strong></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-ltr" style="background:rgba(52,211,153,0.15);color:var(--green);">3</div>
+        <div class="step-body">
+          <div class="step-title">P(M1|D) — Bayes</div>
+          <div class="step-sub">P(M1)×P(D|M1) / P(D) = 0,1 / 0,16 = <strong class="c-green">5/8 = 0,625</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert al-red">
+    <strong>⚠️ Piège classique :</strong> Ne pas confondre P(D|M1) = "pièce défect sachant que c'est M1" avec P(M1|D) = "c'est M1 sachant que la pièce est défect". Ce sont deux choses opposées — Bayes sert à passer de l'un à l'autre !
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     4. V.A.D.
+════════════════════════════════════════════ -->
+<section id="vad">
+  <div class="sh">
+    <div class="snum" style="background:rgba(52,211,153,0.18);color:var(--green);">IV</div>
+    <h2>Variable Aléatoire Discrète (V.A.D.)</h2>
+  </div>
+
+  <div class="compare">
+    <div class="compare-col">
+      <div class="compare-head c-green">Loi de probabilité (masse)</div>
+      <ul>
+        <li>f(xᵢ) = P(X = xᵢ)</li>
+        <li>0 ≤ f(xᵢ) ≤ 1</li>
+        <li><strong class="c-amber">Σ P(X = xᵢ) = 1 TOUJOURS !</strong></li>
+        <li>Sert à trouver les paramètres inconnus (a, k…)</li>
+      </ul>
+    </div>
+    <div class="compare-col">
+      <div class="compare-head c-blue">Fonction de répartition F(x)</div>
+      <ul>
+        <li>F(x) = P(X ≤ x) = Σ<sub>xᵢ ≤ x</sub> P(X = xᵢ)</li>
+        <li>F est croissante, F(−∞) = 0, F(+∞) = 1</li>
+        <li>P(a &lt; X ≤ b) = F(b) − F(a)</li>
+        <li>P(X &gt; a) = 1 − F(a)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📐 Espérance &amp; Variance — Formules et propriétés</div>
+    <div class="g2">
+      <div>
+        <div class="fbox">
+          <span class="flabel">Espérance E[X]</span>
+          E[X] = Σ xᵢ · P(X = xᵢ)
+        </div>
+        <div class="fbox">
+          <span class="flabel">E[X²]</span>
+          E[X²] = Σ xᵢ² · P(X = xᵢ)
+        </div>
+        <div class="fbox">
+          <span class="flabel">Variance Var(X)</span>
+          Var(X) = E[X²] − (E[X])²
+        </div>
+        <div class="fbox">
+          <span class="flabel">Écart-type σ</span>
+          σ(X) = √Var(X)
+        </div>
+      </div>
+      <div>
+        <div class="mini-card" style="margin-bottom:10px;">
+          <h3>🔑 Propriétés linéaires (très souvent au DS)</h3>
+          <p><code>E[aX + b]</code> = a·E[X] + b</p>
+          <p style="margin-top:6px;"><code>Var(aX + b)</code> = a²·Var(X)</p>
+          <p style="margin-top:6px;color:var(--red);font-size:12px;font-weight:700;">⚠️ La constante additive b DISPARAÎT dans Var !</p>
+          <p style="margin-top:6px;font-size:12px;">Var(2X−3) = <strong>4</strong>·Var(X) &nbsp;(pas −3)</p>
+        </div>
+        <div class="mini-card">
+          <h3>🔑 X et Z indépendantes</h3>
+          <p><code>E[XZ]</code> = E[X] · E[Z]</p>
+          <p style="margin-top:6px;"><code>Var(X + Z)</code> = Var(X) + Var(Z)</p>
+          <p><code>Var(X − Z)</code> = Var(X) + Var(Z)</p>
+          <p style="margin-top:6px;color:var(--amber);font-size:12px;font-weight:700;">⚠️ Var(X−Z) = Var(X)+Var(Z), pas −Var(Z) !</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📝 Exemple complet DS Ex.1 — Calculs E[X] et Var(X)</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:12px;">X prend les valeurs {0, 1} avec P(X=0)=0,3 et P(X=1)=0,7</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-ltr" style="background:rgba(52,211,153,0.15);color:var(--green);">a</div>
+        <div class="step-body">
+          <div class="step-title">E[X]</div>
+          <div class="step-sub">0 × 0,3 + 1 × 0,7 = <strong class="c-green">0,7</strong></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-ltr" style="background:rgba(52,211,153,0.15);color:var(--green);">b</div>
+        <div class="step-body">
+          <div class="step-title">E[X²]</div>
+          <div class="step-sub">0² × 0,3 + 1² × 0,7 = 0 + 0,7 = <strong class="c-green">0,7</strong>&nbsp; (attention : 0²=0, 1²=1)</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-ltr" style="background:rgba(251,191,36,0.15);color:var(--amber);">c</div>
+        <div class="step-body">
+          <div class="step-title">Var(X)</div>
+          <div class="step-sub">E[X²] − (E[X])² = 0,7 − (0,7)² = 0,7 − 0,49 = <strong class="c-amber">0,21</strong></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-ltr" style="background:rgba(167,139,250,0.15);color:var(--purple);">d</div>
+        <div class="step-body">
+          <div class="step-title">Applications linéaires</div>
+          <div class="step-sub">
+            Var(<strong>2</strong>X−3) = <strong>2²</strong>×0,21 = <strong class="c-purple">0,84</strong><br>
+            E[2X+4] = 2×0,7 + 4 = <strong class="c-purple">5,4</strong><br>
+            E[XZ] = E[X]·E[Z] = 0,7×0,7 = <strong class="c-purple">0,49</strong> &nbsp;(X,Z indép.)<br>
+            Var(X+Z) = Var(X)+Var(Z) = 0,21+0,21 = <strong class="c-purple">0,42</strong><br>
+            Var(X−Z+2) = Var(X)+Var(Z) = <strong class="c-purple">0,42</strong> &nbsp;(+2 disparaît)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     5. COUPLES (X,Y)
+════════════════════════════════════════════ -->
+<section id="couples">
+  <div class="sh">
+    <div class="snum" style="background:rgba(79,142,247,0.18);color:var(--blue);">V</div>
+    <h2>Couples de Variables Aléatoires (X, Y)</h2>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 Tableau de contingence — lecture et calculs</div>
+    <table>
+      <thead>
+        <tr>
+          <th>X \ Y</th><th class="c-blue">y₁</th><th class="c-blue">y₂</th><th class="c-blue">...</th><th class="c-amber">Loi marginale de X</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="c-coral">x₁</td><td>p₁₁</td><td>p₁₂</td><td>...</td>
+          <td class="c-amber">P(X=x₁) = somme ligne 1 →</td>
+        </tr>
+        <tr>
+          <td class="c-coral">x₂</td><td>p₂₁</td><td>p₂₂</td><td>...</td>
+          <td class="c-amber">P(X=x₂) = somme ligne 2 →</td>
+        </tr>
+        <tr>
+          <td class="c-blue fw7">Loi marginale de Y</td>
+          <td class="c-blue">P(Y=y₁) = somme col 1 ↓</td>
+          <td class="c-blue">P(Y=y₂) ↓</td>
+          <td>...</td>
+          <td class="c-green fw7">= 1</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="alert al-blue mt8">
+      <strong>💡 Truc lecture tableau :</strong> Marginale de X = sommer sur les lignes (fixer x, sommer sur tous les y). Marginale de Y = sommer sur les colonnes (fixer y, sommer sur tous les x).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔗 Tester l'indépendance de X et Y</div>
+    <div class="fbox">
+      <span class="flabel">Condition d'indépendance</span>
+      X ⊥ Y &nbsp;⟺&nbsp; P(X=xᵢ, Y=yⱼ) = P(X=xᵢ) × P(Y=yⱼ) &nbsp; pour TOUS les couples (i,j)
+    </div>
+    <div class="steps" style="margin-top:10px;">
+      <div class="step">
+        <div class="step-ltr" style="background:rgba(52,211,153,0.15);color:var(--green);">1</div>
+        <div class="step-body">
+          <div class="step-title">Calculer les lois marginales</div>
+          <div class="step-sub">Remplir la dernière ligne et la dernière colonne du tableau</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-ltr" style="background:rgba(251,191,36,0.15);color:var(--amber);">2</div>
+        <div class="step-body">
+          <div class="step-title">Tester UNE case</div>
+          <div class="step-sub">Choisir n'importe quel (xᵢ, yⱼ) et vérifier si p<sub>ij</sub> = P(X=xᵢ)×P(Y=yⱼ)</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-ltr" style="background:rgba(248,113,113,0.15);color:var(--red);">3</div>
+        <div class="step-body">
+          <div class="step-title">Conclusion</div>
+          <div class="step-sub">Si <strong>une seule</strong> case ne satisfait pas la condition → X et Y <strong class="c-red">NE SONT PAS</strong> indépendantes</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-title" style="margin-top:14px;">📝 Exemple DS Ex.1 — a = 0,1</div>
+    <div class="qitem">
+      <div class="qq">Test : P(X=0, Y=1) = P(X=0) × P(Y=1) ?</div>
+      <div class="qa-red">✗ 0,1 ≠ 0,3 × 0,4 = 0,12</div>
+      <div class="qe">0,1 ≠ 0,12 → <strong class="c-red">X et Y ne sont PAS indépendantes</strong></div>
+    </div>
+    <div class="qitem">
+      <div class="qq">Exemple où elles SERAIENT indépendantes (TD Ex.1 — X⊥Y données)</div>
+      <div class="qa">✓ P(X=1, Y=0) = 1/3 × 3/4 = 3/12 ✓</div>
+      <div class="qe">Toutes les cases satisfont la condition → X et Y indépendantes → on peut utiliser le produit pour construire la loi conjointe</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📐 Covariance &amp; Coefficient de corrélation</div>
+    <div class="g2">
+      <div class="fbox">
+        <span class="flabel">Covariance</span>
+        Cov(X,Y) = E[XY] − E[X]·E[Y]
+        <br><br>
+        <small style="color:var(--text3);">E[XY] = Σᵢⱼ xᵢ·yⱼ·P(X=xᵢ, Y=yⱼ)</small>
+      </div>
+      <div class="fbox">
+        <span class="flabel">Coefficient de corrélation r</span>
+        r = Cov(X,Y) / √[Var(X)·Var(Y)]
+        <br><br>
+        −1 ≤ r ≤ +1
+      </div>
+    </div>
+    <div class="vlan-g" style="margin-top:8px;">
+      <div class="vcard">
+        <h4 class="c-green">r = +1</h4>
+        <p>Relation linéaire positive parfaite. Y augmente quand X augmente.</p>
+      </div>
+      <div class="vcard">
+        <h4 class="c-blue">r = 0</h4>
+        <p>Aucune corrélation linéaire (X et Y non corrélées).</p>
+      </div>
+      <div class="vcard">
+        <h4 class="c-red">r = −1</h4>
+        <p>Relation linéaire négative parfaite. Y diminue quand X augmente.</p>
+      </div>
+      <div class="vcard">
+        <h4 class="c-amber">Indépendant → r = 0</h4>
+        <p>Si X⊥Y alors Cov=0 et r=0. Mais r=0 n'implique <em>pas</em> l'indépendance !</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">➕ Loi de Z = X + Y — Méthode</div>
+    <div class="g2">
+      <div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-ltr" style="background:rgba(79,142,247,0.15);color:var(--blue);">1</div>
+            <div class="step-body">
+              <div class="step-title">Lister toutes les paires (xᵢ, yⱼ)</div>
+              <div class="step-sub">Pour chaque case du tableau, calculer z = xᵢ + yⱼ</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-ltr" style="background:rgba(79,142,247,0.15);color:var(--blue);">2</div>
+            <div class="step-body">
+              <div class="step-title">Regrouper par valeur de z</div>
+              <div class="step-sub">Additionner les proba de toutes les paires qui donnent le même z</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-ltr" style="background:rgba(52,211,153,0.15);color:var(--green);">3</div>
+            <div class="step-body">
+              <div class="step-title">Vérification</div>
+              <div class="step-sub">Σ P(Z = z) = 1 ✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="mini-card">
+          <h3>📝 Exemple TD Ex.3 — Z = X + Y</h3>
+          <p>X ∈ {−2,0,1}, Y ∈ {−1,1,2}</p>
+          <table style="margin-top:8px;font-size:12px;">
+            <thead><tr><th>X</th><th>Y</th><th>Z</th><th>P</th></tr></thead>
+            <tbody>
+              <tr><td>−2</td><td>−1</td><td class="c-red">−3</td><td>0,2</td></tr>
+              <tr><td>−2</td><td>1</td><td class="c-amber">−1</td><td>0,2</td></tr>
+              <tr><td>0</td><td>−1</td><td class="c-amber">−1</td><td>0,1</td></tr>
+              <tr><td>−2</td><td>2</td><td class="c-blue">0</td><td>0,05</td></tr>
+              <tr><td>1</td><td>−1</td><td class="c-blue">0</td><td>0,2</td></tr>
+              <tr><td>0</td><td>1</td><td class="c-green">1</td><td>0,1</td></tr>
+              <tr><td>0</td><td>2</td><td class="c-purple">2</td><td>0,05</td></tr>
+              <tr><td>1</td><td>2</td><td class="c-coral">3</td><td>0,1</td></tr>
+            </tbody>
+          </table>
+          <p style="margin-top:6px;font-size:12px;">P(Z=−1) = 0,2+0,1 = <strong class="c-amber">0,3</strong> | P(Z=0) = 0,05+0,2 = <strong class="c-blue">0,25</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎯 Probabilité conditionnelle dans un tableau</div>
+    <div class="fbox">
+      <span class="flabel">P(X = x | Y = y)</span>
+      P(X = x | Y = y) = P(X=x, Y=y) / P(Y=y)
+    </div>
+    <div class="alert al-green mt8">
+      <strong>Exemple DS :</strong> P(X=1 | Y=1) = P(X=1, Y=1) / P(Y=1) = 0,3 / 0,4 = <strong>3/4 = 0,75</strong>
+    </div>
+    <div class="alert al-amber">
+      <strong>🎯 Truc :</strong> La probabilité conditionnelle, c'est "zoomer" sur une ligne ou une colonne du tableau. On divise la case par le total de la ligne/colonne concernée.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     6. LOIS USUELLES
+════════════════════════════════════════════ -->
+<section id="lois">
+  <div class="sh">
+    <div class="snum" style="background:rgba(251,191,36,0.18);color:var(--amber);">VI</div>
+    <h2>Lois de Probabilités Usuelles</h2>
+  </div>
+
+  <!-- BERNOULLI -->
+  <div class="card" style="border-color:rgba(52,211,153,0.2);margin-bottom:14px;">
+    <div class="card-title" style="color:var(--green);">LOI DE BERNOULLI &nbsp;<span class="pb" style="background:rgba(52,211,153,0.12);border-color:rgba(52,211,153,0.25);color:var(--green);">B(p)</span></div>
+    <div class="compare">
+      <div class="compare-col">
+        <div class="compare-head c-green">Définition</div>
+        <ul>
+          <li>Une seule épreuve</li>
+          <li>2 issues : Succès (p) ou Échec (q = 1−p)</li>
+          <li>X ∈ {0, 1}</li>
+          <li>Brique de base de la binomiale</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-head c-green">Caractéristiques</div>
+        <div class="fbox" style="margin:0;font-size:13px;">
+          E[X] = p<br>
+          Var(X) = p·q = p(1−p)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BINOMIALE -->
+  <div class="card" style="border-color:rgba(79,142,247,0.2);margin-bottom:14px;">
+    <div class="card-title" style="color:var(--blue);">LOI BINOMIALE &nbsp;<span class="pb">B(n, p)</span></div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:10px;">Nombre de succès X lors de <strong style="color:#fff">n épreuves de Bernoulli indépendantes</strong> identiques, chacune de probabilité de succès p.</p>
+    <div class="compare">
+      <div class="compare-col">
+        <div class="compare-head c-blue">Quand l'utiliser ?</div>
+        <ul>
+          <li>n épreuves répétées</li>
+          <li>Chaque épreuve : 2 issues uniquement</li>
+          <li>Épreuves indépendantes</li>
+          <li>Même probabilité p à chaque épreuve</li>
+          <li>X = nombre de succès</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-head c-blue">Formules</div>
+        <div class="fbox" style="margin:0;font-size:13px;">
+          P(X=k) = C<sub>n</sub><sup>k</sup>·p<sup>k</sup>·q<sup>n−k</sup>
+          <br>pour k = 0, 1, ..., n
+          <br><br>
+          E[X] = n·p
+          <br>Var(X) = n·p·q
+        </div>
+      </div>
+    </div>
+    <div class="card-title" style="margin-top:14px;">📝 Exemples</div>
+    <div class="qitem">
+      <div class="qq">TD Ex.3 — Composants en panne (n=2, proba panne = p)</div>
+      <div class="qa">X ~ B(2, p)</div>
+      <div class="qe">
+        p₂ = P(machine arrêtée) = P(X &gt; 1) = P(X=2) = p² <br>
+        Si n=4 : p₄ = P(Y &gt; 2) = P(Y=3)+P(Y=4) = 4p³(1−p)+p⁴ = p³(4−3p)
+      </div>
+    </div>
+    <div class="qitem">
+      <div class="qq">DS Ex.2 — Chaudières sous garantie parmi 5 défectueuses</div>
+      <div class="qa">N ~ B(5, 1/41)</div>
+      <div class="qe">
+        P(N≥1) = 1 − P(N=0) = 1 − (40/41)⁵ ≈ 1 − 0,884 = <strong class="c-green">0,116</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- POISSON -->
+  <div class="card" style="border-color:rgba(167,139,250,0.2);">
+    <div class="card-title" style="color:var(--purple);">LOI DE POISSON &nbsp;<span class="pb" style="background:rgba(167,139,250,0.12);border-color:rgba(167,139,250,0.25);color:var(--purple);">Po(λ)</span></div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:10px;">Modélise le nombre d'événements <strong style="color:#fff">rares</strong> dans un intervalle de temps ou d'espace. λ = nombre moyen d'occurrences = E[X].</p>
+    <div class="compare">
+      <div class="compare-col">
+        <div class="compare-head c-purple">Quand l'utiliser ?</div>
+        <ul>
+          <li>Nombre de défauts, pannes, arrivées...</li>
+          <li>Par unité de temps, surface, longueur...</li>
+          <li>λ = moyenne observée sur l'échantillon</li>
+          <li>X ∈ {0, 1, 2, 3, ...} → valeurs infinies</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-head c-purple">Formules</div>
+        <div class="fbox" style="margin:0;font-size:13px;">
+          P(X=k) = (λ<sup>k</sup> · e<sup>−λ</sup>) / k!
+          <br><br>
+          E[X] = λ
+          <br>Var(X) = λ
+          <br><small style="color:var(--text3);">Propriété unique : E = Var = λ</small>
+        </div>
+      </div>
+    </div>
+    <div class="card-title" style="margin-top:14px;">📝 Exemple TD Ex.4 — Dalles de marbre (λ = 1,2)</div>
+    <pre><span class="cv">P(X=0)</span> = e<span class="cs">⁻¹·²</span>              = <span class="ck">0,301</span>
+<span class="cv">P(X=1)</span> = 1,2 × e<span class="cs">⁻¹·²</span>       = <span class="ck">0,361</span>
+<span class="cv">P(X=2)</span> = (1,2)²/2! × e<span class="cs">⁻¹·²</span> = <span class="ck">0,217</span>
+
+<span class="cr">P(X &gt; 2)</span>  = 1 − (0,301+0,361+0,217) = <span class="ck">0,121</span>   <span class="cm">← "plus de 2 défauts"</span>
+<span class="cr">P(X ≥ 2)</span>  = 1 − (0,301+0,361)       = <span class="ck">0,338</span>   <span class="cm">← "au moins 2 défauts" = qualité **</span>
+<span class="cr">500×P(X=0)</span> = 500 × 0,301            ≈ <span class="ck">150</span>     <span class="cm">← dalles sans défaut</span></pre>
+    <div class="alert al-red">
+      <strong>⚠️ Attention &gt; vs ≥ :</strong> P(X &gt; 2) exclut k=2 → on soustrait aussi P(X=2). P(X ≥ 2) inclut k=2 → on soustrait seulement P(X=0) et P(X=1).
+    </div>
+  </div>
+
+  <!-- TABLEAU COMPARATIF -->
+  <div class="card" style="margin-top:14px;">
+    <div class="card-title">⚡ Quand utiliser quelle loi ? — Tableau récapitulatif</div>
+    <table>
+      <thead><tr><th>Loi</th><th>Contexte typique</th><th>E[X]</th><th>Var(X)</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong class="c-green">Bernoulli B(p)</strong></td>
+          <td>1 seule épreuve, 2 issues (succès/échec)</td>
+          <td>p</td><td>pq</td>
+        </tr>
+        <tr>
+          <td><strong class="c-blue">Binomiale B(n,p)</strong></td>
+          <td>n épreuves indép., compter les succès, n et p connus</td>
+          <td>np</td><td>npq</td>
+        </tr>
+        <tr>
+          <td><strong class="c-purple">Poisson Po(λ)</strong></td>
+          <td>Événements rares/unité, λ = moyenne donnée</td>
+          <td>λ</td><td>λ</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     7. PIÈGES & TRUCS
+════════════════════════════════════════════ -->
+<section id="pieges">
+  <div class="sh">
+    <div class="snum" style="background:rgba(248,113,113,0.18);color:var(--red);">VII</div>
+    <h2>⚡ Pièges &amp; Trucs — Points de perdition</h2>
+  </div>
+
+  <div class="qitem">
+    <div class="qq">🪤 Var(X − Z) = Var(X) <strong>+</strong> Var(Z), pas −Var(Z)</div>
+    <div class="qa">✓ Toujours + pour variables indépendantes</div>
+    <div class="qe">Var(X−Z) = Var(X) + (−1)²·Var(Z) = Var(X)+Var(Z). Le signe du coefficient est mis au carré → toujours positif.</div>
+  </div>
+
+  <div class="qitem">
+    <div class="qq">🪤 Var(aX + b) : la constante b disparaît</div>
+    <div class="qa">✓ Var(2X − 3) = 4·Var(X), pas 4·Var(X) − 3</div>
+    <div class="qe">Ajouter ou soustraire une constante ne change pas la dispersion. Seul le coefficient multiplicatif a compte (au carré).</div>
+  </div>
+
+  <div class="qitem">
+    <div class="qq">🪤 P(X &gt; 2) ≠ P(X ≥ 2) pour la loi de Poisson</div>
+    <div class="qa">✓ P(X &gt; 2) = 1 − P(X≤2) | P(X ≥ 2) = 1 − P(X≤1)</div>
+    <div class="qe">P(X &gt; k) = "strictement supérieur" = on exclut k. P(X ≥ k) = "au moins k" = on inclut k.</div>
+  </div>
+
+  <div class="qitem">
+    <div class="qq">🪤 Confondre P(D|G) avec P(G|D)</div>
+    <div class="qa">✓ Bayes permet de passer de l'un à l'autre</div>
+    <div class="qe">P(D|G) = proba d'être défectueux SACHANT qu'on est sous garantie (donnée dans l'énoncé). P(G|D) = proba d'être sous garantie SACHANT qu'on est défectueux (question du DS → Bayes).</div>
+  </div>
+
+  <div class="qitem">
+    <div class="qq">🪤 Oublier de vérifier que Σ probabilités = 1</div>
+    <div class="qa">✓ Toujours vérifier en fin d'exercice</div>
+    <div class="qe">Que ce soit une loi conjointe, marginale, ou la loi de Z = X+Y, la somme doit valoir exactement 1. C'est votre vérification automatique.</div>
+  </div>
+
+  <div class="qitem">
+    <div class="qq">🪤 Indépendance : tester UNE case suffit pour conclure NON</div>
+    <div class="qa">✓ Mais vérifier plusieurs si la 1ère satisfait la condition</div>
+    <div class="qe">Si P(X=xᵢ, Y=yⱼ) ≠ P(X=xᵢ)×P(Y=yⱼ) pour UN couple → pas indépendantes, c'est terminé. Si la première case est OK, il faut vérifier <em>toutes</em> pour conclure indépendance.</div>
+  </div>
+
+  <div class="qitem">
+    <div class="qq">🪤 0! = 1, pas 0</div>
+    <div class="qa">✓ Par convention mathématique</div>
+    <div class="qe">C<sub>n</sub><sup>n</sup> = n!/(n!×0!) = 1 car 0! = 1. Erreur fréquente dans le calcul des combinaisons.</div>
+  </div>
+
+  <div class="qitem">
+    <div class="qq">🪤 E[X²] ≠ (E[X])²</div>
+    <div class="qa">✓ Var(X) = E[X²] − (E[X])² ≥ 0</div>
+    <div class="qe">E[X²] = Σ xᵢ²·P(xᵢ) (carrer les valeurs AVANT de multiplier par les probas). (E[X])² = carrer le résultat final de E[X].</div>
+  </div>
+
+  <div class="alert al-coral" style="margin-top:12px;">
+    <strong>🚀 Stratégie examen :</strong> (1) Lire tout l'énoncé. (2) Pour un tableau, toujours commencer par trouver la constante (Σ=1), puis les marges. (3) Dessiner l'arbre pour les proba conditionnelles. (4) Vérifier Σ=1 à chaque sous-question.
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     8. DS 2024-2025 CORRIGÉ
+════════════════════════════════════════════ -->
+<section id="ds">
+  <div class="sh">
+    <div class="snum" style="background:rgba(251,191,36,0.18);color:var(--amber);">VIII</div>
+    <h2>DS 2024-2025 — Corrigé Complet</h2>
+  </div>
+
+  <div class="alert al-amber" style="margin-bottom:16px;">
+    <strong>📌 Référence principale.</strong> Maîtriser chaque étape = maîtriser l'examen.
+  </div>
+
+  <!-- EX 1 -->
+  <div class="card" style="border-color:rgba(79,142,247,0.25);margin-bottom:16px;">
+    <div class="card-title" style="color:var(--blue);">EXERCICE 1 — Couple (X,Y) &nbsp;/10 pts</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:12px;">
+      X ∈ {0,1}, Y ∈ {1,2}. Loi conjointe : P(X=0,Y=1)=a, P(X=0,Y=2)=2a, P(X=1,Y=1)=3a, P(X=1,Y=2)=4a
+    </p>
+
+    <div class="qitem">
+      <div class="qq">Q1. Déterminer a &nbsp;(1 pt)</div>
+      <div class="qa">a = 0,1</div>
+      <div class="qe">a + 2a + 3a + 4a = 10a = 1 → <strong class="c-green">a = 1/10 = 0,1</strong></div>
+    </div>
+
+    <div class="qitem">
+      <div class="qq">Q2. Lois marginales &nbsp;(1 pt)</div>
+      <div class="qa">P(X=0)=0,3 | P(X=1)=0,7 | P(Y=1)=0,4 | P(Y=2)=0,6</div>
+      <div class="qe">
+        <table style="margin-top:8px;font-size:12px;">
+          <thead><tr><th>X\Y</th><th>Y=1</th><th>Y=2</th><th class="c-amber">P(X)</th></tr></thead>
+          <tbody>
+            <tr><td>X=0</td><td>0,1</td><td>0,2</td><td class="c-amber fw7">0,3</td></tr>
+            <tr><td>X=1</td><td>0,3</td><td>0,4</td><td class="c-amber fw7">0,7</td></tr>
+            <tr><td class="c-blue fw7">P(Y)</td><td class="c-blue fw7">0,4</td><td class="c-blue fw7">0,6</td><td class="c-green fw7">1 ✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="qitem">
+      <div class="qq">Q3. X et Y indépendantes ? &nbsp;(1 pt)</div>
+      <div class="qa-red">✗ Non indépendantes</div>
+      <div class="qe">Test case (X=0, Y=1) : P(X=0,Y=1) = 0,1 <strong class="c-red">≠</strong> P(X=0)×P(Y=1) = 0,3×0,4 = 0,12 → <strong class="c-red">pas indépendantes</strong></div>
+    </div>
+
+    <div class="qitem">
+      <div class="qq">Q4. P(X≤5), P(X≤0), P(X=1|Y=1) &nbsp;(2 pts)</div>
+      <div class="qa">1 | 0,3 | 0,75</div>
+      <div class="qe">
+        P(X≤5) = <strong class="c-green">1</strong> (X ∈ {0,1}, toujours ≤ 5)<br>
+        P(X≤0) = P(X=0) = <strong class="c-green">0,3</strong><br>
+        P(X=1|Y=1) = P(X=1,Y=1)/P(Y=1) = 0,3/0,4 = <strong class="c-green">3/4 = 0,75</strong>
+      </div>
+    </div>
+
+    <div class="qitem">
+      <div class="qq">Q5a. E[2X+4] et E[XZ] &nbsp;(2 pts) — X et Z indép., même loi</div>
+      <div class="qa">5,4 | 0,49</div>
+      <div class="qe">
+        D'abord : E[X] = 0×0,3 + 1×0,7 = <strong>0,7</strong><br>
+        E[2X+4] = 2×0,7 + 4 = 1,4 + 4 = <strong class="c-green">5,4</strong><br>
+        E[XZ] = E[X]·E[Z] = 0,7×0,7 = <strong class="c-green">0,49</strong> (indépendance)
+      </div>
+    </div>
+
+    <div class="qitem">
+      <div class="qq">Q5b. Var(2X−3), Var(X+Z), Var(X−Z+2) &nbsp;(3 pts)</div>
+      <div class="qa">0,84 | 0,42 | 0,42</div>
+      <div class="qe">
+        Var(X) = E[X²]−(E[X])² = 0,7−0,49 = <strong>0,21</strong><br>
+        Var(2X−3) = <strong>2²</strong>×0,21 = <strong class="c-purple">0,84</strong> &nbsp;(3 disparaît)<br>
+        Var(X+Z) = 0,21+0,21 = <strong class="c-purple">0,42</strong><br>
+        Var(X−Z+2) = 0,21+0,21 = <strong class="c-purple">0,42</strong> &nbsp;(même résultat, −Z → (+1)²×Var(Z), +2 disparaît)
+      </div>
+    </div>
+  </div>
+
+  <!-- EX 2 -->
+  <div class="card" style="border-color:rgba(52,211,153,0.25);">
+    <div class="card-title" style="color:var(--green);">EXERCICE 2 — Chaudières (Cond. + V.A. + Binomiale) &nbsp;/10 pts</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:12px;">
+      G = sous garantie. D = défectueux. P(G)=0,2. P(D|G)=0,01. P(D|Ḡ)=0,1.
+    </p>
+
+    <div class="qitem">
+      <div class="qq">Q1. P(A) = P(G∩D) et P(B) = P(D) &nbsp;(3 pts)</div>
+      <div class="qa">P(A) = 0,002 | P(B) = 0,082</div>
+      <div class="qe">
+        P(G∩D) = P(G)×P(D|G) = 0,2×0,01 = <strong class="c-green">0,002</strong><br>
+        P(D) = P(G∩D) + P(Ḡ∩D) = 0,002 + 0,8×0,1 = 0,002+0,08 = <strong class="c-green">0,082</strong>
+      </div>
+    </div>
+
+    <div class="qitem">
+      <div class="qq">Q2. Montrer P(G|D) = 1/41 &nbsp;(2 pts)</div>
+      <div class="qa">Bayes direct</div>
+      <div class="qe">P(G|D) = P(G∩D)/P(D) = 0,002/0,082 = 2/82 = <strong class="c-green">1/41</strong> ✓</div>
+    </div>
+
+    <div class="qitem">
+      <div class="qq">Q3. Loi de X = coût du contrôle + E[X] &nbsp;(2 pts)</div>
+      <div class="qa">E[X] = 80 €</div>
+      <div class="qe">
+        <table style="margin-top:8px;font-size:12px;">
+          <thead><tr><th>Cas</th><th>X (€)</th><th>Probabilité</th></tr></thead>
+          <tbody>
+            <tr><td>G (sous garantie)</td><td class="c-green fw7">0</td><td>P(G) = 0,2</td></tr>
+            <tr><td>Ḡ∩D̄ (hors gar., non défect.)</td><td class="c-amber fw7">80</td><td>0,8×0,9 = 0,72</td></tr>
+            <tr><td>Ḡ∩D (hors gar., défect.)</td><td class="c-red fw7">280</td><td>0,8×0,1 = 0,08</td></tr>
+          </tbody>
+        </table>
+        E[X] = 0×0,2 + 80×0,72 + 280×0,08 = 57,6 + 22,4 = <strong class="c-green">80 €</strong>
+      </div>
+    </div>
+
+    <div class="qitem">
+      <div class="qq">Q4. Au moins 1 des 5 chaudières défect. est sous garantie &nbsp;(3 pts)</div>
+      <div class="qa">≈ 0,116</div>
+      <div class="qe">
+        Sachant qu'elles sont défectueuses, p = P(G|D) = 1/41<br>
+        N ~ <strong>B(5, 1/41)</strong><br>
+        P(N≥1) = 1 − P(N=0) = 1 − (40/41)⁵ ≈ 1 − 0,884 = <strong class="c-green">≈ 0,116</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     9. MÉMENTO
+════════════════════════════════════════════ -->
+<section id="memento">
+  <div class="sh">
+    <div class="snum" style="background:rgba(34,211,238,0.18);color:var(--cyan);">★</div>
+    <h2>Mémento — Toutes les formules</h2>
+  </div>
+
+  <div class="card">
+    <pre style="font-size:12.5px;line-height:2.3;">
+<span style="color:var(--purple);font-weight:700;">── PROBABILITÉS DE BASE ───────────────────────────────────────</span>
+P(Ā)            = 1 − P(A)
+P(A ∪ B)        = P(A) + P(B) − P(A ∩ B)
+P(A|B)          = P(A ∩ B) / P(B)         [conditionnelle]
+P(A ∩ B)        = P(A) × P(B)             [si A,B indép.]
+P(A)            = Σ P(Eᵢ) × P(A|Eᵢ)      [prob. totales]
+P(Eᵣ|A)        = P(Eᵣ)×P(A|Eᵣ) / P(A)   [Bayes]
+
+<span style="color:var(--cyan);font-weight:700;">── COMBINATOIRE ───────────────────────────────────────────────</span>
+Arrangement Aₙʳ  = n! / (n−r)!            [ordre, pas répét.]
+Permutation Pₙ   = n!                      [tout ordonner]
+Combinaison Cₙʳ  = n! / [r!(n−r)!]        [sans ordre]
+
+<span style="color:var(--green);font-weight:700;">── V.A. DISCRÈTE ──────────────────────────────────────────────</span>
+E[X]            = Σ xᵢ · P(X = xᵢ)
+E[X²]           = Σ xᵢ² · P(X = xᵢ)
+Var(X)          = E[X²] − (E[X])²
+σ(X)            = √Var(X)
+E[aX + b]       = a·E[X] + b
+Var(aX + b)     = a²·Var(X)               [b disparaît !]
+
+<span style="color:var(--blue);font-weight:700;">── COUPLES (X,Y) ─────────────────────────────────────────────</span>
+Indép.          : P(X=x, Y=y) = P(X=x)·P(Y=y) pour tout (x,y)
+E[XZ]           = E[X]·E[Z]               [si indép.]
+Var(X ± Z)      = Var(X) + Var(Z)         [si indép., tjrs +]
+P(X=x|Y=y)     = P(X=x, Y=y) / P(Y=y)
+Cov(X,Y)        = E[XY] − E[X]·E[Y]
+r               = Cov(X,Y) / √[Var(X)·Var(Y)]
+
+<span style="color:var(--amber);font-weight:700;">── LOIS USUELLES ─────────────────────────────────────────────</span>
+Bernoulli B(p)  : E=p, Var=p(1−p)
+Binomiale B(n,p): P(X=k)=Cₙᵏpᵏqⁿ⁻ᵏ, E=np, Var=npq
+Poisson Po(λ)  : P(X=k)=λᵏe⁻λ/k!,   E=Var=λ
+    </pre>
+  </div>
+
+  <div class="alert al-green">
+    <strong>🍀 Bonne chance pour l'examen !</strong> Lis bien l'énoncé, construis le tableau ou l'arbre, vérifie toujours que Σ = 1.
+  </div>
+</section>
+
+</main>
+
+<script>
+window.addEventListener('scroll', () => {
+  const el = document.getElementById('prog');
+  const h = document.documentElement;
+  el.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+});
+const secs = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('nav a');
+new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const l = document.querySelector(`nav a[href="#${e.target.id}"]`);
+      if (l) l.classList.add('active');
+    }
+  });
+}, { rootMargin: '-50px 0px -60% 0px' }).observe && secs.forEach(s => new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const l = document.querySelector(`nav a[href="#${e.target.id}"]`);
+      if (l) l.classList.add('active');
+    }
+  });
+}, { rootMargin: '-50px 0px -60% 0px' }).observe(s));
+</script>
+</body>
+</html>
