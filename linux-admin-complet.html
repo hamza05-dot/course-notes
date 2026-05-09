@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration Linux — Fiche Complète Exam</title>
+    <link rel="icon" type="image/png" href="images.png">
+    <style>
+        @media print {
+            body { margin: 0; }
+            .no-print { display: none; }
+            .page-break { page-break-before: always; }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            background-color: white;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 20px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        h2 {
+            color: #667eea;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-left: 6px solid #764ba2;
+            padding: 15px 20px;
+            background: linear-gradient(90deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 5px;
+        }
+
+        h3 {
+            color: #34495e;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 8px;
+        }
+
+        h4 {
+            color: #34495e;
+            margin-top: 12px;
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .key-concept {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .important-note {
+            background-color: #d1ecf1;
+            border-left: 5px solid #17a2b8;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .warning {
+            background-color: #f8d7da;
+            border-left: 5px solid #dc3545;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .alert {
+            padding: 13px 18px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 5px solid;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        .al-blue  { background-color: #d1ecf1; border-color: #17a2b8; color: #0c5460; }
+        .al-amber { background-color: #fff3cd; border-color: #ffc107; color: #856404; }
+        .al-red   { background-color: #f8d7da; border-color: #dc3545; color: #721c24; }
+        .al-green { background-color: #d4edda; border-color: #28a745; color: #155724; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow-x: auto;
+            display: block;
+        }
+
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #e9ecef; transition: background-color 0.3s; }
+
+        ul, ol {
+            margin-left: 30px;
+            line-height: 2;
+        }
+
+        li { margin-bottom: 8px; }
+
+        .code, code {
+            background-color: #f4f4f4;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #e83e8c;
+            font-weight: bold;
+            font-size: 0.92em;
+        }
+
+        pre {
+            background-color: #f4f6fb;
+            border: 1px solid #dee2e6;
+            border-left: 5px solid #667eea;
+            border-radius: 6px;
+            padding: 18px 20px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.88em;
+            line-height: 1.8;
+            color: #2c3e50;
+            margin: 15px 0;
+        }
+
+        .cm { color: #7f8c8d; font-style: italic; }
+        .ck { color: #2980b9; }
+        .cv { color: #27ae60; font-weight: bold; }
+        .cs { color: #e67e22; }
+        .cr { color: #e74c3c; }
+
+        .command-list {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid #dee2e6;
+        }
+
+        .section-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .comparison-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .comparison-item {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .comparison-item.blue  { background-color: #e3f2fd; border-left: 5px solid #2196f3; }
+        .comparison-item.green { background-color: #e8f5e9; border-left: 5px solid #4caf50; }
+        .comparison-item.red   { background-color: #fdecea; border-left: 5px solid #dc3545; }
+        .comparison-item.amber { background-color: #fffde7; border-left: 5px solid #ffc107; }
+
+        .card {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 0.85em;
+            font-weight: 700;
+            color: #764ba2;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 14px;
+        }
+
+        .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0; }
+        .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin: 15px 0; }
+
+        .mini-card {
+            background-color: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .mini-card h3 {
+            font-size: 0.95em;
+            font-weight: 700;
+            color: #667eea;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ecf0f1;
+            padding-bottom: 6px;
+        }
+
+        .mini-card p, .mini-card li {
+            font-size: 0.93em;
+            color: #34495e;
+            line-height: 1.6;
+        }
+
+        .mini-card ul { padding-left: 18px; }
+        .mini-card li { margin-bottom: 4px; }
+
+        .steps { display: flex; flex-direction: column; gap: 10px; }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background-color: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 14px 16px;
+        }
+
+        .step-ltr {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 15px;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .step-body { flex: 1; }
+        .step-title { font-size: 1em; font-weight: 700; color: #2c3e50; margin-bottom: 4px; }
+        .step-sub { font-size: 0.88em; color: #7f8c8d; font-family: 'Courier New', monospace; line-height: 1.7; }
+
+        .c-blue   { color: #2196f3; }
+        .c-cyan   { color: #17a2b8; }
+        .c-green  { color: #28a745; }
+        .c-amber  { color: #e67e22; }
+        .c-red    { color: #dc3545; }
+        .c-coral  { color: #e74c3c; }
+        .c-purple { color: #764ba2; }
+        .c-pink   { color: #e91e8c; }
+        .fw7      { font-weight: 700; }
+
+        button {
+            background-color: white;
+            color: #667eea;
+            border: none;
+            padding: 15px 40px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background-color: #f8f9fa;
+        }
+
+        .sh {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .snum {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+
+        .sh h2 {
+            margin: 0;
+            border: none;
+            background: none;
+            padding: 0;
+            border-left: none;
+        }
+
+        /* TOC */
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 24px 28px;
+            margin-bottom: 40px;
+        }
+
+        .toc-title {
+            font-size: 1em;
+            font-weight: 700;
+            color: #764ba2;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 14px;
+        }
+
+        .toc ol {
+            margin-left: 18px;
+            line-height: 1.9;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+
+        .toc a:hover { text-decoration: underline; }
+
+        section { margin-bottom: 50px; scroll-margin-top: 60px; }
+
+        /* ── Cycle arrow ── */
+        .cycle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin: 16px 0;
+        }
+
+        .cycle-step {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.88em;
+            font-weight: 700;
+        }
+
+        .cycle-arrow { color: #764ba2; font-size: 1.2em; font-weight: 900; }
+
+        /* flag-row */
+        .flag-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        .flag-row:last-child { border-bottom: none; }
+        .flag-badge {
+            font-family: 'Courier New', monospace;
+            font-size: 0.83em;
+            background-color: #e3f2fd;
+            border: 1px solid #90caf9;
+            color: #1565c0;
+            padding: 2px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .flag-desc { font-size: 0.9em; color: #34495e; }
+
+        @media (max-width: 768px) {
+            body { padding: 12px 8px; }
+            .container { padding: 20px 14px; border-radius: 8px; }
+            h1 { font-size: 1.5em; letter-spacing: 0.5px; }
+            .subtitle { font-size: 0.95em; margin-bottom: 20px; }
+            h2 { font-size: 1.15em; padding: 10px 14px; margin-top: 25px; }
+            h3 { font-size: 1em; }
+            button { padding: 12px 20px; font-size: 15px; width: 100%; box-sizing: border-box; }
+            .comparison-box, .g2, .g3 { grid-template-columns: 1fr; gap: 10px; }
+            table { font-size: 0.8em; display: block; overflow-x: auto; white-space: nowrap; }
+            th, td { padding: 8px 10px; }
+            .snum { padding: 6px 14px; font-size: 0.8em; }
+            pre { font-size: 0.78em; padding: 12px; }
+            .step { padding: 10px 12px; gap: 10px; }
+            .step-ltr { width: 28px; height: 28px; font-size: 13px; }
+            .alert { font-size: 0.88em; padding: 10px 12px; }
+            .cycle { gap: 4px; }
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 6px 4px; background: #667eea; }
+            .container { padding: 16px 10px; border-radius: 6px; }
+            h1 { font-size: 1.25em; letter-spacing: 0; padding-bottom: 12px; }
+            h2 { font-size: 1em; padding: 9px 12px; }
+            h3 { font-size: 0.95em; }
+            pre { font-size: 0.7em; padding: 10px; }
+            code { font-size: 0.82em; }
+            button { font-size: 14px; padding: 11px 16px; }
+            .key-concept, .important-note, .warning, .alert { font-size: 0.83em; padding: 10px 12px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <a href="index.html" style="text-decoration: none;">
+        <button>← Retour à l'accueil</button>
+    </a>
+
+    <h1>🐧 Administration Linux</h1>
+    <p class="subtitle">Fiche Complète Exam — Disques · LVM · Stratis · NFS/Samba · RPM/DNF · Réseau · Cron · Podman</p>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+        <div class="toc-title">📋 Sommaire</div>
+        <ol>
+            <li><a href="#part1">Gestion des Disques — Partitionnement, Formatage, Montage, Swap</a></li>
+            <li><a href="#part2">LVM — Logical Volume Management</a></li>
+            <li><a href="#part3">Stratis — Stockage Avancé</a></li>
+            <li><a href="#part4">Stockage Distant — NFS, Samba & Autofs</a></li>
+            <li><a href="#part5">Archivage & Gestion des Logiciels (RPM / DNF)</a></li>
+            <li><a href="#part6">Administration Réseau & OpenSSH</a></li>
+            <li><a href="#part7">Planification des Tâches — Cron & AT</a></li>
+            <li><a href="#part8">Conteneurisation avec Podman</a></li>
+        </ol>
+    </div>
+
+    <!-- ══════════════════════════════════════ PARTIE 1 -->
+    <section id="part1">
+        <div class="sh">
+            <span class="snum">Partie 1</span>
+            <h2>🖥️ Gestion des Disques</h2>
+        </div>
+
+        <div class="key-concept">
+            <strong>Cycle de gestion d'un disque :</strong>
+            <div class="cycle" style="margin-top:10px;">
+                <span class="cycle-step">Partitionnement</span>
+                <span class="cycle-arrow">→</span>
+                <span class="cycle-step">Formatage</span>
+                <span class="cycle-arrow">→</span>
+                <span class="cycle-step">Montage</span>
+                <span class="cycle-arrow">→</span>
+                <span class="cycle-step">(Optionnel) Swap</span>
+            </div>
+        </div>
+
+        <h3>📌 Tables de Partitionnement</h3>
+        <div class="comparison-box">
+            <div class="comparison-item blue">
+                <h4>MBR (Master Boot Record)</h4>
+                <ul>
+                    <li>Limité à <strong>4 partitions principales</strong></li>
+                    <li>Pour plus : créer une <strong>partition étendue</strong> contenant des <strong>logiques</strong> (numérotées à partir de 5)</li>
+                    <li>Supporte les disques ≤ 2 To</li>
+                    <li>Héritage BIOS</li>
+                </ul>
+            </div>
+            <div class="comparison-item green">
+                <h4>GPT (GUID Partition Table)</h4>
+                <ul>
+                    <li>Standard moderne <strong>UEFI</strong></li>
+                    <li>Supporte disques <strong>&gt; 2 To</strong></li>
+                    <li>Jusqu'à <strong>128 partitions</strong></li>
+                    <li>Plus robuste et recommandé</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>🛠️ Commandes de Partitionnement</h3>
+        <table>
+            <thead>
+                <tr><th>Commande</th><th>Usage</th><th>Type</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>lsblk</code></td><td>Lister les disques et partitions (<code>/dev/sdb</code>…)</td><td>Lecture</td></tr>
+                <tr><td><code>fdisk /dev/sdb</code></td><td>Outil interactif pour <strong>MBR</strong></td><td>MBR</td></tr>
+                <tr><td><code>gdisk /dev/sdc</code></td><td>Outil interactif pour <strong>GPT</strong></td><td>GPT</td></tr>
+                <tr><td><code>parted /dev/sdb</code></td><td>Outil avancé : <code>mklabel gpt</code>, <code>mkpart primary ext4 1MiB 257MiB</code></td><td>MBR/GPT</td></tr>
+            </tbody>
+        </table>
+
+        <div class="card">
+            <div class="card-title">Touches interactives de fdisk</div>
+            <div class="g2">
+                <div>
+                    <div class="flag-row"><span class="flag-badge">n</span><span class="flag-desc">Nouvelle partition</span></div>
+                    <div class="flag-row"><span class="flag-badge">p</span><span class="flag-desc">Partition primaire</span></div>
+                    <div class="flag-row"><span class="flag-badge">e</span><span class="flag-desc">Partition étendue</span></div>
+                </div>
+                <div>
+                    <div class="flag-row"><span class="flag-badge">t</span><span class="flag-desc">Changer le type (82=swap, 8e=LVM)</span></div>
+                    <div class="flag-row"><span class="flag-badge">w</span><span class="flag-desc">Écrire et quitter</span></div>
+                    <div class="flag-row"><span class="flag-badge">q</span><span class="flag-desc">Quitter sans sauvegarder</span></div>
+                </div>
+            </div>
+        </div>
+
+        <h3>📁 Systèmes de Fichiers & Formatage</h3>
+        <div class="comparison-box">
+            <div class="comparison-item blue">
+                <h4>EXT4</h4>
+                <ul>
+                    <li>Standard Linux généraliste</li>
+                    <li><strong>Supporte la réduction</strong> du volume</li>
+                    <li><code>mkfs.ext4 /dev/sdb1</code></li>
+                </ul>
+            </div>
+            <div class="comparison-item amber">
+                <h4>XFS</h4>
+                <ul>
+                    <li>Standard <strong>RHEL/CentOS</strong>, très performant</li>
+                    <li><span class="c-red fw7">Pas de réduction directe</span></li>
+                    <li><code>mkfs.xfs /dev/sdb1</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>📂 Montage & /etc/fstab</h3>
+        <pre><span class="cm"># Montage temporaire</span>
+<span class="ck">mount</span> /dev/sdb1 /mnt
+
+<span class="cm"># Trouver l'UUID (recommandé pour fstab)</span>
+<span class="ck">blkid</span>
+
+<span class="cm"># Syntaxe /etc/fstab</span>
+UUID=<span class="cv">xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</span>  /point  ext4  defaults  0  0</pre>
+
+        <div class="alert al-blue">
+            💡 <strong>Conseil :</strong> Toujours utiliser l'<strong>UUID</strong> dans <code>/etc/fstab</code> plutôt que <code>/dev/sdbX</code> — les noms de périphériques peuvent changer, pas les UUID.
+        </div>
+
+        <h3>💾 Gestion du Swap</h3>
+        <div class="steps">
+            <div class="step">
+                <div class="step-ltr">1</div>
+                <div class="step-body">
+                    <div class="step-title">Créer la partition swap</div>
+                    <div class="step-sub">fdisk → type 82</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-ltr">2</div>
+                <div class="step-body">
+                    <div class="step-title">Formater en swap</div>
+                    <div class="step-sub">mkswap /dev/sdb2</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-ltr">3</div>
+                <div class="step-body">
+                    <div class="step-title">Activer le swap</div>
+                    <div class="step-sub">swapon /dev/sdb2</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-ltr">4</div>
+                <div class="step-body">
+                    <div class="step-title">Vérifier la mémoire et le swap</div>
+                    <div class="step-sub">free -h</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════ PARTIE 2 -->
+    <section id="part2">
+        <div class="sh">
+            <span class="snum">Partie 2</span>
+            <h2>📦 LVM — Logical Volume Management</h2>
+        </div>
+
+        <div class="key-concept">
+            <strong>Hiérarchie LVM :</strong>
+            <div class="cycle" style="margin-top:10px;">
+                <span class="cycle-step">PV (Physical Volume)</span>
+                <span class="cycle-arrow">→</span>
+                <span class="cycle-step">VG (Volume Group)</span>
+                <span class="cycle-arrow">→</span>
+                <span class="cycle-step">LV (Logical Volume)</span>
+            </div>
+            <p style="margin-top:10px; font-size:0.95em;">LVM apporte la <strong>flexibilité</strong> : agrandissement/réduction à chaud, snapshots, pool de stockage partagé.</p>
+        </div>
+
+        <h3>🧱 Concepts Clés</h3>
+        <div class="g2">
+            <div class="mini-card">
+                <h3>PV — Physical Volume</h3>
+                <p>Disques ou partitions bruts (type <code>8e</code> sous fdisk). Brique de base de LVM.</p>
+            </div>
+            <div class="mini-card">
+                <h3>VG — Volume Group</h3>
+                <p>Pool de stockage qui regroupe plusieurs PV. C'est depuis le VG qu'on alloue les LV.</p>
+            </div>
+            <div class="mini-card">
+                <h3>LV — Logical Volume</h3>
+                <p>Partition virtuelle qu'on formate et monte. Équivalent d'une partition classique, mais flexible.</p>
+            </div>
+            <div class="mini-card">
+                <h3>Extent (PE / LE)</h3>
+                <p>Unité minimale d'allocation. <strong>PE</strong> sur le PV, <strong>LE</strong> sur le LV. En général 1 PE = 1 LE.</p>
+            </div>
+        </div>
+
+        <h3>⚙️ Commandes Essentielles</h3>
+        <table>
+            <thead>
+                <tr><th>Niveau</th><th>Créer</th><th>Afficher</th><th>Étendre</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>PV</strong></td>
+                    <td><code>pvcreate /dev/sdb1</code></td>
+                    <td><code>pvs</code> / <code>pvdisplay</code></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td><strong>VG</strong></td>
+                    <td><code>vgcreate mon_vg /dev/sdb1</code></td>
+                    <td><code>vgs</code> / <code>vgdisplay</code></td>
+                    <td><code>vgextend mon_vg /dev/sdb2</code></td>
+                </tr>
+                <tr>
+                    <td><strong>LV</strong></td>
+                    <td><code>lvcreate -L 2G -n mon_lv mon_vg</code></td>
+                    <td><code>lvs</code> / <code>lvdisplay</code></td>
+                    <td><code>lvextend -L +1G -r /dev/mon_vg/mon_lv</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert al-green">
+            ✅ L'option <strong><code>-r</code></strong> dans <code>lvextend</code> redimensionne automatiquement le système de fichiers. Sans <code>-r</code>, il faut le faire manuellement.
+        </div>
+
+        <h3>↕️ Redimensionnement</h3>
+        <div class="comparison-box">
+            <div class="comparison-item green">
+                <h4>Extension (EXT4 & XFS)</h4>
+                <ul>
+                    <li><code>lvextend -L +1G -r /dev/mon_vg/mon_lv</code> <em>(automatique)</em></li>
+                    <li>Ou manuellement :<br>
+                        XFS → <code>xfs_growfs /point_montage</code><br>
+                        EXT4 → <code>resize2fs /dev/...</code>
+                    </li>
+                </ul>
+            </div>
+            <div class="comparison-item red">
+                <h4>⚠️ Réduction (EXT4 UNIQUEMENT)</h4>
+                <p>Ordre strict à respecter :</p>
+                <div class="steps" style="margin-top:10px;">
+                    <div class="step">
+                        <div class="step-ltr">1</div>
+                        <div class="step-body"><div class="step-title">Démonter</div><div class="step-sub">umount /point</div></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-ltr">2</div>
+                        <div class="step-body"><div class="step-title">Vérifier le FS</div><div class="step-sub">e2fsck -f /dev/...</div></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-ltr">3</div>
+                        <div class="step-body"><div class="step-title">Réduire le FS</div><div class="step-sub">resize2fs /dev/... 1G</div></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-ltr">4</div>
+                        <div class="step-body"><div class="step-title">Réduire le LV</div><div class="step-sub">lvreduce -L 1G /dev/...</div></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-ltr">5</div>
+                        <div class="step-body"><div class="step-title">Remonter</div><div class="step-sub">mount /dev/... /point</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3>📸 Snapshots LVM</h3>
+        <pre><span class="cm"># Créer un snapshot</span>
+<span class="ck">lvcreate</span> -s -n mon_snap -L 100M /dev/mon_vg/mon_lv
+
+<span class="cm"># Restaurer depuis un snapshot</span>
+<span class="ck">lvconvert</span> --merge /dev/mon_vg/mon_snap</pre>
+    </section>
+
+    <!-- ══════════════════════════════════════ PARTIE 3 -->
+    <section id="part3">
+        <div class="sh">
+            <span class="snum">Partie 3</span>
+            <h2>🔷 Stratis — Stockage Avancé</h2>
+        </div>
+
+        <div class="important-note">
+            <strong>Stratis</strong> combine LVM et XFS pour simplifier la gestion via des volumes à <strong>allocation fine (Thin Provisioning)</strong>. Il abstrait la complexité de LVM en une interface simple.
+        </div>
+
+        <h3>🏗️ Architecture Stratis</h3>
+        <div class="g2">
+            <div class="mini-card">
+                <h3>Backstore</h3>
+                <ul>
+                    <li><code>dm-cache</code> — Cache des données chaudes</li>
+                    <li><code>dm-raid</code> — Redondance RAID</li>
+                    <li><code>dm-integrity</code> — Intégrité des données</li>
+                </ul>
+            </div>
+            <div class="mini-card">
+                <h3>Thinpool</h3>
+                <ul>
+                    <li><code>dm-thin</code> — Provisionnement fin</li>
+                    <li>Contient les <strong>systèmes de fichiers XFS</strong></li>
+                    <li>Allocation à la demande</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>⚙️ Utilisation de Stratis</h3>
+        <div class="steps">
+            <div class="step">
+                <div class="step-ltr">1</div>
+                <div class="step-body">
+                    <div class="step-title">Installation & démarrage</div>
+                    <div class="step-sub">dnf install stratisd stratis-cli &amp;&amp; systemctl enable --now stratisd</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-ltr">2</div>
+                <div class="step-body">
+                    <div class="step-title">Préparer les disques (effacer les métadonnées)</div>
+                    <div class="step-sub">wipefs -a /dev/sdb</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-ltr">3</div>
+                <div class="step-body">
+                    <div class="step-title">Créer un pool</div>
+                    <div class="step-sub">stratis pool create mon_pool /dev/sdb</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-ltr">4</div>
+                <div class="step-body">
+                    <div class="step-title">Ajouter un disque au pool</div>
+                    <div class="step-sub">stratis pool add-data mon_pool /dev/sdc</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-ltr">5</div>
+                <div class="step-body">
+                    <div class="step-title">Créer un système de fichiers</div>
+                    <div class="step-sub">stratis fs create mon_pool mon_fs</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-ltr">6</div>
+                <div class="step-body">
+                    <div class="step-title">Créer un snapshot</div>
+                    <div class="step-sub">stratis fs snapshot mon_pool mon_fs mon_snap</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert al-amber">
+            ⚠️ <strong>Montage Stratis dans /etc/fstab :</strong> Ajouter l'option <code>x-systemd.requires=stratisd.service</code> pour que le montage attende le démarrage du démon Stratis.
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════ PARTIE 4 -->
+    <section id="part4">
+        <div class="sh">
+            <span class="snum">Partie 4</span>
+            <h2>🌐 Stockage Distant — NFS, Samba & Autofs</h2>
+        </div>
+
+        <div class="comparison-box">
+            <div class="comparison-item blue">
+                <h4>NFS — Linux ↔ Linux</h4>
+                <p>Partage natif Unix, léger et efficace en réseau homogène Linux.</p>
+            </div>
+            <div class="comparison-item amber">
+                <h4>Samba — Linux ↔ Windows</h4>
+                <p>Partage compatible SMB/CIFS. Interopérabilité avec les clients Windows.</p>
+            </div>
+        </div>
+
+        <h3>📤 NFS — Serveur</h3>
+        <pre><span class="cm"># Configurer les exports</span>
+<span class="cm"># Fichier : /etc/exports</span>
+/partage  *(rw,sync,no_root_squash)
+
+<span class="cm"># Appliquer les changements</span>
+<span class="ck">exportfs</span> -ra
+
+<span class="cm"># Activer le serveur NFS</span>
+<span class="ck">systemctl</span> enable --now nfs-server
+
+<span class="cm"># Ouvrir le pare-feu</span>
+<span class="ck">firewall-cmd</span> --add-service={nfs,rpc-bind,mountd} --permanent
+<span class="ck">firewall-cmd</span> --reload</pre>
+
+        <div class="card">
+            <div class="card-title">Options de /etc/exports</div>
+            <div class="flag-row"><span class="flag-badge">rw</span><span class="flag-desc">Lecture et écriture</span></div>
+            <div class="flag-row"><span class="flag-badge">sync</span><span class="flag-desc">Écriture synchrone (plus sûr)</span></div>
+            <div class="flag-row"><span class="flag-badge">no_root_squash</span><span class="flag-desc">Le root distant = root local (attention : risque de sécurité)</span></div>
+            <div class="flag-row"><span class="flag-badge">ro</span><span class="flag-desc">Lecture seule</span></div>
+        </div>
+
+        <pre><span class="cm"># Client NFS : monter un partage</span>
+<span class="ck">mount</span> -t nfs IP_SERVEUR:/partage /mnt</pre>
+
+        <h3>🪟 Samba — Partage Windows/Linux</h3>
+        <pre><span class="cm"># Fichier de configuration : /etc/samba/smb.conf</span>
+[public]
+   path = /srv/public
+   browseable = yes
+   writable = yes
+
+[private]
+   path = /srv/private
+   valid users = hamza
+   writable = yes
+
+<span class="cm"># Créer un utilisateur Samba</span>
+<span class="ck">smbpasswd</span> -a utilisateur
+
+<span class="cm"># Client : monter un partage Samba (CIFS)</span>
+<span class="ck">mount</span> -t cifs //IP_SERVEUR/partage /mnt -o user=utilisateur</pre>
+
+        <h3>🔄 Autofs — Montage Automatique à la Demande</h3>
+        <div class="important-note">
+            <strong>Avantage :</strong> Autofs monte les ressources <em>uniquement quand on y accède</em> et les démonte après inactivité. Évite de consommer des ressources inutilement.
+        </div>
+
+        <table>
+            <thead>
+                <tr><th>Type de mappe</th><th>Point de montage</th><th>Exemple</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Directe</strong></td>
+                    <td>Point fixe défini dans la mappe</td>
+                    <td><code>/- /etc/auto.direct</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Indirecte</strong></td>
+                    <td>Sous-dossiers dynamiques créés à la demande</td>
+                    <td><code>/users /etc/auto.users</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <pre><span class="cm"># Mappe indirecte avec wildcard (auto.users)</span>
+<span class="cm"># * = n'importe quel nom d'utilisateur</span>
+<span class="cm"># & = réutilise le même nom comme dossier distant</span>
+*  -rw,sync  serveur:/home/&</pre>
+    </section>
+
+    <!-- ══════════════════════════════════════ PARTIE 5 -->
+    <section id="part5">
+        <div class="sh">
+            <span class="snum">Partie 5</span>
+            <h2>📦 Archivage & Gestion des Logiciels (RPM / DNF)</h2>
+        </div>
+
+        <h3>🗜️ Archivage avec tar</h3>
+        <table>
+            <thead>
+                <tr><th>Action</th><th>Commande</th><th>Extension</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Créer une archive</td><td><code>tar -cvf archive.tar /dossier</code></td><td><code>.tar</code></td></tr>
+                <tr><td>Comprimer avec gzip</td><td><code>tar -czvf archive.tar.gz /dossier</code></td><td><code>.tar.gz</code></td></tr>
+                <tr><td>Comprimer avec bzip2</td><td><code>tar -cjvf archive.tar.bz2 /dossier</code></td><td><code>.tar.bz2</code></td></tr>
+                <tr><td>Lister le contenu</td><td><code>tar -tf archive.tar</code></td><td>—</td></tr>
+                <tr><td>Extraire</td><td><code>tar -xvf archive.tar -C /destination</code></td><td>—</td></tr>
+            </tbody>
+        </table>
+
+        <div class="card">
+            <div class="card-title">Mémo des flags tar</div>
+            <div class="g2">
+                <div>
+                    <div class="flag-row"><span class="flag-badge">-c</span><span class="flag-desc">Créer une archive</span></div>
+                    <div class="flag-row"><span class="flag-badge">-x</span><span class="flag-desc">Extraire</span></div>
+                    <div class="flag-row"><span class="flag-badge">-t</span><span class="flag-desc">Lister le contenu</span></div>
+                </div>
+                <div>
+                    <div class="flag-row"><span class="flag-badge">-v</span><span class="flag-desc">Mode verbeux</span></div>
+                    <div class="flag-row"><span class="flag-badge">-f</span><span class="flag-desc">Spécifier le fichier archive</span></div>
+                    <div class="flag-row"><span class="flag-badge">-z / -j</span><span class="flag-desc">gzip / bzip2</span></div>
+                </div>
+            </div>
+        </div>
+
+        <h3>📦 RPM — Gestionnaire de Paquets Bas Niveau</h3>
+        <table>
+            <thead>
+                <tr><th>Action</th><th>Commande RPM</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Installer</td><td><code>rpm -ivh paquet.rpm</code></td></tr>
+                <tr><td>Mettre à jour</td><td><code>rpm -Uhv paquet.rpm</code></td></tr>
+                <tr><td>Lister tous les paquets</td><td><code>rpm -qa</code></td></tr>
+                <tr><td>Infos sur un paquet</td><td><code>rpm -qi paquet</code></td></tr>
+                <tr><td>Fichiers d'un paquet</td><td><code>rpm -ql paquet</code></td></tr>
+                <tr><td>Propriétaire d'un fichier</td><td><code>rpm -qf /chemin/fichier</code></td></tr>
+                <tr><td>Vérifier l'intégrité</td><td><code>rpm -V paquet</code></td></tr>
+            </tbody>
+        </table>
+
+        <div class="card">
+            <div class="card-title">Codes de vérification rpm -V</div>
+            <div class="flag-row"><span class="flag-badge">S</span><span class="flag-desc">Taille du fichier modifiée</span></div>
+            <div class="flag-row"><span class="flag-badge">5</span><span class="flag-desc">Somme de contrôle MD5 différente</span></div>
+            <div class="flag-row"><span class="flag-badge">T</span><span class="flag-desc">Horodatage (timestamp) modifié</span></div>
+        </div>
+
+        <h3>🔧 DNF/YUM — Gestionnaire avec Dépendances</h3>
+        <pre><span class="cm"># Commandes de base</span>
+<span class="ck">dnf install</span> paquet
+<span class="ck">dnf remove</span>  paquet
+<span class="ck">dnf search</span>  mot_clé
+<span class="ck">dnf info</span>    paquet
+<span class="ck">dnf check-update</span>
+
+<span class="cm"># Groupes de paquets</span>
+<span class="ck">dnf group install</span> <span class="cs">"Development Tools"</span>
+
+<span class="cm"># Modules (plusieurs versions d'un même logiciel)</span>
+<span class="ck">dnf module list</span> php
+<span class="ck">dnf module enable</span> php:7.4
+<span class="ck">dnf upgrade</span> php</pre>
+
+        <h3>🏛️ Dépôts (Repos)</h3>
+        <div class="important-note">
+            Les dépôts sont configurés dans <code>/etc/yum.repos.d/</code>. On peut créer un <strong>dépôt local</strong> via une ISO en montant <code>/dev/sr0</code> sur <code>/repo</code> dans <code>/etc/fstab</code>, puis en utilisant <code>createrepo</code>.
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════ PARTIE 6 -->
+    <section id="part6">
+        <div class="sh">
+            <span class="snum">Partie 6</span>
+            <h2>🔗 Administration Réseau & OpenSSH</h2>
+        </div>
+
+        <h3>🌐 nmcli — Network Manager</h3>
+        <table>
+            <thead>
+                <tr><th>Commande</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>nmcli dev status</code></td><td>État de toutes les interfaces réseau</td></tr>
+                <tr><td><code>nmcli con show</code></td><td>Lister les profils de connexion</td></tr>
+                <tr><td><code>nmcli con up static</code></td><td>Activer une connexion</td></tr>
+                <tr><td><code>nmcli con down static</code></td><td>Désactiver une connexion</td></tr>
+            </tbody>
+        </table>
+
+        <pre><span class="cm"># Créer une connexion IP statique</span>
+<span class="ck">nmcli</span> con add type ethernet con-name <span class="cv">static</span> ifname eth0 \
+      ip4 <span class="cs">192.168.1.10/24</span> gw4 <span class="cs">192.168.1.1</span>
+
+<span class="cm"># Modifier le DNS</span>
+<span class="ck">nmcli</span> con mod <span class="cv">static</span> ipv4.dns <span class="cs">8.8.8.8</span>
+
+<span class="cm"># Appliquer les changements</span>
+<span class="ck">nmcli</span> con up <span class="cv">static</span></pre>
+
+        <div class="alert al-blue">
+            💡 <strong>Hostname permanent :</strong> <code>hostnamectl set-hostname mon_nom</code> — modifie <code>/etc/hostname</code> de manière permanente.
+        </div>
+
+        <h3>🔐 OpenSSH</h3>
+        <table>
+            <thead>
+                <tr><th>Commande</th><th>Usage</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>ssh user@IP</code></td><td>Connexion SSH distante</td></tr>
+                <tr><td><code>scp -r /source user@IP:/dest</code></td><td>Copie de fichiers via SSH</td></tr>
+                <tr><td><code>sftp user@IP</code></td><td>Transfert interactif sécurisé</td></tr>
+            </tbody>
+        </table>
+
+        <h3>🔑 Authentification par Clés SSH</h3>
+        <div class="steps">
+            <div class="step">
+                <div class="step-ltr">1</div>
+                <div class="step-body">
+                    <div class="step-title">Générer la paire de clés</div>
+                    <div class="step-sub">ssh-keygen -t dsa</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-ltr">2</div>
+                <div class="step-body">
+                    <div class="step-title">Copier la clé publique sur le serveur</div>
+                    <div class="step-sub">ssh-copy-id user@IP</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-ltr">3</div>
+                <div class="step-body">
+                    <div class="step-title">Connexion sans mot de passe</div>
+                    <div class="step-sub">ssh user@IP → automatique ✓</div>
+                </div>
+            </div>
+        </div>
+        <div class="alert al-green">
+            ✅ La clé publique est stockée dans <code>~/.ssh/authorized_keys</code> sur le serveur.
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════ PARTIE 7 -->
+    <section id="part7">
+        <div class="sh">
+            <span class="snum">Partie 7</span>
+            <h2>⏰ Planification des Tâches — Cron & AT</h2>
+        </div>
+
+        <div class="comparison-box">
+            <div class="comparison-item blue">
+                <h4>Cron — Tâches Récurrentes</h4>
+                <ul>
+                    <li>Éditer : <code>crontab -e</code></li>
+                    <li>Lister : <code>crontab -l</code></li>
+                    <li>Supprimer : <code>crontab -r</code></li>
+                </ul>
+            </div>
+            <div class="comparison-item green">
+                <h4>AT — Tâche Unique</h4>
+                <ul>
+                    <li>Programmer : <code>at 12:00</code></li>
+                    <li>File d'attente : <code>atq</code></li>
+                    <li>Supprimer : <code>atrm ID</code></li>
+                    <li>Voir le contenu : <code>at -c ID</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>📐 Syntaxe Cron</h3>
+        <div class="card">
+            <div class="card-title">Format de la ligne crontab</div>
+            <pre style="margin:0; font-size: 1em;">┌───────── Minute        (0–59)
+│ ┌─────── Heure         (0–23)
+│ │ ┌───── Jour du mois  (1–31)
+│ │ │ ┌─── Mois          (1–12)
+│ │ │ │ ┌─ Jour semaine  (0–7, 0 et 7 = dimanche)
+│ │ │ │ │
+* * * * *  /chemin/vers/commande</pre>
+        </div>
+
+        <table>
+            <thead>
+                <tr><th>Expression</th><th>Signification</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>* * * * *</code></td><td>Toutes les minutes</td></tr>
+                <tr><td><code>0 2 * * *</code></td><td>Chaque jour à 2h00</td></tr>
+                <tr><td><code>*/5 9-17 * 7 5</code></td><td>Toutes les 5 min, entre 9h et 17h, les vendredis de juillet</td></tr>
+                <tr><td><code>0 0 1 * *</code></td><td>Le 1er de chaque mois à minuit</td></tr>
+                <tr><td><code>30 8 * * 1-5</code></td><td>Du lundi au vendredi à 8h30</td></tr>
+            </tbody>
+        </table>
+
+        <h3>⏱️ AT — Exemples</h3>
+        <pre><span class="ck">at</span> 12:00                 <span class="cm"># Aujourd'hui à midi</span>
+<span class="ck">at</span> now + 5 minutes       <span class="cm"># Dans 5 minutes</span>
+<span class="ck">at</span> teatime               <span class="cm"># À 16h00 ("teatime")</span>
+<span class="ck">at</span> tomorrow + 2 hours    <span class="cm"># Demain dans 2h</span></pre>
+
+        <h3>🔒 Contrôle d'Accès AT</h3>
+        <div class="warning">
+            <strong>Priorité :</strong> Si <code>/etc/at.allow</code> existe, <em>seuls</em> les utilisateurs listés peuvent utiliser AT, même si <code>/etc/at.deny</code> contient d'autres entrées. <code>at.allow</code> est <strong>toujours prioritaire</strong>.
+        </div>
+        <table>
+            <thead>
+                <tr><th>Situation</th><th>Qui peut utiliser AT ?</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Seul <code>at.allow</code> existe</td><td>Uniquement les users listés dans <code>at.allow</code></td></tr>
+                <tr><td>Seul <code>at.deny</code> existe</td><td>Tous sauf ceux dans <code>at.deny</code></td></tr>
+                <tr><td>Les deux existent</td><td>Uniquement ceux dans <code>at.allow</code></td></tr>
+                <tr><td>Aucun fichier</td><td>Seul root (selon la config)</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ══════════════════════════════════════ PARTIE 8 -->
+    <section id="part8">
+        <div class="sh">
+            <span class="snum">Partie 8</span>
+            <h2>🐳 Conteneurisation avec Podman</h2>
+        </div>
+
+        <div class="key-concept">
+            <strong>Podman vs Docker :</strong> Podman est <strong>daemonless</strong> (pas de service en fond), supporte le mode <strong>rootless</strong> (sans root), et est compatible avec les commandes Docker. Il s'intègre nativement avec systemd.
+        </div>
+
+        <h3>🔄 Cycle de Vie d'un Conteneur</h3>
+        <table>
+            <thead>
+                <tr><th>Étape</th><th>Commande</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Chercher</td><td><code>podman search nginx</code></td><td>Rechercher une image dans les registries</td></tr>
+                <tr><td>Télécharger</td><td><code>podman pull nginx</code></td><td>Télécharger l'image localement</td></tr>
+                <tr><td>Lister images</td><td><code>podman images</code></td><td>Voir les images disponibles</td></tr>
+                <tr><td>Lancer</td><td><code>podman run ...</code></td><td>Créer et démarrer un conteneur</td></tr>
+                <tr><td>Lister conteneurs</td><td><code>podman ps -a</code></td><td>Tous les conteneurs (actifs + arrêtés)</td></tr>
+                <tr><td>Arrêter</td><td><code>podman stop nom</code></td><td>Arrêt gracieux</td></tr>
+                <tr><td>Supprimer</td><td><code>podman rm nom</code></td><td>Supprimer un conteneur</td></tr>
+                <tr><td>Supprimer image</td><td><code>podman rmi image</code></td><td>Libérer l'espace disque</td></tr>
+            </tbody>
+        </table>
+
+        <h3>🚀 Lancer un Conteneur</h3>
+        <pre><span class="ck">podman</span> run --name web -d \
+       -p <span class="cs">8080</span>:80 \
+       -v /data:/var/www/html:Z \
+       nginx</pre>
+
+        <div class="card">
+            <div class="card-title">Options de podman run</div>
+            <div class="flag-row"><span class="flag-badge">--name</span><span class="flag-desc">Donner un nom au conteneur</span></div>
+            <div class="flag-row"><span class="flag-badge">-d</span><span class="flag-desc">Mode détaché (arrière-plan)</span></div>
+            <div class="flag-row"><span class="flag-badge">-p hôte:conteneur</span><span class="flag-desc">Redirection de port</span></div>
+            <div class="flag-row"><span class="flag-badge">-v /local:/conteneur:Z</span><span class="flag-desc">Volume pour la persistance. <code>:Z</code> = étiquette SELinux</span></div>
+            <div class="flag-row"><span class="flag-badge">-e VAR=valeur</span><span class="flag-desc">Variable d'environnement</span></div>
+            <div class="flag-row"><span class="flag-badge">--rm</span><span class="flag-desc">Supprimer le conteneur à l'arrêt</span></div>
+        </div>
+
+        <h3>🔧 Conteneur en Service Systemd</h3>
+        <div class="important-note">
+            Podman peut générer un fichier <code>.service</code> pour transformer un conteneur en service systemd qui démarre automatiquement.
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-ltr">1</div>
+                <div class="step-body">
+                    <div class="step-title">Générer le fichier service</div>
+                    <div class="step-sub">podman generate systemd --name mon_cont --files --new</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-ltr">2</div>
+                <div class="step-body">
+                    <div class="step-title">Copier dans le dossier systemd utilisateur</div>
+                    <div class="step-sub">cp *.service ~/.config/systemd/user/</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-ltr">3</div>
+                <div class="step-body">
+                    <div class="step-title">Activer et démarrer le service</div>
+                    <div class="step-sub">systemctl --user enable --now container-mon_cont.service</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-ltr">4</div>
+                <div class="step-body">
+                    <div class="step-title">Activer le Linger (service même sans session)</div>
+                    <div class="step-sub">loginctl enable-linger $USER</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert al-amber">
+            ⚠️ <strong>Linger :</strong> Sans <code>loginctl enable-linger</code>, le service conteneur s'arrête dès que l'utilisateur se déconnecte. Le Linger permet au service de tourner même sans session ouverte.
+        </div>
+    </section>
+
+    <hr style="margin: 40px 0; border: none; border-top: 2px solid #ecf0f1;">
+
+    <div style="text-align:center; color:#7f8c8d; font-size:0.9em; padding: 10px 0;">
+        🐧 Administration Linux — Fiche Complète · Bonne chance à l'examen ! 💪
+    </div>
+
+    <a href="index.html" style="text-decoration: none; display:block; margin-top:30px;">
+        <button>← Retour à l'accueil</button>
+    </a>
+
+</div>
+</body>
+</html>
