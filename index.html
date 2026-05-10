@@ -6,7 +6,6 @@
     <title>Hub de Révisions</title>
     <link rel="icon" type="image/png" href="images.png">
     <style>
-        /* ... existing styles ... */
         * {
             margin: 0;
             padding: 0;
@@ -42,7 +41,6 @@
             opacity: 0.9;
         }
 
-        /* NEW: Style for the links to prevent blue text/underlines */
         .card-link {
             text-decoration: none;
             color: inherit;
@@ -64,7 +62,9 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            height: 100%; /* Ensures all cards in a row are same height */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .card::before {
@@ -99,6 +99,7 @@
             font-size: 1em;
             margin-bottom: 15px;
             line-height: 1.6;
+            flex-grow: 1;
         }
 
         .card-meta {
@@ -142,12 +143,6 @@
             margin-top: 60px;
             opacity: 0.8;
         }
-          .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
 
         @media (max-width: 768px) {
             .cards-grid {
@@ -166,6 +161,26 @@
         </header>
 
         <div class="cards-grid">
+            <a href="linux-admin-complet.html" class="card-link">
+                <div class="card">
+                    <div class="card-icon">🐧</div>
+                    <div class="card-title">Administration Linux</div>
+                    <div class="card-description">
+                        Gestion avancée des disques, LVM, Stratis, partages réseaux (NFS/Samba), automatisation avec Cron et conteneurisation Podman.
+                    </div>
+                    <div>
+                        <span class="badge">LVM</span>
+                        <span class="badge">Podman</span>
+                        <span class="badge">Réseau</span>
+                        <span class="badge">Storage</span>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-topics">8 Parties</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+            </a>
+
             <a href="reseaux-ip2-complet.html" class="card-link">
                 <div class="card">
                     <div class="card-icon">🌐</div>
@@ -185,7 +200,8 @@
                     </div>
                 </div>
             </a>
-           <a href="sql_relational_guide.html" class="card-link">
+
+            <a href="sql_relational_guide.html" class="card-link">
                 <div class="card">
                     <div class="card-icon">📊</div>
                     <div class="card-title">SQL & Modélisation</div>
@@ -244,7 +260,7 @@
         </div>
 
         <footer>
-            <p>© 2025 - Hub de Révisions Académiques</p>
+            <p>© 2026 - Hub de Révisions Académiques</p>
         </footer>
     </div>
 
