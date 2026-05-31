@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 Techniques de Communication — Fiche Complète QCM</title>
+<style>
+@media print { body { margin: 0px; } .no-print { display: none; } .page-break { break-before: page; } }
+
+body { font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; line-height: 1.7; max-width: 1100px; margin: 0 auto; padding: 40px 20px; background: linear-gradient(135deg, rgb(30,90,170) 0%, rgb(90,30,140) 100%); }
+
+.container { background-color: white; padding: 50px; box-shadow: rgba(0,0,0,0.3) 0px 10px 40px; border-radius: 10px; }
+
+h1 { color: rgb(44,62,80); text-align: center; font-size: 2.5em; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; border-bottom: 4px solid rgb(30,90,170); padding-bottom: 20px; }
+
+.subtitle { text-align: center; color: rgb(127,140,141); font-size: 1.2em; margin-bottom: 40px; font-style: italic; }
+
+h2 { color: rgb(30,90,170); margin-top: 35px; margin-bottom: 20px; font-size: 1.8em; border-left: 6px solid rgb(90,30,140); padding: 15px 20px; background: linear-gradient(90deg, rgb(248,249,250) 0%, rgb(255,255,255) 100%); border-radius: 5px; }
+
+h3 { color: rgb(52,73,94); margin-top: 25px; margin-bottom: 15px; font-size: 1.3em; border-bottom: 2px solid rgb(236,240,241); padding-bottom: 8px; }
+
+h4 { color: rgb(52,73,94); margin-top: 12px; margin-bottom: 8px; font-size: 1.05em; }
+
+.key-concept { background-color: rgb(255,243,205); border-left: 5px solid rgb(255,193,7); padding: 15px 20px; margin: 20px 0; border-radius: 5px; }
+.important-note { background-color: rgb(209,236,241); border-left: 5px solid rgb(23,162,184); padding: 15px 20px; margin: 20px 0; border-radius: 5px; }
+.warning { background-color: rgb(248,215,218); border-left: 5px solid rgb(220,53,69); padding: 15px 20px; margin: 20px 0; border-radius: 5px; }
+
+.alert { padding: 13px 18px; margin: 15px 0; border-radius: 5px; border-left: 5px solid; font-size: 0.95em; line-height: 1.6; }
+.al-blue  { background-color: rgb(209,236,241); border-color: rgb(23,162,184);  color: rgb(12,84,96); }
+.al-amber { background-color: rgb(255,243,205); border-color: rgb(255,193,7);   color: rgb(133,100,4); }
+.al-red   { background-color: rgb(248,215,218); border-color: rgb(220,53,69);   color: rgb(114,28,36); }
+.al-green { background-color: rgb(212,237,218); border-color: rgb(40,167,69);   color: rgb(21,87,36); }
+
+table { width: 100%; border-collapse: collapse; margin: 25px 0; box-shadow: rgba(0,0,0,0.1) 0px 2px 8px; }
+th, td { border: 1px solid rgb(222,226,230); padding: 12px 15px; text-align: left; vertical-align: top; }
+th { background: linear-gradient(135deg, rgb(30,90,170) 0%, rgb(90,30,140) 100%); color: white; font-weight: bold; text-transform: uppercase; font-size: 0.9em; }
+tr:nth-child(2n) { background-color: rgb(248,249,250); }
+tr:hover { background-color: rgb(233,236,239); transition: background-color 0.3s; }
+
+ul, ol { margin-left: 30px; line-height: 2; }
+li { margin-bottom: 8px; }
+
+.comparison-box { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 25px 0; }
+.comparison-item { padding: 20px; border-radius: 8px; box-shadow: rgba(0,0,0,0.1) 0px 2px 8px; }
+.comparison-item.blue   { background-color: rgb(227,242,253); border-left: 5px solid rgb(33,150,243); }
+.comparison-item.green  { background-color: rgb(232,245,233); border-left: 5px solid rgb(76,175,80); }
+.comparison-item.red    { background-color: rgb(253,236,234); border-left: 5px solid rgb(220,53,69); }
+.comparison-item.amber  { background-color: rgb(255,253,231); border-left: 5px solid rgb(255,193,7); }
+.comparison-item.purple { background-color: rgb(243,229,245); border-left: 5px solid rgb(156,39,176); }
+
+.card { background-color: rgb(248,249,250); border: 1px solid rgb(222,226,230); border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+.card-title { font-size: 0.85em; font-weight: 700; color: rgb(90,30,140); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 14px; }
+
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin: 15px 0; }
+
+.mini-card { background-color: white; border: 1px solid rgb(222,226,230); border-radius: 8px; padding: 16px; }
+.mini-card h3 { font-size: 0.95em; font-weight: 700; color: rgb(30,90,170); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; border-bottom: 1px solid rgb(236,240,241); padding-bottom: 6px; }
+.mini-card p, .mini-card li { font-size: 0.93em; color: rgb(52,73,94); line-height: 1.6; }
+.mini-card ul { padding-left: 18px; }
+.mini-card li { margin-bottom: 4px; }
+
+.steps { display: flex; flex-direction: column; gap: 10px; }
+.step { display: flex; align-items: flex-start; gap: 14px; background-color: white; border: 1px solid rgb(222,226,230); border-radius: 8px; padding: 14px 16px; }
+.step-ltr { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; flex-shrink: 0; background: linear-gradient(135deg, rgb(30,90,170) 0%, rgb(90,30,140) 100%); color: white; }
+.step-body { flex: 1; }
+.step-title { font-size: 1em; font-weight: 700; color: rgb(44,62,80); margin-bottom: 4px; }
+.step-sub { font-size: 0.88em; color: rgb(80,100,120); line-height: 1.7; }
+
+.sh { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.snum { background: linear-gradient(135deg, rgb(30,90,170) 0%, rgb(90,30,140) 100%); color: white; padding: 8px 20px; border-radius: 25px; display: inline-block; font-weight: bold; font-size: 0.9em; white-space: nowrap; }
+.sh h2 { margin: 0; border: none; background: none; padding: 0; }
+
+.toc { background-color: rgb(248,249,250); border: 1px solid rgb(222,226,230); border-radius: 8px; padding: 24px 28px; margin-bottom: 40px; }
+.toc-title { font-size: 1em; font-weight: 700; color: rgb(90,30,140); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 14px; }
+.toc ol { margin-left: 18px; line-height: 1.9; }
+.toc a { color: rgb(30,90,170); text-decoration: none; font-size: 0.95em; }
+.toc a:hover { text-decoration: underline; }
+
+section { margin-bottom: 50px; scroll-margin-top: 60px; }
+
+.cycle { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin: 16px 0; }
+.cycle-step { background: linear-gradient(135deg, rgb(30,90,170) 0%, rgb(90,30,140) 100%); color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.88em; font-weight: 700; }
+.cycle-arrow { color: rgb(90,30,140); font-size: 1.2em; font-weight: 900; }
+
+.flag-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgb(236,240,241); }
+.flag-row:last-child { border-bottom: none; }
+.flag-badge { font-size: 0.83em; background-color: rgb(227,242,253); border: 1px solid rgb(144,202,249); color: rgb(21,101,192); padding: 2px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; font-weight: 700; }
+.flag-desc { font-size: 0.9em; color: rgb(52,73,94); }
+
+.qcm-block { background-color: rgb(248,249,252); border: 1px solid rgb(200,215,235); border-radius: 10px; padding: 22px 24px; margin-bottom: 22px; }
+.qcm-q { font-weight: 700; color: rgb(30,90,170); font-size: 1em; margin-bottom: 12px; }
+.qcm-options { list-style: none; margin: 0 0 14px 0; padding: 0; }
+.qcm-options li { padding: 7px 12px; border-radius: 5px; margin-bottom: 6px; font-size: 0.93em; border: 1px solid rgb(222,226,230); background: white; }
+.qcm-options li.correct { background-color: rgb(212,237,218); border-color: rgb(40,167,69); color: rgb(21,87,36); font-weight: 700; }
+.qcm-expl { background-color: rgb(232,245,233); border-left: 4px solid rgb(40,167,69); padding: 10px 14px; border-radius: 5px; font-size: 0.88em; color: rgb(21,87,36); }
+.qcm-num { display: inline-block; background: linear-gradient(135deg, rgb(30,90,170), rgb(90,30,140)); color: white; font-weight: 800; font-size: 0.8em; padding: 2px 10px; border-radius: 12px; margin-bottom: 10px; }
+
+.email-block { background-color: rgb(244,246,252); border: 1px solid rgb(180,200,230); border-radius: 8px; padding: 24px 28px; margin: 20px 0; font-family: "Courier New", monospace; font-size: 0.9em; line-height: 1.9; color: rgb(44,62,80); }
+.email-field { color: rgb(30,90,170); font-weight: 700; }
+.email-placeholder { color: rgb(220,53,69); font-style: italic; }
+
+.badge-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
+.badge { display: inline-block; padding: 5px 14px; border-radius: 20px; font-size: 0.82em; font-weight: 700; }
+.badge-blue   { background-color: rgb(227,242,253); color: rgb(21,101,192); border: 1px solid rgb(144,202,249); }
+.badge-green  { background-color: rgb(212,237,218); color: rgb(21,87,36); border: 1px solid rgb(134,204,158); }
+.badge-red    { background-color: rgb(248,215,218); color: rgb(114,28,36); border: 1px solid rgb(245,167,175); }
+.badge-amber  { background-color: rgb(255,243,205); color: rgb(133,100,4); border: 1px solid rgb(255,221,87); }
+.badge-purple { background-color: rgb(243,229,245); color: rgb(74,20,140); border: 1px solid rgb(200,150,220); }
+
+.rule-card { background-color: white; border: 1px solid rgb(222,226,230); border-radius: 8px; padding: 16px 20px; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 14px; }
+.rule-icon { font-size: 1.4em; flex-shrink: 0; margin-top: 2px; }
+.rule-text { font-size: 0.93em; color: rgb(52,73,94); }
+.rule-text strong { color: rgb(30,90,170); }
+
+.pareto-box { background: linear-gradient(135deg, rgb(30,90,170) 0%, rgb(90,30,140) 100%); color: white; border-radius: 10px; padding: 28px 32px; margin: 25px 0; }
+.pareto-box h3 { color: white; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 10px; margin-bottom: 18px; }
+.pareto-box ul li { margin-bottom: 10px; }
+.pareto-box strong { color: rgb(255,220,100); }
+
+hr { margin: 40px 0; border: none; border-top: 2px solid rgb(236,240,241); }
+
+@media (max-width: 768px) {
+  body { padding: 12px 8px; }
+  .container { padding: 20px 14px; border-radius: 8px; }
+  h1 { font-size: 1.5em; }
+  h2 { font-size: 1.15em; padding: 10px 14px; margin-top: 25px; }
+  h3 { font-size: 1em; }
+  .comparison-box, .g2, .g3 { grid-template-columns: 1fr; gap: 10px; }
+  table { font-size: 0.8em; display: block; overflow-x: auto; white-space: nowrap; }
+  th, td { padding: 8px 10px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>📚 Techniques de Communication</h1>
+<p class="subtitle">Guide Complet de Révision — ING-3 SEM2 · Communication Interpersonnelle · Comm. Interne · Styles Relationnels · Team Building · E-mail de Réclamation · QCM</p>
+
+<div class="toc">
+  <div class="toc-title">📋 Sommaire</div>
+  <ol>
+    <li><a href="#part1">Résumé Général du Cours — Concepts Clés & Définitions</a></li>
+    <li><a href="#part2">Focus Examen — Points Probables, Pièges & Erreurs à Éviter</a></li>
+    <li><a href="#part3">E-mail de Réclamation — Structure, Formulations & Exemple Type</a></li>
+    <li><a href="#part4">Études de Cas — Méthode & Questions Typiques</a></li>
+    <li><a href="#part5">QCM — Questions avec Corrections & Explications</a></li>
+    <li><a href="#part6">Fiche de Révision Finale — L'Essentiel en un Coup d'Œil</a></li>
+  </ol>
+</div>
+
+<!-- ════════════════════════ PARTIE 1 ════════════════════════ -->
+<section id="part1">
+  <div class="sh">
+    <span class="snum">Partie 1</span>
+    <h2>📖 Résumé Général du Cours</h2>
+  </div>
+
+  <!-- ──── COMMUNICATION INTERPERSONNELLE ──── -->
+  <h3>🤝 Communication Interpersonnelle Efficace</h3>
+  <div class="key-concept">
+    <strong>Définition :</strong> La communication relationnelle efficace est un processus de transmission d'informations, de pensées, de sentiments et d'idées entre deux personnes ou plus, dans le but de <strong>développer, maintenir ou améliorer une relation mutuelle</strong>. Elle implique : clarté des messages, écoute active, empathie, compréhension mutuelle et résolution constructive des conflits.
+  </div>
+
+  <h4>📌 Les 3 mécanismes de perception</h4>
+  <div class="g3">
+    <div class="mini-card">
+      <h3>Attention sélective</h3>
+      <p>Prêter attention uniquement aux messages en accord avec ses propres attitudes et croyances. On filtre l'information <em>avant</em> de la traiter.</p>
+    </div>
+    <div class="mini-card">
+      <h3>Distorsion sélective</h3>
+      <p>Déformer l'information reçue afin de la rendre plus conforme à ses attentes. On <em>réinterprète</em> le message.</p>
+    </div>
+    <div class="mini-card">
+      <h3>Rétention sélective</h3>
+      <p>Retenir certains messages plus que d'autres. On <em>mémorise</em> de façon sélective selon ses biais.</p>
+    </div>
+  </div>
+
+  <h4>📊 Les 4 Facteurs Motivationnels — Tableau clé ⭐</h4>
+  <div class="alert al-amber">⭐ <strong>EXAMEN :</strong> Ce tableau est très probablement au programme. Mémoriser les 4 facteurs, leur définition et un exemple en entreprise.</div>
+  <table>
+    <thead><tr><th>Facteur</th><th>Impact sur la perception</th><th>Exemple en entreprise</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>État affectif</strong></td>
+        <td>Filtre émotionnel. Émotions <span style="color:rgb(40,167,69)">+</span> → ouverture et bienveillance. Émotions <span style="color:rgb(220,53,69)">−</span> → biais négatif ou hostilité.</td>
+        <td>Mauvaise humeur → une demande d'un collègue est perçue comme une intrusion, alors qu'il voulait collaborer.</td>
+      </tr>
+      <tr>
+        <td><strong>Vigilance perceptuelle</strong></td>
+        <td>Capacité à détecter les signaux faibles : ton de voix, micro-expressions, silences et sous-entendus.</td>
+        <td>Un manager capte un soupir discret ou regard fuyant et ajuste son discours ou interroge la personne en privé.</td>
+      </tr>
+      <tr>
+        <td><strong>Défense perceptuelle</strong></td>
+        <td>Mécanisme de protection psychologique : filtrer ou ignorer les informations menaçantes pour l'ego.</td>
+        <td>Employé qui rejette une critique fondée en affirmant que son manager le "stigmatise". Ne retient que les retours positifs.</td>
+      </tr>
+      <tr>
+        <td><strong>Adaptabilité</strong></td>
+        <td>Capacité à ajuster sa perception et son comportement selon l'interlocuteur et le contexte.</td>
+        <td>Manager qui valorise explicitement les collaborateurs sensibles à la reconnaissance, donne des consignes précises aux profils rigoureux.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="alert al-blue">💡 Ces 4 facteurs sont <strong>interdépendants</strong> : un état affectif négatif peut réduire la vigilance perceptuelle et accroître la défense perceptuelle. Une bonne adaptabilité peut compenser certains biais.</div>
+
+  <hr>
+
+  <!-- ──── COMMUNICATION INTERNE ──── -->
+  <h3>🏢 La Communication Interne</h3>
+  <div class="key-concept">
+    <strong>Définition :</strong> « La communication interne concerne l'ensemble des actions de communication entre l'entreprise et ses salariés. Elle permet aux collaborateurs de comprendre les orientations stratégiques des organisations et d'adhérer à la culture d'entreprise. »
+  </div>
+
+  <h4>Objectifs de la communication interne</h4>
+  <div class="g2">
+    <div class="mini-card">
+      <ul>
+        <li>Faciliter la <strong>transmission des informations</strong></li>
+        <li>Motiver et booster le <strong>bien-être au travail</strong></li>
+      </ul>
+    </div>
+    <div class="mini-card">
+      <ul>
+        <li>Animer la vie organisationnelle et <strong>installer le dialogue social</strong></li>
+        <li>Assurer un travail <strong>efficient et efficace</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>📊 Les 3 Niveaux de Communication Interne — Tableau clé ⭐</h4>
+  <table>
+    <thead><tr><th>Type</th><th>Mouvement</th><th>Supports</th><th>Fonction</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Descendante</strong><br>(hiérarchique)</td>
+        <td>Supérieur → Subordonnés<br><em>Directives, ton autoritaire</em></td>
+        <td>Journal interne, réunion, <strong>note de service</strong>, affichage, vidéo, information téléphonée</td>
+        <td>Former, informer et <strong>diriger le personnel</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Ascendante</strong><br>(salariale)</td>
+        <td>Subordonné → Hiérarchie<br><em>Politesse, conditionnel</em></td>
+        <td>Boîte à idées, sondage, affichage, tribune libre. Voies informelles : échange verbal, lettres, <strong>emails</strong></td>
+        <td>Connaître les aspirations, désamorcer les conflits, améliorer les performances</td>
+      </tr>
+      <tr>
+        <td><strong>Horizontale</strong><br>(latérale)</td>
+        <td>Échange d'égal à égal, entre services/départements<br><em>Sans hiérarchie</em></td>
+        <td>Plutôt informelle (buvette…), rencontres interservices, magazine, tableau d'affichage</td>
+        <td>Rassembler le personnel, créer l'<strong>esprit maison</strong>, coordonner la production</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>📄 Note de service vs Note d'information</h4>
+  <div class="comparison-box">
+    <div class="comparison-item red">
+      <h4>Note de service</h4>
+      <ul>
+        <li>Transmet un <strong>ordre ou une décision à appliquer</strong></li>
+        <li>Sens : <strong>descendant uniquement</strong></li>
+        <li>Ton : ferme, impersonnel, style directif</li>
+        <li><strong>JAMAIS</strong> de formule de politesse</li>
+        <li><strong>JAMAIS</strong> de titre de civilité</li>
+        <li>Un seul sujet par note</li>
+      </ul>
+    </div>
+    <div class="comparison-item blue">
+      <h4>Note d'information</h4>
+      <ul>
+        <li>Apporte une <strong>information ou un avis</strong></li>
+        <li>Peut être émise dans <strong>n'importe quel sens</strong> hiérarchique</li>
+        <li>Ton : informatif, plus neutre</li>
+        <li>Diffusion : affichage, email, transmission directe</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚠️ Mentions INDISPENSABLES dans une note de service</div>
+    <div class="g2">
+      <div>
+        <div class="flag-row"><span class="flag-badge">1</span><span class="flag-desc">Le <strong>service émetteur</strong></span></div>
+        <div class="flag-row"><span class="flag-badge">2</span><span class="flag-desc">Le ou les <strong>destinataires</strong></span></div>
+        <div class="flag-row"><span class="flag-badge">3</span><span class="flag-desc">Le titre <strong>« Note de service »</strong> + numéro d'ordre</span></div>
+      </div>
+      <div>
+        <div class="flag-row"><span class="flag-badge">4</span><span class="flag-desc">La <strong>date d'émission</strong></span></div>
+        <div class="flag-row"><span class="flag-badge">5</span><span class="flag-desc">L'<strong>objet</strong> (et pièces jointes si besoin)</span></div>
+        <div class="flag-row"><span class="flag-badge">6</span><span class="flag-desc">Le <strong>nom et la fonction</strong> du signataire</span></div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ──── STYLES RELATIONNELS ──── -->
+  <h3>🎭 Les 6 Styles Relationnels</h3>
+  <div class="key-concept">
+    <strong>Définition :</strong> Les styles relationnels désignent les <strong>manières de communiquer, décider et interagir</strong> entre les acteurs d'une organisation. Ils influencent fortement la qualité du climat de travail, la motivation des équipes et l'efficacité collective.
+  </div>
+
+  <table>
+    <thead><tr><th>Style</th><th>Comportement clé</th><th>Avantages</th><th>Limites</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>1. Directif</strong></td>
+        <td>Impose ses décisions, donne des consignes précises.<br><em>« Termine ce dossier pour 16h. »</em></td>
+        <td>Efficace en urgence. Instructions claires, réduction des erreurs.</td>
+        <td>Peu motivant. Freine l'initiative et l'autonomie.</td>
+      </tr>
+      <tr>
+        <td><strong>2. Persuasif</strong></td>
+        <td>Justifie ses décisions pour convaincre.<br><em>« Cette méthode va réduire les erreurs. »</em></td>
+        <td>Limite les résistances. Meilleure compréhension des décisions.</td>
+        <td>Centré sur le manager. Peut paraître manipulatoire.</td>
+      </tr>
+      <tr>
+        <td><strong>3. Délégatif</strong></td>
+        <td>Confie une mission en toute autonomie.<br><em>« Tu gères entièrement ce projet. »</em></td>
+        <td>Développe les compétences. Fait gagner du temps au manager.</td>
+        <td>Dérives sans suivi. Stress pour les profils inexpérimentés.</td>
+      </tr>
+      <tr>
+        <td><strong>4. Leader (participatif)</strong></td>
+        <td>Implique l'équipe dans la prise de décision collective.</td>
+        <td>Forte motivation des équipes. Développe la créativité.</td>
+        <td>Peut ralentir la prise de décision.</td>
+      </tr>
+      <tr>
+        <td><strong>5. Influenceur</strong></td>
+        <td>Convainc sans autorité hiérarchique.<br><em>« J'ai testé une méthode plus efficace. »</em></td>
+        <td>Favorise l'innovation. Apporte du dynamisme.</td>
+        <td>Peut créer des tensions. Dépend de la crédibilité.</td>
+      </tr>
+      <tr>
+        <td><strong>6. Suiveur</strong></td>
+        <td>Exécute sans prendre d'initiative. Respecte les consignes.</td>
+        <td>Exécution fiable des tâches. Discipline, respect des règles.</td>
+        <td>Peu d'autonomie. Freine l'évolution professionnelle.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <!-- ──── TEAM BUILDING ──── -->
+  <h3>🤜🤛 Le Team Building</h3>
+  <div class="key-concept">
+    <strong>Définition :</strong> Processus qui vise à renforcer la cohésion et la collaboration au sein d'une équipe, par une série d'activités conçues pour promouvoir la communication, la confiance mutuelle, la coopération et l'esprit d'équipe.
+  </div>
+
+  <h4>Objectifs du Team Building</h4>
+  <div class="g2">
+    <div class="mini-card">
+      <ul>
+        <li>Consolider la <strong>cohésion du groupe</strong> et l'esprit collaboratif</li>
+        <li>Renforcer la <strong>confiance</strong> et les relations interpersonnelles</li>
+        <li>Favoriser une meilleure <strong>communication</strong> et compréhension</li>
+      </ul>
+    </div>
+    <div class="mini-card">
+      <ul>
+        <li>Encourager la <strong>coopération</strong> et la résolution de problèmes collectifs</li>
+        <li>Booster la découverte des talents, la <strong>créativité et l'innovation</strong></li>
+        <li>Accroître la <strong>motivation et la productivité</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>📊 Besoins identifiés → Types de team building adaptés</h4>
+  <table>
+    <thead><tr><th>Besoin identifié</th><th>Type de team building recommandé</th></tr></thead>
+    <tbody>
+      <tr><td>Manque de confiance</td><td>Jeux collaboratifs ou en plein air</td></tr>
+      <tr><td>Mauvaise communication entre services</td><td>Co-création de projets inter-équipes (LEGO…)</td></tr>
+      <tr><td>Résistance au changement</td><td>Ateliers sur le changement ludique</td></tr>
+      <tr><td>Nouvelle équipe hybride</td><td>Ice breakers + travail collaboratif à distance</td></tr>
+      <tr><td>Besoin de remotivation</td><td>Challenge collectif ou escape game d'équipe</td></tr>
+    </tbody>
+  </table>
+
+  <h4>🔢 Les 7 Étapes de Planification d'un Team Building</h4>
+  <div class="steps">
+    <div class="step"><div class="step-ltr">1</div><div class="step-body"><div class="step-title">Définir les objectifs</div><div class="step-sub">Objectifs spécifiques : cohésion, communication, résolution de problèmes. Des objectifs clairs → activités appropriées.</div></div></div>
+    <div class="step"><div class="step-ltr">2</div><div class="step-body"><div class="step-title">Évaluer les besoins de l'équipe</div><div class="step-sub">Enquêtes, entretiens individuels ou réunions de groupe. Identifier les domaines problématiques.</div></div></div>
+    <div class="step"><div class="step-ltr">3</div><div class="step-body"><div class="step-title">Concevoir les activités</div><div class="step-sub">Adapter à la taille de l'équipe, à la durée et aux préférences des membres.</div></div></div>
+    <div class="step"><div class="step-ltr">4</div><div class="step-body"><div class="step-title">Planifier les détails logistiques</div><div class="step-sub">Date, lieu, durée, équipements, repas, hébergement et transport.</div></div></div>
+    <div class="step"><div class="step-ltr">5</div><div class="step-body"><div class="step-title">Communiquer et impliquer l'équipe</div><div class="step-sub">Communication claire et régulière. Recueillir les idées et attentes des membres.</div></div></div>
+    <div class="step"><div class="step-ltr">6</div><div class="step-body"><div class="step-title">Faciliter les activités</div><div class="step-sub">Expliquer les règles, créer un environnement sûr et inclusif, encourager la participation active.</div></div></div>
+    <div class="step"><div class="step-ltr">7</div><div class="step-body"><div class="step-title">Débriefing et suivi</div><div class="step-sub">Partager réflexions et apprentissages. Identifier des actions concrètes. Suivi régulier de l'évolution.</div></div></div>
+  </div>
+</section>
+
+<!-- ════════════════════════ PARTIE 2 ════════════════════════ -->
+<section id="part2">
+  <div class="sh">
+    <span class="snum">Partie 2</span>
+    <h2>🎯 Focus Examen</h2>
+  </div>
+
+  <h3>🏆 Points les plus probables à l'examen</h3>
+  <div class="key-concept">
+    <strong>TOP 5 — Ce qui revient systématiquement :</strong>
+    <ol style="margin-top: 10px;">
+      <li><strong>Rédiger un e-mail ou une lettre de réclamation</strong> → souvent 30 à 40 % de la note</li>
+      <li><strong>Identifier les types de communication interne</strong> (descendante / ascendante / horizontale) et leurs supports</li>
+      <li><strong>Reconnaître les styles relationnels</strong> dans des situations données + avantages/limites</li>
+      <li><strong>Compléter ou corriger une note de service</strong> avec les mentions obligatoires</li>
+      <li><strong>Étude de cas</strong> sur la communication interne ou le team building</li>
+    </ol>
+  </div>
+
+  <h3>📌 Concepts à maîtriser absolument</h3>
+  <div class="g2">
+    <div class="rule-card"><div class="rule-icon">⭐</div><div class="rule-text">Les <strong>4 facteurs motivationnels</strong> de la perception avec définitions ET exemples en entreprise</div></div>
+    <div class="rule-card"><div class="rule-icon">⭐</div><div class="rule-text">Les <strong>3 niveaux de communication interne</strong> + leurs supports + leurs fonctions</div></div>
+    <div class="rule-card"><div class="rule-icon">⭐</div><div class="rule-text">Les <strong>6 styles relationnels</strong> : nommer, reconnaître dans une situation, avantages et limites</div></div>
+    <div class="rule-card"><div class="rule-icon">⭐</div><div class="rule-text">La <strong>structure complète</strong> d'un e-mail / lettre de réclamation avec dates et formulations</div></div>
+    <div class="rule-card"><div class="rule-icon">⭐</div><div class="rule-text">Les <strong>mentions indispensables</strong> d'une note de service (6 éléments)</div></div>
+    <div class="rule-card"><div class="rule-icon">⭐</div><div class="rule-text">Les <strong>3 mécanismes de perception</strong> : attention, distorsion, rétention sélectives</div></div>
+  </div>
+
+  <h3>⚠️ Pièges fréquents</h3>
+  <div class="alert al-red">❌ <strong>Piège 1 :</strong> Confondre <em>note de service</em> (ordre/décision → descendante) et <em>note d'information</em> (avis/information → tous sens). Ce sont deux documents distincts !</div>
+  <div class="alert al-red">❌ <strong>Piège 2 :</strong> Omettre les dates dans un e-mail de réclamation = perte du poids juridique. Les dates sont ESSENTIELLES.</div>
+  <div class="alert al-red">❌ <strong>Piège 3 :</strong> Confondre communication descendante et ascendante. Retenir : <strong>descendante = boss → employés ; ascendante = employés → boss</strong>.</div>
+  <div class="alert al-red">❌ <strong>Piège 4 :</strong> Croire que le style suiveur est négatif. Il assure l'exécution fiable des tâches et la discipline — sa limite est le manque d'autonomie.</div>
+  <div class="alert al-red">❌ <strong>Piège 5 :</strong> Confondre <em>délégatif</em> (donne l'autonomie totale = "tu gères seul") et <em>leader/participatif</em> (décide AVEC l'équipe = "qu'est-ce qu'on fait ensemble ?")</div>
+
+  <h3>🚫 Erreurs à éviter</h3>
+  <div class="comparison-box">
+    <div class="comparison-item red">
+      <h4>❌ Dans la note de service</h4>
+      <ul>
+        <li>Ajouter une formule de politesse finale</li>
+        <li>Ajouter un titre de civilité (« À l'attention de M. »)</li>
+        <li>Traiter plus d'un sujet dans la même note</li>
+        <li>Oublier le numéro d'ordre</li>
+      </ul>
+    </div>
+    <div class="comparison-item red">
+      <h4>❌ Dans l'e-mail de réclamation</h4>
+      <ul>
+        <li>Écrire avec des émotions excessives (colère, exagération)</li>
+        <li>Oublier les dates clés</li>
+        <li>Ne pas formuler de demande précise ni de délai</li>
+        <li>Utiliser un objet vague comme « Problème »</li>
+        <li>Oublier la formule de politesse dans une lettre formelle</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ PARTIE 3 ════════════════════════ -->
+<section id="part3">
+  <div class="sh">
+    <span class="snum">Partie 3</span>
+    <h2>📧 E-mail de Réclamation</h2>
+  </div>
+
+  <div class="key-concept">
+    <strong>La règle d'or :</strong> Un bon écrit de réclamation = <strong>FACTUEL + STRUCTURÉ + FERME + POLI</strong><br>
+    ✔ Registre courant + professionnel &nbsp;|&nbsp; ✔ Chronologie claire (dates précises) &nbsp;|&nbsp; ✔ Argumentation factuelle (pas d'émotion inutile) &nbsp;|&nbsp; ✔ Demande claire + délai juridiquement crédible
+  </div>
+
+  <h3>🔢 Structure en 6 étapes</h3>
+  <div class="steps">
+    <div class="step"><div class="step-ltr">1</div><div class="step-body"><div class="step-title">Identification (En-tête)</div><div class="step-sub">Expéditeur + destinataire + ville + date + <strong>Objet précis</strong><br>Ex : <em>Objet : Réclamation concernant la pose d'une porte non conforme</em></div></div></div>
+    <div class="step"><div class="step-ltr">2</div><div class="step-body"><div class="step-title">Formule d'appel</div><div class="step-sub">Toujours : <strong>Madame, Monsieur,</strong> (double genre par sécurité)</div></div></div>
+    <div class="step"><div class="step-ltr">3</div><div class="step-body"><div class="step-title">Corps — Exposé du problème</div><div class="step-sub">Rappel de la commande + date d'intervention + description précise et factuelle des anomalies constatées<br><em>« Je me permets de vous adresser cette lettre afin de vous faire part de mon mécontentement concernant [prestation] effectuée le [DATE], suite à la commande passée le [DATE]. Dès le [DATE], j'ai constaté plusieurs anomalies… »</em></div></div></div>
+    <div class="step"><div class="step-ltr">4</div><div class="step-body"><div class="step-title">Corps — Historique des démarches</div><div class="step-sub">Preuves de bonne foi : dates et modes de contact sans résultat<br><em>« Je vous ai contacté une première fois par téléphone le [DATE], puis par e-mail le [DATE], sans qu'une solution satisfaisante ne soit apportée à ce jour. »</em></div></div></div>
+    <div class="step"><div class="step-ltr">5</div><div class="step-body"><div class="step-title">Demande + Délai + Menace légale</div><div class="step-sub">Demande claire + délai précis + recours en cas de non-réponse<br><em>« En conséquence, je vous demande d'intervenir dans un délai de 15 jours… À défaut, je me verrai dans l'obligation d'engager des démarches supplémentaires pour faire valoir mes droits. »</em></div></div></div>
+    <div class="step"><div class="step-ltr">6</div><div class="step-body"><div class="step-title">Formule de politesse finale</div><div class="step-sub"><strong>Lettre formelle :</strong> <em>« Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées. »</em><br><strong>E-mail :</strong> <em>Cordialement, [Prénom Nom] — [Téléphone]</em></div></div></div>
+  </div>
+
+  <h3>📅 Pourquoi les dates sont ESSENTIELLES</h3>
+  <div class="g2">
+    <div class="mini-card">
+      <div class="flag-row"><span class="flag-badge">Date de commande</span><span class="flag-desc">Preuve d'<strong>engagement contractuel</strong></span></div>
+      <div class="flag-row"><span class="flag-badge">Date d'intervention</span><span class="flag-desc">Point de départ du <strong>problème</strong></span></div>
+    </div>
+    <div class="mini-card">
+      <div class="flag-row"><span class="flag-badge">Dates de relances</span><span class="flag-desc">Preuve de votre <strong>bonne foi</strong></span></div>
+      <div class="flag-row"><span class="flag-badge">Délai fixé</span><span class="flag-desc"><strong>Pression légale</strong> sur l'entreprise</span></div>
+    </div>
+  </div>
+
+  <h3>📨 Différence Lettre Formelle vs E-mail</h3>
+  <table>
+    <thead><tr><th>Critère</th><th>Lettre formelle</th><th>E-mail</th></tr></thead>
+    <tbody>
+      <tr><td><strong>En-tête</strong></td><td>Complet (adresse, téléphone, email, ville, date)</td><td>Objet explicite dans le champ Objet</td></tr>
+      <tr><td><strong>Formule de politesse</strong></td><td>« Je vous prie d'agréer… »</td><td>« Cordialement » + Nom + Téléphone</td></tr>
+      <tr><td><strong>Longueur</strong></td><td>Plus détaillée</td><td>Concise, va droit au but</td></tr>
+      <tr><td><strong>Signature</strong></td><td>Manuscrite</td><td>Nom + coordonnées en pied de message</td></tr>
+    </tbody>
+  </table>
+
+  <h3>✉️ Exemple type d'examen (E-mail de réclamation)</h3>
+  <div class="email-block">
+    <span class="email-field">Objet :</span> Réclamation – <span class="email-placeholder">[Problème constaté ex : Porte non conforme]</span><br><br>
+    Madame, Monsieur,<br><br>
+    Je me permets de vous contacter concernant <span class="email-placeholder">[la prestation / le produit]</span> installé(e) à <span class="email-placeholder">[domicile / lieu]</span> le <span class="email-placeholder">[DATE D'INTERVENTION]</span>, suite à la commande passée le <span class="email-placeholder">[DATE DE COMMANDE]</span>.<br><br>
+    Dès le <span class="email-placeholder">[DATE DU CONSTAT]</span>, j'ai constaté plusieurs dysfonctionnements, notamment : <span class="email-placeholder">[description précise et factuelle des problèmes]</span>.<br><br>
+    Malgré une première prise de contact par téléphone le <span class="email-placeholder">[DATE RELANCE 1]</span>, suivie d'un e-mail le <span class="email-placeholder">[DATE RELANCE 2]</span>, aucune intervention n'a été réalisée à ce jour.<br><br>
+    Cette situation ne correspond pas aux engagements prévus et nuit à l'utilisation normale de l'équipement.<br><br>
+    En conséquence, je vous demande de bien vouloir intervenir dans un délai de <strong>15 jours à compter de la réception de ce message</strong>, soit avant le <span class="email-placeholder">[DATE LIMITE]</span>, afin de procéder aux réparations nécessaires ou au remplacement.<br><br>
+    À défaut de réponse ou d'intervention dans ce délai, je me verrai dans l'obligation d'engager des démarches supplémentaires pour faire valoir mes droits.<br><br>
+    Cordialement,<br>
+    <span class="email-placeholder">[Prénom NOM]</span><br>
+    <span class="email-placeholder">[Téléphone]</span>
+  </div>
+
+  <h3>❌ Erreurs fréquentes à éviter</h3>
+  <div class="alert al-red">❌ Écrire avec des émotions excessives → toujours rester <strong>factuel</strong> et neutre</div>
+  <div class="alert al-red">❌ Oublier des dates clés → le message perd son poids juridique</div>
+  <div class="alert al-red">❌ Ne pas formuler de <strong>demande précise</strong> (quoi faire ?) ni de <strong>délai</strong></div>
+  <div class="alert al-red">❌ Utiliser un objet vague comme « Problème » → toujours précis : « Réclamation – Porte non conforme »</div>
+  <div class="alert al-red">❌ Oublier la formule de politesse finale dans une lettre formelle</div>
+  <div class="alert al-green">✅ Bon écrit = <strong>factuel + structuré + ferme + poli</strong> avec chronologie claire et demande précise assortie d'un délai</div>
+</section>
+
+<!-- ════════════════════════ PARTIE 4 ════════════════════════ -->
+<section id="part4">
+  <div class="sh">
+    <span class="snum">Partie 4</span>
+    <h2>📋 Études de Cas</h2>
+  </div>
+
+  <h3>🔢 Méthode de résolution en 5 étapes</h3>
+  <div class="steps">
+    <div class="step"><div class="step-ltr">1</div><div class="step-body"><div class="step-title">LIRE attentivement</div><div class="step-sub">Identifier le contexte, les acteurs impliqués et le problème central.</div></div></div>
+    <div class="step"><div class="step-ltr">2</div><div class="step-body"><div class="step-title">ANALYSER</div><div class="step-sub">Repérer les concepts du cours impliqués (style relationnel ? niveau de comm. ? facteur de perception ?)</div></div></div>
+    <div class="step"><div class="step-ltr">3</div><div class="step-body"><div class="step-title">DIAGNOSTIQUER</div><div class="step-sub">Nommer le ou les problème(s) avec le <strong>vocabulaire précis du cours</strong>.</div></div></div>
+    <div class="step"><div class="step-ltr">4</div><div class="step-body"><div class="step-title">PROPOSER</div><div class="step-sub">Solutions concrètes et argumentées, en lien direct avec les concepts identifiés.</div></div></div>
+    <div class="step"><div class="step-ltr">5</div><div class="step-body"><div class="step-title">CONCLURE</div><div class="step-sub">Synthèse brève en lien avec les objectifs de communication.</div></div></div>
+  </div>
+
+  <h3>💼 Cas type 1 — Communication Interne défaillante</h3>
+  <div class="card">
+    <div class="card-title">📄 Situation</div>
+    <p>Dans une entreprise, les employés apprennent <strong>via les réseaux sociaux</strong> une décision stratégique importante de leur direction. Ils se sentent exclus et démotivés. Les rumeurs se multiplient.</p>
+  </div>
+  <div class="comparison-box">
+    <div class="comparison-item blue">
+      <h4>🔍 Analyse</h4>
+      <ul>
+        <li><strong>Problème :</strong> Dysfonctionnement de la communication <em>descendante</em> — absence de canaux formels d'information</li>
+        <li><strong>Concepts :</strong> Communication interne (niveaux), canaux de communication, motivation</li>
+        <li><strong>Conséquences :</strong> Manque de confiance, rumeurs, démotivation, résistance au changement</li>
+      </ul>
+    </div>
+    <div class="comparison-item green">
+      <h4>✅ Solutions</h4>
+      <ul>
+        <li>Mettre en place un <strong>journal interne</strong> ou des réunions d'information régulières</li>
+        <li>Utiliser des <strong>e-mails officiels</strong> pour diffuser les décisions stratégiques en temps réel</li>
+        <li>Développer la communication <strong>ascendante</strong> (boîte à idées, sondages) pour impliquer les salariés</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>💼 Cas type 2 — Choix du Style Relationnel</h3>
+  <div class="card">
+    <div class="card-title">📄 Situation</div>
+    <p>Un manager doit choisir quel style adopter dans 3 cas : <strong>(a)</strong> un collaborateur junior en période d'essai ; <strong>(b)</strong> une crise urgente nécessitant une décision immédiate ; <strong>(c)</strong> une équipe senior créative pour un projet innovant.</p>
+  </div>
+  <table>
+    <thead><tr><th>Cas</th><th>Style adapté</th><th>Justification</th></tr></thead>
+    <tbody>
+      <tr><td><strong>(a) Junior en essai</strong></td><td>Directif ou Persuasif</td><td>Besoin d'un encadrement clair, consignes précises. Justification des décisions pour rassurer.</td></tr>
+      <tr><td><strong>(b) Crise urgente</strong></td><td>Directif</td><td>Rapidité et contrôle. Pas de place à la délibération collective en situation d'urgence.</td></tr>
+      <tr><td><strong>(c) Équipe senior / créative</strong></td><td>Leader (participatif) ou Délégatif</td><td>Impliquer, responsabiliser, favoriser la créativité. L'équipe a la maturité pour l'autonomie.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>💼 Cas type 3 — Perception et Communication</h3>
+  <div class="card">
+    <div class="card-title">📄 Situation</div>
+    <p>Un chef de projet reçoit un feedback négatif de sa hiérarchie sur un livrable. Il répond avec irritation en affirmant que son travail est excellent et que la critique est injuste. Il ne modifie pas son rendu.</p>
+  </div>
+  <div class="alert al-blue">
+    <strong>Analyse :</strong> On observe ici la <strong>défense perceptuelle</strong> (rejet des informations menaçantes pour l'ego) combinée à un <strong>état affectif négatif</strong> (irritation) qui biaise la réception du message. La <strong>distorsion sélective</strong> est aussi présente (réinterprétation de la critique comme une injustice). Solution : développer l'<strong>adaptabilité</strong> et la vigilance perceptuelle ; pratiquer l'écoute active.
+  </div>
+
+  <h3>❓ Questions typiques d'examen</h3>
+  <div class="g2">
+    <div class="mini-card">
+      <ul>
+        <li>« Identifiez le type de communication interne utilisé et ses limites dans cette situation. »</li>
+        <li>« Quel style relationnel le manager adopte-t-il ? Justifiez votre réponse. »</li>
+        <li>« Quelles actions de team building proposeriez-vous pour résoudre ce problème d'équipe ? »</li>
+      </ul>
+    </div>
+    <div class="mini-card">
+      <ul>
+        <li>« Rédigez un e-mail professionnel / de réclamation en réponse à cette situation. »</li>
+        <li>« Identifiez les mécanismes de perception à l'œuvre dans cet échange. »</li>
+        <li>« Complétez / corrigez cette note de service en ajoutant les mentions manquantes. »</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ PARTIE 5 ════════════════════════ -->
+<section id="part5">
+  <div class="sh">
+    <span class="snum">Partie 5</span>
+    <h2>✅ QCM — Questions & Corrections</h2>
+  </div>
+
+  <h3>🧠 Thème 1 — Communication Interpersonnelle & Perception</h3>
+
+  <div class="qcm-block">
+    <div class="qcm-num">Q1</div>
+    <div class="qcm-q">Quel mécanisme de perception pousse un individu à déformer une information pour la rendre conforme à ses attentes ?</div>
+    <ul class="qcm-options">
+      <li>A. L'attention sélective</li>
+      <li class="correct">B. La distorsion sélective ✔</li>
+      <li>C. La rétention sélective</li>
+      <li>D. L'adaptabilité</li>
+    </ul>
+    <div class="qcm-expl">💡 La <strong>distorsion sélective</strong> = déformer l'information reçue pour la rendre conforme à ses attentes. L'attention sélective filtre les messages reçus. La rétention sélective choisit ce qu'on mémorise.</div>
+  </div>
+
+  <div class="qcm-block">
+    <div class="qcm-num">Q2</div>
+    <div class="qcm-q">Un employé reçoit un retour critique mais ne retient que les aspects positifs, ignorant les remarques négatives. Quel facteur motivationnel est en jeu ?</div>
+    <ul class="qcm-options">
+      <li>A. L'adaptabilité</li>
+      <li>B. La vigilance perceptuelle</li>
+      <li class="correct">C. La défense perceptuelle ✔</li>
+      <li>D. L'état affectif</li>
+    </ul>
+    <div class="qcm-expl">💡 La <strong>défense perceptuelle</strong> est un mécanisme de protection psychologique : filtrer ou ignorer les informations menaçantes pour l'ego ou les croyances.</div>
+  </div>
+
+  <div class="qcm-block">
+    <div class="qcm-num">Q3</div>
+    <div class="qcm-q">Lors d'une réunion, un manager capte un regard fuyant et un soupir discret d'un collaborateur et ajuste son discours. Quelle compétence illustre-t-il ?</div>
+    <ul class="qcm-options">
+      <li>A. La défense perceptuelle</li>
+      <li>B. L'état affectif</li>
+      <li class="correct">C. La vigilance perceptuelle ✔</li>
+      <li>D. La distorsion sélective</li>
+    </ul>
+    <div class="qcm-expl">💡 La <strong>vigilance perceptuelle</strong> = capacité à rester attentif aux signaux faibles (ton de voix, micro-expressions, sous-entendus). Une vigilance élevée permet de détecter des malaises non verbaux.</div>
+  </div>
+
+  <div class="qcm-block">
+    <div class="qcm-num">Q4</div>
+    <div class="qcm-q">Un manager adapte son style de feedback selon le profil de chaque collaborateur (valorisation pour les uns, précision pour les autres). Quel facteur cela illustre-t-il ?</div>
+    <ul class="qcm-options">
+      <li>A. La rétention sélective</li>
+      <li>B. La défense perceptuelle</li>
+      <li>C. La vigilance perceptuelle</li>
+      <li class="correct">D. L'adaptabilité ✔</li>
+    </ul>
+    <div class="qcm-expl">💡 L'<strong>adaptabilité</strong> = capacité à ajuster sa perception et son comportement selon l'interlocuteur et le contexte. Elle améliore la réception des messages.</div>
+  </div>
+
+  <h3>🏢 Thème 2 — Communication Interne</h3>
+
+  <div class="qcm-block">
+    <div class="qcm-num">Q5</div>
+    <div class="qcm-q">Une décision de la direction est communiquée aux employés via une note de service affichée dans les ateliers. Quel type de communication est utilisé ?</div>
+    <ul class="qcm-options">
+      <li>A. Communication ascendante</li>
+      <li>B. Communication horizontale</li>
+      <li class="correct">C. Communication descendante ✔</li>
+      <li>D. Communication informelle</li>
+    </ul>
+    <div class="qcm-expl">💡 La <strong>communication descendante</strong> part d'un supérieur hiérarchique vers les subordonnés. La note de service est son support typique.</div>
+  </div>
+
+  <div class="qcm-block">
+    <div class="qcm-num">Q6</div>
+    <div class="qcm-q">La boîte à idées et le sondage interne sont des supports typiques de :</div>
+    <ul class="qcm-options">
+      <li>A. La communication descendante</li>
+      <li class="correct">B. La communication ascendante ✔</li>
+      <li>C. La communication horizontale</li>
+      <li>D. La communication externe</li>
+    </ul>
+    <div class="qcm-expl">💡 La <strong>communication ascendante</strong> (salariale) part du bas vers la hiérarchie. Ses supports formalisés : boîte à idées, sondage, affichage, tribune libre. Elle emprunte aussi des voies informelles (emails, échange verbal).</div>
+  </div>
+
+  <div class="qcm-block">
+    <div class="qcm-num">Q7</div>
+    <div class="qcm-q">Laquelle de ces mentions est INCORRECTE dans une note de service ?</div>
+    <ul class="qcm-options">
+      <li>A. La date d'émission</li>
+      <li class="correct">B. La formule de politesse finale ✔</li>
+      <li>C. Le numéro d'ordre</li>
+      <li>D. Le nom et la fonction du signataire</li>
+    </ul>
+    <div class="qcm-expl">💡 Une note de service ne comporte <strong>ni titre de civilité ni formule de politesse</strong>. Son style est clair, précis, courtois mais ferme, le plus souvent impersonnel.</div>
+  </div>
+
+  <div class="qcm-block">
+    <div class="qcm-num">Q8</div>
+    <div class="qcm-q">Des collègues de différents services échangent autour de la machine à café sur un projet commun. Quel type de communication est-ce ?</div>
+    <ul class="qcm-options">
+      <li>A. Communication descendante</li>
+      <li>B. Communication ascendante</li>
+      <li class="correct">C. Communication horizontale ✔</li>
+      <li>D. Communication externe</li>
+    </ul>
+    <div class="qcm-expl">💡 La <strong>communication horizontale (latérale)</strong> est un échange d'égal à égal, entre différents secteurs/services, sans notion hiérarchique. Elle est souvent informelle.</div>
+  </div>
+
+  <h3>🎭 Thème 3 — Styles Relationnels</h3>
+
+  <div class="qcm-block">
+    <div class="qcm-num">Q9</div>
+    <div class="qcm-q">Un manager dit à son équipe : « J'ai besoin de votre avis avant de prendre cette décision. » Quel style adopte-t-il ?</div>
+    <ul class="qcm-options">
+      <li>A. Directif</li>
+      <li>B. Délégatif</li>
+      <li>C. Persuasif</li>
+      <li class="correct">D. Leader (participatif) ✔</li>
+    </ul>
+    <div class="qcm-expl">💡 Le <strong>style leader</strong> implique activement l'équipe dans la prise de décision. L'objectif est de favoriser la mobilisation collective et la réflexion commune.</div>
+  </div>
+
+  <div class="qcm-block">
+    <div class="qcm-num">Q10</div>
+    <div class="qcm-q">Quel style relationnel est le plus adapté en situation d'urgence nécessitant une réponse immédiate ?</div>
+    <ul class="qcm-options">
+      <li>A. Participatif</li>
+      <li>B. Délégatif</li>
+      <li class="correct">C. Directif ✔</li>
+      <li>D. Influenceur</li>
+    </ul>
+    <div class="qcm-expl">💡 Le <strong>style directif</strong> est particulièrement efficace en urgence car il permet de donner des instructions précises et de centraliser rapidement les décisions.</div>
+  </div>
+
+  <div class="qcm-block">
+    <div class="qcm-num">Q11</div>
+    <div class="qcm-q">Un collaborateur partage avec ses collègues une méthode innovante qu'il a testée : « Elle est plus efficace, essayez-la ! » Sans autorité hiérarchique, quel style utilise-t-il ?</div>
+    <ul class="qcm-options">
+      <li>A. Directif</li>
+      <li>B. Persuasif</li>
+      <li class="correct">C. Influenceur ✔</li>
+      <li>D. Délégatif</li>
+    </ul>
+    <div class="qcm-expl">💡 Le <strong>style influenceur</strong> ne repose pas sur une autorité hiérarchique mais sur la capacité à convaincre et à inspirer les autres en partageant son expérience.</div>
+  </div>
+
+  <div class="qcm-block">
+    <div class="qcm-num">Q12</div>
+    <div class="qcm-q">Quel style présente le risque de paraître manipulatoire tout en restant centré sur le manager ?</div>
+    <ul class="qcm-options">
+      <li>A. Directif</li>
+      <li class="correct">B. Persuasif ✔</li>
+      <li>C. Influenceur</li>
+      <li>D. Suiveur</li>
+    </ul>
+    <div class="qcm-expl">💡 Le <strong>style persuasif</strong> justifie les décisions pour convaincre les collaborateurs. Bien qu'il limite les résistances, il reste centré sur le manager et peut être perçu comme manipulatoire.</div>
+  </div>
+
+  <h3>🤜🤛 Thème 4 — Team Building & E-mail</h3>
+
+  <div class="qcm-block">
+    <div class="qcm-num">Q13</div>
+    <div class="qcm-q">Une équipe présente de la résistance au changement suite à une restructuration. Quel type de team building est le plus adapté ?</div>
+    <ul class="qcm-options">
+      <li>A. Jeux collaboratifs en plein air</li>
+      <li class="correct">B. Ateliers sur le changement ludique ✔</li>
+      <li>C. Ice breakers à distance</li>
+      <li>D. Escape game d'équipe</li>
+    </ul>
+    <div class="qcm-expl">💡 Selon le cours, la <strong>résistance au changement</strong> appelle des <strong>ateliers sur le changement ludique</strong>, conçus pour dédramatiser le changement et impliquer les membres dans sa mise en œuvre.</div>
+  </div>
+
+  <div class="qcm-block">
+    <div class="qcm-num">Q14</div>
+    <div class="qcm-q">Dans un e-mail de réclamation, pourquoi est-il essentiel de mentionner les dates des relances précédentes ?</div>
+    <ul class="qcm-options">
+      <li>A. Pour allonger le message</li>
+      <li class="correct">B. Pour prouver la bonne foi et exercer une pression légale ✔</li>
+      <li>C. Pour respecter le formalisme de la lettre</li>
+      <li>D. Pour éviter toute confusion</li>
+    </ul>
+    <div class="qcm-expl">💡 Les dates de relances constituent une <strong>preuve de bonne foi</strong> et montrent que l'expéditeur a tenté de régler le problème à l'amiable avant d'envisager des démarches légales.</div>
+  </div>
+
+  <div class="qcm-block">
+    <div class="qcm-num">Q15</div>
+    <div class="qcm-q">Quelle est la formule de politesse correcte pour clore un e-mail professionnel simple (pas une lettre formelle) ?</div>
+    <ul class="qcm-options">
+      <li>A. Je vous prie d'agréer l'expression de mes salutations distinguées.</li>
+      <li>B. Bien à vous, avec mes respects.</li>
+      <li class="correct">C. Cordialement, [Prénom Nom] ✔</li>
+      <li>D. Sincèrement vôtre,</li>
+    </ul>
+    <div class="qcm-expl">💡 Pour un e-mail professionnel, <strong>« Cordialement »</strong> suivi du nom et des coordonnées est la clôture appropriée. « Je vous prie d'agréer… » est réservé aux lettres formelles officielles.</div>
+  </div>
+
+  <div class="qcm-block">
+    <div class="qcm-num">Q16</div>
+    <div class="qcm-q">Quelle est la première étape de planification d'un team building selon le cours ?</div>
+    <ul class="qcm-options">
+      <li>A. Concevoir les activités</li>
+      <li>B. Planifier les détails logistiques</li>
+      <li class="correct">C. Définir les objectifs ✔</li>
+      <li>D. Faciliter les activités</li>
+    </ul>
+    <div class="qcm-expl">💡 La première étape est de <strong>définir les objectifs spécifiques</strong> du team building. Des objectifs clairs permettent ensuite de concevoir des activités appropriées.</div>
+  </div>
+</section>
+
+<!-- ════════════════════════ PARTIE 6 ════════════════════════ -->
+<section id="part6">
+  <div class="sh">
+    <span class="snum">Partie 6</span>
+    <h2>🗂️ Fiche de Révision Finale</h2>
+  </div>
+
+  <h3>📌 L'essentiel en un coup d'œil</h3>
+  <table>
+    <thead><tr><th>Concept</th><th>À mémoriser</th></tr></thead>
+    <tbody>
+      <tr><td><strong>3 mécanismes de perception</strong></td><td>Attention sélective · Distorsion sélective · Rétention sélective</td></tr>
+      <tr><td><strong>4 facteurs motivationnels</strong></td><td>État affectif · Vigilance perceptuelle · Défense perceptuelle · Adaptabilité</td></tr>
+      <tr><td><strong>3 niveaux de comm. interne</strong></td><td>Descendante (boss→employés) · Ascendante (employés→boss) · Horizontale (égal à égal)</td></tr>
+      <tr><td><strong>Note de service</strong></td><td>Ordre/décision · descendante · PAS de formule de politesse · PAS de titre de civilité · 1 seul sujet · numéro d'ordre obligatoire</td></tr>
+      <tr><td><strong>6 styles relationnels</strong></td><td>Directif · Persuasif · Délégatif · Leader · Influenceur · Suiveur</td></tr>
+      <tr><td><strong>E-mail de réclamation</strong></td><td>FACTUEL + STRUCTURÉ + FERME + POLI · Dates essentielles · Demande + délai + recours</td></tr>
+      <tr><td><strong>Team building (étapes)</strong></td><td>Définir objectifs → Évaluer besoins → Concevoir activités → Planifier logistique → Communiquer → Faciliter → Débriefing</td></tr>
+      <tr><td><strong>Formule de politesse</strong></td><td><strong>Lettre :</strong> « Je vous prie d'agréer… » · <strong>E-mail :</strong> « Cordialement, [Nom] »</td></tr>
+    </tbody>
+  </table>
+
+  <h3>🏆 Règle de Pareto — Les 20% qui font 80% de la réussite</h3>
+  <div class="pareto-box">
+    <h3>🎯 Maîtriser ces 4 points = décrocher la majorité des points</h3>
+    <ul>
+      <li><strong style="color:rgb(255,220,100)">1. L'e-mail / lettre de réclamation</strong> → structure, dates, formulations → souvent <strong style="color:rgb(255,220,100)">30 à 40 % de la note</strong>. S'entraîner à le rédiger jusqu'à maîtriser le template par cœur.</li>
+      <li><strong style="color:rgb(255,220,100)">2. Les 3 niveaux de communication interne + la note de service</strong> → définitions + tableau des supports + règles de rédaction de la note.</li>
+      <li><strong style="color:rgb(255,220,100)">3. Les 6 styles relationnels</strong> → savoir les nommer, les reconnaître dans une situation concrète et donner 1 avantage + 1 limite.</li>
+      <li><strong style="color:rgb(255,220,100)">4. Les 4 facteurs motivationnels de la perception</strong> → définitions claires + un exemple en entreprise pour chacun.</li>
+    </ul>
+  </div>
+
+  <div class="comparison-box">
+    <div class="comparison-item green">
+      <h4>✅ À FAIRE avant l'examen</h4>
+      <ul>
+        <li>Mémoriser les tableaux du cours</li>
+        <li>S'entraîner à rédiger un e-mail de réclamation complet</li>
+        <li>Réviser les 4 facteurs motivationnels avec les exemples</li>
+        <li>Refaire les QCM jusqu'à 100 %</li>
+        <li>Connaître la structure de la note de service par cœur</li>
+      </ul>
+    </div>
+    <div class="comparison-item red">
+      <h4>❌ À ÉVITER</h4>
+      <ul>
+        <li>Confondre note de service et note d'information</li>
+        <li>Oublier les dates dans la réclamation</li>
+        <li>Écrire avec des émotions dans un e-mail professionnel</li>
+        <li>Mettre une formule de politesse dans une note de service</li>
+        <li>Confondre style délégatif et style leader/participatif</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert al-green" style="margin-top: 30px; font-size: 1.05em; text-align: center;">
+    🎓 <strong>Bon courage pour l'examen !</strong> — Ce guide est basé intégralement sur le contenu de tes cours. Révise les tableaux, entraîne-toi sur les e-mails, et les points tombent ! 💪
+  </div>
+</section>
+
+</div>
+</body>
+</html>
