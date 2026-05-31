@@ -149,120 +149,167 @@
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .subtitle {
+                font-size: 1.1em;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>📚 Hub de Révisions</h1>
-            <p class="subtitle">Toutes vos ressources d'étude en un seul endroit</p>
-        </header>
+<div class="container">
 
-        <div class="cards-grid">
-            <a href="linux-admin-complet.html" class="card-link">
-                <div class="card">
-                    <div class="card-icon">🐧</div>
-                    <div class="card-title">Administration Linux</div>
-                    <div class="card-description">
-                        Gestion avancée des disques, LVM, Stratis, partages réseaux (NFS/Samba), automatisation avec Cron et conteneurisation Podman.
-                    </div>
-                    <div>
-                        <span class="badge">LVM</span>
-                        <span class="badge">Podman</span>
-                        <span class="badge">Réseau</span>
-                        <span class="badge">Storage</span>
-                    </div>
-                    <div class="card-meta">
-                        <span class="card-topics">8 Parties</span>
-                        <span class="card-arrow">→</span>
-                    </div>
-                </div>
-            </a>
+    <header>
+        <h1>📚 Hub de Révisions ING-3</h1>
+        <p class="subtitle">
+            Guides complets, exercices, QCM et fiches de révision pour tous les modules
+        </p>
+    </header>
 
-            <a href="reseaux-ip2-complet.html" class="card-link">
-                <div class="card">
-                    <div class="card-icon">🌐</div>
-                    <div class="card-title">Network</div>
-                    <div class="card-description">
-                        Les protocoles de la couche transport TCP et UDP. protocole DHCP  NAT et PAT
-                    </div>
-                    <div>
-                        <span class="badge">Network</span>
-                        <span class="badge">TCP</span>
-                        <span class="badge">DHCP</span>
-                        <span class="badge">UDP</span>
-                    </div>
-                    <div class="card-meta">
-                        <span class="card-topics">1 Chapitre</span>
-                        <span class="card-arrow">→</span>
-                    </div>
-                </div>
-            </a>
+    <div class="cards-grid">
 
-            <a href="sql_relational_guide.html" class="card-link">
-                <div class="card">
-                    <div class="card-icon">📊</div>
-                    <div class="card-title">SQL & Modélisation</div>
-                    <div class="card-description">
-                        Maîtrise de la modélisation Entité-Relation, passage au modèle relationnel, algèbre relationnelle et requêtes SQL (LID).
-                    </div>
-                    <div>
-                        <span class="badge">Entité-Relation</span>
-                        <span class="badge">Algèbre</span>
-                        <span class="badge">SQL (LID)</span>
-                    </div>
-                    <div class="card-meta">
-                        <span class="card-topics">3 Chapitres</span>
-                        <span class="card-arrow">→</span>
-                    </div>
+        <!-- Linux -->
+        <a href="linux-admin-complet.html" class="card-link">
+            <div class="card">
+                <div class="card-icon">🐧</div>
+                <div class="card-title">Administration Linux</div>
+                <div class="card-description">
+                    Gestion avancée des disques, LVM, Stratis, partages réseaux (NFS/Samba),
+                    automatisation avec Cron et conteneurisation Podman.
                 </div>
-            </a>
-            
-            <a href="c_exercises_document.html" class="card-link">
-                <div class="card">
-                    <div class="card-icon">💻</div>
-                    <div class="card-title">Programmation C</div>
-                    <div class="card-description">
-                        Exercices sur les pointeurs, tableaux, structures de données, listes chaînées et gestion de fichiers.
-                    </div>
-                    <div>
-                        <span class="badge">Pointeurs</span>
-                        <span class="badge">Structures</span>
-                        <span class="badge">Listes Chaînées</span>
-                    </div>
-                    <div class="card-meta">
-                        <span class="card-topics">5 Exercices</span>
-                        <span class="card-arrow">→</span>
-                    </div>
+                <div>
+                    <span class="badge">LVM</span>
+                    <span class="badge">Podman</span>
+                    <span class="badge">Réseau</span>
+                    <span class="badge">Storage</span>
                 </div>
-            </a>
+                <div class="card-meta">
+                    <span class="card-topics">8 Parties</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </div>
+        </a>
 
-            <a href="virtualization_comprehensive_summary.html" class="card-link">
-                <div class="card">
-                    <div class="card-icon">☁️</div>
-                    <div class="card-title">Virtualisation & Cloud</div>
-                    <div class="card-description">
-                        Concepts de virtualisation, hyperviseurs, Docker, conteneurisation et services AWS (EC2, VPC).
-                    </div>
-                    <div>
-                        <span class="badge">VirtualBox</span>
-                        <span class="badge">Docker</span>
-                        <span class="badge">AWS</span>
-                    </div>
-                    <div class="card-meta">
-                        <span class="card-topics">5 Chapitres</span>
-                        <span class="card-arrow">→</span>
-                    </div>
+        <!-- Network -->
+        <a href="reseaux-ip2-complet.html" class="card-link">
+            <div class="card">
+                <div class="card-icon">🌐</div>
+                <div class="card-title">Network</div>
+                <div class="card-description">
+                    Protocoles TCP et UDP, DHCP, NAT, PAT, fonctionnement de la couche transport
+                    et configuration des réseaux.
                 </div>
-            </a>
-        </div>
+                <div>
+                    <span class="badge">TCP</span>
+                    <span class="badge">UDP</span>
+                    <span class="badge">DHCP</span>
+                    <span class="badge">NAT/PAT</span>
+                </div>
+                <div class="card-meta">
+                    <span class="card-topics">TCP • UDP • DHCP • NAT/PAT</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </div>
+        </a>
 
-        <footer>
-            <p>© 2026 - Hub de Révisions Académiques</p>
-        </footer>
+        <!-- Communication -->
+        <a href="techniques-communication-complet.html" class="card-link">
+            <div class="card">
+                <div class="card-icon">📢</div>
+                <div class="card-title">Techniques de Communication</div>
+                <div class="card-description">
+                    Communication interpersonnelle, communication interne, styles relationnels,
+                    team building, e-mail de réclamation, études de cas et QCM corrigés.
+                </div>
+                <div>
+                    <span class="badge">Communication</span>
+                    <span class="badge">E-mail</span>
+                    <span class="badge">Team Building</span>
+                    <span class="badge">QCM</span>
+                </div>
+                <div class="card-meta">
+                    <span class="card-topics">E-mail • Cas • QCM</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- SQL -->
+        <a href="sql_relational_guide.html" class="card-link">
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <div class="card-title">SQL & Modélisation</div>
+                <div class="card-description">
+                    Modélisation Entité-Relation, passage au modèle relationnel,
+                    algèbre relationnelle et requêtes SQL.
+                </div>
+                <div>
+                    <span class="badge">Entité-Relation</span>
+                    <span class="badge">Algèbre</span>
+                    <span class="badge">SQL</span>
+                </div>
+                <div class="card-meta">
+                    <span class="card-topics">3 Chapitres</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- C -->
+        <a href="c_exercises_document.html" class="card-link">
+            <div class="card">
+                <div class="card-icon">💻</div>
+                <div class="card-title">Programmation C</div>
+                <div class="card-description">
+                    Exercices sur les pointeurs, tableaux, structures de données,
+                    listes chaînées et gestion de fichiers.
+                </div>
+                <div>
+                    <span class="badge">Pointeurs</span>
+                    <span class="badge">Structures</span>
+                    <span class="badge">Listes</span>
+                    <span class="badge">Fichiers</span>
+                </div>
+                <div class="card-meta">
+                    <span class="card-topics">5 Exercices</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Cloud -->
+        <a href="virtualization_comprehensive_summary.html" class="card-link">
+            <div class="card">
+                <div class="card-icon">☁️</div>
+                <div class="card-title">Virtualisation & Cloud</div>
+                <div class="card-description">
+                    Concepts de virtualisation, hyperviseurs, Docker,
+                    conteneurisation et services AWS.
+                </div>
+                <div>
+                    <span class="badge">VirtualBox</span>
+                    <span class="badge">Docker</span>
+                    <span class="badge">AWS</span>
+                </div>
+                <div class="card-meta">
+                    <span class="card-topics">5 Chapitres</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </div>
+        </a>
+
     </div>
+
+    <footer>
+        <p>© 2026 - Hub de Révisions Académiques</p>
+    </footer>
+
+</div>
 
 </body>
 </html>
