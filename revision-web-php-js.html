@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Révision Développement Web — PHP & JavaScript</title>
+<style>
+  @media print {
+    body { margin: 0; }
+    .no-print { display: none; }
+    .page-break { page-break-before: always; }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+  }
+
+  .container {
+    background-color: white;
+    padding: 50px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    border-radius: 10px;
+  }
+
+  h1 {
+    color: #2c3e50;
+    text-align: center;
+    font-size: 2.2em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 4px solid #667eea;
+    padding-bottom: 20px;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    font-style: italic;
+  }
+
+  .nav-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  .nav-pills a {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-size: 0.82em;
+    font-weight: bold;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .nav-pills a:hover { opacity: 0.85; transform: translateY(-2px); }
+
+  h2 {
+    color: #667eea;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 1.7em;
+    border-left: 6px solid #764ba2;
+    padding: 15px 20px;
+    background: linear-gradient(90deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 5px;
+  }
+
+  h3 {
+    color: #34495e;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 8px;
+  }
+
+  h4 {
+    color: #2c3e50;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    font-size: 1em;
+  }
+
+  .section-number {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 6px 18px;
+    border-radius: 25px;
+    display: inline-block;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 0.85em;
+  }
+
+  .key-concept {
+    background-color: #fff3cd;
+    border-left: 5px solid #ffc107;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-size: 0.97em;
+  }
+
+  .important-note {
+    background-color: #d1ecf1;
+    border-left: 5px solid #17a2b8;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-size: 0.97em;
+  }
+
+  .tip {
+    background-color: #e8f5e9;
+    border-left: 5px solid #4caf50;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-size: 0.97em;
+  }
+
+  .danger {
+    background-color: #fdecea;
+    border-left: 5px solid #e74c3c;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-size: 0.97em;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: block;
+    overflow-x: auto;
+  }
+
+  th, td {
+    border: 1px solid #dee2e6;
+    padding: 13px 15px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.88em;
+  }
+
+  tr:nth-child(even) { background-color: #f8f9fa; }
+  tr:hover { background-color: #e9ecef; transition: background-color 0.2s; }
+
+  .comparison-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+  }
+
+  .comparison-item {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .comparison-item h4 { margin-bottom: 10px; color: #2c3e50; font-size: 1em; }
+  .comparison-item ul { margin-left: 18px; }
+  .comparison-item li { margin-bottom: 6px; font-size: 0.93em; }
+
+  .ci-blue   { background-color: #e3f2fd; border-left: 5px solid #2196f3; }
+  .ci-green  { background-color: #e8f5e9; border-left: 5px solid #4caf50; }
+  .ci-orange { background-color: #fff8e1; border-left: 5px solid #ff9800; }
+  .ci-red    { background-color: #fdecea; border-left: 5px solid #e74c3c; }
+
+  .rules { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+
+  .rules li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 15px;
+    font-size: 0.95em;
+    line-height: 1.7;
+  }
+
+  .rule-num {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border-radius: 50%;
+    width: 34px; height: 34px;
+    display: grid; place-items: center;
+    font-weight: bold;
+    font-size: 0.9em;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  pre {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 0.88em;
+    overflow-x: auto;
+    margin: 15px 0;
+    line-height: 1.6;
+    font-family: 'Courier New', 'Consolas', monospace;
+    border-left: 4px solid #667eea;
+  }
+
+  pre .c-kw  { color: #cba6f7; font-weight: bold; }   /* keywords */
+  pre .c-fn  { color: #89b4fa; }                       /* functions */
+  pre .c-str { color: #a6e3a1; }                       /* strings */
+  pre .c-cm  { color: #585b70; font-style: italic; }  /* comments */
+  pre .c-var { color: #fab387; }                       /* variables */
+  pre .c-num { color: #f9e2af; }                       /* numbers */
+  pre .c-tag { color: #f38ba8; }                       /* tags/html */
+
+  .code-label {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-size: 0.72em;
+    font-weight: bold;
+    padding: 3px 12px;
+    border-radius: 20px 20px 0 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: -4px;
+  }
+
+  .prob-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.78em;
+    font-weight: bold;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .prob-high   { background: #e74c3c; color: white; }
+  .prob-medium { background: #f39c12; color: white; }
+  .prob-low    { background: #27ae60; color: white; }
+
+  .footer-note {
+    text-align: center;
+    color: #bdc3c7;
+    font-size: 0.82em;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ecf0f1;
+  }
+
+  ul, ol { margin-left: 25px; line-height: 2; }
+  li { margin-bottom: 8px; }
+
+  @media (max-width: 768px) {
+    body { padding: 15px 10px; }
+    .container { padding: 22px 14px; }
+    h1 { font-size: 1.4em; letter-spacing: 1px; }
+    h2 { font-size: 1.15em; padding: 12px 14px; }
+    h3 { font-size: 1.05em; }
+    .comparison-box { grid-template-columns: 1fr; gap: 12px; }
+    table { font-size: 12px; }
+    th, td { padding: 9px 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>📚 Révision — Développement Web</h1>
+  <p class="subtitle">PHP · PHP OOP · PDO · JavaScript — Analyse des Examens 2021→2025 · TEK-UP</p>
+
+  <div class="nav-pills">
+    <a href="#analyse">🔍 Analyse Examens</a>
+    <a href="#javascript">⚡ JavaScript</a>
+    <a href="#php-base">🐘 PHP Base</a>
+    <a href="#php-oop">🏗️ PHP OOP</a>
+    <a href="#pdo">🗄️ PDO</a>
+    <a href="#sessions">🔐 Sessions & Cookies</a>
+    <a href="#cheatsheet">📋 Cheat Sheet</a>
+    <a href="#mock-exam">📝 Examen Blanc</a>
+    <a href="#correction">✅ Correction</a>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PARTIE 0 — ANALYSE DES EXAMENS
+  ═══════════════════════════════════════════ -->
+  <h2 id="analyse"><span class="section-number">ANALYSE</span> 🔍 Analyse des Examens Précédents</h2>
+
+  <div class="key-concept">
+    <strong>🎯 Méthode :</strong> Après analyse des 4 examens (2021-2022 Jour, 2022-2023, 2024-2025 Jour, 2024-2025 Soir), voici les patterns récurrents et les probabilités d'apparition.
+  </div>
+
+  <h3>📊 Fréquence des Thèmes</h3>
+  <table>
+    <tr>
+      <th>Thème</th>
+      <th>Présent dans</th>
+      <th>Probabilité</th>
+      <th>Preuve</th>
+    </tr>
+    <tr>
+      <td><strong>Validation de formulaire JS</strong></td>
+      <td>4/4 examens</td>
+      <td><span class="prob-badge prob-high">🔥 CERTAIN</span></td>
+      <td>Chaque examen contient une fonction check()/ValidationForm()</td>
+    </tr>
+    <tr>
+      <td><strong>Connexion BD PHP (mysqli/PDO)</strong></td>
+      <td>4/4 examens</td>
+      <td><span class="prob-badge prob-high">🔥 CERTAIN</span></td>
+      <td>Toujours question 1 de la partie PHP</td>
+    </tr>
+    <tr>
+      <td><strong>INSERT INTO (enregistrement)</strong></td>
+      <td>4/4 examens</td>
+      <td><span class="prob-badge prob-high">🔥 CERTAIN</span></td>
+      <td>Toujours demandé après connexion</td>
+    </tr>
+    <tr>
+      <td><strong>SELECT avec WHERE + filtres</strong></td>
+      <td>4/4 examens</td>
+      <td><span class="prob-badge prob-high">🔥 CERTAIN</span></td>
+      <td>Liste filtrée par date, état, client…</td>
+    </tr>
+    <tr>
+      <td><strong>UPDATE (modifier état)</strong></td>
+      <td>4/4 examens</td>
+      <td><span class="prob-badge prob-high">🔥 CERTAIN</span></td>
+      <td>annuler, confirmer, modifier une entrée</td>
+    </tr>
+    <tr>
+      <td><strong>Boucle sur tableau PHP (confirmer liste)</strong></td>
+      <td>3/4 examens</td>
+      <td><span class="prob-badge prob-high">🔥 TRÈS PROBABLE</span></td>
+      <td>confirmer($tabType), archiverTickets(), confirmerDemandesColl()</td>
+    </tr>
+    <tr>
+      <td><strong>Calcul de frais JS (CalculFrais)</strong></td>
+      <td>2/4 examens (récents)</td>
+      <td><span class="prob-badge prob-high">🔥 TRÈS PROBABLE</span></td>
+      <td>Examens 2024-2025 Jour & Soir — tendance récente</td>
+    </tr>
+    <tr>
+      <td><strong>PHP OOP (classes, héritage)</strong></td>
+      <td>0/4 examens</td>
+      <td><span class="prob-badge prob-medium">⚠️ NOUVEAU</span></td>
+      <td>Annoncé par le prof — à réviser impérativement</td>
+    </tr>
+    <tr>
+      <td><strong>PDO (objet)</strong></td>
+      <td>Mentionné 4/4</td>
+      <td><span class="prob-badge prob-high">🔥 PROBABLE</span></td>
+      <td>Toujours "utiliser mysqli_ ou PDO" — PDO est souvent attendu</td>
+    </tr>
+    <tr>
+      <td><strong>$_SESSION</strong></td>
+      <td>4/4 examens</td>
+      <td><span class="prob-badge prob-high">🔥 CERTAIN</span></td>
+      <td>$_SESSION['numClient'] dans chaque INSERT</td>
+    </tr>
+    <tr>
+      <td><strong>GROUP BY / HAVING</strong></td>
+      <td>2/4 examens</td>
+      <td><span class="prob-badge prob-medium">⚠️ PROBABLE</span></td>
+      <td>mostWatched(), RevenuParZone(), MesSponsorsParService()</td>
+    </tr>
+  </table>
+
+  <div class="tip">
+    <strong>✅ Style du professeur :</strong><br>
+    • Contexte narratif réaliste (cinéma, fashion show, concert, Gaza, influenceurs)<br>
+    • Structure fixe : QCM HTML/CSS (si TIC1) → Ex1 JavaScript → Ex2 PHP<br>
+    • PHP demande toujours : connexion → INSERT → SELECT filtré → UPDATE → boucle tableau<br>
+    • JavaScript demande toujours : validation champs obligatoires + règle métier spécifique + affichage récapitulatif<br>
+    • Les variables de session ($_SESSION) sont <strong>toujours présentes</strong> dans l'INSERT
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PARTIE 1 — JAVASCRIPT
+  ═══════════════════════════════════════════ -->
+  <h2 id="javascript"><span class="section-number">PARTIE 1</span> ⚡ JavaScript — Théorie & Pratique</h2>
+
+  <h3>🧠 Concepts Fondamentaux</h3>
+
+  <div class="comparison-box">
+    <div class="comparison-item ci-blue">
+      <h4>📌 Accès DOM</h4>
+      <ul>
+        <li><code>getElementById("id")</code> → un élément unique</li>
+        <li><code>getElementsByName("n")</code> → tableau d'éléments</li>
+        <li><code>querySelector(".classe")</code> → premier match CSS</li>
+        <li><code>querySelectorAll("input")</code> → tous les matches</li>
+      </ul>
+    </div>
+    <div class="comparison-item ci-green">
+      <h4>📌 Valeurs des éléments</h4>
+      <ul>
+        <li><code>element.value</code> → valeur d'un input/select</li>
+        <li><code>element.checked</code> → true/false pour checkbox/radio</li>
+        <li><code>element.selectedIndex</code> → index sélectionné</li>
+        <li><code>element.innerHTML</code> → contenu HTML</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>🔧 Templates Génériques</h3>
+
+  <h4>1. Validation de formulaire (pattern récurrent)</h4>
+  <div class="code-label">JavaScript — Gabarit Validation</div>
+  <pre><span class="c-kw">function</span> <span class="c-fn">check</span>() {
+    <span class="c-kw">var</span> <span class="c-var">erreurs</span> = <span class="c-str">""</span>;
+
+    <span class="c-cm">// 1. Champ texte obligatoire</span>
+    <span class="c-kw">var</span> <span class="c-var">champ</span> = document.<span class="c-fn">getElementById</span>(<span class="c-str">"id_champ"</span>).<span class="c-var">value</span>;
+    <span class="c-kw">if</span> (<span class="c-var">champ</span> == <span class="c-str">""</span> || <span class="c-var">champ</span> == <span class="c-kw">null</span>) {
+        <span class="c-var">erreurs</span> += <span class="c-str">"Le champ X est obligatoire.\n"</span>;
+    }
+
+    <span class="c-cm">// 2. Vérification format (ex: CIN = 8 chiffres)</span>
+    <span class="c-kw">if</span> (<span class="c-var">champ</span>.<span class="c-var">length</span> != <span class="c-num">8</span> || <span class="c-fn">isNaN</span>(<span class="c-var">champ</span>)) {
+        <span class="c-var">erreurs</span> += <span class="c-str">"Le CIN doit contenir 8 chiffres.\n"</span>;
+    }
+
+    <span class="c-cm">// 3. Radio button obligatoire</span>
+    <span class="c-kw">var</span> <span class="c-var">radios</span> = document.<span class="c-fn">getElementsByName</span>(<span class="c-str">"pack"</span>);
+    <span class="c-kw">var</span> <span class="c-var">packChoisi</span> = <span class="c-kw">false</span>;
+    <span class="c-kw">var</span> <span class="c-var">valeurPack</span> = <span class="c-str">""</span>;
+    <span class="c-kw">for</span> (<span class="c-kw">var</span> <span class="c-var">i</span> = <span class="c-num">0</span>; <span class="c-var">i</span> &lt; <span class="c-var">radios</span>.<span class="c-var">length</span>; <span class="c-var">i</span>++) {
+        <span class="c-kw">if</span> (<span class="c-var">radios</span>[<span class="c-var">i</span>].<span class="c-var">checked</span>) {
+            <span class="c-var">packChoisi</span> = <span class="c-kw">true</span>;
+            <span class="c-var">valeurPack</span> = <span class="c-var">radios</span>[<span class="c-var">i</span>].<span class="c-var">value</span>;
+        }
+    }
+    <span class="c-kw">if</span> (!<span class="c-var">packChoisi</span>) {
+        <span class="c-var">erreurs</span> += <span class="c-str">"Veuillez choisir un pack.\n"</span>;
+    }
+
+    <span class="c-cm">// 4. Select obligatoire</span>
+    <span class="c-kw">var</span> <span class="c-var">niveau</span> = document.<span class="c-fn">getElementById</span>(<span class="c-str">"niveau"</span>).<span class="c-var">value</span>;
+    <span class="c-kw">if</span> (<span class="c-var">niveau</span> == <span class="c-str">"*"</span> || <span class="c-var">niveau</span> == <span class="c-str">""</span>) {
+        <span class="c-var">erreurs</span> += <span class="c-str">"Veuillez sélectionner un niveau.\n"</span>;
+    }
+
+    <span class="c-cm">// 5. Règle métier : si niveau = TIC → pas de spécialité</span>
+    <span class="c-kw">var</span> <span class="c-var">spec</span> = document.<span class="c-fn">getElementById</span>(<span class="c-str">"spec"</span>).<span class="c-var">value</span>;
+    <span class="c-kw">if</span> (<span class="c-var">niveau</span> == <span class="c-str">"TIC"</span> &amp;&amp; <span class="c-var">spec</span> != <span class="c-str">""</span>) {
+        <span class="c-var">erreurs</span> += <span class="c-str">"Un étudiant TIC ne peut pas choisir une spécialité.\n"</span>;
+    }
+
+    <span class="c-cm">// 6. Affichage ou soumission</span>
+    <span class="c-kw">if</span> (<span class="c-var">erreurs</span> != <span class="c-str">""</span>) {
+        <span class="c-fn">alert</span>(<span class="c-var">erreurs</span>);
+        <span class="c-kw">return false</span>;
+    }
+    <span class="c-kw">return true</span>;
+}</pre>
+
+  <div class="tip">
+    <strong>✅ Emplacement dans le formulaire :</strong><br>
+    <code>&lt;form onsubmit="return check()"&gt;</code> ou sur le bouton submit : <code>&lt;button type="submit" onclick="return check()"&gt;</code>
+  </div>
+
+  <h4>2. Lecture de checkboxes multiples</h4>
+  <div class="code-label">JavaScript — Checkboxes</div>
+  <pre><span class="c-kw">var</span> <span class="c-var">checkboxes</span> = document.<span class="c-fn">getElementsByName</span>(<span class="c-str">"FO"</span>);
+<span class="c-kw">var</span> <span class="c-var">totalFraisOptionnel</span> = <span class="c-num">0</span>;
+<span class="c-kw">var</span> <span class="c-var">listeFO</span> = <span class="c-str">""</span>;
+
+<span class="c-kw">for</span> (<span class="c-kw">var</span> <span class="c-var">i</span> = <span class="c-num">0</span>; <span class="c-var">i</span> &lt; <span class="c-var">checkboxes</span>.<span class="c-var">length</span>; <span class="c-var">i</span>++) {
+    <span class="c-kw">if</span> (<span class="c-var">checkboxes</span>[<span class="c-var">i</span>].<span class="c-var">checked</span>) {
+        <span class="c-var">totalFraisOptionnel</span> += <span class="c-fn">parseInt</span>(<span class="c-var">checkboxes</span>[<span class="c-var">i</span>].<span class="c-var">value</span>);
+        <span class="c-var">listeFO</span> += <span class="c-str">"- "</span> + <span class="c-var">checkboxes</span>[<span class="c-var">i</span>].<span class="c-var">value</span> + <span class="c-str">"€\n"</span>;
+    }
+}
+
+<span class="c-cm">// Vérifier qu'au moins une option est cochée</span>
+<span class="c-kw">if</span> (<span class="c-var">listeFO</span> == <span class="c-str">""</span>) {
+    <span class="c-fn">alert</span>(<span class="c-str">"Veuillez cocher au moins une option."</span>);
+}</pre>
+
+  <h4>3. Calcul de frais (CalculFrais — examens 2024-2025)</h4>
+  <div class="code-label">JavaScript — CalculFrais</div>
+  <pre><span class="c-kw">function</span> <span class="c-fn">CalculFrais</span>() {
+    <span class="c-cm">// Récupérer le pack sélectionné</span>
+    <span class="c-kw">var</span> <span class="c-var">radios</span> = document.<span class="c-fn">getElementsByName</span>(<span class="c-str">"pack"</span>);
+    <span class="c-kw">var</span> <span class="c-var">fraisPack</span> = <span class="c-num">0</span>;
+    <span class="c-kw">var</span> <span class="c-var">isSingle</span> = <span class="c-kw">false</span>;
+    <span class="c-kw">for</span> (<span class="c-kw">var</span> <span class="c-var">i</span> = <span class="c-num">0</span>; <span class="c-var">i</span> &lt; <span class="c-var">radios</span>.<span class="c-var">length</span>; <span class="c-var">i</span>++) {
+        <span class="c-kw">if</span> (<span class="c-var">radios</span>[<span class="c-var">i</span>].<span class="c-var">checked</span>) {
+            <span class="c-var">fraisPack</span> = <span class="c-fn">parseInt</span>(<span class="c-var">radios</span>[<span class="c-var">i</span>].<span class="c-var">value</span>);
+            <span class="c-kw">if</span> (<span class="c-var">radios</span>[<span class="c-var">i</span>].<span class="c-var">id</span> == <span class="c-str">"packSingle"</span>) <span class="c-var">isSingle</span> = <span class="c-kw">true</span>;
+        }
+    }
+
+    <span class="c-cm">// Récupérer frais optionnels</span>
+    <span class="c-kw">var</span> <span class="c-var">checkboxes</span> = document.<span class="c-fn">getElementsByName</span>(<span class="c-str">"FO"</span>);
+    <span class="c-kw">var</span> <span class="c-var">fraisOptAvant</span> = <span class="c-num">0</span>;
+    <span class="c-kw">for</span> (<span class="c-kw">var</span> <span class="c-var">j</span> = <span class="c-num">0</span>; <span class="c-var">j</span> &lt; <span class="c-var">checkboxes</span>.<span class="c-var">length</span>; <span class="c-var">j</span>++) {
+        <span class="c-kw">if</span> (<span class="c-var">checkboxes</span>[<span class="c-var">j</span>].<span class="c-var">checked</span>) {
+            <span class="c-var">fraisOptAvant</span> += <span class="c-fn">parseInt</span>(<span class="c-var">checkboxes</span>[<span class="c-var">j</span>].<span class="c-var">value</span>);
+        }
+    }
+
+    <span class="c-cm">// Réduction 20% si pack Single</span>
+    <span class="c-kw">var</span> <span class="c-var">fraisOptApres</span> = <span class="c-var">isSingle</span> ? <span class="c-var">fraisOptAvant</span> * <span class="c-num">0.8</span> : <span class="c-var">fraisOptAvant</span>;
+    <span class="c-kw">var</span> <span class="c-var">fraisTotal</span> = <span class="c-var">fraisPack</span> + <span class="c-var">fraisOptApres</span>;
+
+    <span class="c-kw">var</span> <span class="c-var">msg</span> = <span class="c-str">"Les Frais sont :\n"</span>;
+    <span class="c-var">msg</span> += <span class="c-str">"- Frais total : "</span> + <span class="c-var">fraisTotal</span> + <span class="c-str">"€\n"</span>;
+    <span class="c-var">msg</span> += <span class="c-str">"- Frais du pack : "</span> + <span class="c-var">fraisPack</span> + <span class="c-str">"€\n"</span>;
+    <span class="c-var">msg</span> += <span class="c-str">"- Frais optionnels (avant réduction) : "</span> + <span class="c-var">fraisOptAvant</span> + <span class="c-str">"€\n"</span>;
+    <span class="c-var">msg</span> += <span class="c-str">"- Frais optionnels (après réduction) : "</span> + <span class="c-var">fraisOptApres</span> + <span class="c-str">"€"</span>;
+    <span class="c-fn">alert</span>(<span class="c-var">msg</span>);
+}</pre>
+
+  <h4>4. Affichage récapitulatif (show / message)</h4>
+  <div class="code-label">JavaScript — Récapitulatif</div>
+  <pre><span class="c-kw">function</span> <span class="c-fn">show</span>() {
+    <span class="c-kw">var</span> <span class="c-var">nom</span>    = document.<span class="c-fn">getElementById</span>(<span class="c-str">"nom"</span>).<span class="c-var">value</span>;
+    <span class="c-kw">var</span> <span class="c-var">prenom</span> = document.<span class="c-fn">getElementById</span>(<span class="c-str">"pr"</span>).<span class="c-var">value</span>;
+    <span class="c-kw">var</span> <span class="c-var">msg</span> = <span class="c-str">"Le mannequin \""</span> + <span class="c-var">nom</span> + <span class="c-str">"\" \""</span> + <span class="c-var">prenom</span> + <span class="c-str">"\" est affecté à :\n"</span>;
+
+    <span class="c-cm">// Robes sélectionnées (select multiple)</span>
+    <span class="c-kw">var</span> <span class="c-var">selectRobe</span> = document.<span class="c-fn">getElementById</span>(<span class="c-str">"robe"</span>);
+    <span class="c-kw">for</span> (<span class="c-kw">var</span> <span class="c-var">i</span> = <span class="c-num">0</span>; <span class="c-var">i</span> &lt; <span class="c-var">selectRobe</span>.<span class="c-var">options</span>.<span class="c-var">length</span>; <span class="c-var">i</span>++) {
+        <span class="c-kw">if</span> (<span class="c-var">selectRobe</span>.<span class="c-var">options</span>[<span class="c-var">i</span>].<span class="c-var">selected</span> &amp;&amp; <span class="c-var">selectRobe</span>.<span class="c-var">options</span>[<span class="c-var">i</span>].<span class="c-var">value</span> != <span class="c-str">"f"</span>) {
+            <span class="c-var">msg</span> += <span class="c-str">"  - \""</span> + <span class="c-var">selectRobe</span>.<span class="c-var">options</span>[<span class="c-var">i</span>].<span class="c-var">value</span> + <span class="c-str">"\"\n"</span>;
+        }
+    }
+
+    <span class="c-cm">// Participations (checkboxes)</span>
+    <span class="c-var">msg</span> += <span class="c-str">"Pendant :\n"</span>;
+    <span class="c-kw">var</span> <span class="c-var">participations</span> = document.<span class="c-fn">getElementsByName</span>(<span class="c-str">"p"</span>);
+    <span class="c-kw">for</span> (<span class="c-kw">var</span> <span class="c-var">j</span> = <span class="c-num">0</span>; <span class="c-var">j</span> &lt; <span class="c-var">participations</span>.<span class="c-var">length</span>; <span class="c-var">j</span>++) {
+        <span class="c-kw">if</span> (<span class="c-var">participations</span>[<span class="c-var">j</span>].<span class="c-var">checked</span>) {
+            <span class="c-var">msg</span> += <span class="c-str">"  - \""</span> + <span class="c-var">participations</span>[<span class="c-var">j</span>].<span class="c-var">value</span> + <span class="c-str">"\"\n"</span>;
+        }
+    }
+    <span class="c-fn">alert</span>(<span class="c-var">msg</span>);
+}</pre>
+
+  <h3>⚠️ Erreurs Fréquentes en JS</h3>
+  <div class="danger">
+    <strong>🚫 Erreurs à éviter :</strong><br>
+    • Oublier <code>return false</code> dans la fonction de validation → le formulaire se soumet quand même<br>
+    • Utiliser <code>getElementById</code> pour un <code>name</code> (il faut <code>getElementsByName</code> pour radio/checkbox)<br>
+    • Oublier de boucler sur les radios/checkboxes pour trouver le coché<br>
+    • Confondre <code>.value</code> (texte/select) et <code>.checked</code> (radio/checkbox)<br>
+    • Pour un select multiple : utiliser <code>.options[i].selected</code> et non <code>.checked</code>
+  </div>
+
+  <div class="important-note">
+    <strong>📌 Règle métier — Pattern récurrent :</strong><br>
+    Toujours du type : "Si l'utilisateur a choisi X comme [sexe/niveau/filière], il [ne doit pas / doit] sélectionner Y"<br>
+    → Vérifier avec <code>if (valX == "X" &amp;&amp; valY != "")</code> ou <code>if (valX == "X" &amp;&amp; !yEstCoché)</code>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PARTIE 2 — PHP BASE
+  ═══════════════════════════════════════════ -->
+  <h2 id="php-base"><span class="section-number">PARTIE 2</span> 🐘 PHP Base</h2>
+
+  <h3>📌 Syntaxe Essentielle</h3>
+
+  <table>
+    <tr>
+      <th>Concept</th>
+      <th>Syntaxe</th>
+      <th>Exemple</th>
+    </tr>
+    <tr>
+      <td>Variable</td>
+      <td><code>$nomVar = valeur;</code></td>
+      <td><code>$nom = "Ali";</code></td>
+    </tr>
+    <tr>
+      <td>Condition</td>
+      <td><code>if (...) { } elseif { } else { }</code></td>
+      <td><code>if ($age &gt; 18) { echo "adulte"; }</code></td>
+    </tr>
+    <tr>
+      <td>Boucle foreach</td>
+      <td><code>foreach ($tableau as $val) { }</code></td>
+      <td><code>foreach ($ids as $id) { ... }</code></td>
+    </tr>
+    <tr>
+      <td>Récupérer POST</td>
+      <td><code>$_POST['nom']</code></td>
+      <td><code>$nom = $_POST['name'];</code></td>
+    </tr>
+    <tr>
+      <td>Vérifier vide</td>
+      <td><code>empty($var)</code></td>
+      <td><code>if (!empty($_POST['nom'])) {...}</code></td>
+    </tr>
+    <tr>
+      <td>Date actuelle</td>
+      <td><code>date("Y-m-d H:i:s")</code></td>
+      <td>retourne "2025-06-03 14:30:00"</td>
+    </tr>
+    <tr>
+      <td>Afficher</td>
+      <td><code>echo "texte";</code></td>
+      <td><code>echo "&lt;li&gt;" . $nom . "&lt;/li&gt;";</code></td>
+    </tr>
+  </table>
+
+  <h3>🔧 Connexion BD — mysqli (style des examens)</h3>
+  <div class="code-label">PHP — Connexion mysqli</div>
+  <pre><span class="c-cm">// Gabarit générique</span>
+<span class="c-var">$conn</span> = <span class="c-fn">mysqli_connect</span>(<span class="c-str">"adresse_serveur"</span>, <span class="c-str">"login"</span>, <span class="c-str">"mot_de_passe"</span>, <span class="c-str">"nom_bd"</span>);
+<span class="c-kw">if</span> (!<span class="c-var">$conn</span>) {
+    <span class="c-fn">die</span>(<span class="c-str">"Connexion échouée : "</span> . <span class="c-fn">mysqli_connect_error</span>());
+}
+
+<span class="c-cm">// Exemple complet (examen 2021-2022)</span>
+<span class="c-var">$conn</span> = <span class="c-fn">mysqli_connect</span>(<span class="c-str">"100.100.100.10"</span>, <span class="c-str">"HarryPotter"</span>, <span class="c-str">"Alohomora"</span>, <span class="c-str">"GESTION_FILM"</span>);
+<span class="c-kw">if</span> (!<span class="c-var">$conn</span>) {
+    <span class="c-fn">die</span>(<span class="c-str">"Erreur de connexion"</span>);
+}</pre>
+
+  <h3>🔧 INSERT INTO (enregistrement)</h3>
+  <div class="code-label">PHP — INSERT (style examen)</div>
+  <pre><span class="c-cm">// Gabarit générique</span>
+<span class="c-var">$champ1</span> = <span class="c-var">$_POST</span>[<span class="c-str">'champ1'</span>];
+<span class="c-var">$champ2</span> = <span class="c-var">$_POST</span>[<span class="c-str">'champ2'</span>];
+<span class="c-var">$dateAct</span> = <span class="c-fn">date</span>(<span class="c-str">"Y-m-d H:i:s"</span>);
+<span class="c-var">$etat</span> = <span class="c-str">"non confirmée"</span>;   <span class="c-cm">// valeur par défaut</span>
+<span class="c-var">$numClient</span> = <span class="c-var">$_SESSION</span>[<span class="c-str">'numClient'</span>];
+
+<span class="c-var">$sql</span> = <span class="c-str">"INSERT INTO NomTable (champ1, champ2, DateAct, NumClient, Etat)
+        VALUES ('$champ1', '$champ2', '$dateAct', '$numClient', '$etat')"</span>;
+<span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);
+
+<span class="c-cm">// Exemple complet — Réservation Cinéma (examen 2021-2022)</span>
+<span class="c-kw">session_start</span>();
+<span class="c-var">$nomFilm</span>   = <span class="c-var">$_POST</span>[<span class="c-str">'NomFilm'</span>];
+<span class="c-var">$numPlace</span>  = <span class="c-var">$_POST</span>[<span class="c-str">'NumPlace'</span>];
+<span class="c-var">$numSalle</span>  = <span class="c-var">$_POST</span>[<span class="c-str">'NumSalle'</span>];
+<span class="c-var">$dateRes</span>   = <span class="c-fn">date</span>(<span class="c-str">"Y-m-d H:i:s"</span>);
+<span class="c-var">$numClient</span> = <span class="c-var">$_SESSION</span>[<span class="c-str">'numClient'</span>];
+<span class="c-var">$etatRes</span>   = <span class="c-str">"non confirmée"</span>;
+
+<span class="c-var">$sql</span> = <span class="c-str">"INSERT INTO RESERVATION (Nom_Film, NumPlace, NumSalle, DateRes, NumClient, EtatRes)
+        VALUES ('$nomFilm', '$numPlace', '$numSalle', '$dateRes', '$numClient', '$etatRes')"</span>;
+<span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);</pre>
+
+  <h3>🔧 SELECT avec filtres et affichage</h3>
+  <div class="code-label">PHP — SELECT + Affichage</div>
+  <pre><span class="c-cm">// Gabarit générique</span>
+<span class="c-kw">function</span> <span class="c-fn">listerElements</span>(<span class="c-var">$filtre1</span>, <span class="c-var">$dateD</span>, <span class="c-var">$dateF</span>) {
+    <span class="c-kw">global</span> <span class="c-var">$conn</span>;
+    <span class="c-var">$sql</span> = <span class="c-str">"SELECT * FROM NomTable
+            WHERE champ1 = '$filtre1'
+            AND etat = 'confirmée'
+            AND DateChamp BETWEEN '$dateD' AND '$dateF'
+            ORDER BY champ2"</span>;
+    <span class="c-var">$result</span> = <span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);
+
+    <span class="c-kw">echo</span> <span class="c-str">"&lt;p&gt;Mes éléments entre $dateD et $dateF sont :&lt;/p&gt;&lt;ul&gt;"</span>;
+    <span class="c-kw">while</span> (<span class="c-var">$row</span> = <span class="c-fn">mysqli_fetch_assoc</span>(<span class="c-var">$result</span>)) {
+        <span class="c-kw">echo</span> <span class="c-str">"&lt;li&gt;"</span> . <span class="c-var">$row</span>[<span class="c-str">'champ_affiche'</span>] . <span class="c-str">"&lt;/li&gt;"</span>;
+    }
+    <span class="c-kw">echo</span> <span class="c-str">"&lt;/ul&gt;"</span>;
+}
+
+<span class="c-cm">// Exemple complet — listeReservations (examen 2021-2022)</span>
+<span class="c-kw">function</span> <span class="c-fn">listeReservations</span>(<span class="c-var">$num_client</span>, <span class="c-var">$dateD</span>, <span class="c-var">$dateF</span>) {
+    <span class="c-kw">global</span> <span class="c-var">$conn</span>;
+    <span class="c-var">$sql</span> = <span class="c-str">"SELECT Nom_Film, NumSalle FROM RESERVATION
+            WHERE NumClient = '$num_client'
+            AND EtatRes = 'confirmée'
+            AND DateRes BETWEEN '$dateD' AND '$dateF'"</span>;
+    <span class="c-var">$result</span> = <span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);
+
+    <span class="c-kw">echo</span> <span class="c-str">"Mes réservations entre $dateD et $dateF sont :&lt;ol&gt;"</span>;
+    <span class="c-kw">while</span> (<span class="c-var">$row</span> = <span class="c-fn">mysqli_fetch_assoc</span>(<span class="c-var">$result</span>)) {
+        <span class="c-kw">echo</span> <span class="c-str">"&lt;li&gt;"</span> . <span class="c-var">$row</span>[<span class="c-str">'Nom_Film'</span>] . <span class="c-str">", à la salle "</span> . <span class="c-var">$row</span>[<span class="c-str">'NumSalle'</span>] . <span class="c-str">"&lt;/li&gt;"</span>;
+    }
+    <span class="c-kw">echo</span> <span class="c-str">"&lt;/ol&gt;"</span>;
+}</pre>
+
+  <h3>🔧 UPDATE (modifier un enregistrement)</h3>
+  <div class="code-label">PHP — UPDATE</div>
+  <pre><span class="c-cm">// Gabarit générique</span>
+<span class="c-kw">function</span> <span class="c-fn">modifierEtat</span>(<span class="c-var">$num</span>, <span class="c-var">$nouvelEtat</span>) {
+    <span class="c-kw">global</span> <span class="c-var">$conn</span>;
+    <span class="c-var">$sql</span> = <span class="c-str">"UPDATE NomTable SET Etat = '$nouvelEtat' WHERE NumPK = '$num'"</span>;
+    <span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);
+}
+
+<span class="c-cm">// Exemple complet — annulerRéservation (examen 2021-2022)</span>
+<span class="c-kw">function</span> <span class="c-fn">annulerReservation</span>(<span class="c-var">$num_res</span>) {
+    <span class="c-kw">global</span> <span class="c-var">$conn</span>;
+    <span class="c-var">$sql</span> = <span class="c-str">"UPDATE RESERVATION SET EtatRes = 'annulée' WHERE NumRes = '$num_res'"</span>;
+    <span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);
+}
+
+<span class="c-cm">// Exemple — confirmerParType (examen 2024-2025 Jour)</span>
+<span class="c-kw">function</span> <span class="c-fn">confirmerParType</span>(<span class="c-var">$numT</span>) {
+    <span class="c-kw">global</span> <span class="c-var">$conn</span>;
+    <span class="c-var">$sql</span> = <span class="c-str">"UPDATE Formation SET etatF = 'confirmée' WHERE numT = '$numT'"</span>;
+    <span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);
+}</pre>
+
+  <h3>🔧 Boucle sur tableau (pattern très récurrent)</h3>
+  <div class="code-label">PHP — Boucle tableau (confirmer liste)</div>
+  <pre><span class="c-cm">// Gabarit générique</span>
+<span class="c-kw">function</span> <span class="c-fn">confirmer</span>(<span class="c-var">$tabIds</span>) {
+    <span class="c-kw">global</span> <span class="c-var">$conn</span>;
+    <span class="c-kw">foreach</span> (<span class="c-var">$tabIds</span> <span class="c-kw">as</span> <span class="c-var">$id</span>) {
+        <span class="c-var">$sql</span> = <span class="c-str">"UPDATE NomTable SET Etat = 'confirmée' WHERE NumPK = '$id'"</span>;
+        <span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);
+    }
+}
+
+<span class="c-cm">// Exemple — confirmer($tabType) (examen 2024-2025 Jour)</span>
+<span class="c-kw">function</span> <span class="c-fn">confirmerFormations</span>(<span class="c-var">$tabType</span>) {
+    <span class="c-kw">global</span> <span class="c-var">$conn</span>;
+    <span class="c-kw">foreach</span> (<span class="c-var">$tabType</span> <span class="c-kw">as</span> <span class="c-var">$numT</span>) {
+        <span class="c-var">$sql</span> = <span class="c-str">"UPDATE Formation SET etatF = 'confirmée' WHERE numT = '$numT'"</span>;
+        <span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);
+    }
+}
+
+<span class="c-cm">// Exemple — confirmerDemandesColl($collaborations) (examen 2024-2025 Soir)</span>
+<span class="c-kw">function</span> <span class="c-fn">confirmerDemandesColl</span>(<span class="c-var">$collaborations</span>) {
+    <span class="c-kw">global</span> <span class="c-var">$conn</span>;
+    <span class="c-kw">foreach</span> (<span class="c-var">$collaborations</span> <span class="c-kw">as</span> <span class="c-var">$numColl</span>) {
+        <span class="c-var">$sql</span> = <span class="c-str">"UPDATE Collaboration SET EtatColl = 'confirmée' WHERE NumColl = '$numColl'"</span>;
+        <span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);
+    }
+}</pre>
+
+  <h3>🔧 SELECT avec GROUP BY / HAVING</h3>
+  <div class="code-label">PHP — GROUP BY / HAVING</div>
+  <pre><span class="c-cm">// Exemple — mostWatched (examen 2021-2022) : films réservés &gt; 100 fois</span>
+<span class="c-kw">function</span> <span class="c-fn">mostWatched</span>(<span class="c-var">$dateD</span>, <span class="c-var">$dateF</span>) {
+    <span class="c-kw">global</span> <span class="c-var">$conn</span>;
+    <span class="c-var">$sql</span> = <span class="c-str">"SELECT Nom_Film, COUNT(*) AS nbr FROM RESERVATION
+            WHERE DateRes BETWEEN '$dateD' AND '$dateF'
+            GROUP BY Nom_Film
+            HAVING COUNT(*) &gt; 100"</span>;
+    <span class="c-var">$result</span> = <span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);
+    <span class="c-kw">while</span> (<span class="c-var">$row</span> = <span class="c-fn">mysqli_fetch_assoc</span>(<span class="c-var">$result</span>)) {
+        <span class="c-kw">echo</span> <span class="c-var">$row</span>[<span class="c-str">'Nom_Film'</span>] . <span class="c-str">"&lt;br&gt;"</span>;
+    }
+}
+
+<span class="c-cm">// Exemple — RevenuParZone (examen 2022-2023)</span>
+<span class="c-kw">function</span> <span class="c-fn">RevenuParZone</span>(<span class="c-var">$zone</span>) {
+    <span class="c-kw">global</span> <span class="c-var">$conn</span>;
+    <span class="c-var">$zonesValides</span> = [<span class="c-str">'A'</span>, <span class="c-str">'B'</span>, <span class="c-str">'C'</span>, <span class="c-str">'D'</span>, <span class="c-str">'E'</span>];
+    <span class="c-kw">if</span> (!<span class="c-fn">in_array</span>(<span class="c-var">$zone</span>, <span class="c-var">$zonesValides</span>)) {
+        <span class="c-kw">echo</span> <span class="c-str">"Zone invalide."</span>;
+        <span class="c-kw">return</span>;
+    }
+    <span class="c-var">$sql</span> = <span class="c-str">"SELECT SUM(prix_total) AS revenu FROM Ticket WHERE Zone = '$zone'"</span>;
+    <span class="c-var">$result</span> = <span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);
+    <span class="c-var">$row</span> = <span class="c-fn">mysqli_fetch_assoc</span>(<span class="c-var">$result</span>);
+    <span class="c-kw">echo</span> <span class="c-str">"Revenu zone $zone : "</span> . <span class="c-var">$row</span>[<span class="c-str">'revenu'</span>] . <span class="c-str">" DT"</span>;
+}</pre>
+
+  <h3>🔧 Affichage liste déroulante dynamique</h3>
+  <div class="code-label">PHP — Select dynamique (examen 2024-2025 Jour)</div>
+  <pre><span class="c-kw">function</span> <span class="c-fn">listeType</span>() {
+    <span class="c-kw">global</span> <span class="c-var">$conn</span>;
+    <span class="c-var">$sql</span> = <span class="c-str">"SELECT numT, nom FROM Type"</span>;
+    <span class="c-var">$result</span> = <span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);
+
+    <span class="c-kw">echo</span> <span class="c-str">"&lt;select name='type' id='type'&gt;"</span>;
+    <span class="c-kw">while</span> (<span class="c-var">$row</span> = <span class="c-fn">mysqli_fetch_assoc</span>(<span class="c-var">$result</span>)) {
+        <span class="c-kw">echo</span> <span class="c-str">"&lt;option value='"</span> . <span class="c-var">$row</span>[<span class="c-str">'numT'</span>] . <span class="c-str">"'&gt;"</span> . <span class="c-var">$row</span>[<span class="c-str">'nom'</span>] . <span class="c-str">"&lt;/option&gt;"</span>;
+    }
+    <span class="c-kw">echo</span> <span class="c-str">"&lt;/select&gt;"</span>;
+}</pre>
+
+  <!-- ══════════════════════════════════════
+       PARTIE 3 — PHP OOP
+  ═══════════════════════════════════════════ -->
+  <h2 id="php-oop"><span class="section-number">PARTIE 3</span> 🏗️ PHP OOP (POO)</h2>
+
+  <div class="key-concept">
+    <strong>🎯 Nouveau thème annoncé !</strong> L'OOP n'est jamais apparu dans les examens précédents — c'est un ajout explicite du professeur pour cette session. À maîtriser absolument.
+  </div>
+
+  <h3>🧠 Concepts OOP</h3>
+  <table>
+    <tr><th>Concept</th><th>Définition</th><th>Mot-clé</th></tr>
+    <tr><td>Classe</td><td>Modèle/plan de création d'objets</td><td><code>class</code></td></tr>
+    <tr><td>Objet</td><td>Instance d'une classe</td><td><code>new</code></td></tr>
+    <tr><td>Attribut</td><td>Variable appartenant à la classe</td><td><code>$this->attribut</code></td></tr>
+    <tr><td>Méthode</td><td>Fonction appartenant à la classe</td><td><code>public function</code></td></tr>
+    <tr><td>Constructeur</td><td>Méthode appelée à la création</td><td><code>__construct()</code></td></tr>
+    <tr><td>Héritage</td><td>Une classe hérite d'une autre</td><td><code>extends</code></td></tr>
+    <tr><td>Encapsulation</td><td>Contrôler l'accès aux attributs</td><td><code>private / protected / public</code></td></tr>
+    <tr><td>Surcharge constructeur</td><td>Appel du parent</td><td><code>parent::__construct()</code></td></tr>
+  </table>
+
+  <h3>🔧 Classe de base</h3>
+  <div class="code-label">PHP OOP — Gabarit Classe</div>
+  <pre><span class="c-kw">class</span> <span class="c-fn">NomClasse</span> {
+    <span class="c-cm">// Attributs (private recommandé)</span>
+    <span class="c-kw">private</span> <span class="c-var">$attribut1</span>;
+    <span class="c-kw">private</span> <span class="c-var">$attribut2</span>;
+
+    <span class="c-cm">// Constructeur</span>
+    <span class="c-kw">public function</span> <span class="c-fn">__construct</span>(<span class="c-var">$val1</span>, <span class="c-var">$val2</span>) {
+        <span class="c-var">$this</span>-><span class="c-var">attribut1</span> = <span class="c-var">$val1</span>;
+        <span class="c-var">$this</span>-><span class="c-var">attribut2</span> = <span class="c-var">$val2</span>;
+    }
+
+    <span class="c-cm">// Getter</span>
+    <span class="c-kw">public function</span> <span class="c-fn">getAttribut1</span>() {
+        <span class="c-kw">return</span> <span class="c-var">$this</span>-><span class="c-var">attribut1</span>;
+    }
+
+    <span class="c-cm">// Setter</span>
+    <span class="c-kw">public function</span> <span class="c-fn">setAttribut1</span>(<span class="c-var">$val</span>) {
+        <span class="c-var">$this</span>-><span class="c-var">attribut1</span> = <span class="c-var">$val</span>;
+    }
+
+    <span class="c-cm">// Méthode</span>
+    <span class="c-kw">public function</span> <span class="c-fn">afficher</span>() {
+        <span class="c-kw">echo</span> <span class="c-str">"Attribut1 : "</span> . <span class="c-var">$this</span>-><span class="c-var">attribut1</span> . <span class="c-str">"&lt;br&gt;"</span>;
+    }
+}
+
+<span class="c-cm">// Utilisation</span>
+<span class="c-var">$obj</span> = <span class="c-kw">new</span> <span class="c-fn">NomClasse</span>(<span class="c-str">"valeur1"</span>, <span class="c-str">"valeur2"</span>);
+<span class="c-var">$obj</span>-><span class="c-fn">afficher</span>();
+<span class="c-kw">echo</span> <span class="c-var">$obj</span>-><span class="c-fn">getAttribut1</span>();</pre>
+
+  <h3>🔧 Exemple complet — Classe Étudiant</h3>
+  <div class="code-label">PHP OOP — Exemple Étudiant</div>
+  <pre><span class="c-kw">class</span> <span class="c-fn">Etudiant</span> {
+    <span class="c-kw">private</span> <span class="c-var">$nom</span>;
+    <span class="c-kw">private</span> <span class="c-var">$cin</span>;
+    <span class="c-kw">private</span> <span class="c-var">$email</span>;
+
+    <span class="c-kw">public function</span> <span class="c-fn">__construct</span>(<span class="c-var">$nom</span>, <span class="c-var">$cin</span>, <span class="c-var">$email</span>) {
+        <span class="c-var">$this</span>-><span class="c-var">nom</span>   = <span class="c-var">$nom</span>;
+        <span class="c-var">$this</span>-><span class="c-var">cin</span>   = <span class="c-var">$cin</span>;
+        <span class="c-var">$this</span>-><span class="c-var">email</span> = <span class="c-var">$email</span>;
+    }
+
+    <span class="c-kw">public function</span> <span class="c-fn">getNom</span>()   { <span class="c-kw">return</span> <span class="c-var">$this</span>-><span class="c-var">nom</span>; }
+    <span class="c-kw">public function</span> <span class="c-fn">getCin</span>()   { <span class="c-kw">return</span> <span class="c-var">$this</span>-><span class="c-var">cin</span>; }
+    <span class="c-kw">public function</span> <span class="c-fn">getEmail</span>() { <span class="c-kw">return</span> <span class="c-var">$this</span>-><span class="c-var">email</span>; }
+
+    <span class="c-kw">public function</span> <span class="c-fn">afficher</span>() {
+        <span class="c-kw">echo</span> <span class="c-str">"Étudiant : "</span> . <span class="c-var">$this</span>-><span class="c-var">nom</span> . <span class="c-str">" | CIN : "</span> . <span class="c-var">$this</span>-><span class="c-var">cin</span> . <span class="c-str">"&lt;br&gt;"</span>;
+    }
+
+    <span class="c-kw">public function</span> <span class="c-fn">sauvegarder</span>(<span class="c-var">$conn</span>) {
+        <span class="c-var">$sql</span> = <span class="c-str">"INSERT INTO Etudiant (nom, cin, email) VALUES ('"</span>
+               . <span class="c-var">$this</span>-><span class="c-var">nom</span> . <span class="c-str">"', '"</span>
+               . <span class="c-var">$this</span>-><span class="c-var">cin</span> . <span class="c-str">"', '"</span>
+               . <span class="c-var">$this</span>-><span class="c-var">email</span> . <span class="c-str">"')"</span>;
+        <span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);
+    }
+}
+
+<span class="c-var">$e</span> = <span class="c-kw">new</span> <span class="c-fn">Etudiant</span>(<span class="c-str">"Ben Ali"</span>, <span class="c-str">"12345678"</span>, <span class="c-str">"ali@tek.tn"</span>);
+<span class="c-var">$e</span>-><span class="c-fn">afficher</span>();
+<span class="c-var">$e</span>-><span class="c-fn">sauvegarder</span>(<span class="c-var">$conn</span>);</pre>
+
+  <h3>🔧 Héritage</h3>
+  <div class="code-label">PHP OOP — Héritage (extends)</div>
+  <pre><span class="c-kw">class</span> <span class="c-fn">Personne</span> {
+    <span class="c-kw">protected</span> <span class="c-var">$nom</span>;
+    <span class="c-kw">protected</span> <span class="c-var">$email</span>;
+
+    <span class="c-kw">public function</span> <span class="c-fn">__construct</span>(<span class="c-var">$nom</span>, <span class="c-var">$email</span>) {
+        <span class="c-var">$this</span>-><span class="c-var">nom</span>   = <span class="c-var">$nom</span>;
+        <span class="c-var">$this</span>-><span class="c-var">email</span> = <span class="c-var">$email</span>;
+    }
+
+    <span class="c-kw">public function</span> <span class="c-fn">afficher</span>() {
+        <span class="c-kw">echo</span> <span class="c-str">"Personne : "</span> . <span class="c-var">$this</span>-><span class="c-var">nom</span> . <span class="c-str">"&lt;br&gt;"</span>;
+    }
+}
+
+<span class="c-cm">// Classe enfant</span>
+<span class="c-kw">class</span> <span class="c-fn">Formateur</span> <span class="c-kw">extends</span> <span class="c-fn">Personne</span> {
+    <span class="c-kw">private</span> <span class="c-var">$specialite</span>;
+
+    <span class="c-kw">public function</span> <span class="c-fn">__construct</span>(<span class="c-var">$nom</span>, <span class="c-var">$email</span>, <span class="c-var">$specialite</span>) {
+        <span class="c-kw">parent</span>::<span class="c-fn">__construct</span>(<span class="c-var">$nom</span>, <span class="c-var">$email</span>); <span class="c-cm">// appel constructeur parent</span>
+        <span class="c-var">$this</span>-><span class="c-var">specialite</span> = <span class="c-var">$specialite</span>;
+    }
+
+    <span class="c-kw">public function</span> <span class="c-fn">afficher</span>() { <span class="c-cm">// surcharge de la méthode</span>
+        <span class="c-kw">parent</span>::<span class="c-fn">afficher</span>();  <span class="c-cm">// appel méthode parent</span>
+        <span class="c-kw">echo</span> <span class="c-str">"Spécialité : "</span> . <span class="c-var">$this</span>-><span class="c-var">specialite</span> . <span class="c-str">"&lt;br&gt;"</span>;
+    }
+}
+
+<span class="c-var">$f</span> = <span class="c-kw">new</span> <span class="c-fn">Formateur</span>(<span class="c-str">"Sami"</span>, <span class="c-str">"sami@tek.tn"</span>, <span class="c-str">"Web"</span>);
+<span class="c-var">$f</span>-><span class="c-fn">afficher</span>();</pre>
+
+  <div class="tip">
+    <strong>✅ Règle private vs protected :</strong><br>
+    • <code>private</code> → accessible seulement dans la classe elle-même<br>
+    • <code>protected</code> → accessible dans la classe ET les classes filles<br>
+    • <code>public</code> → accessible partout<br>
+    ⚠️ Si une classe fille doit utiliser un attribut du parent dans sa méthode → utiliser <code>protected</code> !
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PARTIE 4 — PDO
+  ═══════════════════════════════════════════ -->
+  <h2 id="pdo"><span class="section-number">PARTIE 4</span> 🗄️ PDO — PHP Data Objects</h2>
+
+  <div class="key-concept">
+    <strong>🎯 PDO vs mysqli :</strong> PDO est orienté objet, supporte plusieurs SGBD, et utilise des requêtes préparées (plus sécurisé). Les examens demandent explicitement "utiliser mysqli_ <strong>ou</strong> PDO".
+  </div>
+
+  <h3>🔧 Connexion PDO</h3>
+  <div class="code-label">PDO — Connexion</div>
+  <pre><span class="c-cm">// Gabarit générique</span>
+<span class="c-kw">try</span> {
+    <span class="c-var">$pdo</span> = <span class="c-kw">new</span> <span class="c-fn">PDO</span>(
+        <span class="c-str">"mysql:host=adresse_serveur;dbname=nom_bd;charset=utf8"</span>,
+        <span class="c-str">"login"</span>,
+        <span class="c-str">"mot_de_passe"</span>
+    );
+    <span class="c-var">$pdo</span>-><span class="c-fn">setAttribute</span>(PDO::<span class="c-var">ATTR_ERRMODE</span>, PDO::<span class="c-var">ERRMODE_EXCEPTION</span>);
+} <span class="c-kw">catch</span> (PDOException <span class="c-var">$e</span>) {
+    <span class="c-fn">die</span>(<span class="c-str">"Connexion échouée : "</span> . <span class="c-var">$e</span>-><span class="c-fn">getMessage</span>());
+}
+
+<span class="c-cm">// Exemple — Base GESTION_FILM (examen 2021-2022 avec PDO)</span>
+<span class="c-kw">try</span> {
+    <span class="c-var">$pdo</span> = <span class="c-kw">new</span> <span class="c-fn">PDO</span>(
+        <span class="c-str">"mysql:host=100.100.100.10;dbname=GESTION_FILM;charset=utf8"</span>,
+        <span class="c-str">"HarryPotter"</span>,
+        <span class="c-str">"Alohomora"</span>
+    );
+    <span class="c-var">$pdo</span>-><span class="c-fn">setAttribute</span>(PDO::<span class="c-var">ATTR_ERRMODE</span>, PDO::<span class="c-var">ERRMODE_EXCEPTION</span>);
+} <span class="c-kw">catch</span> (PDOException <span class="c-var">$e</span>) {
+    <span class="c-fn">die</span>(<span class="c-str">"Erreur : "</span> . <span class="c-var">$e</span>-><span class="c-fn">getMessage</span>());
+}</pre>
+
+  <h3>🔧 PDO — SELECT</h3>
+  <div class="code-label">PDO — SELECT avec requête préparée</div>
+  <pre><span class="c-cm">// Gabarit générique</span>
+<span class="c-var">$stmt</span> = <span class="c-var">$pdo</span>-><span class="c-fn">prepare</span>(<span class="c-str">"SELECT * FROM NomTable WHERE champ = :valeur AND Etat = :etat"</span>);
+<span class="c-var">$stmt</span>-><span class="c-fn">execute</span>([<span class="c-str">':valeur'</span> => <span class="c-var">$valeur</span>, <span class="c-str">':etat'</span> => <span class="c-str">'confirmée'</span>]);
+<span class="c-kw">while</span> (<span class="c-var">$row</span> = <span class="c-var">$stmt</span>-><span class="c-fn">fetch</span>(PDO::<span class="c-var">FETCH_ASSOC</span>)) {
+    <span class="c-kw">echo</span> <span class="c-var">$row</span>[<span class="c-str">'champ_affiche'</span>] . <span class="c-str">"&lt;br&gt;"</span>;
+}
+
+<span class="c-cm">// Exemple complet — Liste réservations</span>
+<span class="c-kw">function</span> <span class="c-fn">listeReservationsPDO</span>(<span class="c-var">$num_client</span>, <span class="c-var">$dateD</span>, <span class="c-var">$dateF</span>) {
+    <span class="c-kw">global</span> <span class="c-var">$pdo</span>;
+    <span class="c-var">$stmt</span> = <span class="c-var">$pdo</span>-><span class="c-fn">prepare</span>(
+        <span class="c-str">"SELECT Nom_Film, NumSalle FROM RESERVATION
+         WHERE NumClient = :nc AND EtatRes = 'confirmée'
+         AND DateRes BETWEEN :d1 AND :d2"</span>
+    );
+    <span class="c-var">$stmt</span>-><span class="c-fn">execute</span>([<span class="c-str">':nc'</span> => <span class="c-var">$num_client</span>, <span class="c-str">':d1'</span> => <span class="c-var">$dateD</span>, <span class="c-str">':d2'</span> => <span class="c-var">$dateF</span>]);
+
+    <span class="c-kw">echo</span> <span class="c-str">"Mes réservations entre $dateD et $dateF :&lt;ol&gt;"</span>;
+    <span class="c-kw">while</span> (<span class="c-var">$row</span> = <span class="c-var">$stmt</span>-><span class="c-fn">fetch</span>(PDO::<span class="c-var">FETCH_ASSOC</span>)) {
+        <span class="c-kw">echo</span> <span class="c-str">"&lt;li&gt;"</span> . <span class="c-var">$row</span>[<span class="c-str">'Nom_Film'</span>] . <span class="c-str">", salle "</span> . <span class="c-var">$row</span>[<span class="c-str">'NumSalle'</span>] . <span class="c-str">"&lt;/li&gt;"</span>;
+    }
+    <span class="c-kw">echo</span> <span class="c-str">"&lt;/ol&gt;"</span>;
+}</pre>
+
+  <h3>🔧 PDO — INSERT</h3>
+  <div class="code-label">PDO — INSERT</div>
+  <pre><span class="c-cm">// Gabarit générique</span>
+<span class="c-var">$stmt</span> = <span class="c-var">$pdo</span>-><span class="c-fn">prepare</span>(
+    <span class="c-str">"INSERT INTO NomTable (champ1, champ2, DateAct, NumClient, Etat)
+     VALUES (:c1, :c2, :date, :nc, :etat)"</span>
+);
+<span class="c-var">$stmt</span>-><span class="c-fn">execute</span>([
+    <span class="c-str">':c1'</span>   => <span class="c-var">$_POST</span>[<span class="c-str">'champ1'</span>],
+    <span class="c-str">':c2'</span>   => <span class="c-var">$_POST</span>[<span class="c-str">'champ2'</span>],
+    <span class="c-str">':date'</span> => <span class="c-fn">date</span>(<span class="c-str">"Y-m-d H:i:s"</span>),
+    <span class="c-str">':nc'</span>   => <span class="c-var">$_SESSION</span>[<span class="c-str">'numClient'</span>],
+    <span class="c-str">':etat'</span> => <span class="c-str">'non confirmée'</span>
+]);</pre>
+
+  <h3>🔧 PDO — UPDATE & DELETE</h3>
+  <div class="code-label">PDO — UPDATE / DELETE</div>
+  <pre><span class="c-cm">// UPDATE</span>
+<span class="c-var">$stmt</span> = <span class="c-var">$pdo</span>-><span class="c-fn">prepare</span>(<span class="c-str">"UPDATE NomTable SET Etat = :etat WHERE NumPK = :id"</span>);
+<span class="c-var">$stmt</span>-><span class="c-fn">execute</span>([<span class="c-str">':etat'</span> => <span class="c-str">'annulée'</span>, <span class="c-str">':id'</span> => <span class="c-var">$num</span>]);
+
+<span class="c-cm">// DELETE</span>
+<span class="c-var">$stmt</span> = <span class="c-var">$pdo</span>-><span class="c-fn">prepare</span>(<span class="c-str">"DELETE FROM NomTable WHERE NumPK = :id"</span>);
+<span class="c-var">$stmt</span>-><span class="c-fn">execute</span>([<span class="c-str">':id'</span> => <span class="c-var">$num</span>]);</pre>
+
+  <div class="comparison-box">
+    <div class="comparison-item ci-blue">
+      <h4>mysqli — style procédural</h4>
+      <ul>
+        <li><code>mysqli_connect(host, user, pass, db)</code></li>
+        <li><code>mysqli_query($conn, $sql)</code></li>
+        <li><code>mysqli_fetch_assoc($result)</code></li>
+        <li>Pas de requêtes préparées obligatoires</li>
+        <li>Plus simple, style des anciens examens</li>
+      </ul>
+    </div>
+    <div class="comparison-item ci-green">
+      <h4>PDO — style objet</h4>
+      <ul>
+        <li><code>new PDO("mysql:host=...;dbname=...")</code></li>
+        <li><code>$pdo->prepare($sql)</code></li>
+        <li><code>$stmt->execute([':param' => $val])</code></li>
+        <li><code>$stmt->fetch(PDO::FETCH_ASSOC)</code></li>
+        <li>Plus sécurisé, style recommandé</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PARTIE 5 — SESSIONS & COOKIES
+  ═══════════════════════════════════════════ -->
+  <h2 id="sessions"><span class="section-number">PARTIE 5</span> 🔐 Sessions & Cookies PHP</h2>
+
+  <h3>🔧 Sessions</h3>
+  <div class="code-label">PHP — Sessions</div>
+  <pre><span class="c-cm">// Démarrer la session (TOUJOURS en haut du fichier)</span>
+<span class="c-fn">session_start</span>();
+
+<span class="c-cm">// Stocker une valeur</span>
+<span class="c-var">$_SESSION</span>[<span class="c-str">'numClient'</span>] = <span class="c-num">42</span>;
+<span class="c-var">$_SESSION</span>[<span class="c-str">'nom'</span>] = <span class="c-str">"Ali"</span>;
+
+<span class="c-cm">// Lire une valeur (utilisé dans INSERT !)</span>
+<span class="c-var">$numClient</span> = <span class="c-var">$_SESSION</span>[<span class="c-str">'numClient'</span>];
+
+<span class="c-cm">// Vérifier si une session existe</span>
+<span class="c-kw">if</span> (<span class="c-fn">isset</span>(<span class="c-var">$_SESSION</span>[<span class="c-str">'numClient'</span>])) {
+    <span class="c-kw">echo</span> <span class="c-str">"Connecté"</span>;
+}
+
+<span class="c-cm">// Détruire la session (déconnexion)</span>
+<span class="c-fn">session_destroy</span>();</pre>
+
+  <h3>🔧 Cookies</h3>
+  <div class="code-label">PHP — Cookies</div>
+  <pre><span class="c-cm">// Créer un cookie (expire dans 7 jours)</span>
+<span class="c-fn">setcookie</span>(<span class="c-str">"nomCookie"</span>, <span class="c-str">"valeur"</span>, <span class="c-fn">time</span>() + (<span class="c-num">86400</span> * <span class="c-num">7</span>));
+
+<span class="c-cm">// Lire un cookie</span>
+<span class="c-kw">if</span> (<span class="c-fn">isset</span>(<span class="c-var">$_COOKIE</span>[<span class="c-str">"nomCookie"</span>])) {
+    <span class="c-kw">echo</span> <span class="c-var">$_COOKIE</span>[<span class="c-str">"nomCookie"</span>];
+}
+
+<span class="c-cm">// Supprimer un cookie (date dans le passé)</span>
+<span class="c-fn">setcookie</span>(<span class="c-str">"nomCookie"</span>, <span class="c-str">""</span>, <span class="c-fn">time</span>() - <span class="c-num">3600</span>);</pre>
+
+  <div class="important-note">
+    <strong>📌 Différence Session vs Cookie :</strong><br>
+    • <strong>Session</strong> : stockée côté <strong>serveur</strong>, dure jusqu'à la fermeture du navigateur, identifiée par un ID<br>
+    • <strong>Cookie</strong> : stocké côté <strong>client</strong> (navigateur), peut durer longtemps, visible dans le navigateur
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PARTIE 6 — CHEAT SHEET
+  ═══════════════════════════════════════════ -->
+  <h2 id="cheatsheet"><span class="section-number">PARTIE 6</span> 📋 Cheat Sheet — Tout en Un</h2>
+
+  <h3>📌 Must Know — Concepts Indispensables</h3>
+  <ul class="rules">
+    <li><span class="rule-num">1</span><div><strong>session_start()</strong> doit être appelé <strong>avant tout echo/HTML</strong> dans chaque fichier PHP qui utilise les sessions.</div></li>
+    <li><span class="rule-num">2</span><div><strong>$_SESSION['numClient']</strong> est toujours utilisé dans l'INSERT — ne jamais l'oublier dans la réponse d'examen.</div></li>
+    <li><span class="rule-num">3</span><div><strong>date("Y-m-d H:i:s")</strong> pour la date actuelle en PHP. En SQL c'est <code>NOW()</code>.</div></li>
+    <li><span class="rule-num">4</span><div><strong>L'état par défaut</strong> est toujours "non confirmée" dans les examens — à insérer littéralement dans l'INSERT.</div></li>
+    <li><span class="rule-num">5</span><div><strong>return false</strong> dans la fonction JS de validation empêche la soumission du formulaire. Sans ça, la validation ne sert à rien.</div></li>
+    <li><span class="rule-num">6</span><div><strong>getElementsByName()</strong> retourne un tableau — il faut boucler avec <code>for</code> pour lire les radios/checkboxes.</div></li>
+    <li><span class="rule-num">7</span><div>En OOP, les attributs <strong>private</strong> ne sont pas accessibles dans les classes filles — utiliser <strong>protected</strong> si nécessaire.</div></li>
+    <li><span class="rule-num">8</span><div>PDO utilise <strong>prepare + execute</strong> avec des paramètres nommés (:param) pour éviter les injections SQL.</div></li>
+  </ul>
+
+  <h3>📋 Tableau Rapide — Syntaxe à Mémoriser</h3>
+  <table>
+    <tr><th>Action</th><th>mysqli</th><th>PDO</th></tr>
+    <tr><td>Connexion</td><td><code>mysqli_connect(h,u,p,db)</code></td><td><code>new PDO("mysql:host=h;dbname=db", u, p)</code></td></tr>
+    <tr><td>Requête SELECT</td><td><code>mysqli_query($c, $sql)</code></td><td><code>$pdo->prepare($sql); $s->execute([...])</code></td></tr>
+    <tr><td>Lire ligne</td><td><code>mysqli_fetch_assoc($r)</code></td><td><code>$stmt->fetch(PDO::FETCH_ASSOC)</code></td></tr>
+    <tr><td>INSERT/UPDATE</td><td><code>mysqli_query($c, $sql)</code></td><td><code>$pdo->prepare($sql); $s->execute([...])</code></td></tr>
+    <tr><td>Date PHP</td><td colspan="2"><code>date("Y-m-d H:i:s")</code></td></tr>
+    <tr><td>Date SQL</td><td colspan="2"><code>NOW()</code></td></tr>
+    <tr><td>Session</td><td colspan="2"><code>session_start(); $_SESSION['key'] = val;</code></td></tr>
+    <tr><td>Cookie</td><td colspan="2"><code>setcookie("name", "val", time()+7*86400);</code></td></tr>
+    <tr><td>POST Form</td><td colspan="2"><code>$_POST['nom_input']</code></td></tr>
+    <tr><td>Vérifier vide</td><td colspan="2"><code>empty($var) / isset($var)</code></td></tr>
+  </table>
+
+  <h3>📋 SQL Récapitulatif</h3>
+  <table>
+    <tr><th>Opération</th><th>Syntaxe SQL</th></tr>
+    <tr><td>Lire</td><td><code>SELECT col1, col2 FROM table WHERE cond ORDER BY col</code></td></tr>
+    <tr><td>Insérer</td><td><code>INSERT INTO table (col1, col2) VALUES ('val1', 'val2')</code></td></tr>
+    <tr><td>Modifier</td><td><code>UPDATE table SET col1='val' WHERE id='x'</code></td></tr>
+    <tr><td>Supprimer</td><td><code>DELETE FROM table WHERE id='x'</code></td></tr>
+    <tr><td>Entre dates</td><td><code>WHERE date BETWEEN '$dateD' AND '$dateF'</code></td></tr>
+    <tr><td>Grouper</td><td><code>GROUP BY col HAVING COUNT(*) &gt; 100</code></td></tr>
+    <tr><td>Trier</td><td><code>ORDER BY col ASC / DESC</code></td></tr>
+    <tr><td>Jointure</td><td><code>JOIN table2 ON t1.fk = t2.pk</code></td></tr>
+  </table>
+
+  <!-- ══════════════════════════════════════
+       PARTIE 7 — EXAMEN BLANC
+  ═══════════════════════════════════════════ -->
+  <h2 id="mock-exam"><span class="section-number">PARTIE 7</span> 📝 Examen Blanc — Style Professeur</h2>
+
+  <div class="key-concept">
+    <strong>🎯 Contexte :</strong> Une plateforme de réservation de terrains de sport « SPORTIFY ». Les clients réservent des terrains en indiquant le sport, le terrain et le créneau horaire. Durée : 1h30.
+  </div>
+
+  <div class="important-note">
+    <strong>Table RESERVATION :</strong><br>
+    <code>NumRes | NomSport | NumTerrain | DateRes | HeureRes | NumClient | EtatRes</code><br><br>
+    • <strong>NumRes</strong> : identifiant unique de la réservation<br>
+    • <strong>NumClient</strong> : sauvegardé dans <code>$_SESSION['numClient']</code><br>
+    • <strong>DateRes</strong> : date de passage de la réservation (AAAA-MM-JJ HH:MM:SS)<br>
+    • <strong>EtatRes</strong> : "en attente" (défaut), "confirmée", "annulée"<br>
+    • Tous les champs sont NOT NULL<br><br>
+    Serveur : <strong>192.168.1.1</strong> | Login : <strong>"SportifyAdmin"</strong> | Mot de passe : <strong>"GoalGoal2025"</strong> | BD : <strong>"SPORTIFY_DB"</strong>
+  </div>
+
+  <h3>📝 Exercice 1 : JavaScript (7 pts)</h3>
+
+  <div style="background:#f8f9fa;border:2px solid #dee2e6;border-radius:8px;padding:20px;margin:20px 0;">
+    <p>Soit le formulaire de réservation ci-dessous :</p>
+    <div class="code-label">HTML — Formulaire fourni</div>
+    <pre><span class="c-tag">&lt;form</span> id=<span class="c-str">"resForm"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;label</span> for=<span class="c-str">"nom"</span><span class="c-tag">&gt;</span>Nom<span class="c-tag">&lt;/label&gt;</span>
+  <span class="c-tag">&lt;input</span> type=<span class="c-str">"text"</span> id=<span class="c-str">"nom"</span> <span class="c-tag">/&gt;&lt;br&gt;</span>
+
+  <span class="c-tag">&lt;label</span> for=<span class="c-str">"email"</span><span class="c-tag">&gt;</span>Email *<span class="c-tag">&lt;/label&gt;</span>
+  <span class="c-tag">&lt;input</span> type=<span class="c-str">"email"</span> id=<span class="c-str">"email"</span> <span class="c-tag">/&gt;&lt;br&gt;</span>
+
+  <span class="c-tag">&lt;label</span> for=<span class="c-str">"sport"</span><span class="c-tag">&gt;</span>Sport<span class="c-tag">&lt;/label&gt;</span>
+  <span class="c-tag">&lt;select</span> id=<span class="c-str">"sport"</span><span class="c-tag">&gt;</span>
+    <span class="c-tag">&lt;option</span> value=<span class="c-str">"*"</span><span class="c-tag">&gt;</span>-- Choisir --<span class="c-tag">&lt;/option&gt;</span>
+    <span class="c-tag">&lt;option&gt;</span>Football<span class="c-tag">&lt;/option&gt;</span>
+    <span class="c-tag">&lt;option&gt;</span>Tennis<span class="c-tag">&lt;/option&gt;</span>
+    <span class="c-tag">&lt;option&gt;</span>Basketball<span class="c-tag">&lt;/option&gt;</span>
+  <span class="c-tag">&lt;/select&gt;&lt;br&gt;</span>
+
+  <span class="c-tag">&lt;label&gt;</span>Pack<span class="c-tag">&lt;/label&gt;</span>
+  <span class="c-tag">&lt;input</span> type=<span class="c-str">"radio"</span> name=<span class="c-str">"pack"</span> value=<span class="c-str">"50"</span> id=<span class="c-str">"pack1h"</span> <span class="c-tag">/&gt;</span> 1h (50 DT)<span class="c-tag">&lt;br&gt;</span>
+  <span class="c-tag">&lt;input</span> type=<span class="c-str">"radio"</span> name=<span class="c-str">"pack"</span> value=<span class="c-str">"90"</span> id=<span class="c-str">"pack2h"</span> <span class="c-tag">/&gt;</span> 2h (90 DT)<span class="c-tag">&lt;br&gt;</span>
+
+  <span class="c-tag">&lt;label&gt;</span>Services optionnels<span class="c-tag">&lt;/label&gt;</span>
+  <span class="c-tag">&lt;input</span> type=<span class="c-str">"checkbox"</span> name=<span class="c-str">"svc"</span> value=<span class="c-str">"20"</span> <span class="c-tag">/&gt;</span> Location équipement (20 DT)<span class="c-tag">&lt;br&gt;</span>
+  <span class="c-tag">&lt;input</span> type=<span class="c-str">"checkbox"</span> name=<span class="c-str">"svc"</span> value=<span class="c-str">"15"</span> <span class="c-tag">/&gt;</span> Vestiaire (15 DT)<span class="c-tag">&lt;br&gt;</span>
+  <span class="c-tag">&lt;input</span> type=<span class="c-str">"checkbox"</span> name=<span class="c-str">"svc"</span> value=<span class="c-str">"30"</span> id=<span class="c-str">"coach"</span> <span class="c-tag">/&gt;</span> Coach (30 DT)<span class="c-tag">&lt;br&gt;</span>
+
+  <span class="c-tag">&lt;button</span> type=<span class="c-str">"submit"</span><span class="c-tag">&gt;</span>Réserver<span class="c-tag">&lt;/button&gt;</span>
+  <span class="c-tag">&lt;button</span> type=<span class="c-str">"button"</span><span class="c-tag">&gt;</span>Calculer Frais<span class="c-tag">&lt;/button&gt;</span>
+<span class="c-tag">&lt;/form&gt;</span></pre>
+
+    <p><strong>1- (3pts)</strong> Écrire une fonction JavaScript <code>ValidationReservation()</code> permettant de :</p>
+    <ul>
+      <li>Vérifier que Email est rempli</li>
+      <li>Vérifier qu'un sport est sélectionné (différent de "*")</li>
+      <li>Vérifier qu'un pack est choisi</li>
+      <li>Vérifier que si le sport choisi est "Tennis", le service "Coach" ne doit pas être sélectionné</li>
+    </ul>
+    <p><strong>2- (3pts)</strong> Écrire une fonction JavaScript <code>CalculFrais()</code> affichant dans une boite de dialogue :</p>
+    <ul>
+      <li>Frais total</li>
+      <li>Frais du pack</li>
+      <li>Frais optionnels</li>
+      <li>Si le pack 2h est choisi, une réduction de 10% s'applique sur les services optionnels</li>
+    </ul>
+    <p><strong>3- (1pt)</strong> Indiquer l'emplacement de l'appel de <code>ValidationReservation()</code>.</p>
+  </div>
+
+  <h3>📝 Exercice 2 : PHP (13 pts)</h3>
+  <div style="background:#f8f9fa;border:2px solid #dee2e6;border-radius:8px;padding:20px;margin:20px 0;">
+    <p><strong>1- (1.5 pts)</strong> Donner le code PHP permettant de se connecter à la base de données <strong>SPORTIFY_DB</strong>.</p>
+    <p><strong>2- (2.5 pts)</strong> Écrire le code PHP permettant l'enregistrement d'une réservation dans la table RESERVATION.</p>
+    <p><strong>3- (3 pts)</strong> Écrire une fonction PHP <code>mesReservations($num_client, $dateD, $dateF)</code> permettant d'afficher toutes les réservations confirmées d'un client entre deux dates, sous la forme :</p>
+    <div class="tip" style="margin:10px 0">
+      Mes réservations entre $dateD et $dateF sont :<br>
+      • NomSport : NumTerrain
+    </div>
+    <p><strong>4- (1.5 pts)</strong> Écrire une fonction PHP <code>annulerReservation($num_res)</code>.</p>
+    <p><strong>5- (2.5 pts)</strong> Écrire une fonction PHP <code>confirmerListe($tabRes)</code> qui confirme toutes les réservations dont les numéros sont dans le tableau <code>$tabRes</code>.</p>
+    <p><strong>6- (2 pts)</strong> Écrire une fonction PHP <code>sportPopulaire($dateD, $dateF)</code> retournant les sports réservés plus de 50 fois entre deux dates.</p>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PARTIE 8 — CORRECTION
+  ═══════════════════════════════════════════ -->
+  <h2 id="correction"><span class="section-number">PARTIE 8</span> ✅ Correction Détaillée de l'Examen Blanc</h2>
+
+  <h3>✅ Correction — Exercice 1 JavaScript</h3>
+
+  <h4>Question 1 — ValidationReservation()</h4>
+  <div class="code-label">JavaScript — CORRECTION Q1</div>
+  <pre><span class="c-kw">function</span> <span class="c-fn">ValidationReservation</span>() {
+    <span class="c-kw">var</span> <span class="c-var">erreurs</span> = <span class="c-str">""</span>;
+
+    <span class="c-cm">// Vérifier Email</span>
+    <span class="c-kw">var</span> <span class="c-var">email</span> = document.<span class="c-fn">getElementById</span>(<span class="c-str">"email"</span>).<span class="c-var">value</span>;
+    <span class="c-kw">if</span> (<span class="c-var">email</span> == <span class="c-str">""</span>) {
+        <span class="c-var">erreurs</span> += <span class="c-str">"L'email est obligatoire.\n"</span>;
+    }
+
+    <span class="c-cm">// Vérifier sport sélectionné</span>
+    <span class="c-kw">var</span> <span class="c-var">sport</span> = document.<span class="c-fn">getElementById</span>(<span class="c-str">"sport"</span>).<span class="c-var">value</span>;
+    <span class="c-kw">if</span> (<span class="c-var">sport</span> == <span class="c-str">"*"</span> || <span class="c-var">sport</span> == <span class="c-str">""</span>) {
+        <span class="c-var">erreurs</span> += <span class="c-str">"Veuillez choisir un sport.\n"</span>;
+    }
+
+    <span class="c-cm">// Vérifier pack choisi</span>
+    <span class="c-kw">var</span> <span class="c-var">radios</span> = document.<span class="c-fn">getElementsByName</span>(<span class="c-str">"pack"</span>);
+    <span class="c-kw">var</span> <span class="c-var">packChoisi</span> = <span class="c-kw">false</span>;
+    <span class="c-kw">for</span> (<span class="c-kw">var</span> <span class="c-var">i</span> = <span class="c-num">0</span>; <span class="c-var">i</span> &lt; <span class="c-var">radios</span>.<span class="c-var">length</span>; <span class="c-var">i</span>++) {
+        <span class="c-kw">if</span> (<span class="c-var">radios</span>[<span class="c-var">i</span>].<span class="c-var">checked</span>) <span class="c-var">packChoisi</span> = <span class="c-kw">true</span>;
+    }
+    <span class="c-kw">if</span> (!<span class="c-var">packChoisi</span>) {
+        <span class="c-var">erreurs</span> += <span class="c-str">"Veuillez choisir un pack.\n"</span>;
+    }
+
+    <span class="c-cm">// Règle métier : Tennis → pas de Coach</span>
+    <span class="c-kw">var</span> <span class="c-var">coach</span> = document.<span class="c-fn">getElementById</span>(<span class="c-str">"coach"</span>);
+    <span class="c-kw">if</span> (<span class="c-var">sport</span> == <span class="c-str">"Tennis"</span> &amp;&amp; <span class="c-var">coach</span>.<span class="c-var">checked</span>) {
+        <span class="c-var">erreurs</span> += <span class="c-str">"Le service Coach n'est pas disponible pour le Tennis.\n"</span>;
+    }
+
+    <span class="c-kw">if</span> (<span class="c-var">erreurs</span> != <span class="c-str">""</span>) {
+        <span class="c-fn">alert</span>(<span class="c-var">erreurs</span>);
+        <span class="c-kw">return false</span>;
+    }
+    <span class="c-kw">return true</span>;
+}</pre>
+
+  <h4>Question 2 — CalculFrais()</h4>
+  <div class="code-label">JavaScript — CORRECTION Q2</div>
+  <pre><span class="c-kw">function</span> <span class="c-fn">CalculFrais</span>() {
+    <span class="c-cm">// Lire le pack</span>
+    <span class="c-kw">var</span> <span class="c-var">radios</span> = document.<span class="c-fn">getElementsByName</span>(<span class="c-str">"pack"</span>);
+    <span class="c-kw">var</span> <span class="c-var">fraisPack</span> = <span class="c-num">0</span>;
+    <span class="c-kw">var</span> <span class="c-var">est2h</span> = <span class="c-kw">false</span>;
+    <span class="c-kw">for</span> (<span class="c-kw">var</span> <span class="c-var">i</span> = <span class="c-num">0</span>; <span class="c-var">i</span> &lt; <span class="c-var">radios</span>.<span class="c-var">length</span>; <span class="c-var">i</span>++) {
+        <span class="c-kw">if</span> (<span class="c-var">radios</span>[<span class="c-var">i</span>].<span class="c-var">checked</span>) {
+            <span class="c-var">fraisPack</span> = <span class="c-fn">parseInt</span>(<span class="c-var">radios</span>[<span class="c-var">i</span>].<span class="c-var">value</span>);
+            <span class="c-kw">if</span> (<span class="c-var">radios</span>[<span class="c-var">i</span>].<span class="c-var">id</span> == <span class="c-str">"pack2h"</span>) <span class="c-var">est2h</span> = <span class="c-kw">true</span>;
+        }
+    }
+
+    <span class="c-cm">// Lire les services optionnels</span>
+    <span class="c-kw">var</span> <span class="c-var">services</span> = document.<span class="c-fn">getElementsByName</span>(<span class="c-str">"svc"</span>);
+    <span class="c-kw">var</span> <span class="c-var">fraisOpt</span> = <span class="c-num">0</span>;
+    <span class="c-kw">for</span> (<span class="c-kw">var</span> <span class="c-var">j</span> = <span class="c-num">0</span>; <span class="c-var">j</span> &lt; <span class="c-var">services</span>.<span class="c-var">length</span>; <span class="c-var">j</span>++) {
+        <span class="c-kw">if</span> (<span class="c-var">services</span>[<span class="c-var">j</span>].<span class="c-var">checked</span>) {
+            <span class="c-var">fraisOpt</span> += <span class="c-fn">parseInt</span>(<span class="c-var">services</span>[<span class="c-var">j</span>].<span class="c-var">value</span>);
+        }
+    }
+
+    <span class="c-cm">// Réduction 10% si pack 2h</span>
+    <span class="c-kw">var</span> <span class="c-var">fraisOptFinal</span> = <span class="c-var">est2h</span> ? <span class="c-var">fraisOpt</span> * <span class="c-num">0.9</span> : <span class="c-var">fraisOpt</span>;
+    <span class="c-kw">var</span> <span class="c-var">total</span> = <span class="c-var">fraisPack</span> + <span class="c-var">fraisOptFinal</span>;
+
+    <span class="c-kw">var</span> <span class="c-var">msg</span> = <span class="c-str">"Les Frais sont :\n"</span>
+            + <span class="c-str">"- Frais total : "</span> + <span class="c-var">total</span> + <span class="c-str">" DT\n"</span>
+            + <span class="c-str">"- Frais du pack : "</span> + <span class="c-var">fraisPack</span> + <span class="c-str">" DT\n"</span>
+            + <span class="c-str">"- Frais optionnels : "</span> + <span class="c-var">fraisOptFinal</span> + <span class="c-str">" DT"</span>;
+    <span class="c-fn">alert</span>(<span class="c-var">msg</span>);
+}</pre>
+
+  <h4>Question 3 — Emplacement</h4>
+  <div class="tip">
+    Sur le bouton "Réserver" :<br>
+    <code>&lt;button type="submit" onclick="return ValidationReservation()"&gt;Réserver&lt;/button&gt;</code><br>
+    OU sur la balise form :<br>
+    <code>&lt;form id="resForm" onsubmit="return ValidationReservation()"&gt;</code>
+  </div>
+
+  <h3>✅ Correction — Exercice 2 PHP</h3>
+
+  <h4>Question 1 — Connexion</h4>
+  <div class="code-label">PHP — CORRECTION Q1 Connexion</div>
+  <pre><span class="c-cm">// Version mysqli</span>
+<span class="c-var">$conn</span> = <span class="c-fn">mysqli_connect</span>(<span class="c-str">"192.168.1.1"</span>, <span class="c-str">"SportifyAdmin"</span>, <span class="c-str">"GoalGoal2025"</span>, <span class="c-str">"SPORTIFY_DB"</span>);
+<span class="c-kw">if</span> (!<span class="c-var">$conn</span>) {
+    <span class="c-fn">die</span>(<span class="c-str">"Connexion échouée : "</span> . <span class="c-fn">mysqli_connect_error</span>());
+}
+
+<span class="c-cm">// OU Version PDO</span>
+<span class="c-kw">try</span> {
+    <span class="c-var">$pdo</span> = <span class="c-kw">new</span> <span class="c-fn">PDO</span>(<span class="c-str">"mysql:host=192.168.1.1;dbname=SPORTIFY_DB;charset=utf8"</span>,
+                   <span class="c-str">"SportifyAdmin"</span>, <span class="c-str">"GoalGoal2025"</span>);
+    <span class="c-var">$pdo</span>-><span class="c-fn">setAttribute</span>(PDO::<span class="c-var">ATTR_ERRMODE</span>, PDO::<span class="c-var">ERRMODE_EXCEPTION</span>);
+} <span class="c-kw">catch</span> (PDOException <span class="c-var">$e</span>) {
+    <span class="c-fn">die</span>(<span class="c-str">"Erreur : "</span> . <span class="c-var">$e</span>-><span class="c-fn">getMessage</span>());
+}</pre>
+
+  <h4>Question 2 — INSERT</h4>
+  <div class="code-label">PHP — CORRECTION Q2 INSERT</div>
+  <pre><span class="c-fn">session_start</span>();
+<span class="c-var">$nomSport</span>   = <span class="c-var">$_POST</span>[<span class="c-str">'NomSport'</span>];
+<span class="c-var">$numTerrain</span> = <span class="c-var">$_POST</span>[<span class="c-str">'NumTerrain'</span>];
+<span class="c-var">$heureRes</span>   = <span class="c-var">$_POST</span>[<span class="c-str">'HeureRes'</span>];
+<span class="c-var">$dateRes</span>    = <span class="c-fn">date</span>(<span class="c-str">"Y-m-d H:i:s"</span>);
+<span class="c-var">$numClient</span>  = <span class="c-var">$_SESSION</span>[<span class="c-str">'numClient'</span>];
+<span class="c-var">$etatRes</span>    = <span class="c-str">"en attente"</span>;
+
+<span class="c-var">$sql</span> = <span class="c-str">"INSERT INTO RESERVATION (NomSport, NumTerrain, DateRes, HeureRes, NumClient, EtatRes)
+        VALUES ('$nomSport', '$numTerrain', '$dateRes', '$heureRes', '$numClient', '$etatRes')"</span>;
+<span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);</pre>
+
+  <h4>Question 3 — mesReservations</h4>
+  <div class="code-label">PHP — CORRECTION Q3 SELECT</div>
+  <pre><span class="c-kw">function</span> <span class="c-fn">mesReservations</span>(<span class="c-var">$num_client</span>, <span class="c-var">$dateD</span>, <span class="c-var">$dateF</span>) {
+    <span class="c-kw">global</span> <span class="c-var">$conn</span>;
+    <span class="c-var">$sql</span> = <span class="c-str">"SELECT NomSport, NumTerrain FROM RESERVATION
+            WHERE NumClient = '$num_client'
+            AND EtatRes = 'confirmée'
+            AND DateRes BETWEEN '$dateD' AND '$dateF'"</span>;
+    <span class="c-var">$result</span> = <span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);
+
+    <span class="c-kw">echo</span> <span class="c-str">"Mes réservations entre $dateD et $dateF sont :&lt;ul&gt;"</span>;
+    <span class="c-kw">while</span> (<span class="c-var">$row</span> = <span class="c-fn">mysqli_fetch_assoc</span>(<span class="c-var">$result</span>)) {
+        <span class="c-kw">echo</span> <span class="c-str">"&lt;li&gt;"</span> . <span class="c-var">$row</span>[<span class="c-str">'NomSport'</span>] . <span class="c-str">" : "</span> . <span class="c-var">$row</span>[<span class="c-str">'NumTerrain'</span>] . <span class="c-str">"&lt;/li&gt;"</span>;
+    }
+    <span class="c-kw">echo</span> <span class="c-str">"&lt;/ul&gt;"</span>;
+}</pre>
+
+  <h4>Question 4 — annulerReservation</h4>
+  <div class="code-label">PHP — CORRECTION Q4 UPDATE</div>
+  <pre><span class="c-kw">function</span> <span class="c-fn">annulerReservation</span>(<span class="c-var">$num_res</span>) {
+    <span class="c-kw">global</span> <span class="c-var">$conn</span>;
+    <span class="c-var">$sql</span> = <span class="c-str">"UPDATE RESERVATION SET EtatRes = 'annulée' WHERE NumRes = '$num_res'"</span>;
+    <span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);
+}</pre>
+
+  <h4>Question 5 — confirmerListe (boucle tableau)</h4>
+  <div class="code-label">PHP — CORRECTION Q5 foreach</div>
+  <pre><span class="c-kw">function</span> <span class="c-fn">confirmerListe</span>(<span class="c-var">$tabRes</span>) {
+    <span class="c-kw">global</span> <span class="c-var">$conn</span>;
+    <span class="c-kw">foreach</span> (<span class="c-var">$tabRes</span> <span class="c-kw">as</span> <span class="c-var">$numRes</span>) {
+        <span class="c-var">$sql</span> = <span class="c-str">"UPDATE RESERVATION SET EtatRes = 'confirmée' WHERE NumRes = '$numRes'"</span>;
+        <span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);
+    }
+}</pre>
+
+  <h4>Question 6 — sportPopulaire (GROUP BY / HAVING)</h4>
+  <div class="code-label">PHP — CORRECTION Q6 GROUP BY</div>
+  <pre><span class="c-kw">function</span> <span class="c-fn">sportPopulaire</span>(<span class="c-var">$dateD</span>, <span class="c-var">$dateF</span>) {
+    <span class="c-kw">global</span> <span class="c-var">$conn</span>;
+    <span class="c-var">$sql</span> = <span class="c-str">"SELECT NomSport, COUNT(*) AS total FROM RESERVATION
+            WHERE DateRes BETWEEN '$dateD' AND '$dateF'
+            GROUP BY NomSport
+            HAVING COUNT(*) &gt; 50"</span>;
+    <span class="c-var">$result</span> = <span class="c-fn">mysqli_query</span>(<span class="c-var">$conn</span>, <span class="c-var">$sql</span>);
+
+    <span class="c-kw">echo</span> <span class="c-str">"Sports populaires :&lt;ul&gt;"</span>;
+    <span class="c-kw">while</span> (<span class="c-var">$row</span> = <span class="c-fn">mysqli_fetch_assoc</span>(<span class="c-var">$result</span>)) {
+        <span class="c-kw">echo</span> <span class="c-str">"&lt;li&gt;"</span> . <span class="c-var">$row</span>[<span class="c-str">'NomSport'</span>] . <span class="c-str">"&lt;/li&gt;"</span>;
+    }
+    <span class="c-kw">echo</span> <span class="c-str">"&lt;/ul&gt;"</span>;
+}</pre>
+
+  <div class="tip">
+    <strong>✅ Derniers conseils pour demain :</strong><br>
+    1. Lire tout le sujet avant de commencer — repérer la table, les champs, l'état par défaut<br>
+    2. Pour la connexion PHP : écrire immédiatement <code>mysqli_connect(host, user, pass, db)</code> avec les 4 paramètres du sujet<br>
+    3. Pour l'INSERT : noter mentalement les 5 éléments toujours présents : champs POST + date() + $_SESSION + état défaut<br>
+    4. Pour la validation JS : commencer par les champs obligatoires, puis la règle métier<br>
+    5. Ne jamais oublier <code>global $conn;</code> dans les fonctions PHP<br>
+    6. Écrire <code>return false</code> dans la fonction de validation JS<br>
+    7. Pour OOP : commencer par écrire <code>class NomClasse { private $attr; public function __construct(...) { $this->attr = ... } }</code>
+  </div>
+
+  <div class="footer-note">Révision Développement Web · PHP · JavaScript · OOP · PDO · TEK-UP 2024-2025 · Bonne chance ! 🍀</div>
+</div>
+</body>
+</html>
