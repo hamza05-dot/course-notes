@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎯 Guide de Révision Java ING-3 — Examen Demain</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap');
+
+  :root {
+    --bg: #f0f0f8;
+    --bg2: #ffffff;
+    --bg3: #f8f9fa;
+    --card: #ffffff;
+    --border: #dee2e6;
+    --accent: #667eea;
+    --accent2: #764ba2;
+    --green: #4caf50;
+    --yellow: #ffc107;
+    --red: #ef4444;
+    --orange: #f97316;
+    --purple: #764ba2;
+    --pink: #a855f7;
+    --text: #2c3e50;
+    --text2: #34495e;
+    --text3: #7f8c8d;
+    --code-bg: #1e1e2e;
+    --glow: 0 0 20px rgba(102,126,234,0.25);
+    --grad: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Sora', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 24px;
+    display: flex; align-items:center; gap:8px; flex-wrap:wrap;
+    box-shadow: 0 2px 12px rgba(102,126,234,0.15);
+  }
+  nav a {
+    color: var(--text3); text-decoration:none;
+    font-size:12px; font-weight:600; letter-spacing:.04em;
+    padding: 4px 10px; border-radius:6px;
+    border: 1px solid transparent;
+    transition: all .2s;
+  }
+  nav a:hover { color:var(--accent); border-color:var(--accent); background:rgba(102,126,234,.1); }
+  .nav-logo { color:var(--accent); font-size:14px; font-weight:800; margin-right:8px; }
+
+  /* ── MAIN LAYOUT ── */
+  main { max-width:1100px; margin:0 auto; padding: 90px 20px 60px;
+    background: #ffffff; border-radius: 10px; margin-top: 10px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+
+  /* ── HERO ── */
+  .hero {
+    text-align:center; padding: 60px 0 40px;
+    border-bottom: 1px solid var(--border); margin-bottom:48px;
+  }
+  .hero h1 {
+    font-size: clamp(28px,5vw,52px); font-weight:800;
+    background: linear-gradient(135deg, var(--accent), var(--purple), var(--pink));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    line-height:1.2; margin-bottom:16px;
+  }
+  .hero p { color:var(--text3); font-size:17px; margin-bottom:24px; }
+  .hero-badges { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; }
+  .badge {
+    padding: 6px 16px; border-radius:20px; font-size:12px; font-weight:700;
+    letter-spacing:.05em; text-transform:uppercase;
+  }
+  .badge-high { background:rgba(239,68,68,.12); color:#c0392b; border:1px solid rgba(239,68,68,.25); }
+  .badge-med  { background:rgba(245,158,11,.12); color:#d97706; border:1px solid rgba(245,158,11,.25); }
+  .badge-low  { background:rgba(76,175,80,.12); color:#2e7d32; border:1px solid rgba(76,175,80,.25); }
+
+  /* ── SECTIONS ── */
+  section { margin-bottom: 60px; }
+  .section-title {
+    font-size:22px; font-weight:800; color:var(--accent);
+    border-left: 6px solid var(--accent2);
+    padding: 15px 20px; margin-bottom: 24px;
+    background: linear-gradient(90deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 5px;
+    display:flex; align-items:center; gap:10px;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--card); border:1px solid var(--border);
+    border-radius:12px; padding:20px 24px; margin-bottom:16px;
+    box-shadow: 0 2px 8px rgba(102,126,234,0.08);
+  }
+  .card h3 { font-size:16px; font-weight:700; margin-bottom:12px; color:var(--text); }
+  .card p, .card li { color:var(--text2); }
+
+  .cards-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .cards-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+
+  @media(max-width:700px) { .cards-2,.cards-3 { grid-template-columns:1fr; } }
+
+  /* ── PROBABILITY CARDS ── */
+  .prob-card {
+    background: var(--card); border:1px solid var(--border);
+    border-radius:12px; padding:20px; margin-bottom:14px;
+    border-left-width: 4px;
+    box-shadow: 0 2px 8px rgba(102,126,234,0.08);
+  }
+  .prob-card.high { border-left-color:#c0392b; }
+  .prob-card.med  { border-left-color:#d97706; }
+  .prob-card.low  { border-left-color:#2e7d32; }
+  .prob-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+  .prob-title { font-weight:700; font-size:16px; color:var(--text); }
+  .prob-label {
+    font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px;
+    text-transform:uppercase; letter-spacing:.06em;
+  }
+  .high .prob-label { background:rgba(239,68,68,.12); color:#c0392b; }
+  .med  .prob-label { background:rgba(245,158,11,.12); color:#d97706; }
+  .low  .prob-label { background:rgba(76,175,80,.12);  color:#2e7d32; }
+  .prob-card ul { list-style:none; }
+  .prob-card li { color:var(--text2); padding: 3px 0; font-size:14px; }
+  .prob-card li::before { content:"▸ "; color:var(--accent); }
+  .prob-reasoning { color:var(--text3); font-size:13px; font-style:italic; margin-top:8px; }
+
+  /* ── CODE BLOCKS ── */
+  pre {
+    background: var(--code-bg); border:1px solid var(--border);
+    border-radius:8px; padding:18px; overflow-x:auto;
+    font-family: 'JetBrains Mono', monospace; font-size:13px;
+    line-height:1.6; color: #e2e8f0; margin: 12px 0;
+  }
+  .kw { color:#ff79c6; }
+  .ty { color:#8be9fd; }
+  .str { color:#f1fa8c; }
+  .com { color:#6272a4; font-style:italic; }
+  .num { color:#bd93f9; }
+  .fn  { color:#50fa7b; }
+  .annot { color:#ffb86c; }
+
+  /* ── COLLAPSIBLE ── */
+  details {
+    background: var(--card); border:1px solid var(--border);
+    border-radius:10px; margin-bottom:12px; overflow:hidden;
+    box-shadow: 0 2px 6px rgba(102,126,234,0.07);
+  }
+  summary {
+    padding:14px 20px; cursor:pointer; font-weight:600; font-size:15px;
+    display:flex; align-items:center; gap:10px;
+    user-select:none; list-style:none; color:var(--text);
+    background: linear-gradient(90deg, #f8f9fa 0%, #ffffff 100%);
+  }
+  summary::-webkit-details-marker { display:none; }
+  summary::before { content:"▶"; color:var(--accent); font-size:11px; transition:.2s; }
+  details[open] summary::before { transform:rotate(90deg); }
+  details > *:not(summary) { padding: 0 20px 18px; }
+
+  /* ── INFO BOXES ── */
+  .info, .warn, .danger, .tip, .success {
+    border-radius:8px; padding:14px 18px; margin:12px 0; font-size:14px;
+    border-left-width:4px; border-left-style:solid;
+  }
+  .info    { background:#d1ecf1; border-color:#17a2b8; color:#0c5460; }
+  .warn    { background:#fff3cd; border-color:#ffc107; color:#856404; }
+  .danger  { background:#f8d7da; border-color:#dc3545; color:#721c24; }
+  .tip     { background:#d4edda; border-color:#28a745; color:#155724; }
+  .success { background:#e8d5f5; border-color:#764ba2; color:#4a1972; }
+  .info strong,.warn strong,.danger strong,.tip strong,.success strong { 
+    display:block; font-size:12px; letter-spacing:.05em; text-transform:uppercase; margin-bottom:6px; 
+  }
+
+  /* ── COMPARISON TABLE ── */
+  table { width:100%; border-collapse:collapse; margin:14px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  th { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+       color: white; font-size:12px; text-transform:uppercase; 
+       letter-spacing:.05em; padding:10px 14px; text-align:left; font-weight:bold; }
+  td { padding:10px 14px; border:1px solid var(--border); color:var(--text2); font-size:14px; }
+  tr:nth-child(even) td { background-color: #f8f9fa; }
+  tr:hover td { background: rgba(102,126,234,.06); transition: background-color 0.2s; }
+
+  /* ── EXAM EXERCISE ── */
+  .exercise {
+    background: var(--card); border:1px solid var(--border);
+    border-radius:12px; margin-bottom:24px; overflow:hidden;
+    box-shadow: 0 2px 8px rgba(102,126,234,0.1);
+  }
+  .ex-header {
+    padding:14px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .ex-title { font-weight:700; font-size:15px; color:white; }
+  .ex-pts { 
+    font-size:12px; font-weight:700; color:white; 
+    background:rgba(255,255,255,.2); padding:3px 10px; border-radius:20px;
+  }
+  .ex-body { padding:20px; }
+  .ex-solution {
+    border-top:1px solid var(--border); padding:20px;
+    background:rgba(76,175,80,.04);
+  }
+  .sol-label {
+    font-size:11px; font-weight:700; color:var(--green);
+    letter-spacing:.06em; text-transform:uppercase; margin-bottom:12px;
+  }
+
+  /* ── FLASHCARD GRID ── */
+  .flashcards { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; }
+  .flashcard {
+    background:var(--card); border:1px solid var(--border); border-radius:10px;
+    padding:16px; cursor:pointer; transition:all .2s;
+    min-height:100px;
+    box-shadow: 0 2px 6px rgba(102,126,234,0.08);
+  }
+  .flashcard:hover { border-color:var(--accent); box-shadow: var(--glow); transform:translateY(-2px); }
+  .fc-q { font-weight:600; font-size:14px; margin-bottom:8px; color:var(--text); }
+  .fc-a { color:var(--green); font-size:13px; display:none; margin-top:8px; border-top:1px solid var(--border); padding-top:8px; }
+  .flashcard.revealed .fc-a { display:block; }
+  .fc-hint { color:var(--text3); font-size:11px; }
+
+  .trap {
+    background: rgba(239,68,68,.05); border:1px solid rgba(239,68,68,.2);
+    border-radius:10px; padding:16px 20px; margin:10px 0;
+  }
+  .trap-num { color:#c0392b; font-weight:800; font-size:18px; margin-right:8px; }
+  .trap-title { font-weight:700; color:var(--text); }
+  .trap-desc { color:var(--text2); font-size:14px; margin-top:8px; }
+
+  .last-minute {
+    background: linear-gradient(135deg, rgba(102,126,234,.08), rgba(118,75,162,.08));
+    border: 1px solid rgba(102,126,234,.25);
+    border-radius:14px; padding:28px; margin-bottom:24px;
+  }
+  .lm-title { font-size:22px; font-weight:800; color:var(--accent); margin-bottom:20px; }
+  .lm-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media(max-width:600px) { .lm-grid { grid-template-columns:1fr; } }
+  .lm-block { background:var(--card); border-radius:10px; padding:16px; border:1px solid var(--border); }
+  .lm-block h4 { font-size:13px; color:var(--accent); text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px; }
+  .lm-block ul { list-style:none; }
+  .lm-block li { font-size:13px; color:var(--text2); padding:3px 0; }
+  .lm-block li::before { content:"✓ "; color:var(--green); font-weight:700; }
+
+  .fact-list { list-style:none; }
+  .fact-list li {
+    display:flex; gap:14px; padding:10px 0; border-bottom:1px solid var(--border);
+    font-size:14px; color:var(--text2);
+  }
+  .fact-num { 
+    color:var(--accent); font-weight:800; font-size:16px; 
+    min-width:28px; font-family:'JetBrains Mono',monospace;
+  }
+
+  ::-webkit-scrollbar { width:6px; height:6px; }
+  ::-webkit-scrollbar-track { background:#f0f0f8; }
+  ::-webkit-scrollbar-thumb { background:#c4c9f0; border-radius:3px; }
+
+  .progress-bar { height:4px; background:linear-gradient(90deg,var(--accent),var(--purple)); border-radius:2px; margin-bottom:6px; }
+  .progress-label { font-size:12px; color:var(--text3); }
+
+  .mock-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius:14px;
+    padding:28px; margin-bottom:24px; text-align:center;
+  }
+  .mock-header h2 { font-size:24px; color:white; margin-bottom:8px; }
+  .mock-meta { display:flex; justify-content:center; gap:24px; flex-wrap:wrap; color:rgba(255,255,255,0.85); font-size:14px; }
+  .mock-meta span { display:flex; align-items:center; gap:6px; }
+
+  .tag {
+    display:inline-block; font-size:11px; font-weight:700; padding:2px 8px;
+    border-radius:20px; letter-spacing:.04em; text-transform:uppercase; margin-right:4px;
+  }
+  .tag-blue   { background:rgba(102,126,234,.15); color:var(--accent); }
+  .tag-green  { background:rgba(76,175,80,.15);   color:#2e7d32; }
+  .tag-yellow { background:rgba(245,158,11,.15);  color:#d97706; }
+  .tag-red    { background:rgba(239,68,68,.15);   color:#c0392b; }
+  .tag-purple { background:rgba(118,75,162,.15);  color:var(--purple); }
+
+  .divider { border:none; border-top:1px solid var(--border); margin:32px 0; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">☕ Java ING-3</span>
+  <a href="#predictions">🎯 Prédictions</a>
+  <a href="#revision">📖 Révision</a>
+  <a href="#exercices">✏️ Exercices</a>
+  <a href="#mockexam">📝 Examen Blanc</a>
+  <a href="#traps">⚠️ Pièges</a>
+  <a href="#lastminute">⚡ Dernière Minute</a>
+  <a href="#facts">🏆 Top 20</a>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Guide de Révision Java ING-3<br>Examen Demain 🚀</h1>
+  <p>Analyse complète du cours · Examens précédents · Exercices ciblés · Examen blanc</p>
+  <div class="hero-badges">
+    <span class="badge badge-high">🔥 POO & Héritage</span>
+    <span class="badge badge-high">🔥 Exceptions</span>
+    <span class="badge badge-high">🔥 Interfaces & Abstract</span>
+    <span class="badge badge-med">⚡ Collections</span>
+    <span class="badge badge-med">⚡ Polymorphisme</span>
+    <span class="badge badge-low">✅ QCM OOP</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 1: PREDICTIONS                    -->
+<!-- ══════════════════════════════════════════ -->
+<section id="predictions">
+<div class="section-title">🎯 Prédictions de l'Examen</div>
+
+<div class="info"><strong>Méthode d'analyse</strong>Basé sur l'analyse de 6 examens précédents (2020–2025), le résumé professeur, et le cours ING-3. Chaque prédiction est justifiée par des données concrètes.</div>
+
+<div class="prob-card high">
+  <div class="prob-header">
+    <span class="prob-title">1. Modélisation OOP + Hiérarchie de Classes</span>
+    <span class="prob-label">🔥 Très Haute</span>
+  </div>
+  <ul>
+    <li>Créer des classes abstraites avec attributs privés + constructeur</li>
+    <li>Implémenter des sous-classes concrètes (SalariéEntreprise → Consultant)</li>
+    <li>Utiliser super() dans les constructeurs</li>
+    <li>Redéfinir afficher(), toString(), equals()</li>
+    <li>Méthode de calcul abstraite à implémenter différemment dans chaque sous-classe</li>
+  </ul>
+  <p class="prob-reasoning">Présent dans CHAQUE examen analysé (2020, 2021, 2022, 2023, 2024, 2025). Structure quasi-identique : classe abstraite mère → 2 sous-classes concrètes → classe de gestion avec ArrayList.</p>
+</div>
+
+<div class="prob-card high">
+  <div class="prob-header">
+    <span class="prob-title">2. Interface + Implémentation</span>
+    <span class="prob-label">🔥 Très Haute</span>
+  </div>
+  <ul>
+    <li>Déclarer une interface avec 2-3 méthodes abstraites</li>
+    <li>Faire implémenter l'interface par la classe abstraite</li>
+    <li>Comprendre que les attributs d'interface sont public static final</li>
+    <li>Héritage multiple via interfaces</li>
+  </ul>
+  <p class="prob-reasoning">Présent dans 5/6 examens. Le dernier examen 2025 (ING-3) demande explicitement IJoueur + Personnage. Identique au pattern ICollaborateur de 2020.</p>
+</div>
+
+<div class="prob-card high">
+  <div class="prob-header">
+    <span class="prob-title">3. Exceptions Personnalisées (Custom)</span>
+    <span class="prob-label">🔥 Très Haute</span>
+  </div>
+  <ul>
+    <li>Créer une classe d'exception extends Exception ou extends RuntimeException</li>
+    <li>Utiliser throw + throws dans les méthodes</li>
+    <li>Vérifier des conditions et lever l'exception avec message personnalisé</li>
+    <li>Gestion try-catch dans le main</li>
+  </ul>
+  <p class="prob-reasoning">Présent dans 5/6 examens : DateException (2020), AlbumException (2022-2023), SoldeInsuffisantException (2024), JoueurException (2025). Pattern ultra-récurrent.</p>
+</div>
+
+<div class="prob-card high">
+  <div class="prob-header">
+    <span class="prob-title">4. Classe de Gestion avec ArrayList</span>
+    <span class="prob-label">🔥 Très Haute</span>
+  </div>
+  <ul>
+    <li>ArrayList&lt;T&gt; pour stocker des objets</li>
+    <li>Méthodes : ajouter (avec vérification doublons), retirer, trier</li>
+    <li>Tri par ordre croissant/alphabétique</li>
+    <li>Recherche par attribut</li>
+  </ul>
+  <p class="prob-reasoning">ServiceInfo (2020), GestionLocation (2024), JeuSplitFiction (2025), Bibliothèque (2024), Commune (2023). Toujours une classe de gestion avec ArrayList.</p>
+</div>
+
+<div class="prob-card med">
+  <div class="prob-header">
+    <span class="prob-title">5. QCM sur la syntaxe Java / Concepts OOP</span>
+    <span class="prob-label">⚡ Haute</span>
+  </div>
+  <ul>
+    <li>Vrai/Faux sur abstract, static, final, protected</li>
+    <li>Sortie de code (opérateurs, héritage, polymorphisme)</li>
+    <li>== vs .equals(), surcharge vs redéfinition</li>
+    <li>Ordre des catch, exceptions checked/unchecked</li>
+  </ul>
+  <p class="prob-reasoning">Présent dans 4/6 examens récents. L'examen ING-3 2025 a 6 QCM. Identique aux examens 2022 et 2023-2024.</p>
+</div>
+
+<div class="prob-card med">
+  <div class="prob-header">
+    <span class="prob-title">6. Polymorphisme + Casting</span>
+    <span class="prob-label">⚡ Moyenne</span>
+  </div>
+  <ul>
+    <li>Animal a = new Chien() — référence parent, objet enfant</li>
+    <li>instanceof avant un cast</li>
+    <li>Dispatch dynamique (@Override)</li>
+  </ul>
+  <p class="prob-reasoning">Souvent dans les QCM (questions 3, 6 de l'examen 2022). Aussi dans les exercices de code à analyser.</p>
+</div>
+
+<div class="prob-card low">
+  <div class="prob-header">
+    <span class="prob-title">7. Collections (Stream/Lambda)</span>
+    <span class="prob-label">✅ Possible</span>
+  </div>
+  <ul>
+    <li>Stream.filter(), map(), collect()</li>
+    <li>Opérations terminales vs intermédiaires</li>
+    <li>reduce(), findFirst(), forEach()</li>
+  </ul>
+  <p class="prob-reasoning">Présent dans l'examen TIC-1 2024 (janvier). Classe ING-3, donc potentiellement plus avancé. Inclus dans le cours. Probabilité modérée.</p>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 2: REVISION SHEET                 -->
+<!-- ══════════════════════════════════════════ -->
+<section id="revision">
+<div class="section-title">📖 Fiches de Révision Complètes</div>
+
+<!-- CHAPITRE: POO -->
+<details open>
+<summary>🏗️ Chapitre 1 — Concepts Fondamentaux OOP</summary>
+
+<div class="cards-2">
+  <div class="card">
+    <h3>Les 4 piliers de la POO</h3>
+    <ul style="list-style:none;">
+      <li style="padding:4px 0;"><span style="color:var(--accent)">🔒</span> <strong>Encapsulation</strong> — attributs private + getters/setters</li>
+      <li style="padding:4px 0;"><span style="color:var(--green)">🧬</span> <strong>Héritage</strong> — extends (une seule classe)</li>
+      <li style="padding:4px 0;"><span style="color:var(--yellow)">🎭</span> <strong>Polymorphisme</strong> — même méthode, comportements différents</li>
+      <li style="padding:4px 0;"><span style="color:var(--purple)">🎨</span> <strong>Abstraction</strong> — masquer la complexité (abstract, interface)</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Modificateurs d'accès</h3>
+    <table style="font-size:13px;">
+      <tr><th>Mot-clé</th><th>Portée</th></tr>
+      <tr><td><code>private</code></td><td>Classe uniquement</td></tr>
+      <tr><td><code>default</code></td><td>Package uniquement</td></tr>
+      <tr><td><code>protected</code></td><td>Package + sous-classes</td></tr>
+      <tr><td><code>public</code></td><td>Partout</td></tr>
+    </table>
+  </div>
+</div>
+
+<pre><span class="kw">public class</span> <span class="ty">Personne</span> {
+    <span class="kw">private</span> <span class="ty">String</span> nom;          <span class="com">// encapsulé</span>
+    <span class="kw">private int</span> age;
+
+    <span class="kw">public</span> <span class="fn">Personne</span>(<span class="ty">String</span> nom, <span class="kw">int</span> age) {   <span class="com">// constructeur</span>
+        <span class="kw">this</span>.nom = nom;
+        <span class="kw">this</span>.age = age;
+    }
+
+    <span class="kw">public</span> <span class="ty">String</span> <span class="fn">getNom</span>() { <span class="kw">return</span> nom; }     <span class="com">// getter</span>
+    <span class="kw">public void</span> <span class="fn">setNom</span>(<span class="ty">String</span> nom) { <span class="kw">this</span>.nom = nom; } <span class="com">// setter</span>
+
+    <span class="com">// static = appartient à la classe, pas à l'instance</span>
+    <span class="kw">public static</span> <span class="ty">String</span> <span class="fn">espece</span>() { <span class="kw">return</span> <span class="str">"Homo sapiens"</span>; }
+}</pre>
+
+<div class="warn"><strong>⚠️ Piège fréquent</strong>Une méthode static NE PEUT PAS utiliser <code>this</code> ni accéder aux attributs d'instance directement. Elle ne peut accéder qu'aux membres static.</div>
+</details>
+
+<!-- CHAPITRE: HERITAGE -->
+<details open>
+<summary>🧬 Chapitre 2 — Héritage (extends)</summary>
+
+<pre><span class="kw">public class</span> <span class="ty">Animal</span> {
+    <span class="kw">protected</span> <span class="ty">String</span> nom;
+
+    <span class="kw">public</span> <span class="fn">Animal</span>(<span class="ty">String</span> nom) { <span class="kw">this</span>.nom = nom; }
+
+    <span class="kw">public void</span> <span class="fn">afficher</span>() { <span class="ty">System</span>.out.<span class="fn">println</span>(nom); }
+}
+
+<span class="kw">public class</span> <span class="ty">Chien</span> <span class="kw">extends</span> <span class="ty">Animal</span> {
+    <span class="kw">private</span> <span class="ty">String</span> race;
+
+    <span class="kw">public</span> <span class="fn">Chien</span>(<span class="ty">String</span> nom, <span class="ty">String</span> race) {
+        <span class="kw">super</span>(nom);   <span class="com">// ← OBLIGATOIRE en première ligne si la classe mère n'a pas de constructeur par défaut</span>
+        <span class="kw">this</span>.race = race;
+    }
+
+    <span class="annot">@Override</span>
+    <span class="kw">public void</span> <span class="fn">afficher</span>() {
+        <span class="kw">super</span>.<span class="fn">afficher</span>();   <span class="com">// appel méthode parent</span>
+        <span class="ty">System</span>.out.<span class="fn">println</span>(<span class="str">"Race: "</span> + race);
+    }
+}</pre>
+
+<div class="danger"><strong>🚨 Règles Critiques Héritage</strong>
+1. Java = héritage SIMPLE uniquement (une seule classe mère)<br>
+2. super() doit être la PREMIÈRE instruction du constructeur fils<br>
+3. Si la classe mère n'a PAS de constructeur par défaut, super(args) est OBLIGATOIRE<br>
+4. Un attribut <code>final</code> ne peut pas être modifié après initialisation<br>
+5. Une classe <code>final</code> ne peut pas être étendue
+</div>
+
+<div class="cards-2">
+  <div class="card">
+    <h3>Surcharge (Overloading)</h3>
+    <p>Même nom, paramètres différents, <strong>même classe</strong></p>
+    <pre style="font-size:12px;margin-top:8px;"><span class="kw">void</span> <span class="fn">calc</span>(<span class="kw">int</span> a) {}
+<span class="kw">void</span> <span class="fn">calc</span>(<span class="kw">double</span> a) {}
+<span class="kw">void</span> <span class="fn">calc</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) {}</pre>
+    <p style="color:var(--text3);font-size:13px;">Résolu à la compilation (statique)</p>
+  </div>
+  <div class="card">
+    <h3>Redéfinition (Overriding)</h3>
+    <p>Même signature, <strong>classes différentes</strong> (héritage)</p>
+    <pre style="font-size:12px;margin-top:8px;"><span class="annot">@Override</span>
+<span class="kw">public void</span> <span class="fn">afficher</span>() {
+  <span class="com">// nouvelle implémentation</span>
+}</pre>
+    <p style="color:var(--text3);font-size:13px;">Résolu à l'exécution (dynamique)</p>
+  </div>
+</div>
+</details>
+
+<!-- CHAPITRE: ABSTRACT + INTERFACE -->
+<details open>
+<summary>🎭 Chapitre 3 — Classe Abstraite vs Interface</summary>
+
+<table>
+  <tr>
+    <th>Critère</th>
+    <th>Classe Abstraite</th>
+    <th>Interface</th>
+  </tr>
+  <tr><td>Instanciation</td><td>❌ Impossible (new)</td><td>❌ Impossible</td></tr>
+  <tr><td>Attributs</td><td>Tous types (private, protected...)</td><td>Uniquement <code>public static final</code></td></tr>
+  <tr><td>Constructeurs</td><td>✅ Oui (via super())</td><td>❌ Non</td></tr>
+  <tr><td>Méthodes</td><td>Abstraites + Concrètes</td><td>Abstraites (+ default/static Java 8+)</td></tr>
+  <tr><td>Héritage</td><td>extends UNE seule classe</td><td>implements PLUSIEURS interfaces</td></tr>
+  <tr><td>Mot-clé</td><td>abstract class</td><td>interface</td></tr>
+  <tr><td>Usage</td><td>Relation "est-un" + code partagé</td><td>Contrat / capacité "peut faire"</td></tr>
+</table>
+
+<div class="cards-2">
+<div>
+<pre><span class="com">// ── CLASSE ABSTRAITE ──</span>
+<span class="kw">public abstract class</span> <span class="ty">Collaborateur</span> <span class="kw">implements</span> <span class="ty">ICollaborateur</span> {
+    <span class="kw">private int</span> matricule;
+    <span class="kw">private</span> <span class="ty">String</span> nom;
+    <span class="kw">private double</span> coutJournalier;
+
+    <span class="kw">public</span> <span class="fn">Collaborateur</span>(<span class="kw">int</span> mat, <span class="ty">String</span> nom, <span class="kw">double</span> cout) {
+        <span class="kw">this</span>.matricule = mat;
+        <span class="kw">this</span>.nom = nom;
+        <span class="kw">this</span>.coutJournalier = cout;
+    }
+
+    <span class="com">// Méthode abstraite = contrat pour les sous-classes</span>
+    <span class="kw">public abstract double</span> <span class="fn">calculCoutProjet</span>(<span class="kw">int</span> n);
+
+    <span class="com">// Méthode concrète partagée</span>
+    <span class="kw">public void</span> <span class="fn">afficher</span>() {
+        <span class="ty">System</span>.out.<span class="fn">println</span>(matricule + <span class="str">" "</span> + nom);
+    }
+}</pre>
+</div>
+<div>
+<pre><span class="com">// ── INTERFACE ──</span>
+<span class="kw">public interface</span> <span class="ty">ICollaborateur</span> {
+    <span class="com">// Méthodes : implicitement public abstract</span>
+    <span class="kw">boolean</span> <span class="fn">equals</span>(<span class="ty">Object</span> o);
+    <span class="kw">boolean</span> <span class="fn">moinsCher</span>(<span class="ty">Collaborateur</span> c, <span class="kw">int</span> n);
+    <span class="com">// Variables : implicitement public static final</span>
+}
+
+<span class="com">// ── SOUS-CLASSE CONCRÈTE ──</span>
+<span class="kw">public class</span> <span class="ty">Consultant</span> <span class="kw">extends</span> <span class="ty">Collaborateur</span> {
+    <span class="kw">private double</span> coutForfaitaire;
+
+    <span class="kw">public</span> <span class="fn">Consultant</span>(<span class="kw">int</span> mat, <span class="ty">String</span> nom,
+                     <span class="kw">double</span> cout, <span class="kw">double</span> forfait) {
+        <span class="kw">super</span>(mat, nom, cout); <span class="com">// ← OBLIGATOIRE</span>
+        <span class="kw">this</span>.coutForfaitaire = forfait;
+    }
+
+    <span class="annot">@Override</span>
+    <span class="kw">public double</span> <span class="fn">calculCoutProjet</span>(<span class="kw">int</span> n) {
+        <span class="kw">return</span> n * <span class="fn">getCoutJournalier</span>() + coutForfaitaire;
+    }
+}</pre>
+</div>
+</div>
+
+<div class="tip"><strong>✅ Astuce examen</strong>Quand une classe abstraite implémente une interface, elle peut ne pas implémenter toutes les méthodes — les sous-classes concrètes devront le faire. C'est le pattern le plus utilisé dans les examens.</div>
+</details>
+
+<!-- CHAPITRE: EXCEPTIONS -->
+<details open>
+<summary>💥 Chapitre 4 — Exceptions</summary>
+
+<pre><span class="com">// ── HIÉRARCHIE ──
+// Throwable
+//   ├── Error (StackOverflowError, OutOfMemoryError) → NE PAS CATCHER
+//   └── Exception
+//         ├── RuntimeException (Unchecked) → optionnel
+//         │     ├── NullPointerException
+//         │     ├── ArithmeticException
+//         │     └── ArrayIndexOutOfBoundsException
+//         └── IOException, SQLException (Checked) → OBLIGATOIRE</span>
+
+<span class="com">// ── CRÉER UNE EXCEPTION PERSONNALISÉE ──</span>
+<span class="kw">public class</span> <span class="ty">JoueurException</span> <span class="kw">extends</span> <span class="ty">Exception</span> {  <span class="com">// Checked</span>
+    <span class="kw">public</span> <span class="fn">JoueurException</span>(<span class="ty">String</span> message) {
+        <span class="kw">super</span>(message);
+    }
+}
+
+<span class="com">// ── LANCER L'EXCEPTION ──</span>
+<span class="kw">public void</span> <span class="fn">passerNiveau</span>() <span class="kw">throws</span> <span class="ty">JoueurException</span> {  <span class="com">// déclarer</span>
+    <span class="kw">if</span> (pointsExperience < <span class="num">100</span>) {
+        <span class="kw">throw new</span> <span class="ty">JoueurException</span>(<span class="str">"Pas assez d'XP!"</span>);  <span class="com">// lancer</span>
+    }
+    niveauActuel++;
+    pointsExperience = <span class="num">0</span>;
+}
+
+<span class="com">// ── ATTRAPER L'EXCEPTION ──</span>
+<span class="kw">try</span> {
+    joueur.<span class="fn">passerNiveau</span>();
+} <span class="kw">catch</span> (<span class="ty">JoueurException</span> e) {   <span class="com">// plus spécifique en premier</span>
+    <span class="ty">System</span>.out.<span class="fn">println</span>(<span class="str">"Erreur: "</span> + e.<span class="fn">getMessage</span>());
+} <span class="kw">catch</span> (<span class="ty">Exception</span> e) {          <span class="com">// plus général ensuite</span>
+    <span class="ty">System</span>.out.<span class="fn">println</span>(<span class="str">"Autre erreur"</span>);
+} <span class="kw">finally</span> {                        <span class="com">// TOUJOURS exécuté</span>
+    <span class="ty">System</span>.out.<span class="fn">println</span>(<span class="str">"Fin"</span>);
+}</pre>
+
+<div class="danger"><strong>🚨 Règle d'or : Ordre des catch</strong>
+TOUJOURS du plus spécifique au plus général :<br>
+❌ MAUVAIS : catch(Exception e) puis catch(IOException e) → ERREUR COMPILATION<br>
+✅ BON : catch(IOException e) puis catch(Exception e)
+</div>
+
+<table>
+  <tr><th>Mot-clé</th><th>Rôle</th><th>Exemple</th></tr>
+  <tr><td><code>throw</code></td><td>Lancer une exception</td><td><code>throw new MonException("msg");</code></td></tr>
+  <tr><td><code>throws</code></td><td>Déclarer dans la signature</td><td><code>void f() throws IOException {}</code></td></tr>
+  <tr><td><code>try</code></td><td>Bloc à surveiller</td><td><code>try { ... }</code></td></tr>
+  <tr><td><code>catch</code></td><td>Attraper l'exception</td><td><code>catch(Exception e) { ... }</code></td></tr>
+  <tr><td><code>finally</code></td><td>Toujours exécuté</td><td><code>finally { fermer(); }</code></td></tr>
+</table>
+</details>
+
+<!-- CHAPITRE: POLYMORPHISME -->
+<details>
+<summary>🎭 Chapitre 5 — Polymorphisme</summary>
+
+<pre><span class="com">// POLYMORPHISME DYNAMIQUE : la méthode appelée dépend du TYPE RÉEL</span>
+<span class="ty">Animal</span> a = <span class="kw">new</span> <span class="ty">Chien</span>();  <span class="com">// référence Animal, objet Chien</span>
+a.<span class="fn">parler</span>();  <span class="com">// → appelle Chien.parler(), pas Animal.parler() !</span>
+
+<span class="com">// CASTING</span>
+<span class="ty">Animal</span>[] zoo = { <span class="kw">new</span> <span class="ty">Chien</span>(<span class="str">"Rex"</span>), <span class="kw">new</span> <span class="ty">Chat</span>(<span class="str">"Mimi"</span>) };
+<span class="kw">for</span> (<span class="ty">Animal</span> x : zoo) {
+    <span class="kw">if</span> (x <span class="kw">instanceof</span> <span class="ty">Chien</span>) {           <span class="com">// vérifier avant cast</span>
+        <span class="ty">Chien</span> c = (<span class="ty">Chien</span>) x;             <span class="com">// downcast</span>
+        c.<span class="fn">methodeSpecifique</span>();
+    }
+}</pre>
+
+<div class="warn"><strong>⚠️ ClassCastException</strong>Toujours vérifier avec <code>instanceof</code> avant de faire un downcast (cast vers sous-classe). Sans vérification → ClassCastException à l'exécution.</div>
+</details>
+
+<!-- CHAPITRE: COLLECTIONS & ARRAYLIST -->
+<details>
+<summary>📦 Chapitre 6 — Collections & ArrayList</summary>
+
+<pre><span class="kw">import</span> java.util.ArrayList;
+<span class="kw">import</span> java.util.Collections;
+
+<span class="com">// ── ARRAYLIST ──</span>
+<span class="ty">ArrayList</span>&lt;<span class="ty">String</span>&gt; liste = <span class="kw">new</span> <span class="ty">ArrayList</span>&lt;&gt;();
+liste.<span class="fn">add</span>(<span class="str">"Ali"</span>);           <span class="com">// ajouter à la fin</span>
+liste.<span class="fn">add</span>(<span class="num">0</span>, <span class="str">"Bob"</span>);        <span class="com">// insérer à la position</span>
+liste.<span class="fn">get</span>(<span class="num">0</span>);              <span class="com">// accéder par index</span>
+liste.<span class="fn">set</span>(<span class="num">0</span>, <span class="str">"Charlie"</span>);   <span class="com">// remplacer</span>
+liste.<span class="fn">remove</span>(<span class="str">"Ali"</span>);       <span class="com">// supprimer par valeur</span>
+liste.<span class="fn">remove</span>(<span class="num">0</span>);           <span class="com">// supprimer par index</span>
+liste.<span class="fn">size</span>();              <span class="com">// taille</span>
+liste.<span class="fn">contains</span>(<span class="str">"Ali"</span>);    <span class="com">// vérifier existence</span>
+liste.<span class="fn">isEmpty</span>();           <span class="com">// liste vide ?</span>
+
+<span class="com">// ── PARCOURIR ──</span>
+<span class="kw">for</span> (<span class="ty">String</span> s : liste) { <span class="ty">System</span>.out.<span class="fn">println</span>(s); }
+
+<span class="com">// ── TRIER ──</span>
+<span class="ty">Collections</span>.<span class="fn">sort</span>(liste);   <span class="com">// tri alphabétique pour String</span>
+
+<span class="com">// ── TRIER PAR CRITÈRE PERSONNALISÉ ──</span>
+liste.<span class="fn">sort</span>((a, b) -> a.<span class="fn">compareTo</span>(b));  <span class="com">// lambda</span></pre>
+
+<table>
+  <tr><th>Structure</th><th>Caractéristique</th><th>Exemple</th></tr>
+  <tr><td>ArrayList</td><td>Ordre conservé, doublons OK</td><td>lesJoueurs</td></tr>
+  <tr><td>HashSet</td><td>Pas de doublons, ordre aléatoire</td><td>Set de matricules</td></tr>
+  <tr><td>HashMap</td><td>Clé → Valeur unique</td><td>Map&lt;String, Integer&gt;</td></tr>
+  <tr><td>Stack</td><td>LIFO (push/pop)</td><td>Pile d'appels</td></tr>
+  <tr><td>Queue</td><td>FIFO (add/poll)</td><td>File d'attente</td></tr>
+</table>
+</details>
+
+<!-- CHAPITRE: STATIC & FINAL -->
+<details>
+<summary>🔑 Chapitre 7 — Mots-clés : static, final, this, super</summary>
+
+<div class="cards-2">
+<div class="card">
+<h3>static</h3>
+<ul style="list-style:none;color:var(--text2);">
+  <li>• Appartient à la CLASSE, pas à l'instance</li>
+  <li>• Partagé par tous les objets</li>
+  <li>• Accessible sans créer d'objet</li>
+  <li>• Méthode static : NE peut PAS utiliser this</li>
+  <li>• Méthode static : NE peut PAS appeler méthodes d'instance</li>
+</ul>
+</div>
+<div class="card">
+<h3>final</h3>
+<ul style="list-style:none;color:var(--text2);">
+  <li>• <strong>Variable final</strong> → constante (non modifiable)</li>
+  <li>• <strong>Méthode final</strong> → ne peut pas être redéfinie</li>
+  <li>• <strong>Classe final</strong> → ne peut pas être étendue</li>
+  <li>Exemple: String est final !</li>
+</ul>
+</div>
+<div class="card">
+<h3>this</h3>
+<ul style="list-style:none;color:var(--text2);">
+  <li>• Référence à l'objet courant</li>
+  <li>• Distingue attribut et paramètre</li>
+  <li>• <code>this(args)</code> = appel autre constructeur</li>
+  <li>• Interdit dans méthodes static</li>
+</ul>
+</div>
+<div class="card">
+<h3>super</h3>
+<ul style="list-style:none;color:var(--text2);">
+  <li>• Référence à la classe parente</li>
+  <li>• <code>super(args)</code> = constructeur parent (1ère ligne!)</li>
+  <li>• <code>super.méthode()</code> = appel méthode parente</li>
+  <li>• Permet d'étendre la méthode parente</li>
+</ul>
+</div>
+</div>
+</details>
+
+<!-- CHAPITRE: EQUALS & TOSTRING -->
+<details>
+<summary>⚖️ Chapitre 8 — equals(), toString(), == vs .equals()</summary>
+
+<pre><span class="com">// == compare les RÉFÉRENCES (adresses mémoire)</span>
+<span class="ty">String</span> s1 = <span class="str">"Hello"</span>;
+<span class="ty">String</span> s2 = <span class="kw">new</span> <span class="ty">String</span>(<span class="str">"Hello"</span>);
+<span class="ty">String</span> s3 = <span class="str">"Hello"</span>;
+
+s1 == s2      <span class="com">// false  (objets différents en mémoire)</span>
+s1.<span class="fn">equals</span>(s2) <span class="com">// true   (même contenu)</span>
+s1 == s3      <span class="com">// true   (même référence dans le pool)</span>
+
+<span class="com">// ── REDÉFINIR equals() ──</span>
+<span class="annot">@Override</span>
+<span class="kw">public boolean</span> <span class="fn">equals</span>(<span class="ty">Object</span> obj) {
+    <span class="kw">if</span> (<span class="kw">this</span> == obj) <span class="kw">return true</span>;
+    <span class="kw">if</span> (!(obj <span class="kw">instanceof</span> <span class="ty">Joueur</span>)) <span class="kw">return false</span>;
+    <span class="ty">Joueur</span> autre = (<span class="ty">Joueur</span>) obj;
+    <span class="kw">return this</span>.nom.<span class="fn">equals</span>(autre.nom);  <span class="com">// critère : même nom</span>
+}
+
+<span class="com">// ── REDÉFINIR toString() ──</span>
+<span class="annot">@Override</span>
+<span class="kw">public</span> <span class="ty">String</span> <span class="fn">toString</span>() {
+    <span class="kw">return</span> nom + <span class="str">" (niveau "</span> + niveauActuel + <span class="str">")"</span>;
+}</pre>
+</details>
+
+<!-- CHAPITRE: STREAMS -->
+<details>
+<summary>🌊 Chapitre 9 — Streams & Lambda (Java 8+)</summary>
+
+<pre><span class="kw">import</span> java.util.stream.*;
+<span class="kw">import</span> java.util.Arrays;
+<span class="kw">import</span> java.util.List;
+
+<span class="ty">List</span>&lt;<span class="ty">String</span>&gt; noms = <span class="ty">Arrays</span>.<span class="fn">asList</span>(<span class="str">"Ali"</span>, <span class="str">"Bob"</span>, <span class="str">"Charlie"</span>);
+
+<span class="com">// Opérations INTERMÉDIAIRES (retournent un Stream)</span>
+noms.<span class="fn">stream</span>()
+    .<span class="fn">filter</span>(s -> s.<span class="fn">length</span>() > <span class="num">3</span>)    <span class="com">// filtre</span>
+    .<span class="fn">map</span>(s -> s.<span class="fn">toUpperCase</span>())         <span class="com">// transformation</span>
+    .<span class="fn">sorted</span>()                            <span class="com">// tri</span>
+    .<span class="fn">distinct</span>();                          <span class="com">// supprime doublons</span>
+
+<span class="com">// Opérations TERMINALES (consomment le Stream)</span>
+.<span class="fn">forEach</span>(System.out::println)  <span class="com">// affichage</span>
+.<span class="fn">collect</span>(<span class="ty">Collectors</span>.<span class="fn">toList</span>())  <span class="com">// → List</span>
+.<span class="fn">count</span>()                         <span class="com">// nombre d'éléments</span>
+.<span class="fn">findFirst</span>()                     <span class="com">// premier élément (Optional)</span>
+.<span class="fn">reduce</span>((a,b) -> a + b)          <span class="com">// réduction</span>
+
+<span class="com">// IntStream.range(2, 6) → 2, 3, 4, 5 (exclusif)</span>
+<span class="kw">int</span> produit = <span class="ty">IntStream</span>.<span class="fn">range</span>(<span class="num">2</span>, <span class="num">6</span>)
+    .<span class="fn">reduce</span>((a,b) -> a * b)
+    .<span class="fn">orElse</span>(-<span class="num">1</span>);  <span class="com">// 2*3*4*5 = 120</span></pre>
+
+<div class="info"><strong>💡 Différence clé : map() vs filter()</strong>
+<code>filter()</code> = sélectionne des éléments (Predicate → boolean)<br>
+<code>map()</code> = transforme des éléments (Function → nouvel objet)
+</div>
+</details>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 3: EXERCICES TYPES                -->
+<!-- ══════════════════════════════════════════ -->
+<section id="exercices">
+<div class="section-title">✏️ Exercices Types & Solutions</div>
+
+<!-- EXERCICE 1 -->
+<div class="exercise">
+  <div class="ex-header">
+    <span class="ex-title">Exercice 1 — Erreurs de compilation classiques</span>
+    <span class="ex-pts">2.5 pts</span>
+  </div>
+  <div class="ex-body">
+    <p style="color:var(--text2);margin-bottom:14px;">Trouvez les erreurs dans ce code :</p>
+    <pre><span class="kw">abstract class</span> <span class="ty">A</span> { <span class="kw">int</span> a; }
+<span class="kw">class</span> <span class="ty">B</span> <span class="kw">extends</span> <span class="ty">A</span> {
+    <span class="kw">int</span> b;
+    <span class="kw">public</span> <span class="ty">B</span>(<span class="kw">int</span> b) { <span class="kw">this</span>.b = b; }  <span class="com">// ← ?</span>
+}
+<span class="kw">class</span> <span class="ty">C</span> <span class="kw">extends</span> <span class="ty">A</span> { <span class="kw">final double</span> c = <span class="num">1</span>; }
+<span class="kw">abstract class</span> <span class="ty">D</span> <span class="kw">extends</span> <span class="ty">A</span> {
+    <span class="kw">abstract int</span> <span class="fn">calcul</span>(<span class="kw">int</span> b) { }   <span class="com">// ← ?</span>
+}
+<span class="kw">class</span> <span class="ty">Test</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="ty">String</span>[] args) {
+        <span class="ty">A</span> x = <span class="kw">new</span> <span class="ty">A</span>();   <span class="com">// ← ?</span>
+        <span class="ty">B</span> y = <span class="kw">new</span> <span class="ty">B</span>();   <span class="com">// ← ?</span>
+        <span class="ty">C</span> z = <span class="kw">new</span> <span class="ty">C</span>();
+        z.c = <span class="num">3</span>;          <span class="com">// ← ?</span>
+    }
+}</pre>
+  </div>
+  <div class="ex-solution">
+    <div class="sol-label">✅ Solution Commentée</div>
+    <table>
+      <tr><th>Ligne</th><th>Erreur</th><th>Explication</th></tr>
+      <tr><td><code>A x = new A()</code></td><td>❌</td><td>A est abstract → impossible d'instancier</td></tr>
+      <tr><td><code>B y = new B()</code></td><td>❌</td><td>B n'a pas de constructeur sans paramètre. Il faut new B(valeur)</td></tr>
+      <tr><td><code>this.b = b</code> dans B</td><td>❌ manque super()</td><td>La classe B hérite de A qui n'a pas de constructeur par défaut → super() implicite manquant. MAIS A a un constructeur par défaut (pas de constructeur explicite → Java en crée un). Alors l'erreur principale est sur <code>new B()</code></td></tr>
+      <tr><td><code>z.c = 3</code></td><td>❌</td><td>c est final → valeur non modifiable après initialisation</td></tr>
+      <tr><td><code>abstract int calcul() { }</code></td><td>❌</td><td>Une méthode abstraite ne peut PAS avoir de corps {}. Il faut : abstract int calcul(int b);</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- EXERCICE 2 -->
+<div class="exercise">
+  <div class="ex-header">
+    <span class="ex-title">Exercice 2 — Exception personnalisée (pattern examen récurrent)</span>
+    <span class="ex-pts">2.5 pts</span>
+  </div>
+  <div class="ex-body">
+    <p style="color:var(--text2);margin-bottom:14px;">Créez une exception <code>DateException</code> et modifiez le constructeur de la classe Date pour la lever si le jour (1-30), le mois (1-12) ou l'année est invalide.</p>
+  </div>
+  <div class="ex-solution">
+    <div class="sol-label">✅ Solution Complète</div>
+    <pre><span class="com">// 1. Classe d'exception personnalisée</span>
+<span class="kw">public class</span> <span class="ty">DateException</span> <span class="kw">extends</span> <span class="ty">Exception</span> {
+    <span class="kw">public</span> <span class="fn">DateException</span>(<span class="ty">String</span> message) {
+        <span class="kw">super</span>(message);
+    }
+}
+
+<span class="com">// 2. Classe Date modifiée</span>
+<span class="kw">class</span> <span class="ty">Date</span> {
+    <span class="kw">int</span> jour, mois, annee;
+
+    <span class="ty">Date</span>(<span class="kw">int</span> j, <span class="kw">int</span> m, <span class="kw">int</span> a) <span class="kw">throws</span> <span class="ty">DateException</span> {  <span class="com">// déclarer</span>
+        <span class="kw">if</span> (j <= <span class="num">0</span> || j > <span class="num">30</span>)
+            <span class="kw">throw new</span> <span class="ty">DateException</span>(<span class="str">"Jour invalide: "</span> + j);
+        <span class="kw">if</span> (m <= <span class="num">0</span> || m > <span class="num">12</span>)
+            <span class="kw">throw new</span> <span class="ty">DateException</span>(<span class="str">"Mois invalide: "</span> + m);
+        <span class="kw">if</span> (a <= <span class="num">0</span>)
+            <span class="kw">throw new</span> <span class="ty">DateException</span>(<span class="str">"Année invalide: "</span> + a);
+        <span class="kw">this</span>.jour = j;
+        <span class="kw">this</span>.mois = m;
+        <span class="kw">this</span>.annee = a;
+    }
+}
+
+<span class="com">// 3. Utilisation dans main</span>
+<span class="kw">public static void</span> <span class="fn">main</span>(<span class="ty">String</span>[] args) {
+    <span class="kw">try</span> {
+        <span class="ty">Date</span> d = <span class="kw">new</span> <span class="ty">Date</span>(<span class="num">15</span>, <span class="num">13</span>, <span class="num">2024</span>);  <span class="com">// mois invalide!</span>
+    } <span class="kw">catch</span> (<span class="ty">DateException</span> e) {
+        <span class="ty">System</span>.out.<span class="fn">println</span>(e.<span class="fn">getMessage</span>()); <span class="com">// "Mois invalide: 13"</span>
+    }
+}</pre>
+  </div>
+</div>
+
+<!-- EXERCICE 3 -->
+<div class="exercise">
+  <div class="ex-header">
+    <span class="ex-title">Exercice 3 — Pattern complet : Hiérarchie + Interface + Gestion (ING-3 2025 style)</span>
+    <span class="ex-pts">14 pts</span>
+  </div>
+  <div class="ex-body">
+    <p style="color:var(--text2);margin-bottom:14px;">Implémenter le système de gestion du jeu Split Fiction (examen ING-3 2025) :</p>
+  </div>
+  <div class="ex-solution">
+    <div class="sol-label">✅ Solution Complète — Partie 1</div>
+    <pre><span class="com">// ── PARTIE 4 : Exception personnalisée (à écrire EN PREMIER) ──</span>
+<span class="kw">public class</span> <span class="ty">JoueurException</span> <span class="kw">extends</span> <span class="ty">Exception</span> {
+    <span class="kw">public</span> <span class="fn">JoueurException</span>(<span class="ty">String</span> message) {
+        <span class="kw">super</span>(message);
+    }
+}
+
+<span class="com">// ── PARTIE 1.1 : Interface IJoueur ──</span>
+<span class="kw">public interface</span> <span class="ty">IJoueur</span> {
+    <span class="kw">void</span> <span class="fn">jouerTour</span>();
+}
+
+<span class="com">// ── PARTIE 1.2 : Classe abstraite Personnage ──</span>
+<span class="kw">public abstract class</span> <span class="ty">Personnage</span> {
+    <span class="kw">protected</span> <span class="ty">String</span> nom;
+    <span class="kw">protected int</span> niveauActuel = <span class="num">1</span>;
+    <span class="kw">protected int</span> pointsExperience = <span class="num">0</span>;
+
+    <span class="kw">public</span> <span class="fn">Personnage</span>(<span class="ty">String</span> nom) {
+        <span class="kw">this</span>.nom = nom;
+    }
+
+    <span class="kw">public void</span> <span class="fn">gagnerExperience</span>(<span class="kw">int</span> points) {
+        <span class="kw">this</span>.pointsExperience += points;
+    }
+
+    <span class="kw">public void</span> <span class="fn">passerNiveau</span>() <span class="kw">throws</span> <span class="ty">JoueurException</span> {
+        <span class="kw">if</span> (pointsExperience < <span class="num">100</span>) {
+            <span class="kw">throw new</span> <span class="ty">JoueurException</span>(
+                <span class="str">"Pas assez d'XP pour passer le niveau! XP actuel: "</span> + pointsExperience);
+        }
+        niveauActuel++;
+        pointsExperience = <span class="num">0</span>;
+    }
+}
+
+<span class="com">// ── PARTIE 1.3 : Classe Joueur ──</span>
+<span class="kw">public class</span> <span class="ty">Joueur</span> <span class="kw">extends</span> <span class="ty">Personnage</span> <span class="kw">implements</span> <span class="ty">IJoueur</span> {
+    <span class="kw">private</span> <span class="ty">String</span> specialite;
+
+    <span class="kw">public</span> <span class="fn">Joueur</span>(<span class="ty">String</span> nom, <span class="ty">String</span> specialite) {
+        <span class="kw">super</span>(nom);
+        <span class="kw">this</span>.specialite = specialite;
+    }
+
+    <span class="annot">@Override</span>
+    <span class="kw">public void</span> <span class="fn">jouerTour</span>() {
+        <span class="ty">System</span>.out.<span class="fn">println</span>(nom + <span class="str">" joue son tour!"</span>);
+    }
+
+    <span class="kw">public boolean</span> <span class="fn">aMemeSpecialite</span>(<span class="ty">Joueur</span> autre) {
+        <span class="kw">return this</span>.specialite.<span class="fn">equals</span>(autre.specialite);
+    }
+
+    <span class="kw">public void</span> <span class="fn">afficherResume</span>() {
+        <span class="ty">System</span>.out.<span class="fn">println</span>(<span class="str">"Joueur: "</span> + nom + <span class="str">" | Spécialité: "</span> + specialite
+            + <span class="str">" | Niveau: "</span> + niveauActuel + <span class="str">" | XP: "</span> + pointsExperience);
+    }
+}</pre>
+
+    <div class="sol-label" style="margin-top:20px;">✅ Solution — Partie 2 & 3 : Niveau + JeuSplitFiction</div>
+    <pre><span class="com">// ── PARTIE 2 : Classe Niveau ──</span>
+<span class="kw">public class</span> <span class="ty">Niveau</span> {
+    <span class="kw">private int</span> numero;
+    <span class="kw">private</span> <span class="ty">String</span> theme;
+    <span class="kw">private boolean</span> accessible = <span class="kw">true</span>;
+
+    <span class="kw">public</span> <span class="fn">Niveau</span>(<span class="kw">int</span> numero, <span class="ty">String</span> theme) {
+        <span class="kw">this</span>.numero = numero;
+        <span class="kw">this</span>.theme = theme;
+    }
+
+    <span class="kw">public void</span> <span class="fn">bloquerNiveau</span>() { <span class="kw">this</span>.accessible = <span class="kw">false</span>; }
+
+    <span class="kw">public void</span> <span class="fn">afficherDetails</span>() {
+        <span class="ty">System</span>.out.<span class="fn">println</span>(<span class="str">"Niveau "</span> + numero + <span class="str">" - Thème: "</span> + theme
+            + <span class="str">" - Accessible: "</span> + accessible);
+    }
+}
+
+<span class="com">// ── PARTIE 3 : JeuSplitFiction ──</span>
+<span class="kw">import</span> java.util.*;
+
+<span class="kw">public class</span> <span class="ty">JeuSplitFiction</span> {
+    <span class="kw">private</span> <span class="ty">ArrayList</span>&lt;<span class="ty">Joueur</span>&gt; joueurs = <span class="kw">new</span> <span class="ty">ArrayList</span>&lt;&gt;();
+    <span class="kw">private</span> <span class="ty">ArrayList</span>&lt;<span class="ty">Niveau</span>&gt; niveaux = <span class="kw">new</span> <span class="ty">ArrayList</span>&lt;&gt;();
+
+    <span class="kw">public void</span> <span class="fn">ajouterJoueur</span>(<span class="ty">Joueur</span> j) { joueurs.<span class="fn">add</span>(j); }
+    <span class="kw">public void</span> <span class="fn">ajouterNiveau</span>(<span class="ty">Niveau</span> n) { niveaux.<span class="fn">add</span>(n); }
+
+    <span class="kw">public void</span> <span class="fn">joueurPasseNiveau</span>(<span class="ty">String</span> nomJoueur) {
+        <span class="kw">for</span> (<span class="ty">Joueur</span> j : joueurs) {
+            <span class="kw">if</span> (j.<span class="fn">getNom</span>().<span class="fn">equals</span>(nomJoueur)) {
+                <span class="kw">try</span> {
+                    j.<span class="fn">passerNiveau</span>();
+                    <span class="ty">System</span>.out.<span class="fn">println</span>(nomJoueur + <span class="str">" passe au niveau suivant!"</span>);
+                } <span class="kw">catch</span> (<span class="ty">JoueurException</span> e) {
+                    <span class="ty">System</span>.out.<span class="fn">println</span>(<span class="str">"Erreur: "</span> + e.<span class="fn">getMessage</span>());
+                }
+                <span class="kw">return</span>;
+            }
+        }
+        <span class="ty">System</span>.out.<span class="fn">println</span>(<span class="str">"Joueur non trouvé: "</span> + nomJoueur);
+    }
+
+    <span class="kw">public void</span> <span class="fn">supprimer</span>(<span class="kw">int</span> indice) {
+        <span class="kw">if</span> (joueurs.<span class="fn">isEmpty</span>()) {
+            <span class="ty">System</span>.out.<span class="fn">println</span>(<span class="str">"Liste vide"</span>);
+            <span class="kw">return</span>;
+        }
+        joueurs.<span class="fn">remove</span>(indice);
+    }
+
+    <span class="kw">public boolean</span> <span class="fn">trouverJoueurParNom</span>(<span class="ty">String</span> nom) {
+        <span class="kw">for</span> (<span class="ty">Joueur</span> j : joueurs)
+            <span class="kw">if</span> (j.<span class="fn">getNom</span>().<span class="fn">equals</span>(nom)) <span class="kw">return true</span>;
+        <span class="kw">return false</span>;
+    }
+
+    <span class="kw">public void</span> <span class="fn">trierJoueurs</span>() {
+        joueurs.<span class="fn">sort</span>((a, b) -> a.<span class="fn">getNom</span>().<span class="fn">compareTo</span>(b.<span class="fn">getNom</span>()));
+        joueurs.<span class="fn">forEach</span>(<span class="ty">Joueur</span>::afficherResume);
+    }
+}</pre>
+  </div>
+</div>
+
+<!-- EXERCICE 4 -->
+<div class="exercise">
+  <div class="ex-header">
+    <span class="ex-title">Exercice 4 — QCM : Sortie de code</span>
+    <span class="ex-pts">8 pts style</span>
+  </div>
+  <div class="ex-solution">
+    <div class="sol-label">Questions & Réponses</div>
+    <table>
+      <tr><th>Question</th><th>Code</th><th>Réponse</th></tr>
+      <tr>
+        <td>Q1. == vs equals</td>
+        <td><code>String s1="Hello"; String s2=new String("Hello"); s1==s2 ?</code></td>
+        <td><strong style="color:var(--red)">false</strong> (référence différente)</td>
+      </tr>
+      <tr>
+        <td>Q2. x++ vs ++x</td>
+        <td><code>int x=5; println(x++); println(++x);</code></td>
+        <td><strong style="color:var(--green)">5 puis 7</strong> (post: retourne puis incrémente; pré: incrémente puis retourne)</td>
+      </tr>
+      <tr>
+        <td>Q3. Héritage sans super()</td>
+        <td><code>class Employee extends Person { public Employee(String id) {empID=id;} }</code> où Person a un constructeur avec paramètre</td>
+        <td><strong style="color:var(--red)">Compilation échoue ligne 8</strong> (super() implicite appelle Person() qui n'existe pas)</td>
+      </tr>
+      <tr>
+        <td>Q4. Try-catch-finally</td>
+        <td>Division par zéro, ArithmeticException capturée, finally présent</td>
+        <td><strong style="color:var(--green)">ArithmeticException caught + Finally block executed</strong></td>
+      </tr>
+      <tr>
+        <td>Q5. IntStream.range(2,6).reduce(*)</td>
+        <td><code>IntStream.range(2,6).reduce((a,b)->a*b).orElse(-1)</code></td>
+        <td><strong style="color:var(--green)">120</strong> (2×3×4×5 = 120)</td>
+      </tr>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 4: MOCK EXAM                      -->
+<!-- ══════════════════════════════════════════ -->
+<section id="mockexam">
+<div class="section-title">📝 Examen Blanc Complet</div>
+
+<div class="mock-header">
+  <h2>Examen Blanc — Java ING-3</h2>
+  <div class="mock-meta">
+    <span>📅 Session Principale 2025</span>
+    <span>⏱️ Durée : 1h30</span>
+    <span>📄 Documents : Non autorisés</span>
+    <span>🎯 Barème : 3 + 3 + 14 = 20 pts</span>
+  </div>
+</div>
+
+<!-- QCM -->
+<div class="exercise">
+  <div class="ex-header">
+    <span class="ex-title">QCM (3 points) — Cochez la ou les bonnes réponses</span>
+    <span class="ex-pts">3 pts</span>
+  </div>
+  <div class="ex-body">
+<p><strong>Q1.</strong> En Java, une classe peut :</p>
+<p style="color:var(--text2);margin:8px 0 16px 16px;">a) Étendre plusieurs classes &nbsp;&nbsp; b) Implémenter plusieurs interfaces &nbsp;&nbsp; c) Étendre plusieurs interfaces &nbsp;&nbsp; d) Implémenter plusieurs classes</p>
+
+<p><strong>Q2.</strong> Quel est le principal objectif de l'encapsulation ?</p>
+<p style="color:var(--text2);margin:8px 0 16px 16px;">a) Héritage multiple &nbsp;&nbsp; b) Cacher les détails internes et protéger les données &nbsp;&nbsp; c) Surcharge des méthodes &nbsp;&nbsp; d) Assurer la compilation</p>
+
+<p><strong>Q3.</strong> Quelle affirmation est fausse sur les classes abstraites ?</p>
+<p style="color:var(--text2);margin:8px 0 16px 16px;">a) Ne peuvent être instanciées &nbsp;&nbsp; b) Peuvent contenir des méthodes concrètes &nbsp;&nbsp; c) Doivent contenir au moins une méthode abstraite &nbsp;&nbsp; d) Héritées avec extends</p>
+
+<p><strong>Q4.</strong> Quelle est la différence entre <code>throw</code> et <code>throws</code> ?</p>
+<p style="color:var(--text2);margin:8px 0 16px 16px;">a) Aucune différence &nbsp;&nbsp; b) <code>throw</code> lance, <code>throws</code> déclare &nbsp;&nbsp; c) <code>throws</code> lance, <code>throw</code> déclare &nbsp;&nbsp; d) <code>throws</code> est pour les classes</p>
+
+<p><strong>Q5.</strong> Quelle est la sortie de ce code ?</p>
+<pre style="margin:8px 0 16px 0;"><span class="ty">String</span> s = <span class="kw">null</span>;
+<span class="kw">try</span> { <span class="ty">System</span>.out.<span class="fn">println</span>(s.<span class="fn">length</span>()); }
+<span class="kw">catch</span> (<span class="ty">NullPointerException</span> e) { <span class="ty">System</span>.out.<span class="fn">println</span>(<span class="str">"NPE"</span>); }
+<span class="kw">finally</span> { <span class="ty">System</span>.out.<span class="fn">println</span>(<span class="str">"fin"</span>); }</pre>
+<p style="color:var(--text2);margin-left:16px;">a) NPE &nbsp;&nbsp; b) NPE puis fin &nbsp;&nbsp; c) fin puis NPE &nbsp;&nbsp; d) Compilation error</p>
+
+<p><strong>Q6.</strong> Qu'est-ce qu'un attribut <code>static</code> ?</p>
+<p style="color:var(--text2);margin:8px 0 0 16px;">a) Constante &nbsp;&nbsp; b) Variable d'instance &nbsp;&nbsp; c) Variable de classe partagée par toutes les instances &nbsp;&nbsp; d) Variable locale</p>
+  </div>
+  <div class="ex-solution">
+    <div class="sol-label">✅ Correction QCM</div>
+    <table>
+      <tr><th>Question</th><th>Réponse</th><th>Justification</th></tr>
+      <tr><td>Q1</td><td><strong style="color:var(--green)">b</strong></td><td>Héritage simple (extends une seule classe), mais implements multiples</td></tr>
+      <tr><td>Q2</td><td><strong style="color:var(--green)">b</strong></td><td>Encapsulation = cacher + protéger avec private/getters/setters</td></tr>
+      <tr><td>Q3</td><td><strong style="color:var(--green)">c</strong></td><td>FAUX : une classe abstraite peut n'avoir AUCUNE méthode abstraite</td></tr>
+      <tr><td>Q4</td><td><strong style="color:var(--green)">b</strong></td><td>throw = action (lancer), throws = déclaration dans signature</td></tr>
+      <tr><td>Q5</td><td><strong style="color:var(--green)">b</strong></td><td>NPE catchée → affiche "NPE", puis finally s'exécute toujours → "fin"</td></tr>
+      <tr><td>Q6</td><td><strong style="color:var(--green)">c</strong></td><td>static = variable de classe, une seule copie partagée</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- EXERCICE 2 BLANC -->
+<div class="exercise">
+  <div class="ex-header">
+    <span class="ex-title">Exercice 2 — Questions théoriques (3 points)</span>
+    <span class="ex-pts">3 pts</span>
+  </div>
+  <div class="ex-body">
+    <p style="margin-bottom:12px;color:var(--text2);">1. Qu'est-ce que l'encapsulation en POO ? (1pt)</p>
+    <p style="margin-bottom:12px;color:var(--text2);">2. Quelle est la différence entre une exception checked et unchecked ? Donnez un exemple pour chaque. (1pt)</p>
+    <p style="color:var(--text2);">3. Quelle est la différence entre une interface et une classe abstraite ? (1pt)</p>
+  </div>
+  <div class="ex-solution">
+    <div class="sol-label">✅ Réponses types</div>
+    <p style="color:var(--text2);margin-bottom:12px;"><strong style="color:var(--text)">1. Encapsulation :</strong> Mécanisme qui consiste à cacher les attributs d'une classe (les déclarer private) et à contrôler leur accès via des méthodes publiques (getters/setters). Cela protège l'intégrité des données.</p>
+    <p style="color:var(--text2);margin-bottom:12px;"><strong style="color:var(--text)">2. Checked vs Unchecked :</strong><br>
+    — <em>Checked</em> : héritent de Exception (sauf RuntimeException). Obligatoire de les gérer (try-catch) ou déclarer (throws). Ex: IOException, SQLException<br>
+    — <em>Unchecked</em> : héritent de RuntimeException. Gestion optionnelle. Ex: NullPointerException, ArithmeticException</p>
+    <p style="color:var(--text2);"><strong style="color:var(--text)">3. Interface vs Classe Abstraite :</strong><br>
+    — Interface : que des méthodes abstraites (public abstract), attributs public static final, implémenté avec implements, héritage multiple possible<br>
+    — Classe abstraite : méthodes abstraites ET concrètes, attributs de tout type, étendue avec extends, héritage simple, peut avoir constructeurs</p>
+  </div>
+</div>
+
+<!-- PROBLÈME BLANC -->
+<div class="exercise">
+  <div class="ex-header">
+    <span class="ex-title">Problème — Gestion d'une Bibliothèque (14 points)</span>
+    <span class="ex-pts">14 pts</span>
+  </div>
+  <div class="ex-body">
+    <p style="color:var(--text2);margin-bottom:16px;">Une bibliothèque gère des documents (Livres et Rapports).</p>
+    <p style="color:var(--text2);margin-bottom:8px;"><strong style="color:var(--text)">Partie 1 (6 pts)</strong> — Déclarez une interface <code>IDocument</code> avec :<br>
+    &nbsp;• <code>String getInfo()</code> : retourne les infos du document<br>
+    &nbsp;• <code>boolean estDisponible()</code> : vérifie si des copies sont disponibles</p>
+    <p style="color:var(--text2);margin-bottom:8px;"><strong style="color:var(--text)">Partie 2 (5 pts)</strong> — Créez une classe abstraite <code>Document</code> implémentant <code>IDocument</code> avec :<br>
+    &nbsp;• Attributs privés : <code>code</code> (String), <code>titre</code> (String), <code>nbCopies</code> (int)<br>
+    &nbsp;• Constructeur(code, titre, nbCopies)<br>
+    &nbsp;• <code>estDisponible()</code> → true si nbCopies > 0<br>
+    &nbsp;• <code>abstract String getInfo()</code><br>
+    Sous-classe concrète <code>Livre</code> avec <code>numEdition</code> (int), <code>datePublication</code> (String).</p>
+    <p style="color:var(--text2);"><strong style="color:var(--text)">Partie 3 (3 pts)</strong> — Classe <code>Bibliotheque</code> avec ArrayList&lt;Document&gt;. Méthodes : <code>ajouterDocument</code>, <code>rechercherDocument(String titre)</code>, <code>afficherDisponibles()</code>.</p>
+  </div>
+  <div class="ex-solution">
+    <div class="sol-label">✅ Solution</div>
+    <pre><span class="com">// INTERFACE</span>
+<span class="kw">public interface</span> <span class="ty">IDocument</span> {
+    <span class="ty">String</span> <span class="fn">getInfo</span>();
+    <span class="kw">boolean</span> <span class="fn">estDisponible</span>();
+}
+
+<span class="com">// CLASSE ABSTRAITE</span>
+<span class="kw">public abstract class</span> <span class="ty">Document</span> <span class="kw">implements</span> <span class="ty">IDocument</span> {
+    <span class="kw">private</span> <span class="ty">String</span> code, titre;
+    <span class="kw">private int</span> nbCopies;
+
+    <span class="kw">public</span> <span class="fn">Document</span>(<span class="ty">String</span> code, <span class="ty">String</span> titre, <span class="kw">int</span> nbCopies) {
+        <span class="kw">this</span>.code = code; <span class="kw">this</span>.titre = titre; <span class="kw">this</span>.nbCopies = nbCopies;
+    }
+
+    <span class="kw">public boolean</span> <span class="fn">estDisponible</span>() { <span class="kw">return</span> nbCopies > <span class="num">0</span>; }
+    <span class="kw">public</span> <span class="ty">String</span> <span class="fn">getTitre</span>() { <span class="kw">return</span> titre; }
+    <span class="kw">public int</span> <span class="fn">getNbCopies</span>() { <span class="kw">return</span> nbCopies; }
+    <span class="kw">public void</span> <span class="fn">setNbCopies</span>(<span class="kw">int</span> n) { <span class="kw">this</span>.nbCopies = n; }
+}
+
+<span class="com">// SOUS-CLASSE CONCRÈTE</span>
+<span class="kw">public class</span> <span class="ty">Livre</span> <span class="kw">extends</span> <span class="ty">Document</span> {
+    <span class="kw">private int</span> numEdition;
+    <span class="kw">private</span> <span class="ty">String</span> datePublication;
+
+    <span class="kw">public</span> <span class="fn">Livre</span>(<span class="ty">String</span> code, <span class="ty">String</span> titre, <span class="kw">int</span> nb, <span class="kw">int</span> ed, <span class="ty">String</span> date) {
+        <span class="kw">super</span>(code, titre, nb);
+        <span class="kw">this</span>.numEdition = ed; <span class="kw">this</span>.datePublication = date;
+    }
+
+    <span class="annot">@Override</span>
+    <span class="kw">public</span> <span class="ty">String</span> <span class="fn">getInfo</span>() {
+        <span class="kw">return</span> <span class="str">"Livre: "</span> + <span class="fn">getTitre</span>() + <span class="str">" Ed."</span> + numEdition
+             + <span class="str">" ("</span> + datePublication + <span class="str">") - Copies: "</span> + <span class="fn">getNbCopies</span>();
+    }
+}
+
+<span class="com">// CLASSE DE GESTION</span>
+<span class="kw">public class</span> <span class="ty">Bibliotheque</span> {
+    <span class="kw">private</span> <span class="ty">ArrayList</span>&lt;<span class="ty">Document</span>&gt; documents = <span class="kw">new</span> <span class="ty">ArrayList</span>&lt;&gt;();
+
+    <span class="kw">public void</span> <span class="fn">ajouterDocument</span>(<span class="ty">Document</span> d) { documents.<span class="fn">add</span>(d); }
+
+    <span class="kw">public</span> <span class="ty">Document</span> <span class="fn">rechercherDocument</span>(<span class="ty">String</span> titre) {
+        <span class="kw">for</span> (<span class="ty">Document</span> d : documents)
+            <span class="kw">if</span> (d.<span class="fn">getTitre</span>().<span class="fn">equals</span>(titre)) <span class="kw">return</span> d;
+        <span class="kw">return null</span>;
+    }
+
+    <span class="kw">public void</span> <span class="fn">afficherDisponibles</span>() {
+        <span class="kw">for</span> (<span class="ty">Document</span> d : documents)
+            <span class="kw">if</span> (d.<span class="fn">estDisponible</span>()) <span class="ty">System</span>.out.<span class="fn">println</span>(d.<span class="fn">getInfo</span>());
+    }
+}</pre>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 5: FLASHCARDS                     -->
+<!-- ══════════════════════════════════════════ -->
+<section>
+<div class="section-title">🃏 Flashcards — Cliquez pour révéler</div>
+<div class="flashcards">
+  <div class="flashcard" onclick="this.classList.toggle('revealed')">
+    <div class="fc-q">Peut-on instancier une classe abstraite ?</div>
+    <div class="fc-hint">Cliquer pour révéler</div>
+    <div class="fc-a">❌ NON. new ClasseAbstraite() → erreur de compilation. On doit instancier une sous-classe concrète.</div>
+  </div>
+  <div class="flashcard" onclick="this.classList.toggle('revealed')">
+    <div class="fc-q">Quelle est la différence entre throw et throws ?</div>
+    <div class="fc-hint">Mots-clés exceptions</div>
+    <div class="fc-a"><code>throw</code> : action de lancer une exception (dans le corps)<br><code>throws</code> : déclaration dans la signature de méthode</div>
+  </div>
+  <div class="flashcard" onclick="this.classList.toggle('revealed')">
+    <div class="fc-q">Les attributs d'une interface sont de quel type implicitement ?</div>
+    <div class="fc-hint">Modificateurs implicites</div>
+    <div class="fc-a">public static final (constantes). On ne peut pas les modifier.</div>
+  </div>
+  <div class="flashcard" onclick="this.classList.toggle('revealed')">
+    <div class="fc-q">super() dans un constructeur doit être à quelle ligne ?</div>
+    <div class="fc-hint">Règle héritage</div>
+    <div class="fc-a">OBLIGATOIREMENT la PREMIÈRE instruction du constructeur fils. Sinon → erreur de compilation.</div>
+  </div>
+  <div class="flashcard" onclick="this.classList.toggle('revealed')">
+    <div class="fc-q">finally s'exécute-t-il si return est dans catch ?</div>
+    <div class="fc-hint">Bloc finally</div>
+    <div class="fc-a">✅ OUI. finally s'exécute TOUJOURS, même avec return dans try ou catch. Seule exception : System.exit().</div>
+  </div>
+  <div class="flashcard" onclick="this.classList.toggle('revealed')">
+    <div class="fc-q">Une classe peut-elle implémenter plusieurs interfaces ?</div>
+    <div class="fc-hint">Héritage multiple</div>
+    <div class="fc-a">✅ OUI. class A implements B, C, D { } — c'est le seul moyen d'héritage multiple en Java.</div>
+  </div>
+  <div class="flashcard" onclick="this.classList.toggle('revealed')">
+    <div class="fc-q">NullPointerException est-elle checked ou unchecked ?</div>
+    <div class="fc-hint">Hiérarchie exceptions</div>
+    <div class="fc-a">Unchecked (extends RuntimeException). Pas besoin de déclarer throws ni de try-catch obligatoire.</div>
+  </div>
+  <div class="flashcard" onclick="this.classList.toggle('revealed')">
+    <div class="fc-q">Qu'est-ce que le polymorphisme dynamique ?</div>
+    <div class="fc-hint">Résolution à l'exécution</div>
+    <div class="fc-a">La méthode appelée est déterminée à l'EXÉCUTION selon le type réel de l'objet, pas le type de la référence. Ex: Animal a = new Chien(); a.parler() → appelle Chien.parler()</div>
+  </div>
+  <div class="flashcard" onclick="this.classList.toggle('revealed')">
+    <div class="fc-q">Que fait contains() sur ArrayList si equals() est redéfini ?</div>
+    <div class="fc-hint">ArrayList + equals</div>
+    <div class="fc-a">contains() utilise equals() pour comparer. Si vous avez redéfini equals() par matricule, contains() cherchera par matricule.</div>
+  </div>
+  <div class="flashcard" onclick="this.classList.toggle('revealed')">
+    <div class="fc-q">Quelle est la sortie de : int x=5; println(x++); println(++x);</div>
+    <div class="fc-hint">Opérateurs ++ pré/post</div>
+    <div class="fc-a">5 puis 7. (x++ retourne 5 puis incrémente → x=6; ++x incrémente d'abord → x=7 puis retourne 7)</div>
+  </div>
+  <div class="flashcard" onclick="this.classList.toggle('revealed')">
+    <div class="fc-q">IntStream.range(2,6) génère quels nombres ?</div>
+    <div class="fc-hint">Streams</div>
+    <div class="fc-a">2, 3, 4, 5 (borne supérieure EXCLUE). range(2,6).reduce(*) = 2×3×4×5 = 120</div>
+  </div>
+  <div class="flashcard" onclick="this.classList.toggle('revealed')">
+    <div class="fc-q">Une méthode redéfinie peut-elle ajouter une checked exception ?</div>
+    <div class="fc-hint">Règle override + exceptions</div>
+    <div class="fc-a">❌ NON. La sous-classe ne peut PAS ajouter de nouvelles checked exceptions. Elle peut en supprimer ou déclarer des sous-classes plus spécifiques.</div>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 6: PIÈGES                         -->
+<!-- ══════════════════════════════════════════ -->
+<section id="traps">
+<div class="section-title">⚠️ Top 10 Pièges de l'Examen</div>
+
+<div class="trap">
+  <span class="trap-num">01</span><span class="trap-title">Instancier une classe abstraite</span>
+  <div class="trap-desc">new ClasseAbstraite() → ERREUR. Vérifiez toujours si la classe est abstract avant d'instancier.</div>
+</div>
+<div class="trap">
+  <span class="trap-num">02</span><span class="trap-title">Oublier super() dans le constructeur fils</span>
+  <div class="trap-desc">Si la classe mère a un constructeur avec paramètres, super(args) est OBLIGATOIRE en première ligne du constructeur fils. Sans ça → erreur de compilation.</div>
+</div>
+<div class="trap">
+  <span class="trap-num">03</span><span class="trap-title">Ordre des catch inversé</span>
+  <div class="trap-desc">catch(Exception e) avant catch(IOException e) → ERREUR de compilation "unreachable code". Toujours : sous-classe avant super-classe.</div>
+</div>
+<div class="trap">
+  <span class="trap-num">04</span><span class="trap-title">Confondre throw et throws</span>
+  <div class="trap-desc"><code>throw new Exception()</code> = lancer (dans le corps). <code>throws Exception</code> = déclarer (dans la signature). Les deux souvent requis ensemble.</div>
+</div>
+<div class="trap">
+  <span class="trap-num">05</span><span class="trap-title">Méthode abstraite avec corps { }</span>
+  <div class="trap-desc">abstract void f() { } → ERREUR. Une méthode abstraite ne peut PAS avoir de corps. Il faut : abstract void f();</div>
+</div>
+<div class="trap">
+  <span class="trap-num">06</span><span class="trap-title">== au lieu de .equals() pour les String</span>
+  <div class="trap-desc">== compare les références. "Hello" == new String("Hello") est false. Toujours utiliser .equals() pour comparer le contenu des Strings et objets.</div>
+</div>
+<div class="trap">
+  <span class="trap-num">07</span><span class="trap-title">Modifier un attribut final</span>
+  <div class="trap-desc">final double c = 1; ... z.c = 3; → ERREUR. Final = constante. Vérifiez le mot-clé final dans les attributs.</div>
+</div>
+<div class="trap">
+  <span class="trap-num">08</span><span class="trap-title">Oublier que finally s'exécute toujours</span>
+  <div class="trap-desc">Même avec un return dans catch, finally s'exécute. Peut modifier la valeur retournée (piège de QCM).</div>
+</div>
+<div class="trap">
+  <span class="trap-num">09</span><span class="trap-title">Appeler méthode d'instance dans méthode static</span>
+  <div class="trap-desc">Une méthode static ne peut pas utiliser this ni appeler des méthodes d'instance directement. Erreur commune dans les exercices QCM.</div>
+</div>
+<div class="trap">
+  <span class="trap-num">10</span><span class="trap-title">Une classe abstraite doit contenir des méthodes abstraites</span>
+  <div class="trap-desc">FAUX ! Une classe peut être déclarée abstract sans avoir de méthode abstraite. Elle ne peut simplement pas être instanciée.</div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 7: LAST MINUTE                    -->
+<!-- ══════════════════════════════════════════ -->
+<section id="lastminute">
+<div class="last-minute">
+  <div class="lm-title">⚡ Révision Dernière Minute (30 minutes avant l'examen)</div>
+  <div class="lm-grid">
+    <div class="lm-block">
+      <h4>🏗️ Structure d'une classe abstraite</h4>
+      <ul>
+        <li>abstract class Nom implements Interface</li>
+        <li>Attributs private + getters/setters</li>
+        <li>Constructeur(paramètres)</li>
+        <li>abstract type methodeAbstraite()</li>
+        <li>Méthodes concrètes partagées</li>
+      </ul>
+    </div>
+    <div class="lm-block">
+      <h4>💥 Recette exception personnalisée</h4>
+      <ul>
+        <li>class MonException extends Exception</li>
+        <li>Constructeur avec super(message)</li>
+        <li>Méthode : throws MonException (signature)</li>
+        <li>if(condition) throw new MonException("msg")</li>
+        <li>main : try { } catch(MonException e) { }</li>
+      </ul>
+    </div>
+    <div class="lm-block">
+      <h4>📦 Classe de gestion (ServiceInfo style)</h4>
+      <ul>
+        <li>ArrayList&lt;Type&gt; liste = new ArrayList&lt;&gt;()</li>
+        <li>ajouter : if(!contains) → add</li>
+        <li>retirer : trouver le min, remove(objet)</li>
+        <li>trier : sort avec lambda comparateur</li>
+        <li>Polymorphisme : parcourir avec for-each</li>
+      </ul>
+    </div>
+    <div class="lm-block">
+      <h4>🎯 QCM : Réflexes rapides</h4>
+      <ul>
+        <li>abstract → pas d'instanciation</li>
+        <li>final → pas de modification/héritage/override</li>
+        <li>static → partagé, pas de this</li>
+        <li>protected → visible sous-classes + package</li>
+        <li>throw ≠ throws (lancer ≠ déclarer)</li>
+        <li>finally → TOUJOURS exécuté</li>
+      </ul>
+    </div>
+    <div class="lm-block">
+      <h4>🔗 Mots-clés à retenir</h4>
+      <ul>
+        <li>extends → héritage (classe/interface)</li>
+        <li>implements → interface</li>
+        <li>super() → constructeur parent (1ère ligne)</li>
+        <li>@Override → redéfinition</li>
+        <li>instanceof → vérifier type avant cast</li>
+        <li>this → objet courant</li>
+      </ul>
+    </div>
+    <div class="lm-block">
+      <h4>⚖️ Checked vs Unchecked</h4>
+      <ul>
+        <li>CHECKED : extends Exception → obligatoire</li>
+        <li>IOException, SQLException = checked</li>
+        <li>UNCHECKED : extends RuntimeException → optionnel</li>
+        <li>NullPointerException, ArithmeticException = unchecked</li>
+        <li>Error (StackOverflow) = NE PAS catcher</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 8: TOP 20 FACTS                   -->
+<!-- ══════════════════════════════════════════ -->
+<section id="facts">
+<div class="section-title">🏆 Top 20 Faits à Mémoriser</div>
+
+<ol class="fact-list">
+  <li><span class="fact-num">01</span>Une <strong>classe abstraite ne peut pas être instanciée</strong> (new impossible). Il faut une sous-classe concrète.</li>
+  <li><span class="fact-num">02</span><strong>super()</strong> doit être la PREMIÈRE instruction du constructeur d'une classe fille.</li>
+  <li><span class="fact-num">03</span>Les attributs d'une <strong>interface sont implicitement public static final</strong> (constantes).</li>
+  <li><span class="fact-num">04</span>Les méthodes d'une <strong>interface sont implicitement public abstract</strong>.</li>
+  <li><span class="fact-num">05</span>Java permet <strong>héritage simple (extends)</strong> mais implémentation <strong>multiple (implements)</strong>.</li>
+  <li><span class="fact-num">06</span><strong>throw</strong> = lancer l'exception (action). <strong>throws</strong> = déclarer dans la signature (information).</li>
+  <li><span class="fact-num">07</span>Une <strong>exception checked</strong> (extends Exception) DOIT être gérée (try-catch) ou déclarée (throws).</li>
+  <li><span class="fact-num">08</span>Le <strong>bloc finally</strong> s'exécute TOUJOURS, même avec return. Sauf System.exit().</li>
+  <li><span class="fact-num">09</span>L'ordre des <strong>catch : du plus spécifique au plus général</strong>. Sinon : erreur de compilation.</li>
+  <li><span class="fact-num">10</span><strong>@Override</strong> = redéfinition (signature identique, implémentation différente dans sous-classe).</li>
+  <li><span class="fact-num">11</span>Une méthode <strong>abstract NE PEUT PAS avoir de corps { }</strong>. Juste la déclaration terminée par ;</li>
+  <li><span class="fact-num">12</span>Une <strong>méthode static ne peut pas utiliser this</strong> ni accéder aux attributs/méthodes d'instance.</li>
+  <li><span class="fact-num">13</span><strong>final variable</strong> = constante. <strong>final méthode</strong> = non redéfinissable. <strong>final classe</strong> = non extensible.</li>
+  <li><span class="fact-num">14</span><strong>==</strong> compare les références mémoire. <strong>.equals()</strong> compare le contenu. Toujours equals() pour String.</li>
+  <li><span class="fact-num">15</span><strong>contains()</strong> sur ArrayList utilise <strong>equals()</strong> → si vous redéfinissez equals(), contains() en tient compte.</li>
+  <li><span class="fact-num">16</span>Le <strong>polymorphisme dynamique</strong> : la méthode appelée dépend du TYPE RÉEL (objet), pas du type déclaré (référence).</li>
+  <li><span class="fact-num">17</span>Toujours vérifier avec <strong>instanceof</strong> avant un downcast pour éviter ClassCastException.</li>
+  <li><span class="fact-num">18</span><strong>IntStream.range(a, b)</strong> génère a, a+1, ..., b-1 (borne supérieure EXCLUE).</li>
+  <li><span class="fact-num">19</span>Une classe abstraite <strong>n'est pas obligée</strong> d'avoir des méthodes abstraites. Elle peut juste empêcher l'instanciation.</li>
+  <li><span class="fact-num">20</span>Une sous-classe <strong>NE PEUT PAS ajouter</strong> de nouvelles checked exceptions dans une méthode redéfinie.</li>
+</ol>
+</section>
+
+<!-- STRATEGY -->
+<section>
+<div class="section-title">🗺️ Stratégie d'Examen pour Demain</div>
+<div class="cards-2">
+  <div class="card" style="border-color:var(--green);">
+    <h3 style="color:var(--green);">✅ Ordre de réponse recommandé</h3>
+    <ol style="padding-left:20px;color:var(--text2);">
+      <li style="padding:4px 0;">QCM en premier (rapide, points faciles)</li>
+      <li style="padding:4px 0;">Questions théoriques (définitions mémorisées)</li>
+      <li style="padding:4px 0;">Exception personnalisée (pattern appris)</li>
+      <li style="padding:4px 0;">Interface + classe abstraite</li>
+      <li style="padding:4px 0;">Sous-classes concrètes</li>
+      <li style="padding:4px 0;">Classe de gestion (ArrayList)</li>
+      <li style="padding:4px 0;">Main de test en dernier</li>
+    </ol>
+  </div>
+  <div class="card" style="border-color:var(--accent);">
+    <h3 style="color:var(--accent);">💡 Conseils critiques</h3>
+    <ul style="list-style:none;color:var(--text2);">
+      <li style="padding:4px 0;">📖 Lire TOUT l'énoncé avant de commencer</li>
+      <li style="padding:4px 0;">🔍 Repérer les mots abstract, interface, extends</li>
+      <li style="padding:4px 0;">✍️ Écrire l'exception en premier (utilisée partout)</li>
+      <li style="padding:4px 0;">⚠️ Vérifier super() dans chaque constructeur fils</li>
+      <li style="padding:4px 0;">🎯 @Override devant chaque redéfinition</li>
+      <li style="padding:4px 0;">💪 Si bloqué sur ArrayList, avancer au main</li>
+      <li style="padding:4px 0;">⏱️ Réserver 15 min pour relire à la fin</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<!-- TOP 10 QUESTIONS -->
+<section>
+<div class="section-title">❓ Top 10 Questions les Plus Probables</div>
+<div class="card">
+<ol style="padding-left:20px;color:var(--text2);">
+  <li style="padding:6px 0;"><span class="tag tag-red">Très probable</span> Créer une classe abstraite avec interface, super(), equals() et afficher()</li>
+  <li style="padding:6px 0;"><span class="tag tag-red">Très probable</span> Créer une exception personnalisée et la lancer dans un constructeur avec validation</li>
+  <li style="padding:6px 0;"><span class="tag tag-red">Très probable</span> Implémenter une sous-classe concrète qui redéfinit calculer()/afficher() avec super</li>
+  <li style="padding:6px 0;"><span class="tag tag-red">Très probable</span> Classe de gestion avec ArrayList : ajouter (vérif doublons), trier, chercher</li>
+  <li style="padding:6px 0;"><span class="tag tag-yellow">Probable</span> QCM : Vrai/Faux sur abstract, final, static, protected</li>
+  <li style="padding:6px 0;"><span class="tag tag-yellow">Probable</span> QCM : Trouver la sortie d'un code Java (héritage, exceptions, opérateurs)</li>
+  <li style="padding:6px 0;"><span class="tag tag-yellow">Probable</span> Différence interface vs classe abstraite (question théorique)</li>
+  <li style="padding:6px 0;"><span class="tag tag-yellow">Probable</span> Polymorphisme : Animal a = new Chien(); quelle méthode est appelée ?</li>
+  <li style="padding:6px 0;"><span class="tag tag-blue">Possible</span> Stream : filter(), map(), reduce() — trouver la sortie ou compléter le code</li>
+  <li style="padding:6px 0;"><span class="tag tag-blue">Possible</span> Main de test : créer des objets, appeler méthodes, gérer exceptions avec try-catch</li>
+</ol>
+</div>
+</section>
+
+</main>
+
+<footer style="text-align:center;padding:40px 20px;color:var(--text3);border-top:1px solid var(--border);margin-top:20px;background:#ffffff;border-radius:0 0 10px 10px;">
+  <p>📚 Guide de Révision Java ING-3 · Généré pour l'examen · Bonne chance ! ☕</p>
+</footer>
+
+<script>
+  // Smooth scroll pour les flashcards
+  document.querySelectorAll('.flashcard').forEach(card => {
+    card.addEventListener('click', function() {
+      const hint = this.querySelector('.fc-hint');
+      if (this.classList.contains('revealed')) {
+        hint.textContent = 'Cliquer pour masquer';
+      } else {
+        hint.textContent = 'Cliquer pour masquer';
+      }
+    });
+  });
+</script>
+</body>
+</html>
