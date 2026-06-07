@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IA Générative — Fiche de Révision Complète</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  .container {
+    background-color: white;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 50px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    border-radius: 10px;
+  }
+
+  h1 {
+    color: #2c3e50;
+    text-align: center;
+    font-size: 2.2em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 4px solid #667eea;
+    padding-bottom: 20px;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    font-style: italic;
+  }
+
+  /* NAV PILLS */
+  .nav-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .nav-pills a {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-size: 0.82em;
+    font-weight: bold;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .nav-pills a:hover { opacity: 0.85; transform: translateY(-2px); }
+
+  /* SECTION HEADERS */
+  h2 {
+    color: #667eea;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 1.7em;
+    border-left: 6px solid #764ba2;
+    padding: 15px 20px;
+    background: linear-gradient(90deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 5px;
+  }
+
+  h3 {
+    color: #34495e;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 8px;
+  }
+
+  .section-number {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 6px 18px;
+    border-radius: 25px;
+    display: inline-block;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 0.85em;
+  }
+
+  /* CALLOUT BOXES */
+  .key-concept {
+    background-color: #fff3cd;
+    border-left: 5px solid #ffc107;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-size: 0.97em;
+  }
+  .important-note {
+    background-color: #d1ecf1;
+    border-left: 5px solid #17a2b8;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-size: 0.97em;
+  }
+  .tip {
+    background-color: #e8f5e9;
+    border-left: 5px solid #4caf50;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-size: 0.97em;
+  }
+  .danger {
+    background-color: #fde8e8;
+    border-left: 5px solid #ef4444;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-size: 0.97em;
+  }
+
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: block;
+    overflow-x: auto;
+  }
+  th, td {
+    border: 1px solid #dee2e6;
+    padding: 11px 14px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85em;
+  }
+  tr:nth-child(even) { background-color: #f8f9fa; }
+  tr:hover { background-color: #e9ecef; transition: background-color 0.2s; }
+
+  /* RULES LIST */
+  .rules { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .rules li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 15px;
+    font-size: 0.95em;
+    line-height: 1.7;
+  }
+  .rule-num {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border-radius: 50%;
+    width: 34px; height: 34px;
+    display: grid; place-items: center;
+    font-weight: bold;
+    font-size: 0.9em;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* COMPARISON BOX */
+  .comparison-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+  }
+  .comparison-item {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .comparison-item h4 { margin-bottom: 10px; color: #2c3e50; font-size: 1em; }
+  .comparison-item ul { margin-left: 18px; }
+  .comparison-item li { margin-bottom: 6px; font-size: 0.93em; }
+  .ci-blue   { background-color: #e3f2fd; border-left: 5px solid #2196f3; }
+  .ci-green  { background-color: #e8f5e9; border-left: 5px solid #4caf50; }
+  .ci-purple { background-color: #f3e5f5; border-left: 5px solid #9c27b0; }
+  .ci-orange { background-color: #fff3e0; border-left: 5px solid #ff9800; }
+
+  /* CODE BLOCKS */
+  pre {
+    background: #1e1e2e;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 18px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #e2e8f0;
+    margin: 14px 0;
+  }
+  .kw  { color: #ff79c6; }
+  .ty  { color: #8be9fd; }
+  .str { color: #f1fa8c; }
+  .com { color: #6272a4; font-style: italic; }
+  .fn  { color: #50fa7b; }
+  .num { color: #bd93f9; }
+
+  /* PIPELINE FLOW */
+  .pipeline {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    justify-content: center;
+  }
+  .pipe-step {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 0.85em;
+    font-weight: bold;
+    text-align: center;
+    min-width: 90px;
+  }
+  .pipe-arrow {
+    color: #667eea;
+    font-size: 1.5em;
+    margin: 0 6px;
+    font-weight: bold;
+  }
+
+  /* FORMULA BADGE */
+  .formula-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 7px;
+    margin-bottom: 10px;
+  }
+  .formula-label {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: bold;
+    white-space: nowrap;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  /* GRID 3 */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .grid-card {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .grid-card h4 {
+    color: #667eea;
+    font-size: 0.95em;
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .grid-card ul { list-style: none; }
+  .grid-card li { font-size: 0.88em; color: #34495e; padding: 3px 0; }
+  .grid-card li::before { content: "▸ "; color: #764ba2; }
+
+  ul, ol { margin-left: 25px; line-height: 2; }
+  li { margin-bottom: 6px; }
+
+  .footer-note {
+    text-align: center;
+    color: #bdc3c7;
+    font-size: 0.82em;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ecf0f1;
+  }
+
+  @media (max-width: 768px) {
+    body { padding: 15px 10px; }
+    .container { padding: 22px 14px; }
+    h1 { font-size: 1.4em; letter-spacing: 1px; }
+    h2 { font-size: 1.15em; padding: 12px 14px; }
+    .comparison-box, .grid-3 { grid-template-columns: 1fr; gap: 12px; }
+    table { font-size: 12px; }
+    th, td { padding: 9px 8px; }
+    .pipeline { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .pipe-arrow { transform: rotate(90deg); margin: 0 auto; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>🤖 IA Générative</h1>
+  <p class="subtitle">Fiche de Révision Complète — LLMs · Prompt Engineering · RAG · LangChain · LangGraph</p>
+
+  <div class="nav-pills">
+    <a href="#fondamentaux">Fondamentaux</a>
+    <a href="#prompt">Prompt Engineering</a>
+    <a href="#rag">RAG</a>
+    <a href="#technologies">Technologies</a>
+    <a href="#langgraph">LangGraph</a>
+    <a href="#code">Exemples Code</a>
+    <a href="#examen">Examen Type</a>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PARTIE 1 — FONDAMENTAUX
+  ═══════════════════════════════════════════ -->
+  <h2 id="fondamentaux"><span class="section-number">PARTIE 1</span> Fondamentaux de l'IA Générative</h2>
+
+  <div class="key-concept">
+    <strong>🎯 Définition :</strong> L'IA générative est une branche de l'IA capable de <strong>créer du contenu original</strong> (texte, images, code, musique…) en apprenant les modèles sous-jacents des données. Contrairement à l'IA discriminative qui classifie, l'IA générative <em>crée</em>.
+  </div>
+
+  <h3>📅 Évolution historique</h3>
+  <table>
+    <tr><th>Période</th><th>Technologie</th><th>Impact</th></tr>
+    <tr><td><strong>Avant 2017</strong></td><td>RNN, GAN (2014)</td><td>Applications limitées, résultats modestes</td></tr>
+    <tr><td><strong>2017</strong></td><td>Architecture <strong>Transformer</strong> ("Attention Is All You Need")</td><td>Révolution : traitement parallèle, dépendances longues</td></tr>
+    <tr><td><strong>2017–Présent</strong></td><td>GPT, BERT, T5, DALL-E, Stable Diffusion</td><td>Explosion des capacités et applications</td></tr>
+  </table>
+
+  <h3>🧠 Qu'est-ce qu'un LLM ?</h3>
+  <div class="key-concept">
+    <strong>LLM = Large Language Model</strong> — modèle d'IA entraîné sur d'énormes corpus de texte, contenant des milliards de paramètres, capable de comprendre et générer du langage humain.
+  </div>
+
+  <h3>⚙️ Comment fonctionne un LLM ?</h3>
+  <div class="pipeline">
+    <div class="pipe-step">📝 Tokenisation</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">🔢 Embedding</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">⚡ Transformer</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">🎯 Prédiction</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">📄 Décodage</div>
+  </div>
+  <div class="important-note">
+    <strong>Principe fondamental :</strong> Les LLMs <strong>prédisent le token suivant</strong> en fonction du contexte, en répétant ce processus pour générer des séquences complètes.
+  </div>
+
+  <h3>🏋️ Entraînement vs Fine-tuning</h3>
+  <div class="comparison-box">
+    <div class="comparison-item ci-blue">
+      <h4>🔵 Pré-entraînement</h4>
+      <ul>
+        <li>Apprentissage <strong>non supervisé</strong></li>
+        <li>Énormes corpus de texte (trillions de tokens)</li>
+        <li>Apprend les structures linguistiques générales</li>
+        <li>Coût énorme (millions de dollars)</li>
+        <li>Modèle généraliste</li>
+      </ul>
+    </div>
+    <div class="comparison-item ci-green">
+      <h4>🟢 Fine-tuning</h4>
+      <ul>
+        <li>Adaptation d'un modèle <strong>pré-entraîné</strong></li>
+        <li>Données spécifiques à un domaine</li>
+        <li>Apprentissage supervisé + RLHF</li>
+        <li>Moins coûteux que de partir de zéro</li>
+        <li>Améliore précision dans le domaine cible</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>📋 Glossaire clé</h3>
+  <table>
+    <tr><th>Terme</th><th>Définition</th></tr>
+    <tr><td><strong>Token</strong></td><td>Unité de base traitée par le LLM (mot, partie de mot, caractère)</td></tr>
+    <tr><td><strong>Prompt</strong></td><td>Instruction/contexte fourni au modèle pour guider sa génération</td></tr>
+    <tr><td><strong>Température</strong></td><td>Paramètre contrôlant la créativité/randomisation des sorties (0=déterministe)</td></tr>
+    <tr><td><strong>Hallucination</strong></td><td>Génération d'informations incorrectes mais plausibles</td></tr>
+    <tr><td><strong>Embedding</strong></td><td>Représentation vectorielle numérique d'un texte capturant son sens</td></tr>
+    <tr><td><strong>Fine-tuning</strong></td><td>Adaptation d'un modèle pré-entraîné à une tâche spécifique</td></tr>
+    <tr><td><strong>Few-shot learning</strong></td><td>Apprentissage à partir de quelques exemples fournis dans le prompt</td></tr>
+    <tr><td><strong>RLHF</strong></td><td>Reinforcement Learning from Human Feedback — alignement par retour humain</td></tr>
+  </table>
+
+  <h3>⚠️ Limites principales des LLMs</h3>
+  <ul class="rules">
+    <li><span class="rule-num">1</span><div><strong>Hallucinations</strong> — Production de fausses informations plausibles. Le modèle ne "sait" pas ce qu'il ne sait pas.</div></li>
+    <li><span class="rule-num">2</span><div><strong>Connaissances figées</strong> — Dépendance aux données d'entraînement, pas de mise à jour en temps réel.</div></li>
+    <li><span class="rule-num">3</span><div><strong>Fenêtre de contexte limitée</strong> — Ne peut traiter qu'un certain nombre de tokens à la fois.</div></li>
+    <li><span class="rule-num">4</span><div><strong>Biais</strong> — Reproduit les biais présents dans les données d'entraînement.</div></li>
+    <li><span class="rule-num">5</span><div><strong>Coût élevé</strong> — En ressources computationnelles pour l'entraînement et l'inférence.</div></li>
+  </ul>
+
+  <h3>🏭 Applications par secteur</h3>
+  <div class="grid-3">
+    <div class="grid-card">
+      <h4>🎓 Éducation</h4>
+      <ul>
+        <li>Tuteurs personnalisés</li>
+        <li>Création de matériel pédagogique</li>
+        <li>Évaluation automatisée</li>
+        <li>Fiches de révision</li>
+      </ul>
+    </div>
+    <div class="grid-card">
+      <h4>🏢 Entreprise</h4>
+      <ul>
+        <li>Service client automatisé</li>
+        <li>Analyse de données</li>
+        <li>Rédaction de contenus</li>
+        <li>Résumés automatiques</li>
+      </ul>
+    </div>
+    <div class="grid-card">
+      <h4>💻 Développement</h4>
+      <ul>
+        <li>GitHub Copilot (code)</li>
+        <li>Débogage assisté</li>
+        <li>Documentation API</li>
+        <li>Tests unitaires</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PARTIE 2 — PROMPT ENGINEERING
+  ═══════════════════════════════════════════ -->
+  <h2 id="prompt"><span class="section-number">PARTIE 2</span> Prompt Engineering</h2>
+
+  <div class="key-concept">
+    <strong>🎯 Définition :</strong> L'art et la science de formuler des consignes <strong>claires, structurées et stratégiques</strong> pour obtenir de meilleures réponses d'un LLM. Un bon prompt cadre la tâche, explicite le besoin et réduit les ambiguïtés.
+  </div>
+
+  <h3>🧩 Les 6 composants d'un bon prompt</h3>
+  <ul class="rules">
+    <li><span class="rule-num">1</span><div><strong>La tâche</strong> — Ce qu'il faut faire exactement. Ex : "Résume", "Explique", "Compare"…</div></li>
+    <li><span class="rule-num">2</span><div><strong>Le contexte</strong> — Pour qui ? Dans quel domaine ? Avec quelles contraintes ?</div></li>
+    <li><span class="rule-num">3</span><div><strong>Le format</strong> — Tableau, liste, plan, résumé, code, JSON, fiche…</div></li>
+    <li><span class="rule-num">4</span><div><strong>Le ton</strong> — Pédagogique, formel, commercial, technique, simple…</div></li>
+    <li><span class="rule-num">5</span><div><strong>Les critères de qualité</strong> — Précision, clarté, concision, exemples concrets…</div></li>
+    <li><span class="rule-num">6</span><div><strong>Les limites</strong> — Longueur (ex: "moins de 120 mots"), langue, sources, interdits.</div></li>
+  </ul>
+
+  <h3>📊 Faible → Moyen → Fort</h3>
+  <table>
+    <tr><th>Niveau</th><th>Exemple de prompt</th><th>Problème / Avantage</th></tr>
+    <tr>
+      <td><strong style="color:#ef4444">❌ Faible</strong></td>
+      <td><em>"Explique les réseaux de neurones."</em></td>
+      <td>Trop vague, aucun public cible, aucun format</td>
+    </tr>
+    <tr>
+      <td><strong style="color:#f59e0b">⚡ Moyen</strong></td>
+      <td><em>"Explique les réseaux de neurones à des étudiants débutants."</em></td>
+      <td>Public défini mais pas de format ni de longueur</td>
+    </tr>
+    <tr>
+      <td><strong style="color:#4caf50">✅ Fort</strong></td>
+      <td><em>"Explique les réseaux de neurones à des débutants en 6 points simples, avec une analogie concrète, un exemple en reconnaissance d'images et une erreur fréquente à éviter."</em></td>
+      <td>Format, public, contenu, exemples → réponse exploitable directement</td>
+    </tr>
+  </table>
+
+  <h3>🛠️ Techniques fondamentales</h3>
+  <div class="comparison-box">
+    <div class="comparison-item ci-blue">
+      <h4>🎭 Role Prompting</h4>
+      <ul>
+        <li>Donner un rôle explicite au modèle</li>
+        <li>"Tu es un enseignant universitaire..."</li>
+        <li>"Tu es un expert en cybersécurité..."</li>
+        <li>Change le style et l'angle de réponse</li>
+      </ul>
+    </div>
+    <div class="comparison-item ci-green">
+      <h4>📐 Format de sortie</h4>
+      <ul>
+        <li>Liste à puces, tableau comparatif</li>
+        <li>Plan en 3 parties, JSON</li>
+        <li>Fiche de révision, e-mail</li>
+        <li>Imposer la longueur et le niveau</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>🚀 Techniques avancées</h3>
+  <table>
+    <tr><th>Technique</th><th>Description</th><th>Quand l'utiliser</th></tr>
+    <tr>
+      <td><strong>Zero-shot</strong></td>
+      <td>Demander sans fournir d'exemple</td>
+      <td>Tâches simples, rapides</td>
+    </tr>
+    <tr>
+      <td><strong>One-shot</strong></td>
+      <td>Fournir un seul exemple d'entrée/sortie</td>
+      <td>Clarifier le style attendu</td>
+    </tr>
+    <tr>
+      <td><strong>Few-shot</strong></td>
+      <td>Fournir plusieurs exemples</td>
+      <td>Réduire l'ambiguïté, style précis</td>
+    </tr>
+    <tr>
+      <td><strong>Chain of Thought (CoT)</strong></td>
+      <td>Guider le modèle à raisonner étape par étape</td>
+      <td>Problèmes complexes, calculs, planification</td>
+    </tr>
+    <tr>
+      <td><strong>Décomposition</strong></td>
+      <td>Diviser une tâche complexe en sous-tâches</td>
+      <td>Tâches multi-étapes, contrôle fin</td>
+    </tr>
+    <tr>
+      <td><strong>Prompt Chaining</strong></td>
+      <td>Sortie d'un prompt = entrée du suivant</td>
+      <td>Workflows complexes, documents longs</td>
+    </tr>
+    <tr>
+      <td><strong>Auto-vérification</strong></td>
+      <td>Demander au modèle de relire sa réponse</td>
+      <td>Améliorer fiabilité, détecter erreurs</td>
+    </tr>
+    <tr>
+      <td><strong>Génération → Critique</strong></td>
+      <td>Produire puis critiquer/améliorer</td>
+      <td>Contenu de qualité, analyse approfondie</td>
+    </tr>
+  </table>
+
+  <div class="tip">
+    <strong>✅ Exemple Few-shot :</strong><br>
+    Exemple 1 : Entrée: "L'algorithme a optimisé les paramètres du modèle." → Sortie: "Le programme a réglé automatiquement les paramètres."<br>
+    Exemple 2 : Entrée: "Le système réalise une classification supervisée." → Sortie: "Le système classe des données à partir d'exemples corrigés."<br>
+    Maintenant, simplifie : "Le modèle produit une représentation vectorielle du document."
+  </div>
+
+  <div class="tip">
+    <strong>✅ Exemple Chain of Thought :</strong><br>
+    "Calcule la moyenne de 12, 15 et 9 en suivant 3 étapes : 1) additionner les notes, 2) diviser par le nombre de notes, 3) donner la conclusion en une phrase simple."
+  </div>
+
+  <h3>❌ Erreurs fréquentes à éviter</h3>
+  <div class="danger">
+    <strong>🚨 Pièges classiques :</strong><br>
+    • Croire qu'un prompt <em>long</em> est forcément meilleur<br>
+    • Mélanger plusieurs tâches contradictoires dans une même consigne ("très court mais très complet et très technique et très simple")<br>
+    • Oublier le niveau du public cible<br>
+    • Faire confiance sans vérification (hallucinations !)<br>
+    • Ne jamais itérer — le bon prompt se construit rarement en une seule fois
+  </div>
+
+  <h3>🔁 Méthode d'amélioration en 5 étapes</h3>
+  <div class="pipeline">
+    <div class="pipe-step">1. Objectif exact</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">2. Public visé</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">3. Format imposé</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">4. Exemple/critère</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">5. Tester & Itérer</div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PARTIE 3 — RAG
+  ═══════════════════════════════════════════ -->
+  <h2 id="rag"><span class="section-number">PARTIE 3</span> RAG — Retrieval-Augmented Generation</h2>
+
+  <div class="key-concept">
+    <strong>🎯 Définition :</strong> RAG = <strong>Génération Augmentée par Récupération d'Information</strong>.<br>
+    Idée centrale : 1) Récupérer des documents pertinents → 2) Injecter ce contenu dans le contexte → 3) Générer une réponse fondée sur ces informations.
+  </div>
+
+  <h3>❓ Pourquoi le RAG ?</h3>
+  <div class="comparison-box">
+    <div class="comparison-item ci-orange">
+      <h4>⚠️ LLM seul — Problèmes</h4>
+      <ul>
+        <li>Ne connaît pas vos documents internes</li>
+        <li>Infos récentes absentes (cutoff)</li>
+        <li>Risque d'hallucination élevé</li>
+        <li>Pas d'accès à une base spécifique</li>
+        <li>Réponses génériques</li>
+      </ul>
+    </div>
+    <div class="comparison-item ci-green">
+      <h4>✅ RAG — Solutions</h4>
+      <ul>
+        <li>Connecte le LLM à vos documents</li>
+        <li>Informations actualisées</li>
+        <li>Réduit les hallucinations</li>
+        <li>Peut citer les sources utilisées</li>
+        <li>Mise à jour sans réentraîner</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>🔄 Les 2 phases du RAG</h3>
+  <div class="comparison-box">
+    <div class="comparison-item ci-blue">
+      <h4>📥 Phase 1 : Indexation</h4>
+      <ul>
+        <li>Charger les documents (PDF, web…)</li>
+        <li>Nettoyer les données</li>
+        <li>Découper en <strong>chunks</strong></li>
+        <li>Calculer les <strong>embeddings</strong></li>
+        <li>Stocker dans un <strong>vector store</strong></li>
+      </ul>
+    </div>
+    <div class="comparison-item ci-green">
+      <h4>💬 Phase 2 : Question-Réponse</h4>
+      <ul>
+        <li>Calculer l'embedding de la question</li>
+        <li>Chercher les chunks les plus proches</li>
+        <li>Construire un prompt avec contexte</li>
+        <li>Le LLM génère la réponse finale</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>🏗️ Architecture complète du pipeline RAG</h3>
+  <div class="pipeline">
+    <div class="pipe-step">📄 Documents</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">✂️ Chunking</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">🔢 Embeddings</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">🗄️ Vector Store</div>
+  </div>
+  <div style="text-align:center; color:#667eea; font-weight:bold; margin: 6px 0;">⬇ Question utilisateur</div>
+  <div class="pipeline">
+    <div class="pipe-step">❓ Question</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">🔍 Retrieval</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">📝 Prompt+Contexte</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">🤖 LLM</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">✅ Réponse</div>
+  </div>
+
+  <h3>📐 Notions fondamentales du RAG</h3>
+  <table>
+    <tr><th>Notion</th><th>Définition</th><th>À retenir</th></tr>
+    <tr>
+      <td><strong>Document</strong></td>
+      <td>Texte source, PDF, page web, rapport</td>
+      <td>Source brute de connaissance</td>
+    </tr>
+    <tr>
+      <td><strong>Chunk</strong></td>
+      <td>Morceau plus petit d'un document</td>
+      <td>~800 caractères avec overlap ~150</td>
+    </tr>
+    <tr>
+      <td><strong>Overlap</strong></td>
+      <td>Chevauchement entre 2 chunks consécutifs</td>
+      <td>Évite de couper une idée importante</td>
+    </tr>
+    <tr>
+      <td><strong>Embedding</strong></td>
+      <td>Représentation vectorielle numérique du sens d'un texte</td>
+      <td>Textes proches en sens = vecteurs proches</td>
+    </tr>
+    <tr>
+      <td><strong>Similarité vectorielle</strong></td>
+      <td>Distance L2, cosine similarity, produit scalaire</td>
+      <td>Permet la recherche sémantique</td>
+    </tr>
+    <tr>
+      <td><strong>Vector Store</strong></td>
+      <td>Base de données qui stocke et indexe les embeddings</td>
+      <td>FAISS, ChromaDB, Qdrant…</td>
+    </tr>
+    <tr>
+      <td><strong>Retriever</strong></td>
+      <td>Composant qui interroge le vector store pour les top-k chunks</td>
+      <td>Interface de récupération</td>
+    </tr>
+    <tr>
+      <td><strong>Reranker</strong></td>
+      <td>Reclasse les documents récupérés pour améliorer la pertinence</td>
+      <td>Optionnel, améliore la précision</td>
+    </tr>
+    <tr>
+      <td><strong>PromptTemplate</strong></td>
+      <td>Prompt paramétrable avec variables {context} {question}</td>
+      <td>Standardise et injecte dynamiquement le contexte</td>
+    </tr>
+    <tr>
+      <td><strong>TOP_K</strong></td>
+      <td>Nombre de chunks récupérés par le retriever</td>
+      <td>Généralement 3 à 5</td>
+    </tr>
+  </table>
+
+  <h3>🔍 Recherche sémantique vs recherche lexicale</h3>
+  <div class="important-note">
+    <strong>💡 Clé à retenir :</strong> Sans embeddings, la recherche ne trouve que les mots exacts.<br>
+    Avec embeddings : "Comment m'inscrire ?" peut retrouver "Procédure d'inscription administrative et dépôt du dossier." même sans mots communs.<br>
+    <strong>→ La recherche sémantique capte le SENS, pas seulement les mots.</strong>
+  </div>
+
+  <h3>⚖️ RAG vs Fine-tuning</h3>
+  <table>
+    <tr><th>Critère</th><th>RAG</th><th>Fine-tuning</th></tr>
+    <tr><td><strong>Mise à jour</strong></td><td>✅ Facile, sans réentraîner</td><td>❌ Nécessite réentraînement</td></tr>
+    <tr><td><strong>Coût</strong></td><td>✅ Faible</td><td>❌ Élevé</td></tr>
+    <tr><td><strong>Sources citables</strong></td><td>✅ Oui</td><td>❌ Non</td></tr>
+    <tr><td><strong>Précision domaine</strong></td><td>⚡ Dépend des docs</td><td>✅ Très élevée</td></tr>
+    <tr><td><strong>Vitesse réponse</strong></td><td>⚡ Plus lente (recherche)</td><td>✅ Plus rapide</td></tr>
+    <tr><td><strong>Hallucinations</strong></td><td>✅ Réduites</td><td>⚡ Toujours possibles</td></tr>
+  </table>
+
+  <h3>⚠️ Erreurs fréquentes en RAG</h3>
+  <div class="danger">
+    <strong>🚨 À éviter :</strong><br>
+    • Chunks trop grands (contexte trop long dans le prompt) ou trop petits (perd le contexte)<br>
+    • Documents non nettoyés (bruit = mauvais embeddings)<br>
+    • Embeddings mal adaptés à la langue ou au domaine<br>
+    • Absence de consigne claire dans le PromptTemplate<br>
+    • Croire que le retrieval est correct sans l'évaluer
+  </div>
+
+  <h3>✨ Bonnes pratiques RAG</h3>
+  <div class="tip">
+    <strong>✅ Pour améliorer la qualité :</strong><br>
+    • Ajouter des métadonnées (source, page) aux chunks<br>
+    • Utiliser un reranker pour affiner les résultats<br>
+    • Faire du hybrid search (lexical + vectoriel)<br>
+    • Demander au modèle de citer ses sources dans le prompt<br>
+    • Tester différentes valeurs de chunk_size, overlap, top-k<br>
+    • Ajouter dans le prompt : "Si l'info n'est pas dans le contexte, dis-le explicitement"
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PARTIE 4 — TECHNOLOGIES
+  ═══════════════════════════════════════════ -->
+  <h2 id="technologies"><span class="section-number">PARTIE 4</span> Technologies : FAISS, ChromaDB, LangChain</h2>
+
+  <h3>⚡ FAISS vs ChromaDB</h3>
+  <table>
+    <tr><th>Critère</th><th>FAISS</th><th>ChromaDB</th></tr>
+    <tr><td><strong>Nature</strong></td><td>Bibliothèque d'index vectoriel (Facebook AI)</td><td>Base vectorielle orientée IA</td></tr>
+    <tr><td><strong>Simplicité</strong></td><td>Plus bas niveau, plus technique</td><td>Plus simple à manipuler</td></tr>
+    <tr><td><strong>Métadonnées</strong></td><td>À gérer soi-même</td><td>Support intégré</td></tr>
+    <tr><td><strong>Persistance</strong></td><td>Possible mais plus technique</td><td>Simple à mettre en place</td></tr>
+    <tr><td><strong>Performance</strong></td><td>Très rapide, volumes importants</td><td>Bonne pour prototypes</td></tr>
+    <tr><td><strong>Cas d'usage</strong></td><td>Contrôle fin, recherche performante</td><td>Prototypage rapide et RAG applicatif</td></tr>
+  </table>
+
+  <h3>🔗 LangChain — Briques essentielles</h3>
+  <div class="grid-3">
+    <div class="grid-card">
+      <h4>📄 Document</h4>
+      <ul>
+        <li>Texte + métadonnées</li>
+        <li>page_content</li>
+        <li>metadata (source, page)</li>
+      </ul>
+    </div>
+    <div class="grid-card">
+      <h4>✂️ TextSplitter</h4>
+      <ul>
+        <li>RecursiveCharacterTextSplitter</li>
+        <li>chunk_size = 800</li>
+        <li>chunk_overlap = 150</li>
+      </ul>
+    </div>
+    <div class="grid-card">
+      <h4>🔢 Embeddings</h4>
+      <ul>
+        <li>HuggingFaceEmbeddings</li>
+        <li>all-MiniLM-L6-v2</li>
+        <li>Calcul vectoriel local</li>
+      </ul>
+    </div>
+    <div class="grid-card">
+      <h4>🗄️ VectorStore</h4>
+      <ul>
+        <li>FAISS.from_documents()</li>
+        <li>Chroma.from_documents()</li>
+        <li>as_retriever(k=3)</li>
+      </ul>
+    </div>
+    <div class="grid-card">
+      <h4>📝 PromptTemplate</h4>
+      <ul>
+        <li>Variables {context} {question}</li>
+        <li>PromptTemplate.from_template()</li>
+        <li>prompt.format(…)</li>
+      </ul>
+    </div>
+    <div class="grid-card">
+      <h4>🤖 ChatGroq</h4>
+      <ul>
+        <li>llama-3.3-70b-versatile</li>
+        <li>temperature=0</li>
+        <li>llm.invoke(prompt)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>🎯 Autres vector stores</h3>
+  <div class="important-note">
+    <strong>Au-delà de FAISS et ChromaDB :</strong> Qdrant, Weaviate, Pinecone, Milvus, Elastic avec recherche vectorielle, approches hybrides texte + vecteurs.<br>
+    Le choix dépend du <strong>volume, budget, persistance, cloud et besoins de filtrage</strong>.
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PARTIE 5 — LANGGRAPH
+  ═══════════════════════════════════════════ -->
+  <h2 id="langgraph"><span class="section-number">PARTIE 5</span> LangGraph — Workflows Avancés</h2>
+
+  <div class="key-concept">
+    <strong>🎯 Définition :</strong> LangGraph permet de construire des workflows et agents <strong>stateful</strong> (avec état partagé entre plusieurs étapes), utile quand un pipeline linéaire simple ne suffit plus.
+  </div>
+
+  <h3>🧩 Notions LangGraph</h3>
+  <table>
+    <tr><th>Notion</th><th>Rôle</th></tr>
+    <tr><td><strong>State</strong></td><td>L'état partagé entre les noeuds (TypedDict)</td></tr>
+    <tr><td><strong>Node</strong></td><td>Une étape de traitement (fonction Python)</td></tr>
+    <tr><td><strong>Edge</strong></td><td>Lien entre deux étapes (séquentiel ou conditionnel)</td></tr>
+    <tr><td><strong>START / END</strong></td><td>Début et fin du graphe</td></tr>
+    <tr><td><strong>StateGraph</strong></td><td>Le graphe complet à compiler</td></tr>
+    <tr><td><strong>app.compile()</strong></td><td>Compile le graphe en application exécutable</td></tr>
+    <tr><td><strong>app.invoke()</strong></td><td>Exécute le graphe avec un état initial</td></tr>
+  </table>
+
+  <h3>📊 Pipeline RAG simple (graphe)</h3>
+  <div class="pipeline">
+    <div class="pipe-step">START</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">retrieve</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">generate</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step">END</div>
+  </div>
+
+  <div class="important-note">
+    <strong>📌 Pourquoi LangGraph plutôt qu'un pipeline simple ?</strong><br>
+    • Ajouter un noeud de <strong>reformulation</strong> de la question<br>
+    • Ajouter un noeud de <strong>vérification de pertinence</strong><br>
+    • Ajouter une <strong>branche conditionnelle</strong> si aucun document n'est trouvé<br>
+    • Permettre des <strong>boucles</strong> (relancer la recherche si contexte insuffisant)
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PARTIE 6 — EXEMPLES CODE
+  ═══════════════════════════════════════════ -->
+  <h2 id="code"><span class="section-number">PARTIE 6</span> Exemples Python Essentiels</h2>
+
+  <h3>🔢 Embeddings avec sentence-transformers</h3>
+<pre><span class="kw">from</span> sentence_transformers <span class="kw">import</span> SentenceTransformer
+
+model = SentenceTransformer(<span class="str">"all-MiniLM-L6-v2"</span>)
+texts = [
+    <span class="str">"Procedure d'inscription universitaire"</span>,
+    <span class="str">"Paiement des frais de scolarite"</span>,
+    <span class="str">"Installation de Python sur Windows"</span>,
+]
+vectors = model.encode(texts)
+<span class="fn">print</span>(vectors.shape)  <span class="com"># (3, 384)</span></pre>
+
+  <h3>🔍 Recherche avec FAISS</h3>
+<pre><span class="kw">import</span> faiss
+<span class="kw">from</span> sentence_transformers <span class="kw">import</span> SentenceTransformer
+
+docs = [
+    <span class="str">"Les frais d'inscription sont payables en ligne."</span>,
+    <span class="str">"Le dossier doit etre depose avant le 5 septembre."</span>,
+]
+model = SentenceTransformer(<span class="str">"all-MiniLM-L6-v2"</span>)
+embeddings = model.encode(docs).astype(<span class="str">"float32"</span>)
+
+index = faiss.IndexFlatL2(embeddings.shape[<span class="num">1</span>])
+index.add(embeddings)
+
+query_vec = model.encode([<span class="str">"Comment payer mon inscription ?"</span>]).astype(<span class="str">"float32"</span>)
+distances, indices = index.search(query_vec, k=<span class="num">2</span>)
+<span class="fn">print</span>([docs[i] <span class="kw">for</span> i <span class="kw">in</span> indices[<span class="num">0</span>]])</pre>
+
+  <h3>🗄️ ChromaDB</h3>
+<pre><span class="kw">import</span> chromadb
+
+client = chromadb.PersistentClient(path=<span class="str">"./chroma_db"</span>)
+collection = client.get_or_create_collection(name=<span class="str">"reglement_universite"</span>)
+
+collection.add(
+    ids=[<span class="str">"doc1"</span>, <span class="str">"doc2"</span>],
+    documents=[
+        <span class="str">"Le dossier doit etre depose avant le 5 septembre."</span>,
+        <span class="str">"Les frais sont reglables sur la plateforme en ligne."</span>
+    ],
+    metadatas=[{<span class="str">"source"</span>: <span class="str">"guide.pdf"</span>}, {<span class="str">"source"</span>: <span class="str">"faq.pdf"</span>}]
+)
+results = collection.query(query_texts=[<span class="str">"Comment payer les frais ?"</span>], n_results=<span class="num">2</span>)
+<span class="fn">print</span>(results[<span class="str">"documents"</span>])</pre>
+
+  <h3>📝 PromptTemplate LangChain</h3>
+<pre><span class="kw">from</span> langchain_core.prompts <span class="kw">import</span> PromptTemplate
+
+template = <span class="str">"""
+Tu es un assistant pedagogique specialise en IA generative.
+Reponds uniquement a partir du contexte fourni.
+Si l'information n'est pas presente, dis-le clairement.
+
+Contexte :
+{context}
+
+Question :
+{question}
+"""</span>
+prompt = PromptTemplate.from_template(template)
+final_prompt = prompt.format(
+    context=<span class="str">"Les frais d'inscription sont payables en ligne."</span>,
+    question=<span class="str">"Comment payer mes frais ?"</span>
+)</pre>
+
+  <h3>🔗 Mini pipeline RAG LangChain</h3>
+<pre><span class="kw">from</span> langchain_core.output_parsers <span class="kw">import</span> StrOutputParser
+<span class="kw">from</span> langchain_core.runnables <span class="kw">import</span> RunnablePassthrough
+
+<span class="kw">def</span> <span class="fn">format_docs</span>(docs):
+    <span class="kw">return</span> <span class="str">"\n\n"</span>.join(doc.page_content <span class="kw">for</span> doc <span class="kw">in</span> docs)
+
+rag_chain = (
+    {
+        <span class="str">"context"</span>: retriever | format_docs,
+        <span class="str">"question"</span>: RunnablePassthrough()
+    }
+    | prompt
+    | llm
+    | StrOutputParser()
+)
+answer = rag_chain.invoke(<span class="str">"Comment payer les frais ?"</span>)</pre>
+
+  <h3>🕸️ LangGraph minimal</h3>
+<pre><span class="kw">from</span> typing <span class="kw">import</span> TypedDict
+<span class="kw">from</span> langgraph.graph <span class="kw">import</span> StateGraph, START, END
+
+<span class="kw">class</span> <span class="ty">RAGState</span>(TypedDict):
+    question: str
+    context: str
+    answer: str
+
+<span class="kw">def</span> <span class="fn">retrieve_node</span>(state: RAGState):
+    docs = retriever.invoke(state[<span class="str">"question"</span>])
+    <span class="kw">return</span> {<span class="str">"context"</span>: <span class="str">"\n\n"</span>.join(doc.page_content <span class="kw">for</span> doc <span class="kw">in</span> docs)}
+
+<span class="kw">def</span> <span class="fn">generate_node</span>(state: RAGState):
+    prompt_text = prompt.format(context=state[<span class="str">"context"</span>], question=state[<span class="str">"question"</span>])
+    answer = llm.invoke(prompt_text).content
+    <span class="kw">return</span> {<span class="str">"answer"</span>: answer}
+
+graph = StateGraph(RAGState)
+graph.add_node(<span class="str">"retrieve"</span>, retrieve_node)
+graph.add_node(<span class="str">"generate"</span>, generate_node)
+graph.add_edge(START, <span class="str">"retrieve"</span>)
+graph.add_edge(<span class="str">"retrieve"</span>, <span class="str">"generate"</span>)
+graph.add_edge(<span class="str">"generate"</span>, END)
+
+app = graph.compile()
+result = app.invoke({<span class="str">"question"</span>: <span class="str">"Quelle est la date limite ?"</span>})</pre>
+
+  <h3>📦 Installation (TP RAG)</h3>
+<pre><span class="com"># Créer un environnement virtuel</span>
+python -m venv .venv
+source .venv/bin/activate  <span class="com"># Linux/Mac</span>
+.venv\Scripts\activate     <span class="com"># Windows</span>
+
+<span class="com"># Installer les dépendances</span>
+pip install langchain langchain-core langchain-community langchain-text-splitters
+pip install langchain-huggingface langchain-groq
+pip install faiss-cpu sentence-transformers pypdf python-dotenv
+
+<span class="com"># Fichier .env</span>
+GROQ_API_KEY=votre_cle_api_ici</pre>
+
+  <!-- ══════════════════════════════════════
+       PARTIE 7 — EXAMEN TYPE
+  ═══════════════════════════════════════════ -->
+  <h2 id="examen"><span class="section-number">PARTIE 7</span> Révision Examen — QCM & Quiz</h2>
+
+  <h3>📋 Réponses Quiz — Partie 1 (5 pts)</h3>
+  <ul class="rules">
+    <li><span class="rule-num">Q1</span><div><strong>Entraînement vs Fine-tuning :</strong> Entraînement = de zéro sur un large corpus (non supervisé). Fine-tuning = adapter un modèle pré-entraîné à un domaine spécifique avec des données ciblées.</div></li>
+    <li><span class="rule-num">Q2</span><div><strong>Pourquoi fine-tuner ?</strong> Améliore la pertinence et la précision des réponses dans un domaine donné. Un modèle générique peut être moins précis ou biaisé dans un contexte spécifique.</div></li>
+    <li><span class="rule-num">Q3</span><div><strong>Limites LLMs :</strong> Hallucinations · Dépendance aux données d'entraînement · Coût élevé · Fenêtre de contexte limitée · Biais des données.</div></li>
+    <li><span class="rule-num">Q4</span><div><strong>Pourquoi RAG ?</strong> Améliore la précision en récupérant des informations actualisées/externes. Réduit les hallucinations en fournissant des faits vérifiables.</div></li>
+    <li><span class="rule-num">Q5</span><div><strong>RAG vs Fine-tuning :</strong> RAG = pas de réentraînement, infos actualisées, sources citables. Fine-tuning = précision maximale dans un domaine, mais coûteux et figé.</div></li>
+  </ul>
+
+  <h3>✅ Réponses QCM — Partie 2 (6 pts)</h3>
+  <table>
+    <tr><th>#</th><th>Question</th><th>Bonne(s) réponse(s)</th></tr>
+    <tr><td>1</td><td>Un modèle RAG est principalement utilisé pour…</td><td><strong>b)</strong> Récupérer des informations externes pour améliorer la réponse</td></tr>
+    <tr><td>2</td><td>Rôle d'une base de données vectorielle comme ChromaDB ?</td><td><strong>a)</strong> Stocker et rechercher des représentations numériques de textes</td></tr>
+    <tr><td>3</td><td>Éléments essentiels pour une API FastAPI d'IA générative ?</td><td><strong>a)</strong> Endpoint + <strong>c)</strong> Clé API pour service externe</td></tr>
+    <tr><td>4</td><td>Prompt le plus efficace pour réponse détaillée ?</td><td><strong>b)</strong> Structuré avec instructions précises + <strong>d)</strong> Avec exemples et consignes</td></tr>
+    <tr><td>5</td><td>Concept pour structurer la réponse d'un LLM ?</td><td><strong>a)</strong> Chain of Thought (CoT) + <strong>d)</strong> RAG</td></tr>
+    <tr><td>6</td><td>Étapes d'une requête RAG ?</td><td><strong>a)</strong> Extraction + <strong>c)</strong> Recherche vectorielle + <strong>d)</strong> Embedding</td></tr>
+  </table>
+
+  <h3>📝 Complétions — Partie 3 (3 pts)</h3>
+  <div class="formula-row"><div class="formula-label">1</div> Un LLM est entraîné en utilisant un grand volume de <strong>données textuelles</strong> pour apprendre à générer du texte.</div>
+  <div class="formula-row"><div class="formula-label">2</div> Le fine-tuning permet d'adapter un modèle pré-entraîné en l'exposant à des <strong>exemples supplémentaires</strong>.</div>
+  <div class="formula-row"><div class="formula-label">3</div> Une base vectorielle est utilisée dans RAG pour stocker des documents sous forme de <strong>vecteurs</strong>.</div>
+  <div class="formula-row"><div class="formula-label">4</div> Le RAG aide à compenser les limites en intégrant des informations <strong>externes</strong> dans la génération.</div>
+  <div class="formula-row"><div class="formula-label">5</div> Une faiblesse principale des LLMs est leur tendance à générer des <strong>hallucinations</strong>.</div>
+  <div class="formula-row"><div class="formula-label">6</div> Le Chain of Thought encourage un raisonnement <strong>explicite</strong> (étape par étape).</div>
+
+  <h3>🏗️ Architecture Chatbot RAG — Partie 4</h3>
+  <div class="important-note">
+    <strong>📌 Réponse type pour l'étude de cas :</strong><br><br>
+    <strong>a) Composants techniques :</strong> Interface utilisateur (web/mobile) · Backend API FastAPI · Modèle LLM (GPT/Groq/Mistral) · Base vectorielle (ChromaDB/FAISS) · Retriever RAG<br><br>
+    <strong>b) Interactions :</strong> Utilisateur → API → Retriever → Vector Store → top-k chunks → Prompt + contexte → LLM → Réponse utilisateur<br><br>
+    <strong>c) Avantages :</strong> Scalabilité (mise à jour doc sans réentraîner) · Précision améliorée · Facilité d'extension · Sources citables · Réduction hallucinations
+  </div>
+
+  <h3>📊 Tableau récapitulatif final</h3>
+  <table>
+    <tr><th>Concept</th><th>Rôle</th><th>Outil/Exemple</th></tr>
+    <tr><td><strong>LLM</strong></td><td>Génère le texte final</td><td>Groq (llama-3.3-70b), GPT-4, Claude</td></tr>
+    <tr><td><strong>Embedding</strong></td><td>Représentation vectorielle du sens</td><td>all-MiniLM-L6-v2 (sentence-transformers)</td></tr>
+    <tr><td><strong>Chunking</strong></td><td>Découpe les docs en morceaux exploitables</td><td>RecursiveCharacterTextSplitter (LangChain)</td></tr>
+    <tr><td><strong>Vector Store</strong></td><td>Stocke et indexe les embeddings</td><td>FAISS, ChromaDB</td></tr>
+    <tr><td><strong>Retriever</strong></td><td>Récupère les top-k chunks pertinents</td><td>vectorstore.as_retriever(k=3)</td></tr>
+    <tr><td><strong>PromptTemplate</strong></td><td>Injecte dynamiquement contexte + question</td><td>PromptTemplate.from_template()</td></tr>
+    <tr><td><strong>LangChain</strong></td><td>Framework d'orchestration du pipeline RAG</td><td>Chaîne retriever | prompt | llm | parser</td></tr>
+    <tr><td><strong>LangGraph</strong></td><td>Workflows stateful, branches et boucles</td><td>StateGraph, Nodes, Edges</td></tr>
+    <tr><td><strong>Chain of Thought</strong></td><td>Raisonnement structuré étape par étape</td><td>Prompt : "résous en 3 étapes"</td></tr>
+    <tr><td><strong>Few-shot</strong></td><td>Exemples dans le prompt pour guider le style</td><td>2-3 exemples Entrée → Sortie</td></tr>
+  </table>
+
+  <div class="footer-note">Fiche IA Générative ING-3 · LLMs · Prompt Engineering · RAG · LangChain · LangGraph · Haythem Ghazouani</div>
+</div>
+</body>
+</html>
